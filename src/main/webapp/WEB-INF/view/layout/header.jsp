@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,83 +15,63 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .width-58 {
+            width: 53%;
+        }
+
+        .my-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+        }
+    </style>
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-sm bg-light navbar-light ">
 
-    <nav class="navbar navbar-expand-sm bg-light navbar-light">
         <div class="container-fluid width-58">
+            <div class="">
+                <a class="navbar-brand" href="/"><i class="fa-brands fa-github-square" style="font-size: 2em;"></i></a>
+            </div>
 
-            <div class="d-flex ">
-                <div class="">
-                    <a class="navbar-brand" href="/">로고</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapsibleNavbar">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+            <div class="collapse navbar-collapse ms-5" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item mx-3 fs-5">
+                        <a class="nav-link text-dark" href="/jobs/intro">채용정보</a>
+                    </li>
+                    <li class="nav-item mx-3 fs-5">
+                        <a class="nav-link text-dark" href="/user/resume">이력서</a>
+                    </li>
 
-                </div>
+                    <li class="nav-item mx-3 fs-5">
+                        <a class="nav-link text-dark" href="/user/interest">관심기업</a>
+                    </li>
 
-                <div class="">
-                    <div class="collapse navbar-collapse justify-content-between" id="collapsibleNavbar">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="/jobs/intro">채용정보</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/user/resume">이력서</a>
-                            </li>
+                </ul>
+            </div>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="/user/interest">관심기업</a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="">
-                    <div class="d-flex">
-                        <div class="">
-                            <div class="input-group me-4">
-                                <div class="form-outline me-4">
-                                    <input id="search-header" type="search" name="title" class="form-control"
-                                        placeholder="검색" style="display: none;"
-                                        onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt();}" />
-                                </div>
-                                <div class="">
-                                    <i class="fa-solid fa-magnifying-glass btn btn-light" onclick="searchBox()"></i>
-                                </div>
+            <div class="d-flex">
+                <div class="d-flex">
+                    <div class="me-5">
+                        <div class="input-group me-4">
+                            <div class="form-outline me-4">
+                                <input id="search-header" type="search" name="title" class="form-control"
+                                    placeholder="검색" style="display: none;"
+                                    onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt();}" />
+                            </div>
+                            <div class="my-auto">
+                                <i class="fa-solid fa-magnifying-glass btn btn-light" onclick="searchBox()"></i>
                             </div>
                         </div>
-                        <div class="me-5 ">
-                            <i class="fa-sharp fa-solid fa-bell btn btn-light"></i>
-                        </div>
-                        <div class="">
-                            <a href="/user/myhome"><img
-                                    src=""
-                                    style="width: 35px;" class="rounded-circle" alt="Cinque Terre"></a>
-                        </div>
+                    </div>
+                    <div class="my-auto ">
+                        <a href="/user/myhome">
+                            <i class="fa-regular fa-user"></i>
+                        </a>
                     </div>
                 </div>
-
             </div>
+        </div>
     </nav>
-
-    </div>
-
-    <script>
-        function searchBox() {
-            $('#search-header').css('display')
-            const searchHeader = document.getElementById("search-header");
-            if (searchHeader.style.display === "none") {
-                searchHeader.style.display = "block";
-                searchHeader.focus();
-            }
-        }
-        function searchEvt() {
-            const keyword = $('#search-header').val();
-            console.log(keyword);
-            location.href = "/search?keyword=" + keyword;
-        }
-    </script>

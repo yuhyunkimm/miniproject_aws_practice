@@ -51,11 +51,10 @@ public class CompController {
 
 // ⬜ 기업회원가입    "/comp/join"
 // ⬜ 기업로그인    "/comp/login
+
 // 🟦 🔐 기업권한필요 🔐 🟦
 // 🟦 기업홈    "/comp/myhome"
 // 🟦 기업수정    "/comp/update"
-// 🟦 공고등록    "/comp/jobs/write
-// 🟦 공고수정    "/comp/jobs/공고번호/update"
 // 🟦 지원자현황   "/comp/apply"
 // 🟦 이력서 열람   "/comp/resume/read"
 // 🟦 이력서 스크랩   "/comp/resume/scrap"

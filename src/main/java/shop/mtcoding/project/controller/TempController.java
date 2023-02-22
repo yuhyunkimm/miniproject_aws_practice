@@ -24,6 +24,3 @@ public class TempController {
 
 // ⬜ 메인    "/"
 // ⬜ 고객센터    "/help"
-// 🟨 공개하면 기업이 접근 가능 🟨
-// 🟨 이력서번호    "/resume/이력서번호"
-// 🟨 자기소개서    "/intro/자기소개서번호" 
