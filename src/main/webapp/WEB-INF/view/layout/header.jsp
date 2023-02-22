@@ -15,23 +15,12 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <link rel="stylesheet" href="/css/style.css">
-    <style>
-        .width-58 {
-            width: 53%;
-        }
 
-        .my-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 10px;
-        }
-    </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-sm bg-light navbar-light ">
-
-        <div class="container-fluid width-58">
+        <div class="container-fluid width-53">
             <div class="">
                 <a class="navbar-brand" href="/"><i class="fa-brands fa-github-square" style="font-size: 2em;"></i></a>
             </div>
@@ -44,11 +33,9 @@
                     <li class="nav-item mx-3 fs-5">
                         <a class="nav-link text-dark" href="/user/resume">이력서</a>
                     </li>
-
                     <li class="nav-item mx-3 fs-5">
                         <a class="nav-link text-dark" href="/user/interest">관심기업</a>
                     </li>
-
                 </ul>
             </div>
 

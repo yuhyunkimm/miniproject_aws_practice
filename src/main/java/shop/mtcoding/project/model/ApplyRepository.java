@@ -4,5 +4,17 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ApplyRepository {
-    
+    public void findAll();
+    public void findById(
+
+    );
+    public int insert(
+
+    );
+    public int updateById(
+
+    );
+    public int deleteById(
+
+    );
 }

@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="mx-auto width-58">
+    <div class="mx-auto width-53">
         회원가입 
     
     </div>

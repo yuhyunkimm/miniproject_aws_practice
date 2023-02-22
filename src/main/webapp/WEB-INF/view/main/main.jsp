@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
 
-    <div class="mx-auto width-58 mx-5 px-3 my-3">
+    <div class="mx-auto width-53 mx-5 px-3 my-3">
         <div class="row py-3">
             <div class="col-md-4">
                 <div class="card" ">

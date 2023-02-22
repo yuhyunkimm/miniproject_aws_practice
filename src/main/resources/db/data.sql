@@ -2,7 +2,7 @@ insert into user_tb (email, password, name, birth, tel, photo, user_address, cre
 values ('ssar@nate.com', '1234', '박인우', '1994-03-17', '010-1234-1234', '/images/default_profile.png', '연제구', now());
 
 insert into comp_tb (email, password, comp_name, comp_address, representative_name, business_number, tel, photo, employees, establishment_date, homepage, created_at)
-values ('kakao@kakao.com', '1234', '카카오(주)', '서울 어딘가', '아무개', '123-12-1234', '02-1234-1234', '/images/default_profile.png', 100, '1999-01-01', 'www.kakao.com',now());
+values ('http://www.kakaocorp.com', '1234', '카카오(주)', '제주 제주시 첨단로', '홍은택', '120-81-47521', '1577-3321', '/images/default_profile.png', 3600, '1999-01-01', 'www.kakao.com',now());
 
 insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3) values (1, '스프링', '자바', '리액트');
 

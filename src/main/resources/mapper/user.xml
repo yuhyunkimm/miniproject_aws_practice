@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="shop.mtcoding.project.model.UserRepository">
+    <select id="findAll" resultType="shop.mtcoding.project.model.User">
+        select * from user_tb
+    </select>
+
+    <select id="findById" resultType="shop.mtcoding.project.model.User">
+        select * from user_tb id = #{uDto.id}
+    </select>
+
+    <insert id="insert">
+        insert into user_tb ( email, password, name, birth, tel, userAddress, create_at )
+            values ( #{uDto.email}, #{uDto.password}, #{uDto.name}, #{uDto.birth}, #{uDto.tel}, #{uDto.userAddress}, now());
+    </insert>
+
+    <update id="updateById">
+        update user_tb set 
+            password =  #{uDto.password}, 
+            name = #{uDto.name}, 
+            birth = #{uDto.birth},
+            tel =  #{uDto.tel},
+            userAddress = #{uDto.userAddress}, 
+            where id = #{uDto.id}
+    </update>
+
+    <delete id="deleteById">
+        delete from user_tb where id = #{uDto.id}
+    </delete>
+</mapper>

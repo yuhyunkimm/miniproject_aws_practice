@@ -1,6 +1,6 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
  <div class="p-3 bg-light text-black rounded text-center" style="margin-bottom: 0">
-        <div class="width-58 mx-auto">
+        <div class="width-53 mx-auto">
             <div class="d-flex justify-content-around ">
                 <div>
                     회사소개
@@ -15,7 +15,7 @@
                     고객센터
                 </div>
             </div>
-            <div class="width-58 d-flex mx-auto justify-content-between p-5">
+            <div class="width-53 d-flex mx-auto justify-content-between p-5">
                 <div>
                     <i class="fa-solid fa-house" style="font-size: 4em;"></i>
                 </div>

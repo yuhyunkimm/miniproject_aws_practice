@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="mx-auto width-58">
+    <div class="mx-auto width-53">
         회사정보 수정
     
     </div>
