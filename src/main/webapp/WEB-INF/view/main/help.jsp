@@ -2,7 +2,7 @@
 <%@ include file="../layout/header.jsp" %>
 
 <div class="mx-auto width-53">
-    메인 페이지 
+    고객센터
 
 </div>
 

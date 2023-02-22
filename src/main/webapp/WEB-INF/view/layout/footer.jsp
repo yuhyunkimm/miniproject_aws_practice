@@ -12,7 +12,9 @@
                     개인정보처리방침
                 </div>
                 <div>
+                <a href="/help">
                     고객센터
+                </a>
                 </div>
             </div>
             <div class="width-53 d-flex mx-auto justify-content-between p-5">

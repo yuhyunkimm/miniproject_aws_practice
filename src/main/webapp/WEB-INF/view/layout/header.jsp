@@ -40,25 +40,55 @@
             </div>
 
             <div class="d-flex">
-                <div class="d-flex">
-                    <div class="me-5">
-                        <div class="input-group me-4">
-                            <div class="form-outline me-4">
-                                <input id="search-header" type="search" name="title" class="form-control"
-                                    placeholder="검색" style="display: none;"
-                                    onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt();}" />
-                            </div>
-                            <div class="my-auto">
-                                <i class="fa-solid fa-magnifying-glass btn btn-light" onclick="searchBox()"></i>
+                <c:choose>
+                    <c:when test="${principal == null}">
+                        <div class="me-3">
+                            <div class="input-group me-3">
+                                <div class="form-outline me-4">
+                                    <input id="search-header" type="search" name="title" class="form-control"
+                                        placeholder="검색" style="display: none;"
+                                        onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt();}" />
+                                </div>
+                                <div class="my-auto">
+                                    <i class="fa-solid fa-magnifying-glass btn btn-light" onclick="searchBox()"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="my-auto ">
-                        <a href="/user/myhome">
-                            <i class="fa-regular fa-user"></i>
-                        </a>
-                    </div>
-                </div>
+                        <div class="my-auto me-3">
+                            <a class="text-dark" href="/user/login">
+                                로그인 / 회원가입
+                            </a>
+                        </div>
+                        <div class="my-auto pb-1">
+                            <a href="/comp/myhome" <span class="badge bg-success">기업서비스</span>
+                            </a>
+                        </div>
+                    </c:when>
+
+                    <c:otherwise>
+                        <div class="me-4">
+                            <div class="input-group me-4">
+                                <div class="form-outline me-4">
+                                    <input id="search-header" type="search" name="title" class="form-control"
+                                        placeholder="검색" style="display: none;"
+                                        onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt();}" />
+                                </div>
+                                <div class="my-auto">
+                                    <i class="fa-solid fa-magnifying-glass btn btn-light" onclick="searchBox()"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-auto me-5">
+                            <a href="/user/myhome">
+                                <i class="fa-regular fa-user"></i>
+                            </a>
+                        </div>
+                        <div class="my-auto pb-1">
+                            <a href="/comp/myhome"><span class="badge bg-success">기업서비스</span>
+                            </a>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </nav>

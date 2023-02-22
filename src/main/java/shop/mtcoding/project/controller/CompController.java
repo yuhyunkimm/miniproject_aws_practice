@@ -46,7 +46,7 @@ public class CompController {
 
     @GetMapping("/comp/myhome")
     public String compMyhome() {
-        mockCompSession();
+        // mockCompSession();
         return "comp/myhome";
     }
 
