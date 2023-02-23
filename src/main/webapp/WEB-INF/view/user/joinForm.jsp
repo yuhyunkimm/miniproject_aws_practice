@@ -100,6 +100,28 @@
                     </div>
                 </div>
             </div>
+            <script>
+                $(document).ready(function () {
+                    // 전체동의 체크박스 클릭 이벤트
+                    $('#flexCheckDefault').click(function () {
+                        // 모든 체크박스를 체크하거나 체크 해제
+                        $('input[type="checkbox"]').prop('checked', $(this).prop('checked'));
+                    });
+                });
+            </script>
+            <script>
+                $(document).ready(function () {
+                    // 회원가입 버튼 클릭 이벤트
+                    $('#submitBtn').click(function (e) {
+                        // 약관 체크 여부 확인
+                        if (!$('#checkbox3').prop('checked')) {
+                            e.preventDefault(); // 기본 이벤트 취소
+                            // 경고 메시지 출력
+                            alert('약관에 동의해주세요');
+                        }
+                    });
+                });
+            </script>
         </body>
 
         </html>
