@@ -35,28 +35,26 @@ public class UserController {
 
     @PostMapping("/user/join")
     public String join(UserJoinReqDto userJoinReqDto) {
-        // if (userJoinReqDto.getEmail() == null || userJoinReqDto.getEmail().isEmpty())
-        // {
-        // throw new CustomException("이메일을 작성해주세요");
-        // }
-        // if (userJoinReqDto.getName() == null || userJoinReqDto.getName().isEmpty()) {
-        // throw new CustomException("이름을 작성해주세요");
-        // }
-        // if (userJoinReqDto.getPassword() == null ||
-        // userJoinReqDto.getPassword().isEmpty()) {
-        // throw new CustomException("패스워드를 작성해주세요");
-        // }
-        // if (userJoinReqDto.getPassword() == null ||
-        // userJoinReqDto.getPassword().isEmpty()) {
-        // throw new CustomException("동일한 패스워드를 작성해주세요");
-        // }
-        // if (userJoinReqDto.getBirth() == null || userJoinReqDto.getBirth().isEmpty())
-        // {
-        // throw new CustomException("생년월일을 작성해주세요");
-        // }
-        // if (userJoinReqDto.getTel() == null || userJoinReqDto.getTel().isEmpty()) {
-        // throw new CustomException("휴대폰번호을 작성해주세요");
-        // }
+        if (userJoinReqDto.getEmail() == null || userJoinReqDto.getEmail().isEmpty()) {
+            throw new CustomException("이메일을 작성해주세요");
+        }
+        if (userJoinReqDto.getName() == null || userJoinReqDto.getName().isEmpty()) {
+            throw new CustomException("이름을 작성해주세요");
+        }
+        if (userJoinReqDto.getPassword() == null ||
+                userJoinReqDto.getPassword().isEmpty()) {
+            throw new CustomException("패스워드를 작성해주세요");
+        }
+        if (userJoinReqDto.getPassword() == null ||
+                userJoinReqDto.getPassword().isEmpty()) {
+            throw new CustomException("동일한 패스워드를 작성해주세요");
+        }
+        if (userJoinReqDto.getBirth() == null || userJoinReqDto.getBirth().isEmpty()) {
+            throw new CustomException("생년월일을 작성해주세요");
+        }
+        if (userJoinReqDto.getTel() == null || userJoinReqDto.getTel().isEmpty()) {
+            throw new CustomException("휴대폰번호을 작성해주세요");
+        }
         // userService.회원가입(joinReqDto);
 
         return "redirect:/user/login";
