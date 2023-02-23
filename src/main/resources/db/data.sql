@@ -2,18 +2,28 @@ insert into user_tb (email, password, name, birth, tel, photo, user_address, cre
 values ('ssar@nate.com', '1234', 'ssar', '1994-03-17', '010-1234-1234', '/images/default_profile.png', '연제구', now());
 
 insert into comp_tb (email, password, comp_name, comp_address, representative_name, business_number, tel, photo, employees, establishment_date, homepage, created_at)
-values ('http://www.kakaocorp.com', '1234', '카카오(주)', '제주 제주시 첨단로', '홍은택', '120-81-47521', '1577-3321', '/images/default_profile.png', 3600, '1999-01-01', 'www.kakao.com',now());
+values ('http://www.kakaocorp.com', '1234', '카카오(주)', '제주 제주시 첨단로', '홍은택', '120-81-47521', '1577-3321', '/images/kakao.png', 3600, '1999-01-01', 'www.kakao.com',now());
 
 insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3) values (1, '스프링', '자바', '리액트');
+insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3) values (2, '자바스크립트', '자바', '리액트');
+insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3) values (3, 'HTML/CSS', '자바', '리액트');
+insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3) values (4, '스프링', '자바', '리액트');
+insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3) values (5, '스프링', '자바', '리액트');
+insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3) values (6, '스프링', '자바', '리액트');
 
-insert into required_skill_tb (required_skill_id, jobs_id, skill_name1, skill_name2, skill_name3) values (1, 1, '스프링', '자바', '리액트');
+insert into required_skill_tb ( jobs_id, skill_name1, skill_name2, skill_name3) values (1, '스프링', '자바', '리액트');
+insert into required_skill_tb ( jobs_id, skill_name1, skill_name2, skill_name3) values (2, '자바스크립트', '자바', '리액트');
+insert into required_skill_tb ( jobs_id, skill_name1, skill_name2, skill_name3) values (3, '스프링', '자바', '리액트');
+insert into required_skill_tb ( jobs_id, skill_name1, skill_name2, skill_name3) values (4, '스프링', '자바', '리액트');
+insert into required_skill_tb ( jobs_id, skill_name1, skill_name2, skill_name3) values (5, 'HTML/CSS', '자바', '리액트');
+insert into required_skill_tb ( jobs_id, skill_name1, skill_name2, skill_name3) values (6, '스프링', '자바', '리액트');
 
 insert into jobs_tb (title, content, position, career, education, address, scrap_count, end_date, comp_id, homepage, created_at)
 values ('백엔드 개발자 채용1' , '백엔드 개발자 채용하는 상세 내용1', '백엔드', '신입', '학력무관', '제주', 54,  '2023-03-07', 1, 'www.kakao.com', now());
 insert into jobs_tb (title, content, position, career, education, address, scrap_count, end_date, comp_id, homepage, created_at)
 values ('백엔드 개발자 채용2' , '백엔드 개발자 채용하는 상세 내용2', '프론트', '경력', '대졸', '서울', 54, '2023-03-07', 1, 'www.kakao.com', now());
 insert into jobs_tb (title, content, position, career, education, address, scrap_count, end_date, comp_id, homepage, created_at)
-values ('백엔드 개발자 채용3' , '백엔드 개발자 채용하는 상세 내용3', '백엔드', '경력', '대학원', '제주', 54, '2023-03-07', 1, 'www.kakao.com', now());
+values ('백엔드 개발자 채용3' , '백엔드 개발자 채용하는 상세 내용3', '백엔드', '경력', '대학원', '서울', 54, '2023-03-07', 1, 'www.kakao.com', now());
 insert into jobs_tb (title, content, position, career, education, address, scrap_count, end_date, comp_id, homepage, created_at)
 values ('백엔드 개발자 채용4' , '백엔드 개발자 채용하는 상세 내용4', '서버', '신입', '학력무관', '제주', 54, '2023-03-07', 1, 'www.kakao.com', now());
 insert into jobs_tb (title, content, position, career, education, address, scrap_count, end_date, comp_id, homepage, created_at)
@@ -23,6 +33,11 @@ values ('백엔드 개발자 채용6' , '백엔드 개발자 채용하는 상세
 
 
 insert into interest_tb (user_id, interest_ct1, interest_ct2, interest_ct3) values(1, '백엔드', '자바', '스프링');
+insert into interest_tb (user_id, interest_ct1, interest_ct2, interest_ct3) values(2, '서버', '자바', '스프링');
+insert into interest_tb (user_id, interest_ct1, interest_ct2, interest_ct3) values(3, '프론트', '자바', '스프링');
+insert into interest_tb (user_id, interest_ct1, interest_ct2, interest_ct3) values(4, '안드로이드', '자바', '스프링');
+insert into interest_tb (user_id, interest_ct1, interest_ct2, interest_ct3) values(5, '백엔드', '자바', '스프링');
+insert into interest_tb (user_id, interest_ct1, interest_ct2, interest_ct3) values(6, '백엔드', '자바', '스프링');
 
 insert into resume_tb (user_id, title, content, education, career, user_skill_id, link, state, created_at) 
 values (1, '벡엔드 이력서', '백엔드 이력서의 내용입니다.', '고졸', '신입', 1, '블로그 주소', 1, now());

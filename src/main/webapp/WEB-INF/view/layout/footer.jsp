@@ -47,7 +47,4 @@
         }
     </script>
     </body>
-
-    <p>
-
         </html>
