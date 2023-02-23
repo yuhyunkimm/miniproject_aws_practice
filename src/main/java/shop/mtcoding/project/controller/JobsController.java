@@ -36,7 +36,7 @@ public class JobsController {
     }
     
     @GetMapping("/jobs/info")
-    public String intro(){
+    public String info(){
         return "jobs/info";
     }
 
