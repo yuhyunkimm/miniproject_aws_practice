@@ -1,91 +1,111 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="en">
 
-    <!DOCTYPE html>
-    <html lang="en">
+<head>
+    <title>Blog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/32aa2b8683.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .width-53 {
+            width: 53%;
+        }
 
-    <head>
-        <title>Blog</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-        <script src="https://kit.fontawesome.com/32aa2b8683.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-        <link rel="stylesheet" href="/css/style.css">
-
-    </head>
-
-    <body>
-        <style>
-            .width-53 {
-                width: 53%;
-            }
-
-            .my-grid {
-                /* display: grid;
+        .my-grid {
+            /* display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 10px; */
-            }
+        }
 
-            a {
-                color: #000;
-                text-decoration: none;
-            }
+        a {
+            color: #000;
+            text-decoration: none;
+        }
 
-            .view-fix {
-                position: fixed;
-                border: 1px solid rgb(150, 150, 150);
-                background-color: aliceblue;
-            }
+        .view-fix {
+            position: fixed;
+        }
 
-            .view-up {
-                top: 1em;
-                left: 23%;
-                width: 41%;
-            }
+        .view-up {
+            width: 64em;
+        }
 
-            .view-right {
-                right: 25%;
-            }
+        .view-right {
+            top: 5em;
+            right: 38em;
+            width: 270px;
+            height: 200px;
+            border: 1px solid rgb(0, 0, 0);
+        }
+        .relative {
+            position: relative;
+        }
 
-            .relative {
-                position: relative;
-            }
+        .width-l {
+            width: 77%;
+        }
+        .width-r {
+            width: 23%;
+        }
+        .my-border {
+            border: 1px solid rgb(0, 0, 0);
+            padding: 40px;
+            padding-top: 0;
+        }
+        .border{
+            border: 1px solid rgb(0, 0, 0);
+        }
+        header {
+            position: sticky;
+            top: 0px;
+            /* 도달했을때 고정시킬 위치 */
+            padding: 5px;
+            padding-top: 25px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 25px;
+            background-color: white;
+            /* border: 1px solid rgb(0, 0, 0); */
+            z-index: 10;
+        }
+    </style>
+</head>
 
-            .width-l {
-                width: 77%;
-            }
-
-            .width-r {
-                width: 23%;
-            }
-        </style>
-        <div class="mx-auto width-53 d-flex justify-content-between">
-
-            <div class="width-l ">
-                <div class="ms-2 view-fix view-up  ">
-                    <!-- 상단 뷰포트 -->
-                    <div>
-                        상단
+<body>
+    <div class="mx-auto width-53">
+        <div class="">
+            <div class="width-l my-border ">
+                <header>
+                    <div class="view-up row">
+                        <div class="col-1 fs-3  my-auto">
+                            로고
+                        </div>
+                        <div class="col-2 fs-3  my-auto">
+                            기업이름
+                        </div>
+                        <div class="col-9 fs-4  my-auto">
+                            백엔드 개발자 채용중
+                        </div>
                     </div>
-                    <div>
-                        채용정보 내용
-                    </div>
-                </div>
+                </header>
                 <div class="">
-
-                    <div class="mt-5">
-                        <!-- 상세 공고 위치 -->
-                        <div class="row">
+                    <!-- 상세 공고 위치 -->
+                    <div class="my-4">
+                        <div class="row mb-3">
                             <!-- 회사정보 -->
-                            <div>
-                                회사 정보
+                            <div class="col-6">
+                                <p>경력</p>
+                                <p>학력</p>
                             </div>
-                            <div>
-                                회사 정보 2
+                            <div class="col-6">
+                                <p>필요기술</p>
+                                <p>근무지역</p>
                             </div>
                         </div>
                         <div>
@@ -281,40 +301,49 @@
                             molestias,
                             totam doloremque nostrum tenetur culpa.
                         </div>
-                        <div>
-                            <!-- 접수내용 -->
+
+                        <div class="fs-4 mt-5">
                             접수방법
                         </div>
-                        <div>
+
+                        <div class="border row">
                             <!-- 남은 날짜 -->
-                            <div>
-                                d-day
+                            <div class="col-4">
+                                <span class="fs-1">d-day</span> 
                             </div>
-                            <div>
-                                접수방법 종류
+                            <div class="col-8">
+                                홈페이지 지원
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-            <div class="width-r ">
-                <div class="view-fix  view-right">
+            <div class="width-r">
+                <div class="view-fix d-grid  view-right p-4">
                     <!-- 뷰포트 -->
-                    <div>
-                        zzz
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <img class="" src="/src/main/resources/static/images/default_profile.png" style="height: 20px;">
+                        </div>
+                        <div class="me-2"><i id=`scrap-${jDto.jobsId}` class="fs-4 fa-regular fa-star" onclick="scrap(`${jDto.jobsId}`)"></i>
+                        </div>
                     </div>
-                    <div>
-
+                    <div class="fs-4">
+                        <div class="my-1">
+                            
+                        </div>
+                        <div class="my-1">
+                            공고 제목 가져오기
+                        </div>
                     </div>
-                    <div>
-
+                    <div class="align-self-end border">
+                        <button type="button" class="btn btn-success w-100">지원하기</button>
                     </div>
                 </div>
             </div>
-
         </div>
+    </div>
 
-    </body>
+</body>
 
-    </html>
+</html>
