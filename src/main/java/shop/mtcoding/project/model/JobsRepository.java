@@ -1,6 +1,12 @@
 package shop.mtcoding.project.model;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import shop.mtcoding.project.controller.JobsController.JobsSearchReqDto;
+import shop.mtcoding.project.dto.JobsResp.JobsSearchRespDto;
 
 @Mapper
 public interface JobsRepository {
@@ -17,4 +23,6 @@ public interface JobsRepository {
     public int deleteById(
 
     );
+    public List<JobsSearchRespDto> findByAddressAndCareerAndSkillAndDuty(
+        @Param("jDto") JobsSearchReqDto jDto);
 }

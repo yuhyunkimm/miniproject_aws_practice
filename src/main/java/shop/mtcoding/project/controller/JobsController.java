@@ -1,18 +1,45 @@
 package shop.mtcoding.project.controller;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import lombok.Getter;
+import lombok.Setter;
+import shop.mtcoding.project.dto.JobsResp.JobsSearchRespDto;
+import shop.mtcoding.project.dto.ResponseDto;
 import shop.mtcoding.project.model.Comp;
+import shop.mtcoding.project.model.JobsRepository;
+import shop.mtcoding.project.service.JobsService;
 
 @Controller
 public class JobsController {
     
+    @Autowired
+    private JobsService service;
+
+    @Autowired
+    private JobsRepository jobsRepository;
+
+    @Getter
+    @Setter
+    public static class JobsSearchReqDto{
+        private String address;
+        private String skill;
+        private String duty;
+        private String career;
+    }
+
     @Autowired
     private HttpSession session;
 
@@ -53,6 +80,25 @@ public class JobsController {
     @GetMapping("/comp/jobs/{id}/update")
     public String updateJobs(){
     return "comp/updateJobsForm";
+    }
+
+    @PostMapping("/jobs/info/search")
+    public ResponseEntity<?> searchJobs(@RequestBody JobsSearchReqDto jDto, Model model){
+        if( jDto.getAddress() == null || jDto.getAddress().isEmpty()){
+            jDto.setAddress("");
+        }
+        if( jDto.getCareer() == null || jDto.getCareer().isEmpty()){
+            jDto.setCareer("");
+        }
+        if( jDto.getDuty() == null || jDto.getDuty().isEmpty()){
+            jDto.setDuty("");
+        }
+        if( jDto.getSkill() == null || jDto.getSkill().isEmpty()){
+            jDto.setSkill("");
+        }
+        List<JobsSearchRespDto> jDtos = jobsRepository.findByAddressAndCareerAndSkillAndDuty(jDto);
+        model.addAttribute("jDtos", jDtos);
+        return new ResponseEntity<>(new ResponseDto<>(1, "검색 성공", null), HttpStatus.OK);
     }
 }
 // ⬜ 채용정보    "/jobs/info"

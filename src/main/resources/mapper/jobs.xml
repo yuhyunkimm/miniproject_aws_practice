@@ -4,15 +4,27 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="shop.mtcoding.project.model.JobsRepository">
-    <!-- <select id="findAll" resultType="shop.mtcoding.project.model.Jobs">
+    <select id="findAll" resultType="shop.mtcoding.project.model.Jobs">
         select * from jobs_tb
     </select>
 
     <select id="findById" resultType="shop.mtcoding.project.model.User">
-
+      select * from jobs_tb where id = #{jDto.id}
     </select>
 
-    <insert id="insert">
+    <select id="findByAddressAndCareerAndSkillAndDuty" resultType="shop.mtcoding.project.model.User">
+      select ( select comp_name from comp_tb where comp_id = j.comp_id) title, 
+        ( select photo from comp_tb where comp_id = j.comp_id ) photo,
+        title, career, position, r.skill_name1, r.skill_name2, r.skill_name3,  address, created_at
+        from jobs_tb j join required_skill_tb r on
+        j.jobs_id = r.jobs_id
+        where career regexp #{jDto.carrer} and
+        address regexp #{jDto.address} and
+        SKILL_NAME1 regexp #{jDto.skill} and
+        position regexp #{jDto.position}
+    </select>
+
+    <!-- <insert id="insert">
 
     </insert>
 

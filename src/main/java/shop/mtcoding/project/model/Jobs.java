@@ -14,8 +14,8 @@ public class Jobs {
     private String position;
     private String career;
     private String education;
+    private String address;
     private Integer scrapCount;
-    private String requiredSkillId;
     private Timestamp endDate;
     private Integer compId;
     private String homepage;

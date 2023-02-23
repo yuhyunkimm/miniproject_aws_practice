@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class RequiredSkill {
     private Integer requiredSkillId;
-    private Integer compId;
+    private Integer jobsId;
     private String skillName1;
     private String skillName2;
     private String skillName3;
