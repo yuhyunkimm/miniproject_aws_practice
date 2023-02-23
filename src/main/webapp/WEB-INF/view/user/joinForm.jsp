@@ -26,13 +26,13 @@
                     <div class="container w-50">
                         <div class="card-header d-flex justify-content-around my-4">
                             <div class="fs-4">
-                                <a href="/user/login">로그인</a>
+                                <a href="/login">로그인</a>
                             </div>
                             <div class="fs-4">
-                                <a href="/user/join">회원가입</a>
+                                <a href="/join">회원가입</a>
                             </div>
                         </div>
-                        <form action="/join" method="post">
+                        <form action="/user/join" method="post">
                             <div class="d-flex form-group mb-2">
                                 <input type="email" name="email" class="form-control" placeholder="Enter email"
                                     id="email">
@@ -63,38 +63,39 @@
                             </div>
 
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <input class="form-check-input" type="checkbox" id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">
                                     서비스 이용약관 관련 전체동의
                                 </label>
                             </div>
                             <hr />
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <input class="form-check-input" type="checkbox" id="flexCheckChecked1">
                                 <label class="form-check-label" for="flexCheckChecked">
                                     (필수) 이용약관 동의
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <input class="form-check-input" type="checkbox" id="flexCheckChecked2">
                                 <label class="form-check-label" for="flexCheckChecked">
                                     (필수) 개인정보 수집 및 이용 동의
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <input class="form-check-input" type="checkbox" id="flexCheckChecked3">
                                 <label class="form-check-label" for="flexCheckChecked">
                                     (필수) 14세 이상 연령
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                <input class="form-check-input" type="checkbox" id="flexCheck">
                                 <label class="form-check-label" for="flexCheckChecked">
                                     (선택) 이메일 수신 동의
                                 </label>
                             </div>
                             <div class="d-grid gap-2 mb-4">
-                                <input class=" btn btn-primary" type="submit" value="회원가입"></button>
+                                <input id="button" class=" btn btn-primary" type="submit" value="회원가입"
+                                    onclick="submitForm()">
                             </div>
                         </form>
                     </div>
@@ -108,20 +109,19 @@
                         $('input[type="checkbox"]').prop('checked', $(this).prop('checked'));
                     });
                 });
+
+                // 회원가입 버튼 클릭 이벤트
+                function submitForm() {
+                    let agreeCheckbox1 = document.getElementById("flexCheckChecked1");
+                    let agreeCheckbox2 = document.getElementById("flexCheckChecked2");
+                    let agreeCheckbox3 = document.getElementById("flexCheckChecked3");
+                    if (!agreeCheckbox1.checked || !agreeCheckbox2.checked || !agreeCheckbox3.checked) {
+                        alert("약관에 동의해주세요.");
+                        return;
+                    }
+                }
             </script>
-            <script>
-                $(document).ready(function () {
-                    // 회원가입 버튼 클릭 이벤트
-                    $('#submitBtn').click(function (e) {
-                        // 약관 체크 여부 확인
-                        if (!$('#checkbox3').prop('checked')) {
-                            e.preventDefault(); // 기본 이벤트 취소
-                            // 경고 메시지 출력
-                            alert('약관에 동의해주세요');
-                        }
-                    });
-                });
-            </script>
+
         </body>
 
         </html>
