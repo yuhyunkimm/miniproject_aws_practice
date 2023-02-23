@@ -1,4 +1,4 @@
-package shop.mtcoding.project.dto;
+package shop.mtcoding.project.dto.jobs;
 
 import java.sql.Timestamp;
 
@@ -10,8 +10,8 @@ public class JobsResp {
     @Getter
     @Setter
     public static class JobsSearchRespDto {
-        private String photo;
         private String compName;
+        private String photo;
         private String title;
         private String career;
         private String position;

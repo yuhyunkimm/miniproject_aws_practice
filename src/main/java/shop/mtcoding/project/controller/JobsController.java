@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import lombok.Getter;
-import lombok.Setter;
-import shop.mtcoding.project.dto.JobsResp.JobsSearchRespDto;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import shop.mtcoding.project.dto.ResponseDto;
+import shop.mtcoding.project.dto.jobs.JobsReq.JobsSearchReqDto;
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.service.JobsService;
@@ -31,14 +32,7 @@ public class JobsController {
     @Autowired
     private JobsRepository jobsRepository;
 
-    @Getter
-    @Setter
-    public static class JobsSearchReqDto{
-        private String address;
-        private String skill;
-        private String duty;
-        private String career;
-    }
+
 
     @Autowired
     private HttpSession session;
@@ -63,8 +57,25 @@ public class JobsController {
     }
     
     @GetMapping("/jobs/info")
-    public String info(){
+    public String info(JobsSearchReqDto jDto, Model model) throws Exception{
+        ObjectMapper om = new ObjectMapper();
+        if( jDto.getAddress() == null || jDto.getAddress().isEmpty()){
+            jDto.setAddress("");
+        }
+        if( jDto.getCareer() == null || jDto.getCareer().isEmpty()){
+            jDto.setCareer("");
+        }
+        if( jDto.getPosition() == null || jDto.getPosition().isEmpty()){
+            jDto.setPosition("");
+        }
+        if( jDto.getSkill() == null || jDto.getSkill().isEmpty()){
+            jDto.setSkill("");
+        }
+        List<JobsSearchRespDto> jDtos = jobsRepository.findByAddressAndCareerAndSkillAndDuty(jDto);
+        model.addAttribute("jDtos", jDtos);
+        // System.out.println("테스트 : " +  om.writeValueAsString(jDtos));
         return "jobs/info";
+        // return "/";
     }
 
     @GetMapping("/jobs/{id}")
@@ -90,8 +101,8 @@ public class JobsController {
         if( jDto.getCareer() == null || jDto.getCareer().isEmpty()){
             jDto.setCareer("");
         }
-        if( jDto.getDuty() == null || jDto.getDuty().isEmpty()){
-            jDto.setDuty("");
+        if( jDto.getPosition() == null || jDto.getPosition().isEmpty()){
+            jDto.setPosition("");
         }
         if( jDto.getSkill() == null || jDto.getSkill().isEmpty()){
             jDto.setSkill("");

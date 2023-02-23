@@ -1,10 +1,9 @@
 package shop.mtcoding.project.service;
 
-import org.eclipse.jdt.internal.compiler.ast.TrueLiteral;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import shop.mtcoding.project.controller.JobsController.JobsSearchReqDto;
+import shop.mtcoding.project.dto.jobs.JobsReq.JobsSearchReqDto;
 
 @Transactional(readOnly = true)
 @Service
