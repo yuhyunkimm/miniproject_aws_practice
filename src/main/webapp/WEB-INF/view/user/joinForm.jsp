@@ -36,7 +36,7 @@
                     <form action="/user/join" method="post">
                         <div class="d-flex form-group mb-2">
                             <input type="email" name="email" class="form-control" placeholder="Enter email" id="email">
-                            <button type="button" class="badge bg-secondary ms-2">중복확인</button>
+                            <%-- <button id="emailCheckBtn" class="badge bg-secondary ms-2" onclick="confirmId(event)">중복확인</button> --%>
                         </div>
 
                         <div class="form-group mb-2">
