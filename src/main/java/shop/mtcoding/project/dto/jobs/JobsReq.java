@@ -11,7 +11,7 @@ public class JobsReq {
     @Getter
     @Setter
     @ToString
-    public static class JobsSearchReqDto{
+    public static class JobsCheckBoxReqDto{
         private List<String> address;
         private List<String> skill;
         private List<String> position;
@@ -21,7 +21,7 @@ public class JobsReq {
     @Getter
     @Setter
     @ToString
-    public static class JobsInfoReqDto{
+    public static class JobsSearchReqDto{
         private String address;
         private String skill;
         private String position;

@@ -379,9 +379,15 @@
         </table>
     </div>
 
-    <div id="selected">
+    <div class="row justify-content-between">
+        <div class="col-10 d-flex flex-wrap" id="selected">
 
+        </div>
+        <div class="col-2 d-flex justify-content-end">
+            <button type="button" class="btn btn-success mx-3 mb-2 my-auto" onclick="searchInfo">검색하기</button>
+        </div>
     </div>
+
 
     <div class="hr"></div>
     <div class="under-line">
@@ -476,6 +482,16 @@
         }
     }
 
+    function openTab(evt, tabName) {
+        let tablinks;
+        // 모든 탭 버튼에서 active 클래스를 제거
+        tablinks = document.getElementsByClassName("tap-btn");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        evt.currentTarget.classList.add("active");
+    }
+
     function getCheckedValues(name) {
         var checkedValues = [];
         var checkboxes = document.getElementsByName(name);
@@ -486,6 +502,7 @@
         }
         return checkedValues;
     }
+
     let addressValues;
     let skillValues;
     let positionValues;
@@ -505,7 +522,11 @@
                 position: positionValues,
                 career: careerValue
             }
-            console.log(data);
+            $('.selectBox-remove').remove();
+            rendering(addressValues);
+            rendering(skillValues);
+            rendering(positionValues);
+            render(careerValue);
 
             $.ajax({
                 type: "post",
@@ -535,7 +556,11 @@
                 position: positionValues,
                 career: careerValue
             }
-            console.log(data);
+            $('.selectBox-remove').remove();
+            rendering(addressValues);
+            rendering(skillValues);
+            rendering(positionValues);
+            render(careerValue);
 
             $.ajax({
                 type: "post",
@@ -552,27 +577,37 @@
             });
     });
 
-    function openTab(evt, tabName) {
-        let tablinks;
-        // 모든 탭 버튼에서 active 클래스를 제거
-        tablinks = document.getElementsByClassName("tap-btn");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].classList.remove("active");
+    function rendering(checkboxes){
+        if( checkboxes.length > 0 ){
+            checkboxes.forEach(function (checkbox){
+            render(checkbox);
+            });
         }
-        evt.currentTarget.classList.add("active");
     }
 
-    function btnClick(btn) {
-        // active 라면 active 제거
-        console.log(btn.getAttribute("class"));
-        if (btn.getAttribute("class") === "btn btn-success") {
-            console.log(btn.target);
-            btn.target.attr('class', 'active');
-            // btn.currentTarget.classList.add("active");
-            console.log('zzz')
-        } else {
-            // evt.currentTarget.classList.add("active");
+    function render(values){
+        if(values!==undefined){
+            let el=`
+            <h5 class="selectBox-remove me-2"><span class="badge bg-light text-dark" onclick="deleteBox()" value=`+values+`>`+values+`  X 
+            </span>
+            </h5>
+        `;
+        $('#selected').append(el);
         }
+    }
+
+    // function deleteBox() {
+    //     // console.log(event.currentTarget);
+    //     let deleteValue = $(event.currentTarget).attr('value');
+    //     $(event.currentTarget).remove();
+    //     addressValues.filter((e)=>e !== deleteValue);
+    //     skillValues;
+    //     positionValues;
+    //     careerValue;
+    // }
+
+    function searchInfo(){
+        
     }
 </script>
 <%@ include file="../layout/footer.jsp" %>

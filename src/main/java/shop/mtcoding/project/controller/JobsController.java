@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.project.dto.ResponseDto;
-import shop.mtcoding.project.dto.jobs.JobsReq.JobsInfoReqDto;
+import shop.mtcoding.project.dto.jobs.JobsReq.JobsCheckBoxReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsSearchReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsDetailRespDto;
 import shop.mtcoding.project.model.Comp;
@@ -59,7 +59,7 @@ public class JobsController {
     }
     
     @GetMapping("/jobs/info")
-    public String info(JobsInfoReqDto jDto, Model model) throws Exception{
+    public String info(JobsSearchReqDto jDto, Model model) throws Exception{
         ObjectMapper om = new ObjectMapper();
         if( jDto.getAddress() == null || jDto.getAddress().isEmpty()){
             jDto.setAddress("");
@@ -73,7 +73,7 @@ public class JobsController {
         if( jDto.getSkill() == null || jDto.getSkill().isEmpty()){
             jDto.setSkill("");
         }
-        List<JobsInfoReqDto> jDtos = jobsRepository.findByAddressAndCareerAndSkillAndDuty(jDto);
+        List<JobsSearchReqDto> jDtos = jobsRepository.findByAddressAndCareerAndSkillAndDuty(jDto);
         model.addAttribute("jDtos", jDtos);
         return "jobs/info";
     }
@@ -96,7 +96,7 @@ public class JobsController {
     }
 
     @PostMapping("/jobs/info/search")
-    public ResponseEntity<?> searchJobs(@RequestBody JobsSearchReqDto jDto, Model model){
+    public ResponseEntity<?> searchJobs(@RequestBody JobsCheckBoxReqDto jDto, Model model){
         System.out.println("테스트 : "+ jDto.toString());
         if( jDto.getCareer() == null || jDto.getCareer().isEmpty()){
             jDto.setCareer("");
