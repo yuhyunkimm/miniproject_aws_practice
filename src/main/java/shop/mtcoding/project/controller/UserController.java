@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.User;
+import shop.mtcoding.project.service.UserService;
 
 @Controller
 public class UserController {
 
     @Autowired
     private HttpSession session;
+
+    @Autowired
+    private UserService userService;
 
     private void mockUserSession() {
         User mockUser = new User(
@@ -35,6 +39,7 @@ public class UserController {
 
     @PostMapping("/user/join")
     public String join(UserJoinReqDto userJoinReqDto) {
+        System.out.println("테스트 : " + userJoinReqDto.getEmail());
         if (userJoinReqDto.getEmail() == null || userJoinReqDto.getEmail().isEmpty()) {
             throw new CustomException("이메일을 작성해주세요");
         }
@@ -55,7 +60,7 @@ public class UserController {
         if (userJoinReqDto.getTel() == null || userJoinReqDto.getTel().isEmpty()) {
             throw new CustomException("휴대폰번호을 작성해주세요");
         }
-        // userService.회원가입(joinReqDto);
+        userService.회원가입(userJoinReqDto);
 
         return "redirect:/user/login";
     }

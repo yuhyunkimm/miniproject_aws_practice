@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class UserReq {
-    
+
     @Getter
     @Setter
     public static class UserJoinReqDto {
