@@ -394,9 +394,9 @@
     </div>
 
     <!-- 공고들 -->
-    <div class="row my-3 ">
+    <div class="row my-3 info-card">
         <c:forEach items="${jDtos}" var="jDto">
-            <div class="col-md-3 my-2">
+            <div class="col-md-3 my-2 remove-card">
                 <a href="/jobs/${jDto.jobsId}">
                     <div class="card">
                         <div>
@@ -528,6 +528,7 @@
             rendering(positionValues);
             render(careerValue);
 
+            $('.remove-card').remove();
             $.ajax({
                 type: "post",
                 url: "/jobs/info/search",
@@ -537,6 +538,7 @@
                 },
                 dataType: "json"
             }).done((res) => {
+                renderInfo(res.data);
                 // alert('굿456');
             }).fail((err) => {
                 // alert('굿123');
@@ -562,6 +564,7 @@
             rendering(positionValues);
             render(careerValue);
 
+            $('.remove-card').remove();
             $.ajax({
                 type: "post",
                 url: "/jobs/info/search",
@@ -571,6 +574,7 @@
                 },
                 dataType: "json"
             }).done((res) => {
+                renderInfo(res.data);
                 // alert('굿456');
             }).fail((err) => {
                 // alert('굿123');
@@ -608,6 +612,48 @@
 
     function searchInfo(){
         
+    }
+
+    function renderInfo(jDtos){
+        jDtos.forEach(jDto => {
+            let el=`
+            <div class="col-md-3 my-2 remove-card">
+                <a href="/jobs/`+jDto.jobsId+`>
+                    <div class="card">
+                        <div>
+                            <img src='`+jDto.photo+`' alt="" srcset="">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                `+jDto.compName+`
+                            </div>
+                            <div class="fs-5">
+                                `+jDto.title+`
+                            </div>
+                            <div>
+                                `+jDto.skillName1+ jDto.skillName2+ jDto.skillName3+`
+                            </div>
+                            <div>
+                                `+jDto.career+ jDto.education+ jDto.address+`
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div><i id="scrap-`+jDto.jobsId+`" class="fa-regular fa-star"
+                                        onclick="scrap(`+jDto.jobsId+`)"></i>
+                                    <input type="hidden" id="endDate-`+jDto.jobsId+`" value="`+jDto.endDate+`">
+                                </div>
+                                <div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            `;
+
+        $('.info-card').append(el);
+        });  
     }
 </script>
 <%@ include file="../layout/footer.jsp" %>

@@ -21,6 +21,7 @@ import shop.mtcoding.project.dto.ResponseDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsCheckBoxReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsSearchReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsDetailRespDto;
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.service.JobsService;
@@ -73,7 +74,7 @@ public class JobsController {
         if( jDto.getSkill() == null || jDto.getSkill().isEmpty()){
             jDto.setSkill("");
         }
-        List<JobsSearchReqDto> jDtos = jobsRepository.findByAddressAndCareerAndSkillAndDuty(jDto);
+        List<JobsSearchRespDto> jDtos = jobsRepository.findBySearch(jDto);
         model.addAttribute("jDtos", jDtos);
         return "jobs/info";
     }
@@ -97,14 +98,13 @@ public class JobsController {
 
     @PostMapping("/jobs/info/search")
     public ResponseEntity<?> searchJobs(@RequestBody JobsCheckBoxReqDto jDto, Model model){
-        System.out.println("테스트 : "+ jDto.toString());
+        // System.out.println("테스트 : "+ jDto.toString());
         if( jDto.getCareer() == null || jDto.getCareer().isEmpty()){
             jDto.setCareer("");
         }
-
-        // List<JobsSearchRespDto> jDtos = jobsRepository.findByAddressAndCareerAndSkillAndDuty(jDto);
+        List<JobsSearchRespDto> jDtos = jobsRepository.findByCheckBox(jDto);
         // model.addAttribute("jDtos", jDtos);
-        return new ResponseEntity<>(new ResponseDto<>(1, "검색 성공", null), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseDto<>(1, "검색 성공", jDtos), HttpStatus.OK);
     }
 }
 // ⬜ 채용정보    "/jobs/info"
