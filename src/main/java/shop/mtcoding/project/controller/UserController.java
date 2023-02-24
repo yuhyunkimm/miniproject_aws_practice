@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
 import shop.mtcoding.project.exception.CustomException;
@@ -37,9 +39,17 @@ public class UserController {
         session.setAttribute("principal", mockUser);
     }
 
+    // @PostMapping("/user/join")
+    // public String join(UserJoinReqDto userJoinReqDto) {
+    // if (userJoinReqDto.getEmail() == null || userJoinReqDto.getEmail().isEmpty())
+    // {
+    // throw new CustomException("이메일을 작성해주세요");
+    // }
+    // return "redirect:/user/login";
+    // }
+
     @PostMapping("/user/join")
     public String join(UserJoinReqDto userJoinReqDto) {
-
         if (userJoinReqDto.getEmail() == null || userJoinReqDto.getEmail().isEmpty()) {
             throw new CustomException("이메일을 작성해주세요");
         }
@@ -63,6 +73,12 @@ public class UserController {
         userService.회원가입(userJoinReqDto);
 
         return "redirect:/user/login";
+    }
+
+    @GetMapping("/user/check")
+    public String checkEmail(String email) {
+        System.out.println("테스트 : " + email);
+        return "user/joinForm";
     }
 
     @GetMapping("/user/join")

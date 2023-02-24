@@ -16,10 +16,10 @@ public class UserService {
 
     @Transactional
     public void 회원가입(UserJoinReqDto userJoinReqDto) {
-        userRepository.insert(userJoinReqDto);
         try {
+            userRepository.insert(userJoinReqDto);
         } catch (Exception e) {
-            throw new CustomException("동일한 내용이 존재합니다");
+            throw new CustomException("서버 에러가 발생 했습니다.");
         }
     }
 }
