@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -18,6 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.project.dto.ResponseDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsSearchReqDto;
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsDetailRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.JobsRepository;
@@ -79,7 +81,9 @@ public class JobsController {
     }
 
     @GetMapping("/jobs/{id}")
-    public String viewJobs(){
+    public String viewJobs(@PathVariable Integer id, Model model){
+        JobsDetailRespDto jDto = jobsRepository.findByJobsDetail(id);
+        model.addAttribute("jDto", jDto);
         return "jobs/jobsDetail";
     }
 

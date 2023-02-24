@@ -24,6 +24,21 @@
         position regexp #{jDto.position}
     </select>
 
+    <select id="findByJobsDetail" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsDetailRespDto">
+      select j.jobs_id, c.photo, c.comp_name,
+        j.title, j.content,
+        j.career, j.education, j.position,
+        r.skill_name1, r.skill_name2,
+        r.skill_name3,  j.address,
+        j.homepage, j.end_date 
+        from comp_tb c 
+        join jobs_tb j 
+        on c.comp_id = j.comp_id 
+        join  REQUIRED_SKILL_TB r
+        on j.jobs_id = r.jobs_id
+        where j.jobs_id = #{jobsId}
+    </select>
+
     <!-- <insert id="insert">
 
     </insert>

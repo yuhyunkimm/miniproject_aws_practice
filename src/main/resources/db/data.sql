@@ -1,8 +1,20 @@
 insert into user_tb (email, password, name, birth, tel, photo, user_address, created_at) 
-values ('ssar@nate.com', '1234', 'ssar', '1994-03-17', '010-1234-1234', '/images/default_profile.png', '연제구', now());
+values ('ssar@nate.com', '1234', 'ssar', '1994-12-14', '010-1234-1234', '/images/default_profile.png', '서울', now());
+insert into user_tb (email, password, name, birth, tel, photo, user_address, created_at) 
+values ('ssar1@nate.com', '1234', 'ssar1', '1994-02-22', '010-1234-1234', '/images/default_profile.png', '부산', now());
+insert into user_tb (email, password, name, birth, tel, photo, user_address, created_at) 
+values ('ssar2@nate.com', '1234', 'ssar2', '1994-04-21', '010-1234-1234', '/images/default_profile.png', '서울', now());
+insert into user_tb (email, password, name, birth, tel, photo, user_address, created_at) 
+values ('ssar3@nate.com', '1234', 'ssar3', '1994-03-17', '010-1234-1234', '/images/default_profile.png', '인천', now());
+insert into user_tb (email, password, name, birth, tel, photo, user_address, created_at) 
+values ('ssar4@nate.com', '1234', 'ssar4', '1994-10-23', '010-1234-1234', '/images/default_profile.png', '경기도', now());
 
 insert into comp_tb (email, password, comp_name, comp_address, representative_name, business_number, tel, photo, employees, establishment_date, homepage, created_at)
 values ('http://www.kakaocorp.com', '1234', '카카오(주)', '제주 제주시 첨단로', '홍은택', '120-81-47521', '1577-3321', '/images/kakao.png', 3600, '1999-01-01', 'www.kakao.com',now());
+insert into comp_tb (email, password, comp_name, comp_address, representative_name, business_number, tel, photo, employees, establishment_date, homepage, created_at)
+values ('http://www.namver.com', '1234', '네이버(주)', '경기도 성남시', '이해진', '451-23-15631', '1577-3321', '/images/kakao.png', 3600, '1999-06-12', 'www.naver.com',now());
+insert into comp_tb (email, password, comp_name, comp_address, representative_name, business_number, tel, photo, employees, establishment_date, homepage, created_at)
+values ('http://samsung.com', '1234', '삼성', '경기도 수원시', '이재용', '111-22-33333', '1577-3321', '/images/kakao.png', 3600, '1999-01-01', 'www.kakao.com',now());
 
 insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3) values (1, '스프링', '자바', '리액트');
 insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3) values (2, '자바스크립트', '자바', '리액트');
@@ -41,6 +53,8 @@ insert into interest_tb (user_id, interest_ct1, interest_ct2, interest_ct3) valu
 
 insert into resume_tb (user_id, title, content, education, career, user_skill_id, link, state, created_at) 
 values (1, '벡엔드 이력서', '백엔드 이력서의 내용입니다.', '고졸', '신입', 1, '블로그 주소', 1, now());
+insert into resume_tb (user_id, title, content, education, career, user_skill_id, link, state, created_at) 
+values (2, '벡엔드 이력서', '백엔드 이력서의 내용입니다.', '대졸', '경력', 1, '블로그 주소', 1, now());
 
 insert into user_scrap_tb (user_scrap_id, user_id, jobs_id, created_at) values (1, 1, 1, now());
 

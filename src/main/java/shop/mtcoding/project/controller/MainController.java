@@ -33,7 +33,7 @@ public class MainController {
 
     @GetMapping("/")
     public String main(){
-        mockUserSession();
+        // mockUserSession();
         return "main/main";
     }
     @GetMapping("/help")
