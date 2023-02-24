@@ -26,10 +26,10 @@
                 <div class="container w-50 border border-3 p-3 mt-5">
                     <div class="card-header d-flex justify-content-around my-4">
                         <div class="fs-4">
-                            <a href="/login">로그인</a>
+                            <a href="/user/login">로그인</a>
                         </div>
                         <div class="fs-4">
-                            <a href="/join">회원가입</a>
+                            <a href="/user/join">회원가입</a>
                         </div>
                     </div>
 

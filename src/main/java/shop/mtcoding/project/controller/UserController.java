@@ -39,7 +39,7 @@ public class UserController {
 
     @PostMapping("/user/join")
     public String join(UserJoinReqDto userJoinReqDto) {
-        System.out.println("테스트 : " + userJoinReqDto.getEmail());
+
         if (userJoinReqDto.getEmail() == null || userJoinReqDto.getEmail().isEmpty()) {
             throw new CustomException("이메일을 작성해주세요");
         }
