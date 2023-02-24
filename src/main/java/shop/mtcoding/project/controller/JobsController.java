@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.project.dto.ResponseDto;
+import shop.mtcoding.project.dto.jobs.JobsReq.JobsInfoReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsSearchReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsDetailRespDto;
-import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.service.JobsService;
@@ -59,7 +59,7 @@ public class JobsController {
     }
     
     @GetMapping("/jobs/info")
-    public String info(JobsSearchReqDto jDto, Model model) throws Exception{
+    public String info(JobsInfoReqDto jDto, Model model) throws Exception{
         ObjectMapper om = new ObjectMapper();
         if( jDto.getAddress() == null || jDto.getAddress().isEmpty()){
             jDto.setAddress("");
@@ -73,11 +73,9 @@ public class JobsController {
         if( jDto.getSkill() == null || jDto.getSkill().isEmpty()){
             jDto.setSkill("");
         }
-        List<JobsSearchRespDto> jDtos = jobsRepository.findByAddressAndCareerAndSkillAndDuty(jDto);
+        List<JobsInfoReqDto> jDtos = jobsRepository.findByAddressAndCareerAndSkillAndDuty(jDto);
         model.addAttribute("jDtos", jDtos);
-        // System.out.println("테스트 : " +  om.writeValueAsString(jDtos));
         return "jobs/info";
-        // return "/";
     }
 
     @GetMapping("/jobs/{id}")
@@ -99,20 +97,13 @@ public class JobsController {
 
     @PostMapping("/jobs/info/search")
     public ResponseEntity<?> searchJobs(@RequestBody JobsSearchReqDto jDto, Model model){
-        if( jDto.getAddress() == null || jDto.getAddress().isEmpty()){
-            jDto.setAddress("");
-        }
+        System.out.println("테스트 : "+ jDto.toString());
         if( jDto.getCareer() == null || jDto.getCareer().isEmpty()){
             jDto.setCareer("");
         }
-        if( jDto.getPosition() == null || jDto.getPosition().isEmpty()){
-            jDto.setPosition("");
-        }
-        if( jDto.getSkill() == null || jDto.getSkill().isEmpty()){
-            jDto.setSkill("");
-        }
-        List<JobsSearchRespDto> jDtos = jobsRepository.findByAddressAndCareerAndSkillAndDuty(jDto);
-        model.addAttribute("jDtos", jDtos);
+
+        // List<JobsSearchRespDto> jDtos = jobsRepository.findByAddressAndCareerAndSkillAndDuty(jDto);
+        // model.addAttribute("jDtos", jDtos);
         return new ResponseEntity<>(new ResponseDto<>(1, "검색 성공", null), HttpStatus.OK);
     }
 }

@@ -5,9 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import shop.mtcoding.project.dto.jobs.JobsReq.JobsSearchReqDto;
+import shop.mtcoding.project.dto.jobs.JobsReq.JobsInfoReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsDetailRespDto;
-import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 
 @Mapper
 public interface JobsRepository {
@@ -24,8 +23,8 @@ public interface JobsRepository {
     public int deleteById(
 
     );
-    public List<JobsSearchRespDto> findByAddressAndCareerAndSkillAndDuty(
-        @Param("jDto") JobsSearchReqDto jDto
+    public List<JobsInfoReqDto> findByAddressAndCareerAndSkillAndDuty(
+        @Param("jDto") JobsInfoReqDto jDto
         );
     public JobsDetailRespDto findByJobsDetail(
         @Param("jobsId") Integer jobsId
