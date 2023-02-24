@@ -13,7 +13,7 @@
     </select>
 
     <insert id="insert">
-        insert into user_tb ( email, password, name, birth, tel, userAddress, create_at )
+        insert into user_tb ( email, password, name, birth, tel, user_address, created_at)
             values ( #{uDto.email}, #{uDto.password}, #{uDto.name}, #{uDto.birth}, #{uDto.tel}, #{uDto.userAddress}, now());
     </insert>
 
