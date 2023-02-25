@@ -45,4 +45,71 @@ public class JobsResp {
         private String tel;
     }
 
+    @Getter
+    @Setter
+    public static class JobsSkillRespDto {
+        private Integer jobsId;
+        private String photo;
+        private String compName;
+        private String title;
+        private String career;
+        private String education;
+        private String skillName1;
+        private String skillName2;
+        private String skillName3;
+        private String position;
+        private String address;
+        private Timestamp endDate;
+    }
+
+    @Getter
+    @Setter
+    public static class JobsThreeMatchRespDto {
+        private Integer jobsId;
+        private String photo;
+        private String compName;
+        private String title;
+        private String career;
+        private String education;
+        private String skillName1;
+        private String skillName2;
+        private String skillName3;
+        private String position;
+        private String address;
+        private Timestamp endDate;
+    }
+
+    @Getter
+    @Setter
+    public static class JobsTwoMatchRespDto {
+        private Integer jobsId;
+        private String photo;
+        private String compName;
+        private String title;
+        private String career;
+        private String education;
+        private String skillName1;
+        private String skillName2;
+        private String skillName3;
+        private String position;
+        private String address;
+        private Timestamp endDate;
+    }
+    
+    @Getter
+    @Setter
+    public static class JobsOneMatchRespDto {
+        private Integer jobsId;
+        private String photo;
+        private String compName;
+        private String title;
+        private String career;
+        private String education;
+        private String skillName1;
+        private String skillName2;
+        private String skillName3;
+        private String position;
+        private String address;
+        private Timestamp endDate;
+    }
 }

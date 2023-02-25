@@ -9,6 +9,7 @@ import shop.mtcoding.project.dto.jobs.JobsReq.JobsCheckBoxReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsSearchReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsDetailRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsSkillRespDto;
 
 @Mapper
 public interface JobsRepository {
@@ -16,6 +17,8 @@ public interface JobsRepository {
     public void findById(
 
     );
+    public List<JobsSkillRespDto> findAllByJobsAndSkill();
+    
     public int insert(
 
     );

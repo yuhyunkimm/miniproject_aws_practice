@@ -20,8 +20,8 @@ insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3) value
 insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3) values (2, 'JavaScript', 'Java', 'React');
 insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3) values (3, 'HTML/CSS', 'Java', 'React');
 insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3) values (4, 'Spring', 'Java', 'React');
-insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3) values (5, 'Spring', 'Java', 'React');
-insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3) values (6, 'Spring', 'Java', 'React');
+insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3) values (5, 'Spring', 'Java', '');
+insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3) values (6, 'Spring', 'Java', '');
 
 insert into required_skill_tb ( jobs_id, skill_name1, skill_name2, skill_name3) values (1, 'Spring', 'Java', 'React');
 insert into required_skill_tb ( jobs_id, skill_name1, skill_name2, skill_name3) values (2, 'JavaScript', 'Java', 'React');
@@ -44,17 +44,17 @@ insert into jobs_tb (title, content, position, career, education, address, scrap
 values ('백엔드 개발자 채용6' , '백엔드 개발자 채용하는 상세 내용6', '안드로이드 개발자', '1년차', '학력무관', '제주', 54, '2023-03-07', 1, 'www.kakao.com', now());
 
 
-insert into interest_tb (user_id, interest_ct1, interest_ct2, interest_ct3) values(1, '백엔드', '자바', '스프링');
-insert into interest_tb (user_id, interest_ct1, interest_ct2, interest_ct3) values(2, '서버', '자바', '스프링');
-insert into interest_tb (user_id, interest_ct1, interest_ct2, interest_ct3) values(3, '프론트', '자바', '스프링');
-insert into interest_tb (user_id, interest_ct1, interest_ct2, interest_ct3) values(4, '안드로이드', '자바', '스프링');
-insert into interest_tb (user_id, interest_ct1, interest_ct2, interest_ct3) values(5, '백엔드', '자바', '스프링');
-insert into interest_tb (user_id, interest_ct1, interest_ct2, interest_ct3) values(6, '백엔드', '자바', '스프링');
+insert into interest_tb (user_id, interest_ct1, interest_ct2, interest_ct3) values(1, '백엔드 개발자', 'Java', 'Spring');
+insert into interest_tb (user_id, interest_ct1, interest_ct2, interest_ct3) values(2, '서버 개발자', 'Java', 'Spring');
+insert into interest_tb (user_id, interest_ct1, interest_ct2, interest_ct3) values(3, '프론트엔드 개발자', 'Java', 'Spring');
+insert into interest_tb (user_id, interest_ct1, interest_ct2, interest_ct3) values(4, '안드로이드 개발자', 'Java', 'Spring');
+insert into interest_tb (user_id, interest_ct1, interest_ct2, interest_ct3) values(5, '백엔드 개발자', 'Java', 'Spring');
+insert into interest_tb (user_id, interest_ct1, interest_ct2, interest_ct3) values(6, '백엔드 개발자', 'Java', 'Spring');
 
-insert into resume_tb (user_id, title, content, education, career, user_skill_id, link, state, created_at) 
-values (1, '벡엔드 이력서', '백엔드 이력서의 내용입니다.', '고졸', '신입', 1, '블로그 주소', 1, now());
-insert into resume_tb (user_id, title, content, education, career, user_skill_id, link, state, created_at) 
-values (2, '벡엔드 이력서', '백엔드 이력서의 내용입니다.', '대졸', '2년차', 1, '블로그 주소', 1, now());
+insert into resume_tb (user_id, title, content, education, career, link, state, created_at) 
+values (1, '벡엔드 이력서', '백엔드 이력서의 내용입니다.', '고졸', '신입', '블로그 주소', 1, now());
+insert into resume_tb (user_id, title, content, education, career,  link, state, created_at) 
+values (2, '벡엔드 이력서', '백엔드 이력서의 내용입니다.', '대졸', '2년차', '블로그 주소', 1, now());
 
 insert into user_scrap_tb (user_scrap_id, user_id, jobs_id, created_at) values (1, 1, 1, now());
 
