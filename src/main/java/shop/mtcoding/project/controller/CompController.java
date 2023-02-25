@@ -1,6 +1,8 @@
 package shop.mtcoding.project.controller;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -8,13 +10,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsRequiredSkill;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeRecommendRespDto;
 import shop.mtcoding.project.model.Comp;
+import shop.mtcoding.project.model.JobsRepository;
+import shop.mtcoding.project.model.ResumeRepository;
+import shop.mtcoding.project.model.User;
 
 @Controller
 public class CompController {
 
     @Autowired
     private HttpSession session;
+
+    @Autowired
+    private JobsRepository jobsrRepository;
+
+    @Autowired
+    private ResumeRepository resumeRepository;
 
     private void mockCompSession() {
         Comp mockcomp = new Comp(
@@ -73,6 +86,14 @@ public class CompController {
 
     @GetMapping("/comp/talent")
     public String talent() {
+        mockCompSession();
+        User principal = (User) session.getAttribute("principal");
+        if ( principal != null ){
+            JobsRequiredSkill rSkill = jobsrRepository.findByJobsRequiredSkill(principal.getUserId());
+            List<String> rSkillList = Arrays.asList(rSkill.getSkillName1(), rSkill.getSkillName2(), rSkill.getSkillName3());
+            List<ResumeRecommendRespDto> recommendList = resumeRepository.findAllResumebyPublic();
+        }
+
         return "comp/talent";
     }
 

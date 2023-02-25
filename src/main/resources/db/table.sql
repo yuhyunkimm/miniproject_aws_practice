@@ -6,7 +6,7 @@ create table user_tb (
     birth varchar not null,
     tel varchar not null,
     photo varchar,
-    user_address varchar,
+    address varchar,
     created_at timestamp
 );
 

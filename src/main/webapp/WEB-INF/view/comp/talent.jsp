@@ -2,203 +2,153 @@
 <%@ include file="../layout/header.jsp" %>
 
 <div class="mx-auto width-53">
-    <div>
-        인재 추천 페이지
+   <div class="d-flex">
+        <c:forEach items="${uDto} " var="Dto">
+            <div class="me-3"> ${Dto} </div>
+        </c:forEach>
+        인재 추천 페이지 
     </div>
-    <div class="row">
-        <div class="col-md-4 my-2">
-            <a href="/jobs/">
-                <div class="card">
-                    <div>
-                        <img src='/images/default_profile.png' alt="" srcset="">
-                    </div>
-                    <div class="card-body">
+    <div class="d-flex flex-wrap my-3 info-card">
+        <c:forEach items="${fourMatchDto}" var="jDto">
+            <div class="col-4 px-2 py-2 remove-card">
+                <a href="/jobs/${jDto.jobsId}">
+                    <div class="card">
                         <div>
-                            1111111
+                            <img src='${jDto.photo}' alt="" srcset="">
                         </div>
-                        <div class="fs-5">
-                            22222222222222222
-                        </div>
-                        <div>
-                            3333333333 4444444444444 555555555555555
-                        </div>
-                        <div>
-                            6666666666666 77777777777777 8888888888888888
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div><i id=`scrap-` class="fa-regular fa-star" onclick="scrap(``)"></i>
-                                <!-- <input type="hidden" id="endDate-${jDto.jobsId}" value="${jDto.endDate}"> -->
+                        <div class="card-body">
+                            <div>
+                                444${jDto.compName}
+                            </div>
+                            <div class="fs-5">
+                                ${jDto.title}
                             </div>
                             <div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4 my-2">
-            <a href="/jobs/">
-                <div class="card">
-                    <div>
-                        <img src='/images/default_profile.png' alt="" srcset="">
-                    </div>
-                    <div class="card-body">
-                        <div>
-                            1111111
-                        </div>
-                        <div class="fs-5">
-                            22222222222222222
-                        </div>
-                        <div>
-                            3333333333 4444444444444 555555555555555
-                        </div>
-                        <div>
-                            6666666666666 77777777777777 8888888888888888
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div><i id=`scrap-` class="fa-regular fa-star" onclick="scrap(``)"></i>
-                                <!-- <input type="hidden" id="endDate-${jDto.jobsId}" value="${jDto.endDate}"> -->
+                                ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3}
                             </div>
                             <div>
+                                ${jDto.career} ${jDto.education} ${jDto.address}
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div><i id=`scrap-${jDto.jobsId}` class="fa-regular fa-star"
+                                        onclick="scrap(`${jDto.jobsId}`)"></i>
+                                    <input type="hidden" id="endDate-${jDto.jobsId}" value="${jDto.endDate}">
+                                </div>
+                                <div>
+
+                                </div>
 
                             </div>
-
                         </div>
                     </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4 my-2">
-            <a href="/jobs/">
-                <div class="card">
-                    <div>
-                        <img src='/images/default_profile.png' alt="" srcset="">
-                    </div>
-                    <div class="card-body">
+                </a>
+            </div>
+        </c:forEach>
+        <c:forEach items="${threeMatchDto}" var="jDto">
+            <div class="col-4 px-2 py-2 remove-card">
+                <a href="/jobs/${jDto.jobsId}">
+                    <div class="card">
                         <div>
-                            1111111
+                            <img src='${jDto.photo}' alt="" srcset="">
                         </div>
-                        <div class="fs-5">
-                            22222222222222222
-                        </div>
-                        <div>
-                            3333333333 4444444444444 555555555555555
-                        </div>
-                        <div>
-                            6666666666666 77777777777777 8888888888888888
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div><i id=`scrap-` class="fa-regular fa-star" onclick="scrap(``)"></i>
-                                <!-- <input type="hidden" id="endDate-${jDto.jobsId}" value="${jDto.endDate}"> -->
+                        <div class="card-body">
+                            <div>
+                                333${jDto.compName}
+                            </div>
+                            <div class="fs-5">
+                                ${jDto.title}
                             </div>
                             <div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4 my-2">
-            <a href="/jobs/">
-                <div class="card">
-                    <div>
-                        <img src='/images/default_profile.png' alt="" srcset="">
-                    </div>
-                    <div class="card-body">
-                        <div>
-                            1111111
-                        </div>
-                        <div class="fs-5">
-                            22222222222222222
-                        </div>
-                        <div>
-                            3333333333 4444444444444 555555555555555
-                        </div>
-                        <div>
-                            6666666666666 77777777777777 8888888888888888
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div><i id=`scrap-` class="fa-regular fa-star" onclick="scrap(``)"></i>
-                                <!-- <input type="hidden" id="endDate-${jDto.jobsId}" value="${jDto.endDate}"> -->
+                                ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3}
                             </div>
                             <div>
+                                ${jDto.career} ${jDto.education} ${jDto.address}
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div><i id=`scrap-${jDto.jobsId}` class="fa-regular fa-star"
+                                        onclick="scrap(`${jDto.jobsId}`)"></i>
+                                    <input type="hidden" id="endDate-${jDto.jobsId}" value="${jDto.endDate}">
+                                </div>
+                                <div>
+
+                                </div>
 
                             </div>
-
                         </div>
                     </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4 my-2">
-            <a href="/jobs/">
-                <div class="card">
-                    <div>
-                        <img src='/images/default_profile.png' alt="" srcset="">
-                    </div>
-                    <div class="card-body">
+                </a>
+            </div>
+        </c:forEach>
+        <c:forEach items="${twoMatchDto}" var="jDto">
+            <div class="col-4 px-2 py-2 remove-card">
+                <a href="/jobs/${jDto.jobsId}">
+                    <div class="card">
                         <div>
-                            1111111
+                            <img src='${jDto.photo}' alt="" srcset="">
                         </div>
-                        <div class="fs-5">
-                            22222222222222222
-                        </div>
-                        <div>
-                            3333333333 4444444444444 555555555555555
-                        </div>
-                        <div>
-                            6666666666666 77777777777777 8888888888888888
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div><i id=`scrap-` class="fa-regular fa-star" onclick="scrap(``)"></i>
-                                <!-- <input type="hidden" id="endDate-${jDto.jobsId}" value="${jDto.endDate}"> -->
+                        <div class="card-body">
+                            <div>
+                                222${jDto.compName}
+                            </div>
+                            <div class="fs-5">
+                                ${jDto.title}
                             </div>
                             <div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4 my-2">
-            <a href="/jobs/">
-                <div class="card">
-                    <div>
-                        <img src='/images/default_profile.png' alt="" srcset="">
-                    </div>
-                    <div class="card-body">
-                        <div>
-                            1111111
-                        </div>
-                        <div class="fs-5">
-                            22222222222222222
-                        </div>
-                        <div>
-                            3333333333 4444444444444 555555555555555
-                        </div>
-                        <div>
-                            6666666666666 77777777777777 8888888888888888
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div><i id=`scrap-` class="fa-regular fa-star" onclick="scrap(``)"></i>
-                                <!-- <input type="hidden" id="endDate-${jDto.jobsId}" value="${jDto.endDate}"> -->
+                                ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3}
                             </div>
                             <div>
+                                ${jDto.career} ${jDto.education} ${jDto.address}
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div><i id=`scrap-${jDto.jobsId}` class="fa-regular fa-star"
+                                        onclick="scrap(`${jDto.jobsId}`)"></i>
+                                    <input type="hidden" id="endDate-${jDto.jobsId}" value="${jDto.endDate}">
+                                </div>
+                                <div>
+
+                                </div>
 
                             </div>
-
                         </div>
                     </div>
-                </div>
-            </a>
-        </div>
+                </a>
+            </div>
+        </c:forEach>
+        <c:forEach items="${oneMatchDto}" var="jDto">
+            <div class="col-4 px-2 py-2 remove-card">
+                <a href="/jobs/${jDto.jobsId}">
+                    <div class="card">
+                        <div>
+                            <img src='${jDto.photo}' alt="" srcset="">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                111${jDto.compName}
+                            </div>
+                            <div class="fs-5">
+                                ${jDto.title}
+                            </div>
+                            <div>
+                                ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3}
+                            </div>
+                            <div>
+                                ${jDto.career} ${jDto.education} ${jDto.address}
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div><i id=`scrap-${jDto.jobsId}` class="fa-regular fa-star"
+                                        onclick="scrap(`${jDto.jobsId}`)"></i>
+                                    <input type="hidden" id="endDate-${jDto.jobsId}" value="${jDto.endDate}">
+                                </div>
+                                <div>
 
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </c:forEach>
     </div>
 </div>
 
