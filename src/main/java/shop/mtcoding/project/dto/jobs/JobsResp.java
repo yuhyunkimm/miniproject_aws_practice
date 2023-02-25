@@ -128,4 +128,12 @@ public class JobsResp {
         private String address;
         private Timestamp endDate;
     }
+
+    @Getter
+    @Setter
+    public static class JobsRequiredSkill {
+        private String skillName1;
+        private String skillName2;
+        private String skillName3;
+    }
 }

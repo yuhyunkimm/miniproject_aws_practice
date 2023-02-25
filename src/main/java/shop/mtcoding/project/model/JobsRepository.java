@@ -9,6 +9,7 @@ import shop.mtcoding.project.dto.jobs.JobsReq.JobsCheckBoxReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsSearchReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsDetailRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsMainRespDto;
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsRequiredSkill;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSkillRespDto;
 
@@ -29,6 +30,9 @@ public interface JobsRepository {
     public int deleteById(
 
     );
+    public List<JobsRequiredSkill> findByJobsRequiredSkill(
+        @Param("id") Integer id
+    ); 
     public List<JobsMainRespDto> findAlltoMain();
 
     public List<JobsSearchRespDto> findBySearch(

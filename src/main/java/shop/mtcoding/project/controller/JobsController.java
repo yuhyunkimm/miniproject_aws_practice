@@ -153,27 +153,43 @@ public class JobsController {
         model.addAttribute("uDto", matchingList);
 
         List<JobsSkillRespDto> jsList = jobsRepository.findAllByJobsAndSkill();
+        List<JobsSkillRespDto> fourMatchDto = new ArrayList<>();
         List<JobsSkillRespDto> threeMatchDto = new ArrayList<>();
         List<JobsSkillRespDto> twoMatchDto = new ArrayList<>();
         List<JobsSkillRespDto> oneMatchDto = new ArrayList<>();
         for (JobsSkillRespDto jsPS : jsList) {
-            if( set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3()) ){
+            if( set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3()) && set.contains(jsPS.getPosition()) ){
+                fourMatchDto.add(jsPS);
+                continue;
+            }
+            if(( set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition()) ||
+            ( set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition()) ||
+            ( !set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition()) ||
+            ( set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition())
+            ){
                 threeMatchDto.add(jsPS);
                 continue;
             }
-            if( (set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) ||
-            ( set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) ||
-            ( !set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) ){
+            if(( set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition()) ||
+            ( set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition()) ||
+            ( set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition()) ||
+            ( !set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition()) ||
+            ( !set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition()) ||
+            ( !set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition())
+            ){
                 twoMatchDto.add(jsPS);
                 continue;
-            }
-            if( (set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) ||
-            ( !set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) ||
-            ( !set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) ){
+            } 
+            if(( set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition()) ||
+            ( !set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition()) ||
+            ( !set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition()) ||
+            ( !set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition())
+            ){
                 oneMatchDto.add(jsPS);
                 continue;
-            } 
+            }
         }
+        model.addAttribute("fourMatchDto", fourMatchDto);
         model.addAttribute("threeMatchDto", threeMatchDto);
         model.addAttribute("twoMatchDto", twoMatchDto);
         model.addAttribute("oneMatchDto", oneMatchDto); 
