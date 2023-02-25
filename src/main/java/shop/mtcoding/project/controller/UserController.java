@@ -2,20 +2,23 @@ package shop.mtcoding.project.controller;
 
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsSkillRespDto;
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
 import shop.mtcoding.project.dto.user.UserResp.UserSkillAndInterestDto;
 import shop.mtcoding.project.exception.CustomException;
+import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.service.UserService;
@@ -31,6 +34,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private JobsRepository jobsRepository;
 
     private void mockUserSession() {
         User mockUser = new User(
@@ -91,14 +97,29 @@ public class UserController {
     }
 
     @GetMapping("/user/interest")
-    public String interest() {
+    public String interest(Model model) {
         mockUserSession();
         User principal = (User) session.getAttribute("principal");
         UserSkillAndInterestDto usi = userRepository.findByUserSkillAndInterest(principal.getUserId());
-        // List<String> insertList = Arrays.asList(usi.getSkillName1(),usi.getSkillName2(),usi.getSkillName3(),usi.getInterestCt1(),usi.getInterestCt2(),usi.getInterestCt3()); 
-        // List<String> matchingList = insertList.stream().distinct().collect(Collectors.toList());
-        // matchingList.forEach(System.out::println);
-        
+        List<String> insertList = Arrays.asList(usi.getSkillName1(),usi.getSkillName2(),usi.getSkillName3(),usi.getInterestCt1(),usi.getInterestCt2(),usi.getInterestCt3()); 
+        Set<String> set = new HashSet<>(insertList);
+
+        List<JobsSkillRespDto> jsList = jobsRepository.findAllByJobsAndSkill();
+        for (JobsSkillRespDto jsPS : jsList) {
+            if( set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3()) ){
+                model.addAttribute("ThreeMatchDto", jsList);
+            }
+            if( (set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) ||
+            ( set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) ||
+            ( !set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) ){
+                model.addAttribute("TwoMatchDto", jsList);
+            }
+            if( (set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) ||
+            ( !set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) ||
+            ( !set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) ){
+                model.addAttribute("OneMatchDto", jsList);
+            } 
+        }
         return "user/interest";
     }
 
