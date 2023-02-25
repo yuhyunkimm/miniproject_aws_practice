@@ -10,6 +10,7 @@ import shop.mtcoding.project.dto.user.UserReq.UserUpdateReqDto;
 import shop.mtcoding.project.dto.user.UserResp.UserDataRespDto;
 import shop.mtcoding.project.dto.user.UserResp.UserDeleteRespDto;
 import shop.mtcoding.project.dto.user.UserResp.UserSkillAndInterestDto;
+import shop.mtcoding.project.dto.user.UserResp.UserSkillRespDto;
 
 @Mapper
 public interface UserRepository {
@@ -20,6 +21,9 @@ public interface UserRepository {
 
     public UserSkillAndInterestDto findByUserSkillAndInterest(
         @Param("id") Integer id);
+
+    public UserSkillRespDto findByUserSkill(
+        @Param("id") Integer id);        
     
     public int insert(
         @Param("uDto") UserJoinReqDto uDto);

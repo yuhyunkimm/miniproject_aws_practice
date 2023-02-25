@@ -12,6 +12,12 @@
         select * from user_tb id = #{uDto.id}
     </select>
 
+    <select id="findByUserSkill" resultType="shop.mtcoding.project.dto.user.UserResp$UserSkillRespDto">
+        select s.skill_name1, s.skill_name2, s.skill_name3 from user_tb u join USER_SKILL_TB s 
+            on u.user_id = s.user_id
+            where u.user_id = #{id}
+    </select>
+
     <select id="findByUserSkillAndInterest" resultType="shop.mtcoding.project.dto.user.UserResp$UserSkillAndInterestDto">
         SELECT s.skill_name1, s.skill_name2, s.skill_name3, i.interest_ct1, i.interest_ct2, i.interest_ct3 
             FROM USER_TB u 
