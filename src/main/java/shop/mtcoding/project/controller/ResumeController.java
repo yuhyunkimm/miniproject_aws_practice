@@ -46,7 +46,7 @@ public class ResumeController {
         session.setAttribute("principal", mockUser);
     }
 
-    @GetMapping("/user/resume")
+    @GetMapping("/user/resume") // 이력서관리
     public String resume() {
         return "resume/resume";
     }

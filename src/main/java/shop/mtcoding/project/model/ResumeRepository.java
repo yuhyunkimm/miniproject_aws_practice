@@ -7,19 +7,22 @@ import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
 
 @Mapper
 public interface ResumeRepository {
-    public void findAll();
+        public void findAll();
 
-    public void findById(
+        public void findById(
 
-    );
+        );
 
-    public int insert(
-            @Param("rDto") ResumeWriteReqDto rDto);
+        public int insertTemp(
+                        @Param("rDto") ResumeWriteReqDto rDto);
 
-    public int updateById(
-            @Param("rDto") ResumeWriteReqDto rDto);
+        public int insert(
+                        @Param("rDto") ResumeWriteReqDto rDto);
 
-    public int deleteById(
+        public int updateById(
+                        @Param("rDto") ResumeWriteReqDto rDto);
 
-    );
+        public int deleteById(
+
+        );
 }
