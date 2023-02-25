@@ -12,6 +12,14 @@
         select * from user_tb id = #{uDto.id}
     </select>
 
+    <select id="findByUserSkillAndInterest" resultType="shop.mtcoding.project.dto.user.UserResp$UserSkillAndInterestDto">
+        SELECT s.skill_name1, s.skill_name2, s.skill_name3, i.interest_ct1, i.interest_ct2, i.interest_ct3 
+            FROM USER_TB u 
+            JOIN interest_tb i ON u.user_id = i.user_id
+            JOIN user_skill_tb s ON u.user_id = s.user_id
+            WHERE u.user_id = #{id}
+    </select>
+
     <insert id="insert">
         insert into user_tb ( email, password, name, birth, tel, user_address, created_at)
             values ( #{uDto.email}, #{uDto.password}, #{uDto.name}, #{uDto.birth}, #{uDto.tel}, #{uDto.userAddress}, now());

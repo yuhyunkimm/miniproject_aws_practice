@@ -39,4 +39,15 @@ public class UserResp {
     public static class UserDeleteRespDto {
         private Integer userId;
     }
+
+    @Getter
+    @Setter
+    public static class UserSkillAndInterestDto{
+        private String skillName1;
+        private String skillName2;
+        private String skillName3;
+        private String interestCt1;
+        private String interestCt2;
+        private String interestCt3;
+    }
 }

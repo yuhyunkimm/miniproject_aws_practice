@@ -1,6 +1,10 @@
 package shop.mtcoding.project.controller;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,8 +14,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
+import shop.mtcoding.project.dto.user.UserResp.UserSkillAndInterestDto;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.User;
+import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.service.UserService;
 
 @Controller
@@ -22,6 +28,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     private void mockUserSession() {
         User mockUser = new User(
@@ -83,6 +92,13 @@ public class UserController {
 
     @GetMapping("/user/interest")
     public String interest() {
+        mockUserSession();
+        User principal = (User) session.getAttribute("principal");
+        UserSkillAndInterestDto usi = userRepository.findByUserSkillAndInterest(principal.getUserId());
+        // List<String> insertList = Arrays.asList(usi.getSkillName1(),usi.getSkillName2(),usi.getSkillName3(),usi.getInterestCt1(),usi.getInterestCt2(),usi.getInterestCt3()); 
+        // List<String> matchingList = insertList.stream().distinct().collect(Collectors.toList());
+        // matchingList.forEach(System.out::println);
+        
         return "user/interest";
     }
 

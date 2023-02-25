@@ -72,7 +72,6 @@ create table resume_tb (
     content varchar,
     education varchar not null,
     career varchar not null,
-    user_skill_id int,
     link varchar,
 	state number(1) not null,
     created_at timestamp
