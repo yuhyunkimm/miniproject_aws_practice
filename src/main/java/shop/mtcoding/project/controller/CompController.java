@@ -126,7 +126,7 @@ public class CompController {
             recommendList.addAll(threeMatchDto);
             recommendList.addAll(twoMatchDto);
             recommendList.addAll(oneMatchDto);
-            model.addAttribute("rDto", recommendList);
+            model.addAttribute("rDtos", recommendList);
 
         return "comp/talent";
     }
