@@ -106,6 +106,16 @@ public class JobsController {
         // model.addAttribute("jDtos", jDtos);
         return new ResponseEntity<>(new ResponseDto<>(1, "검색 성공", jDtos), HttpStatus.OK);
     }
+
+    @PostMapping("/jobs/info/list")
+    public ResponseEntity<?> searchJobsSize(@RequestBody JobsCheckBoxReqDto jDto, Model model){
+        // System.out.println("테스트 : "+ jDto.toString());
+        if( jDto.getCareer() == null || jDto.getCareer().isEmpty()){
+            jDto.setCareer("");
+        }
+        List<JobsSearchRespDto> jDtos = jobsRepository.findByCheckBox(jDto);
+        return new ResponseEntity<>(new ResponseDto<>(1, "검색 성공", jDtos.size()), HttpStatus.OK);
+    }
 }
 // ⬜ 채용정보    "/jobs/info"
 // ⬜ 공고    "/jobs/1"

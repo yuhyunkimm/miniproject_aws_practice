@@ -380,11 +380,11 @@
     </div>
 
     <div class="row justify-content-between">
-        <div class="col-10 d-flex flex-wrap" id="selected">
+        <div class="col-9 d-flex flex-wrap" id="selected">
 
         </div>
-        <div class="col-2 d-flex justify-content-end">
-            <button type="button" class="btn btn-success mx-3 mb-2 my-auto" onclick="searchInfo">검색하기</button>
+        <div class="col-3 d-flex justify-content-end">
+            <button type="button" class="btn btn-primary mx-3 mb-2 my-auto" onclick="searchInfo()" id="search-info-btn">검색하기</button>
         </div>
     </div>
 
@@ -522,26 +522,25 @@
                 position: positionValues,
                 career: careerValue
             }
-            $('.selectBox-remove').remove();
+            // $('.selectBox-remove').remove();
             rendering(addressValues);
             rendering(skillValues);
             rendering(positionValues);
             render(careerValue);
 
-            $('.remove-card').remove();
+            // $('.remove-card').remove();
             $.ajax({
                 type: "post",
-                url: "/jobs/info/search",
+                url: "/jobs/info/list",
                 data: JSON.stringify(data),
                 headers: {
                     "content-type": "application/json; charset=utf-8"
                 },
                 dataType: "json"
             }).done((res) => {
-                renderInfo(res.data);
-                // alert('굿456');
+                newbtn(res.data);
             }).fail((err) => {
-                // alert('굿123');
+                alert(err.responseJSON.msg);
             });
         });
     });
@@ -558,26 +557,25 @@
             position: positionValues,
             career: careerValue
         }
-        $('.selectBox-remove').remove();
+        // $('.selectBox-remove').remove();
         rendering(addressValues);
         rendering(skillValues);
         rendering(positionValues);
         render(careerValue);
 
-        $('.remove-card').remove();
+        // $('.remove-card').remove();
         $.ajax({
             type: "post",
-            url: "/jobs/info/search",
+            url: "/jobs/info/list",
             data: JSON.stringify(data),
             headers: {
                 "content-type": "application/json; charset=utf-8"
             },
             dataType: "json"
         }).done((res) => {
-            renderInfo(res.data);
-            // alert('굿456');
+            newbtn(res.data);
         }).fail((err) => {
-            // alert('굿123');
+            alert(err.responseJSON.msg);
         });
     });
 
@@ -599,6 +597,10 @@
             $('#selected').append(el);
         }
     }
+    
+    function newbtn(num){
+        $('#search-info-btn').text( "'"+num+"' 건 검색하기");
+    }
 
     // function deleteBox() {
     //     // console.log(event.currentTarget);
@@ -611,7 +613,27 @@
     // }
 
     function searchInfo() {
-
+        let data = {
+            address: addressValues,
+            skill: skillValues,
+            position: positionValues,
+            career: careerValue
+        }
+        // $('.selectBox-remove').remove();
+        $('.remove-card').remove();
+        $.ajax({
+            type: "post",
+            url: "/jobs/info/search",
+            data: JSON.stringify(data),
+            headers: {
+                "content-type": "application/json; charset=utf-8"
+            },
+            dataType: "json"
+        }).done((res) => {
+            renderInfo(res.data);
+        }).fail((err) => {
+            alert(err.responseJSON.msg);
+        });
     }
 
     function renderInfo(jDtos) {
