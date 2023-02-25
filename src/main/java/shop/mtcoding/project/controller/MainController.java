@@ -1,13 +1,17 @@
 package shop.mtcoding.project.controller;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsMainRespDto;
+import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.User;
 
 @Controller
@@ -15,6 +19,9 @@ public class MainController {
     
     @Autowired
     private HttpSession session;
+
+    @Autowired
+    private JobsRepository jobsRepository;
 
     private void mockUserSession() {
         User mockUser = new User(
@@ -32,8 +39,10 @@ public class MainController {
     }
 
     @GetMapping("/")
-    public String main(){
+    public String main(Model model){
         // mockUserSession();
+        List<JobsMainRespDto> jDtos = jobsRepository.findAlltoMain();
+        model.addAttribute("jDtos", jDtos);    
         return "main/main";
     }
     @GetMapping("/help")
