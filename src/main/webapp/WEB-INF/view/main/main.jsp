@@ -3,7 +3,7 @@
 
 <div class="mx-auto width-53 mx-5 px-3 my-3">
     <div class="d-flex flex-wrap my-3 info-card">
-        <c:forEach items="${jDtos}" var="jDto">
+        <c:forEach items="${rDtos}" var="jDto" begin="1" end="3">
             <div class="col-4 px-2 py-2 remove-card">
                 <a href="/jobs/${jDto.jobsId}">
                     <div class="card">

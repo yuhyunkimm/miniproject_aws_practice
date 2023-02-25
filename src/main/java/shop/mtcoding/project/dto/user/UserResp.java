@@ -50,4 +50,12 @@ public class UserResp {
         private String interestCt2;
         private String interestCt3;
     }
+
+    @Getter
+    @Setter
+    public static class UserSkillRespDto{
+        private String skillName1;
+        private String skillName2;
+        private String skillName3;
+    }
 }
