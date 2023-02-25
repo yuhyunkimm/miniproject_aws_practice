@@ -21,5 +21,4 @@ public class ResumeService {
             throw new CustomApiException("이력서 작성 실패", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 }

@@ -3,6 +3,10 @@ package shop.mtcoding.project.controllerTest;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -16,6 +20,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
+import shop.mtcoding.project.model.User;
 
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
@@ -29,12 +34,27 @@ public class ResumeControllerTest {
 
     private MockHttpSession mockSession;
 
+    @BeforeEach
+    public void setUp() {
+        // 세션 주입
+        User user = new User(1, "ssar@nate.com", "1234", "ssar", null, null, null, null,
+                Timestamp.valueOf(LocalDateTime.now()));
+
+        mockSession = new MockHttpSession();
+        mockSession.setAttribute("principal", user);
+    }
+
     @Test
-    public void save_test() throws Exception {
+    public void write_test() throws Exception {
         // given
         ResumeWriteReqDto resumeWriteReqDto = new ResumeWriteReqDto();
-        resumeWriteReqDto.setTitle("제목");
-        resumeWriteReqDto.setContent("내용");
+        resumeWriteReqDto.setUserId(1);
+        resumeWriteReqDto.setTitle("벡엔드 이력서");
+        resumeWriteReqDto.setContent("백엔드 이력서의 내용입니다.");
+        resumeWriteReqDto.setEducation("고졸");
+        resumeWriteReqDto.setCareer("신입");
+        resumeWriteReqDto.setLink("블로그 주소");
+        resumeWriteReqDto.setState(1);
 
         String requestBody = om.writeValueAsString(resumeWriteReqDto);
 
@@ -47,7 +67,7 @@ public class ResumeControllerTest {
 
         System.out.println("save_test : ");
         // then
-        resultActions.andExpect(status().isCreated());
+        resultActions.andExpect(status().is3xxRedirection());
     }
 
 }
