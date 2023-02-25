@@ -15,27 +15,27 @@
                   <div class="card-body">
                     <div class="form-group">
                       <label for="inputPhoto" class="form-label mt-1">프로필 사진</label>
-                      <input type="image" name="photo" class="form-control" src="#" placeholder="Enter photo">
+                      <input type="image" name="photo" class="form-control" src="#" value="${user.photo}">
                     </div>
                     <div class="form-group">
                       <label for="inputName" class="form-label mt-1">이름</label>
-                      <input type="text" name="name" class="form-control" placeholder="Enter name">
+                      <input type="text" name="name" class="form-control" value="${user.name}">
                     </div>
                     <div class="form-group">
                       <label for="inputTel" class="form-label mt-1">번호</label>
-                      <input type="tel" name="tel" class="form-control" placeholder="Enter tel">
+                      <input type="tel" name="tel" class="form-control" value="${user.tel}">
                     </div>
                     <div class="form-group">
                       <label for="inputEmail" class="form-label mt-1">Email</label>
-                      <input type="email" name="email" class="form-control" placeholder="Enter email">
+                      <input type="email" name="email" class="form-control" value="${user.email}">
                     </div>
                     <div class="form-group">
                       <label for="inputAddress" class="form-label mt-1">주소</label>
-                      <input type="text" name="userAddress" class="form-control" placeholder="Enter address">
+                      <input type="text" name="userAddress" class="form-control" value="${user.userAddress}">
                     </div>
                     <div class="form-group">
                       <label for="inputBirth" class="form-label mt-1">생년월일</label>
-                      <input type="date" name="birth" class="form-control" placeholder="Enter birth">
+                      <input type="date" name="birth" class="form-control" value="${user.birth}">
                     </div>
                   </div>
                 </div>
@@ -58,17 +58,47 @@
                   <select class="form-select" name="career" id="career">
                     <option selected disabled>경력 사항을 선택해주세요</option>
                     <option value="신입">신입</option>
+                    <option value="1년차 미만">1년차 미만</option>
                     <option value="1년">1년</option>
                     <option value="2년">2년</option>
                     <option value="3년">3년</option>
                     <option value="4년">4년</option>
-                    <option value="5년 이상">5년 이상</option>
+                    <option value="5년">5년</option>
+                    <option value="6년">6년</option>
+                    <option value="7년">7년</option>
+                    <option value="8년차 이상">8년차 이상</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label for="SelectCareer" class="form-label mt-4">보유기술</label>
                   <hr>
                   <select class="form-select" name="skillName1" id="skillName1">
+                    <option selected disabled>보유 기술을 선택해주세요</option>
+                    <option value="Java">Java</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="Spring">Spring</option>
+                    <option value="HTML/CSS">HTML/CSS</option>
+                    <option value="jQuery">jQuery</option>
+                    <option value="JSP">JSP</option>
+                    <option value="Vue.js">Vue.js</option>
+                    <option value="Oracle">Oracle</option>
+                    <option value="MySQL">MySQL</option>
+                    <option value="React">React</option>
+                  </select>
+                  <select class="form-select" name="skillName2" id="skillName2">
+                    <option selected disabled>보유 기술을 선택해주세요</option>
+                    <option value="Java">Java</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="Spring">Spring</option>
+                    <option value="HTML/CSS">HTML/CSS</option>
+                    <option value="jQuery">jQuery</option>
+                    <option value="JSP">JSP</option>
+                    <option value="Vue.js">Vue.js</option>
+                    <option value="Oracle">Oracle</option>
+                    <option value="MySQL">MySQL</option>
+                    <option value="React">React</option>
+                  </select>
+                  <select class="form-select" name="skillName3" id="skillName3">
                     <option selected disabled>보유 기술을 선택해주세요</option>
                     <option value="Java">Java</option>
                     <option value="JavaScript">JavaScript</option>

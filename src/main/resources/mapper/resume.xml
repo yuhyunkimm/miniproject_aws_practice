@@ -13,8 +13,10 @@
     </select>
 
    <insert id="insert">
-        insert into resume_tb (user_id, title, content, education, career, user_skill_id, link,state, created_at) 
-        values(#{userId}, #{title}, #{content}, #{education},#{career},#{userSkillId},#{link},#{state} now())
+    INSERT INTO RESUME_TB(rt.user_id, rt.title, rt.content, rt.education, rt.career, rt.link, rt.state, rt.created_at, ust.skill_name1, ust.skill_name2, ust.skill_name3)
+        values(#{userId}, #{title}, #{content}, #{education},#{career},#{link},#{state}, now(),#{skill_name1},#{skill_name2},#{skill_name3})
+    FROM RESUME_TB RT LEFT JOIN USER_SKILL_TB UST 
+    ON RT.USER_ID = UST.USER_ID
     </insert>    
 
     <update id="updateById">

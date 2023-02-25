@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -62,11 +63,8 @@ public class ResumeController {
         if (resumeWriteReqDto.getEducation() == null) {
             throw new CustomApiException("경력을 입력해주세요");
         }
-        if (resumeWriteReqDto.getSkillName1() == null) {
-            throw new CustomApiException("보유기술을 선택해주세요");
-        }
-        if (resumeWriteReqDto.getEducation() == null || resumeWriteReqDto.getEducation().isEmpty()) {
-            throw new CustomApiException("자기소개서 입력해주세요");
+        if (resumeWriteReqDto.getTitle() == null) {
+            throw new CustomApiException("제목을 입력해주세요");
         }
         if (!(resumeWriteReqDto.getState() == 0 || resumeWriteReqDto.getState() == 1)) {
             throw new CustomApiException("공개여부를 선택해주세요");
@@ -74,11 +72,11 @@ public class ResumeController {
         resumeService.글쓰기(resumeWriteReqDto, principal.getUserId());
 
         return new ResponseEntity<>(new ResponseDto<>(1, "이력서 작성이 완료되었습니다.", null), HttpStatus.OK);
-        // return "";
+
     }
 
     @GetMapping("/user/resume/write")
-    public String writeResume() {
+    public String writeResume(Model model) {
         mockUserSession();
         return "resume/writeResumeForm";
     }
