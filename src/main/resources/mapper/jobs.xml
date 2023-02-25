@@ -21,7 +21,8 @@
         where career regexp #{jDto.career} and
         address regexp #{jDto.address} and
         SKILL_NAME1 regexp #{jDto.skill} and
-        position regexp #{jDto.position}
+        position regexp #{jDto.position} and
+        career regexp #{jDto.career}
     </select>
 
     <select id="findByCheckBox" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsSearchRespDto">
@@ -30,14 +31,17 @@
         title, career, education, position, r.skill_name1, r.skill_name2, r.skill_name3,  address, end_date
         from jobs_tb j join required_skill_tb r on
         j.jobs_id = r.jobs_id
-        where career regexp  in 
-        <foreach collection="list">
-          #{jDto.career}
-        </foreach>
-        <!-- and
-        address regexp #{jDto.address} and
-        SKILL_NAME1 regexp #{jDto.skill} and
-        position regexp #{jDto.position} -->
+        where 
+        <if test="jDto.address != null and jDto.address.size() > 0">
+          address in 
+          <foreach collection="jDto.address" item="address" open="(" close=")" separator=",">
+            #{address} 
+          </foreach>
+          and
+        </if>
+        career regexp #{jDto.career}
+        <!-- and SKILL_NAME1 regexp #{jDto.skill}
+        and position regexp #{jDto.position} -->
     </select>
 
     <select id="findByJobsDetail" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsDetailRespDto">
