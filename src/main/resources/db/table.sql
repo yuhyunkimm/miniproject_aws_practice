@@ -41,8 +41,8 @@ create table jobs_tb (
     position varchar,
     career varchar not null,
     education varchar not null,
+    address varchar not null,
     scrap_count int,
-    required_skill_id varchar,
     end_date timestamp,
     comp_id int not null,
     homepage varchar,
@@ -51,7 +51,7 @@ create table jobs_tb (
 
 create table required_skill_tb (
     required_skill_id int auto_increment primary key,
-    comp_id int not null,
+    jobs_id int not null,
     skill_name1 varchar,
     skill_name2 varchar,
     skill_name3 varchar

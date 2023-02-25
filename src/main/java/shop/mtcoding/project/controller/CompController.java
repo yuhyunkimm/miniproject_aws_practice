@@ -26,7 +26,7 @@ public class CompController {
                 "홍은택",
                 "120-81-47521",
                 "1577-3321",
-                "/images/default_profile.png",
+                "/images/kakao.png",
                 3600,
                 "1995-02-16",
                 "http://www.kakaocorp.com",
