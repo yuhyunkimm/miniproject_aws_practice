@@ -39,9 +39,21 @@
           </foreach>
           and
         </if>
+        <if test="jDto.skill != null and jDto.skill.size() > 0">
+          skill in 
+          <foreach collection="jDto.skill" item="skill" open="(" close=")" separator=",">
+            #{skill} 
+          </foreach>
+          and
+        </if>
+        <if test="jDto.position != null and jDto.position.size() > 0">
+          position in 
+          <foreach collection="jDto.position" item="position" open="(" close=")" separator=",">
+            #{position} 
+          </foreach>
+          and
+        </if>
         career regexp #{jDto.career}
-        <!-- and SKILL_NAME1 regexp #{jDto.skill}
-        and position regexp #{jDto.position} -->
     </select>
 
     <select id="findByJobsDetail" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsDetailRespDto">

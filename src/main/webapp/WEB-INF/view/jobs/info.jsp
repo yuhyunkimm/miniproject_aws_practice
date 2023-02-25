@@ -394,9 +394,9 @@
     </div>
 
     <!-- 공고들 -->
-    <div class="row my-3 info-card">
+    <div class="d-flex flex-wrap my-3 info-card">
         <c:forEach items="${jDtos}" var="jDto">
-            <div class="col-md-3 my-2 remove-card">
+            <div class="col-3 px-2 py-2 remove-card">
                 <a href="/jobs/${jDto.jobsId}">
                     <div class="card">
                         <div>
@@ -550,53 +550,53 @@
         addressValues = getCheckedValues("address");
         skillValues = getCheckedValues("skill");
         positionValues = getCheckedValues("position");
-        careerValue = $("input[name='career']:checked").val();      
-            
-        let data = {
-                address: addressValues,
-                skill: skillValues,
-                position: positionValues,
-                career: careerValue
-            }
-            $('.selectBox-remove').remove();
-            rendering(addressValues);
-            rendering(skillValues);
-            rendering(positionValues);
-            render(careerValue);
+        careerValue = $("input[name='career']:checked").val();
 
-            $('.remove-card').remove();
-            $.ajax({
-                type: "post",
-                url: "/jobs/info/search",
-                data: JSON.stringify(data),
-                headers: {
-                    "content-type": "application/json; charset=utf-8"
-                },
-                dataType: "json"
-            }).done((res) => {
-                renderInfo(res.data);
-                // alert('굿456');
-            }).fail((err) => {
-                // alert('굿123');
-            });
+        let data = {
+            address: addressValues,
+            skill: skillValues,
+            position: positionValues,
+            career: careerValue
+        }
+        $('.selectBox-remove').remove();
+        rendering(addressValues);
+        rendering(skillValues);
+        rendering(positionValues);
+        render(careerValue);
+
+        $('.remove-card').remove();
+        $.ajax({
+            type: "post",
+            url: "/jobs/info/search",
+            data: JSON.stringify(data),
+            headers: {
+                "content-type": "application/json; charset=utf-8"
+            },
+            dataType: "json"
+        }).done((res) => {
+            renderInfo(res.data);
+            // alert('굿456');
+        }).fail((err) => {
+            // alert('굿123');
+        });
     });
 
-    function rendering(checkboxes){
-        if( checkboxes.length > 0 ){
-            checkboxes.forEach(function (checkbox){
-            render(checkbox);
+    function rendering(checkboxes) {
+        if (checkboxes.length > 0) {
+            checkboxes.forEach(function (checkbox) {
+                render(checkbox);
             });
         }
     }
 
-    function render(values){
-        if(values!==undefined){
-            let el=`
-            <h5 class="selectBox-remove me-2"><span class="badge bg-light text-dark" onclick="deleteBox()" value=`+values+`>`+values+`  X 
+    function render(values) {
+        if (values !== undefined) {
+            let el = `
+            <h5 class="selectBox-remove me-2"><span class="badge bg-light text-dark" onclick="deleteBox()" value=`+ values + `>` + values + `  X 
             </span>
             </h5>
         `;
-        $('#selected').append(el);
+            $('#selected').append(el);
         }
     }
 
@@ -610,36 +610,36 @@
     //     careerValue;
     // }
 
-    function searchInfo(){
-        
+    function searchInfo() {
+
     }
 
-    function renderInfo(jDtos){
+    function renderInfo(jDtos) {
         jDtos.forEach(jDto => {
-            let el=`
-            <div class="col-md-3 my-2 remove-card">
-                <a href="/jobs/`+jDto.jobsId+`>
+            let el = `
+            <div class="col-3 px-2 py-2 remove-card">
+                <a href="/jobs/`+jDto.jobsId+`">
                     <div class="card">
                         <div>
-                            <img src='`+jDto.photo+`' alt="" srcset="">
+                            <img src='`+ jDto.photo + `' alt="" srcset="">
                         </div>
                         <div class="card-body">
                             <div>
-                                `+jDto.compName+`
+                                `+ jDto.compName + `
                             </div>
                             <div class="fs-5">
-                                `+jDto.title+`
+                                `+ jDto.title + `
                             </div>
                             <div>
-                                `+jDto.skillName1+ jDto.skillName2+ jDto.skillName3+`
+                                `+ jDto.skillName1 + " " + jDto.skillName2 + " " + jDto.skillName3 + `
                             </div>
                             <div>
-                                `+jDto.career+ jDto.education+ jDto.address+`
+                                `+ jDto.career + " " + jDto.education + " " + jDto.address + `
                             </div>
                             <div class="d-flex justify-content-between">
-                                <div><i id="scrap-`+jDto.jobsId+`" class="fa-regular fa-star"
-                                        onclick="scrap(`+jDto.jobsId+`)"></i>
-                                    <input type="hidden" id="endDate-`+jDto.jobsId+`" value="`+jDto.endDate+`">
+                                <div><i id="scrap-`+ jDto.jobsId + `" class="fa-regular fa-star"
+                                        onclick="scrap(`+ jDto.jobsId + `)"></i>
+                                    <input type="hidden" id="endDate-`+ jDto.jobsId + `" value="` + jDto.endDate + `">
                                 </div>
                                 <div>
 
@@ -647,13 +647,13 @@
 
                             </div>
                         </div>
-                    </div>
+                </div>
                 </a>
             </div>
             `;
 
-        $('.info-card').append(el);
-        });  
+            $('.info-card').append(el);
+        });
     }
 </script>
 <%@ include file="../layout/footer.jsp" %>
