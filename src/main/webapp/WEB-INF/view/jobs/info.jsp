@@ -380,10 +380,11 @@
     </div>
 
     <div class="row justify-content-between">
-        <div class="col-9 d-flex flex-wrap" id="selected">
+        <div class="col-8 d-flex flex-wrap" id="selected">
 
         </div>
-        <div class="col-3 d-flex justify-content-end">
+        <div class="col-4 d-flex justify-content-end">
+            <button type="button" class="btn btn-primary mb-2 my-auto" onclick="resetCheckboxes()" >초기화</button>
             <button type="button" class="btn btn-primary mx-3 mb-2 my-auto" onclick="searchInfo()" id="search-info-btn">검색하기</button>
         </div>
     </div>
@@ -522,7 +523,7 @@
                 position: positionValues,
                 career: careerValue
             }
-            // $('.selectBox-remove').remove();
+            $('.selectBox-remove').remove();
             rendering(addressValues);
             rendering(skillValues);
             rendering(positionValues);
@@ -540,7 +541,6 @@
             }).done((res) => {
                 newbtn(res.data);
             }).fail((err) => {
-                alert(err.responseJSON.msg);
             });
         });
     });
@@ -557,7 +557,7 @@
             position: positionValues,
             career: careerValue
         }
-        // $('.selectBox-remove').remove();
+        $('.selectBox-remove').remove();
         rendering(addressValues);
         rendering(skillValues);
         rendering(positionValues);
@@ -575,7 +575,6 @@
         }).done((res) => {
             newbtn(res.data);
         }).fail((err) => {
-            alert(err.responseJSON.msg);
         });
     });
 
@@ -596,6 +595,18 @@
         `;
             $('#selected').append(el);
         }
+    }
+
+    function resetCheckboxes() {
+        checkboxes.forEach(function (checkbox) {
+            checkbox.checked = false;
+            $('.selectBox-remove').remove();
+            addressValues = getCheckedValues("address");
+            skillValues = getCheckedValues("skill");
+            positionValues = getCheckedValues("position");
+            careerValue = $("input[name='career']:checked").val();
+            $('#search-info-btn').text( "검색하기");
+        });
     }
     
     function newbtn(num){
@@ -632,7 +643,6 @@
         }).done((res) => {
             renderInfo(res.data);
         }).fail((err) => {
-            alert(err.responseJSON.msg);
         });
     }
 

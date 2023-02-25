@@ -20,10 +20,14 @@ public class JobsRepositoryTest {
     @Test
     public void findByCheckBox_test() throws Exception {
         JobsCheckBoxReqDto j = new JobsCheckBoxReqDto();
-        j.setCareer("신입");
-        List<String> address = Arrays.asList();
-        System.out.println("테스트 : "+address);
-        j.setAddress(address);
+        j.setCareer("");
+        List<String> skill = Arrays.asList("React");
+        // List<String> position = Arrays.asList("서울");
+
+        System.out.println("테스트 : "+skill);
+        // System.out.println("테스트 : "+position);
+        j.setAddress(skill);
+        // j.setAddress(position);
         List<JobsSearchRespDto> t = jobsRepository.findByCheckBox(j);
         System.out.println("테스트 : "+ t.size());
     }
