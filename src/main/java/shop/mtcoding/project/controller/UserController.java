@@ -1,6 +1,7 @@
 package shop.mtcoding.project.controller;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -103,23 +104,34 @@ public class UserController {
         UserSkillAndInterestDto usi = userRepository.findByUserSkillAndInterest(principal.getUserId());
         List<String> insertList = Arrays.asList(usi.getSkillName1(),usi.getSkillName2(),usi.getSkillName3(),usi.getInterestCt1(),usi.getInterestCt2(),usi.getInterestCt3()); 
         Set<String> set = new HashSet<>(insertList);
+        List<String> matchingList = new ArrayList<>(set);
+        model.addAttribute("uDto", matchingList);
 
         List<JobsSkillRespDto> jsList = jobsRepository.findAllByJobsAndSkill();
+        List<JobsSkillRespDto> threeMatchDto = new ArrayList<>();
+        List<JobsSkillRespDto> twoMatchDto = new ArrayList<>();
+        List<JobsSkillRespDto> oneMatchDto = new ArrayList<>();
         for (JobsSkillRespDto jsPS : jsList) {
             if( set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3()) ){
-                model.addAttribute("ThreeMatchDto", jsList);
+                threeMatchDto.add(jsPS);
+                continue;
             }
             if( (set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) ||
             ( set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) ||
             ( !set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) ){
-                model.addAttribute("TwoMatchDto", jsList);
+                twoMatchDto.add(jsPS);
+                continue;
             }
             if( (set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) ||
             ( !set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) ||
             ( !set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) ){
-                model.addAttribute("OneMatchDto", jsList);
+                oneMatchDto.add(jsPS);
+                continue;
             } 
         }
+        model.addAttribute("threeMatchDto", threeMatchDto);
+        model.addAttribute("twoMatchDto", twoMatchDto);
+        model.addAttribute("oneMatchDto", oneMatchDto); 
         return "user/interest";
     }
 
