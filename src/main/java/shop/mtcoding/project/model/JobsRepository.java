@@ -30,7 +30,7 @@ public interface JobsRepository {
     public int deleteById(
 
     );
-    public JobsRequiredSkill findByJobsRequiredSkill(
+    public List<JobsRequiredSkill> findByJobsRequiredSkill(
         @Param("id") Integer id
     ); 
     public List<JobsMainRespDto> findAlltoMain();

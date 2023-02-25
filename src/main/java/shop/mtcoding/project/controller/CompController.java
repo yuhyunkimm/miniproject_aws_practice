@@ -1,13 +1,17 @@
 package shop.mtcoding.project.controller;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsRequiredSkill;
@@ -85,14 +89,44 @@ public class CompController {
     }
 
     @GetMapping("/comp/talent")
-    public String talent() {
+    public String talent(Model model) {
         mockCompSession();
-        User principal = (User) session.getAttribute("principal");
-        if ( principal != null ){
-            JobsRequiredSkill rSkill = jobsrRepository.findByJobsRequiredSkill(principal.getUserId());
-            List<String> rSkillList = Arrays.asList(rSkill.getSkillName1(), rSkill.getSkillName2(), rSkill.getSkillName3());
-            List<ResumeRecommendRespDto> recommendList = resumeRepository.findAllResumebyPublic();
-        }
+        Comp principal = (Comp) session.getAttribute("principal");
+            List<JobsRequiredSkill> rSkill = jobsrRepository.findByJobsRequiredSkill(principal.getCompId());
+            Set<String> set = new HashSet<>();
+            for (JobsRequiredSkill skills : rSkill) {
+                set.add(skills.getSkillName1());
+                set.add(skills.getSkillName2());
+                set.add(skills.getSkillName3());
+            }
+            model.addAttribute("compSkillDto", set);
+            List<ResumeRecommendRespDto> recommendResumeList = resumeRepository.findAllResumebyPublic();
+            List<ResumeRecommendRespDto> threeMatchDto = new ArrayList<>();
+            List<ResumeRecommendRespDto> twoMatchDto = new ArrayList<>();
+            List<ResumeRecommendRespDto> oneMatchDto = new ArrayList<>();
+            List<ResumeRecommendRespDto> recommendList = new ArrayList<>();
+            for (ResumeRecommendRespDto rcPS : recommendResumeList) {
+                if( set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2()) && set.contains(rcPS.getSkillName3()) ){
+                    threeMatchDto.add(rcPS);
+                    continue;
+                }
+                if( (set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2()) && !set.contains(rcPS.getSkillName3())) ||
+                ( set.contains(rcPS.getSkillName1()) && !set.contains(rcPS.getSkillName2()) && set.contains(rcPS.getSkillName3())) ||
+                ( !set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2()) && set.contains(rcPS.getSkillName3())) ){
+                    twoMatchDto.add(rcPS);
+                    continue;
+                }
+                if( (set.contains(rcPS.getSkillName1()) && !set.contains(rcPS.getSkillName2()) && !set.contains(rcPS.getSkillName3())) ||
+                ( !set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2()) && !set.contains(rcPS.getSkillName3())) ||
+                ( !set.contains(rcPS.getSkillName1()) && !set.contains(rcPS.getSkillName2()) && set.contains(rcPS.getSkillName3())) ){
+                    oneMatchDto.add(rcPS);
+                    continue;
+                } 
+            }
+            recommendList.addAll(threeMatchDto);
+            recommendList.addAll(twoMatchDto);
+            recommendList.addAll(oneMatchDto);
+            model.addAttribute("rDto", recommendList);
 
         return "comp/talent";
     }

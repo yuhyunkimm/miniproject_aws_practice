@@ -19,7 +19,7 @@
     <select id="findByJobsRequiredSkill" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsRequiredSkill">
       SELECT r.skill_name1, r.skill_name2, r.skill_name3 
         FROM JOBS_TB j join REQUIRED_SKILL_TB r
-        on j.jobs_id = r.jobs_id where j.jobs_id = #{id}
+        on j.jobs_id = r.jobs_id where j.comp_id = #{id}
     </select>
 
     <select id="findById" resultType="shop.mtcoding.project.model.User">

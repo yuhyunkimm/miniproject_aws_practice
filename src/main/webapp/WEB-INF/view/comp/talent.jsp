@@ -3,10 +3,10 @@
 
 <div class="mx-auto width-53">
    <div class="d-flex">
-        <c:forEach items="${uDto} " var="Dto">
+        <c:forEach items="${compSkillDto} " var="Dto">
             <div class="me-3"> ${Dto} </div>
         </c:forEach>
-        인재 추천 페이지 
+        기술을 가진 인재를 추천합니다. 
     </div>
     <div class="d-flex flex-wrap my-3 info-card">
         <c:forEach items="${fourMatchDto}" var="jDto">
