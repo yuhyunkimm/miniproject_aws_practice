@@ -10,17 +10,17 @@
 
     <select id="findById" resultType="shop.mtcoding.project.model.User">
 
-    </select>
+    </select> -->
 
-    <insert id="insert">
-
+    <insert id="insert" useGeneratedKeys="true" keyProperty="sDto.userScrapId">
+      INSERT INTO user_scrap_tb (user_id, jobs_id, created_at) VALUES (#{userId}, #{sDto.jobs_id}, now())
     </insert>
 
-    <update id="updateById">
+    <!-- <update id="updateById">
 
-    </update>
+    </update> -->
 
-    <delete id="deleteById">
-
-    </delete> -->
+    <delete id="deleteByUserScrapId">
+      delete from user_scrap_tb where user_scrap_id = #{userScrapId}
+    </delete>
 </mapper>

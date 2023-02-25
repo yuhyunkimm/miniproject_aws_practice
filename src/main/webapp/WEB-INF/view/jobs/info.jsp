@@ -416,27 +416,48 @@
                             <div>
                                 ${jDto.career} ${jDto.education} ${jDto.address}
                             </div>
+                        </a>
                             <div class="d-flex justify-content-between">
-                                <div><i id=`scrap-${jDto.jobsId}` class="fa-regular fa-star"
-                                        onclick="scrap(`${jDto.jobsId}`)"></i>
-                                    <input type="hidden" id="endDate-${jDto.jobsId}" value="${jDto.endDate}">
+                                    <c:choose>
+                                   <c:when test="${principal != null}">
+                                    <div>
+                                   <i id=`scrap-${jDto.jobsId}` class="fa-regular fa-star"
+                                        onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${sDto.userScrapId}`)"></i>
+                                    </div>
+                                   </c:when>
+                                
+                                   <c:otherwise>
+                                    <div>
+                                   <a href="/user/login">
+                                    <i id=`scrap-${jDto.jobsId}` class="fa-regular fa-star"></i>
+                                   </a>
+                                </div>
+                                   </c:otherwise>
+                                </c:choose>
+                                <div>
+                                    <!-- <input type="hidden" id="endDate-${jDto.jobsId}" value="${jDto.endDate}"> -->
                                 </div>
                                 <div>
-
+                                    z
                                 </div>
 
                             </div>
                         </div>
                     </div>
-                </a>
+                
             </div>
         </c:forEach>
     </div>
 </div>
 <script>
     let jobsId;
-    function scrap(id) {
+    let userId;
+    let userScrapId;
+    function scrap(jobs,user,userScrap) {
         jobsId = id;
+        userId = user;
+        userScrapId = userScrap;
+        
         $('#scrap-' + jobsId).toggleClass("fa-solid");
         $('#scrap-' + jobsId).toggleClass("on-Clicked");
         // $('#scrap-' + jobsId + '-count').remove();
