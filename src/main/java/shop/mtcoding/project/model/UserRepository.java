@@ -16,6 +16,8 @@ import shop.mtcoding.project.dto.user.UserResp.UserSkillRespDto;
 public interface UserRepository {
     public List<User> findAll();
 
+    public User findByUserEmail(@Param("email") String email);
+
     public UserDataRespDto findById(
         @Param("uDto") UserDataRespDto uDto);
 

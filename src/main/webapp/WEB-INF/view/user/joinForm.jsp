@@ -36,7 +36,8 @@
                     <form action="/user/join" method="post">
                         <div class="d-flex form-group mb-2">
                             <input type="email" name="email" class="form-control" placeholder="Enter email" id="email">
-                            <%-- <button id="emailCheckBtn" class="badge bg-secondary ms-2" onclick="confirmId(event)">중복확인</button> --%>
+                            <button type="button" class="badge bg-secondary ms-2"
+                                onclick="emailCheckBtn()">중복확인</button>
                         </div>
 
                         <div class="form-group mb-2">
@@ -119,6 +120,21 @@
                         return;
                     }
                 }
+                // 이메일 중복 확인 버튼
+                function emailCheckBtn() {
+                    let email1 = $("#email").val();
+                    //console.log(오류1);
+                    $.ajax({
+                        type: "get",
+                        url: "/user/emailCheck?email=" + email1,
+                        datatype: "json"
+                    }).done((res) => {
+                        alert(res.msg);
+                    }).fail((err) => {
+                        alert(err.responseJSON.msg);
+                    });
+                }
+
             </script>
 
         </body>
