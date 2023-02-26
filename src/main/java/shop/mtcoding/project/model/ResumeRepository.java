@@ -13,21 +13,19 @@ import shop.mtcoding.project.dto.resume.ResumeResp.ResumeRecommendRespDto;
 public interface ResumeRepository {
         public void findAll();
 
-        public void findById(
-
-        );
-
-        public int insertTemp(
-                        @Param("rDto") ResumeWriteReqDto rDto);
-
-
-        public int insert(
-                        @Param("rDto") ResumeWriteReqDto rDto);
-
+        public void findById( );
         public List<ResumeRecommendRespDto> findAllResumebyPublic();
 
+        public int insertTemp(
+            @Param("rDto") ResumeWriteReqDto rDto
+        );
+
+        public int insert(
+            @Param("rDto") ResumeWriteReqDto rDto
+        );
+
         public int updateById(
-                        @Param("rDto") ResumeWriteReqDto rDto);
+            @Param("rDto") ResumeWriteReqDto rDto);
 
         public int deleteById(
 

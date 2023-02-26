@@ -1,4 +1,4 @@
-package shop.mtcoding.project.controller;
+package shop.mtcoding.project.controllerTest;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -29,7 +30,7 @@ public class UserScrapControllerTest {
     @Autowired
     private MockMvc mvc;
 
-    private MockHttpSession session;
+    private MockHttpSession mockSession;
 
     @BeforeEach
     private void mockUserSession() {
@@ -43,11 +44,12 @@ public class UserScrapControllerTest {
                 "/images/default_profile.png",
                 "부산시 부산진구",
                 new Timestamp(System.currentTimeMillis()));
-        session = new MockHttpSession();
-        session.setAttribute("principal", mockUser);
+        mockSession = new MockHttpSession();
+        mockSession.setAttribute("principal", mockUser);
     }
 
     @Test
+    @Transactional
     public void insertScrap_test() throws Exception {
         ObjectMapper om = new ObjectMapper();
 
@@ -58,25 +60,25 @@ public class UserScrapControllerTest {
 
         ResultActions rs = mvc.perform(put("/user/scrap/insert")
                               .content(jsonString).contentType(MediaType.APPLICATION_JSON_VALUE)
-                              .session(session));
+                              .session(mockSession));
 
         System.out.println("테스트 : "+ rs.andReturn().getResponse().getContentAsString());
     }
 
     @Test
+    @Transactional
     public void deleteScrap_test() throws Exception {
         ObjectMapper om = new ObjectMapper();
-
+        //given
         UserDeleteScrapReqDto sDto = new UserDeleteScrapReqDto();
-        sDto.setUserId(1);
         sDto.setUserScrapId(1);
-        System.out.println("테스트 : "+sDto.getUserId() +"  "+ sDto.getUserScrapId());
         String jsonString = om.writeValueAsString(sDto);
 
+        //when
         ResultActions rs = mvc.perform(delete("/user/scrap/delete")
                               .content(jsonString).contentType(MediaType.APPLICATION_JSON_VALUE)
-                              .session(session));
-
+                              .session(mockSession));
+        //then
         System.out.println("테스트 : "+ rs.andReturn().getResponse().getContentAsString());
     }
 }

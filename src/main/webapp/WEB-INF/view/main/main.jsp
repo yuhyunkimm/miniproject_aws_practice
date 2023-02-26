@@ -162,17 +162,12 @@
 
         // 스크랩 id 있을때
         if (userScrap > 0) {
-            let data = {
-                userScrapId: userScrap,
-                userId: user
-            }
+            userScrapId = userScrap;
+            
             $.ajax({
                 type: "delete",
-                url: "/user/scrap/delete",
+                url: "/user/scrap/"+userScrapId+"/delete",
                 data: JSON.stringify(data),
-                headers: {
-                    "content-type": "application/json; charset=utf-8"
-                },
                 dataType: "json"
             }).done((res) => {
                 userScrapId = res.data;
@@ -187,7 +182,7 @@
                 jobsId: jobs
             }
             $.ajax({
-                type: "put",
+                type: "post",
                 url: "/user/scrap/insert",
                 data: JSON.stringify(data),
                 headers: {

@@ -1,10 +1,8 @@
-package shop.mtcoding.project;
+package shop.mtcoding.project.interceptor;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import shop.mtcoding.project.interceptor.CustomInterceptor;
 
 @Configuration
 public class AppConfig implements WebMvcConfigurer {

@@ -9,7 +9,7 @@
     </select>
 
     <select id="findByUserId" resultType="shop.mtcoding.project.model.UserScrap">
-      select * from user_scrap_tb where user_scrap_id = #{userId}
+      select * from user_scrap_tb where user_scrap_id = #{userScrapId}
     </select>
 
     <insert id="insertbyUser" useGeneratedKeys="true" keyProperty="sDto.userScrapId">

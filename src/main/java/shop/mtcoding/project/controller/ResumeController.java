@@ -1,7 +1,5 @@
 package shop.mtcoding.project.controller;
 
-import java.sql.Timestamp;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +17,7 @@ import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.service.ResumeService;
+import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class ResumeController {
@@ -32,20 +31,6 @@ public class ResumeController {
     @Autowired
     private HttpSession session;
 
-    private void mockUserSession() {
-        User mockUser = new User(
-                1,
-                "ssar@nate.com",
-                "1234",
-                "ssar",
-                "2000-01-01",
-                "010-1234-1234",
-                "/images/default_profile.png",
-                "부산시 부산진구",
-                new Timestamp(System.currentTimeMillis()));
-        session.setAttribute("principal", mockUser);
-    }
-
     @GetMapping("/user/resume") // 이력서관리
     public String resume() {
         return "resume/resume";
@@ -53,32 +38,31 @@ public class ResumeController {
 
     @PostMapping("/user/resume/write")
     public ResponseEntity<?> write(@RequestBody ResumeWriteReqDto resumeWriteReqDto) {
-        mockUserSession();
+        MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
-        if (resumeWriteReqDto.getEducation() == null) {
+        if (resumeWriteReqDto.getEducation() == null || resumeWriteReqDto.getEducation().isEmpty()) {
             throw new CustomApiException("학력을 입력해주세요");
         }
-        if (resumeWriteReqDto.getEducation() == null) {
+        if (resumeWriteReqDto.getCareer() == null || resumeWriteReqDto.getCareer().isEmpty()) {
             throw new CustomApiException("경력을 입력해주세요");
         }
-        if (resumeWriteReqDto.getTitle() == null) {
+        if (resumeWriteReqDto.getTitle() == null || resumeWriteReqDto.getTitle().isEmpty()) {
             throw new CustomApiException("제목을 입력해주세요");
         }
         if (!(resumeWriteReqDto.getState() == 0 || resumeWriteReqDto.getState() == 1)) {
             throw new CustomApiException("공개여부를 선택해주세요");
         }
         resumeService.글쓰기(resumeWriteReqDto, principal.getUserId());
-
+        
         return new ResponseEntity<>(new ResponseDto<>(1, "이력서 작성이 완료되었습니다.", null), HttpStatus.OK);
-
     }
 
     @GetMapping("/user/resume/write")
     public String writeResume(Model model) {
-        mockUserSession();
+        MockSession.mockUser(session);
         return "resume/writeResumeForm";
     }
 

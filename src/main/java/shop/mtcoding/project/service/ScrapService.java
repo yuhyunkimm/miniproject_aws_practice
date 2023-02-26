@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import shop.mtcoding.project.dto.scrap.UserScrapReq.UserDeleteScrapReqDto;
 import shop.mtcoding.project.dto.scrap.UserScrapReq.UserInsertScrapReqDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.model.Jobs;
@@ -43,16 +42,16 @@ public class ScrapService {
     }
 
     @Transactional
-    public void 유저스크랩삭제(Integer userId, UserDeleteScrapReqDto sDto) {
-        if ( userId != sDto.getUserId()){
-            throw new CustomApiException("권한이 없습니다.", HttpStatus.FORBIDDEN);
-        }
-        UserScrap scrap = scrapRepository.findByUserId(sDto.getUserScrapId());
-        if ( scrap == null ){
+    public void 유저스크랩삭제(Integer userId, Integer userScrapId) {
+        UserScrap USPS = scrapRepository.findByUserId(userScrapId);
+        if ( USPS == null ){
             throw new CustomApiException("스크랩이 존재하지 않습니다.");
         }
+        if ( userId != USPS.getUserId()){
+            throw new CustomApiException("삭제 권한이 없습니다.", HttpStatus.FORBIDDEN);
+        }
         try {
-            scrapRepository.deleteByUserScrapId(sDto.getUserScrapId());
+            scrapRepository.deleteByUserScrapId(userScrapId);
         } catch (Exception e) {
             throw new CustomApiException("서버에 일시적인 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }

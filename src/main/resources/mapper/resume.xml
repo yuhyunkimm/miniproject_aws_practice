@@ -18,29 +18,20 @@
         where r.state = 1
     </select>
 
-    <select id="findById" resultType="shop.mtcoding.project.model.User">
+    <!-- <select id="findById" resultType="shop.mtcoding.project.model.User">
 
-    </select>
+    </select> -->
 
-   <insert id="insertTemp" useGeneratedKeys="true"  keyProperty="rDto.resumeId">
-    INSERT INTO RESUME_TB(rt.user_id, rt.title, rt.content, rt.education, rt.career, rt.link, rt.state, rt.created_at, ust.skill_name1, ust.skill_name2, ust.skill_name3)
-        values(#{userId}, #{title}, #{content}, #{education},#{career},#{link},#{state}, now(),#{skill_name1},#{skill_name2},#{skill_name3})
-    FROM RESUME_TB RT LEFT JOIN USER_SKILL_TB UST 
-    ON RT.USER_ID = UST.USER_ID
-    </insert>  
-
-   <insert id="insert">
-    INSERT INTO RESUME_TB(rt.user_id, rt.title, rt.content, rt.education, rt.career, rt.link, rt.state, rt.created_at, ust.skill_name1, ust.skill_name2, ust.skill_name3)
-        values(#{userId}, #{title}, #{content}, #{education},#{career},#{link},#{state}, now(),#{skill_name1},#{skill_name2},#{skill_name3})
-    FROM RESUME_TB RT LEFT JOIN USER_SKILL_TB UST 
-    ON RT.USER_ID = UST.USER_ID
+    <insert id="insert" useGeneratedKeys="true"  keyProperty="rDto.resumeId">
+        insert into resume_tb ( user_id, title, content, education, career, link, state, created_at )
+        values ( #{rDto.userId}, #{rDto.title}, #{rDto.content}, #{rDto.education}, #{rDto.career}, #{rDto.link}, #{rDto.state}, now())
     </insert>    
 
-    <update id="updateById">
+    <!-- <update id="updateById">
 
-    </update>
+    </update> -->
 
-    <delete id="deleteById">
+    <!-- <delete id="deleteById">
 
-    </delete>
+    </delete> -->
 </mapper>

@@ -33,8 +33,8 @@
     </select>
 
     <insert id="insert">
-        insert into user_tb ( email, password, name, birth, tel, user_address, created_at)
-            values ( #{uDto.email}, #{uDto.password}, #{uDto.name}, #{uDto.birth}, #{uDto.tel}, #{uDto.userAddress}, now());
+        insert into user_tb ( email, password, name, birth, tel, address, created_at)
+            values ( #{uDto.email}, #{uDto.password}, #{uDto.name}, #{uDto.birth}, #{uDto.tel}, #{uDto.Address}, now());
     </insert>
 
     <update id="updateById">
@@ -43,7 +43,7 @@
             name = #{uDto.name}, 
             birth = #{uDto.birth},
             tel =  #{uDto.tel},
-            userAddress = #{uDto.userAddress}, 
+            Address = #{uDto.Address}, 
             where id = #{uDto.id}
     </update>
 

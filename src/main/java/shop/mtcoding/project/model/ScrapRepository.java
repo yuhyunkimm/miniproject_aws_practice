@@ -9,7 +9,7 @@ import shop.mtcoding.project.dto.scrap.UserScrapReq.UserInsertScrapReqDto;
 public interface ScrapRepository {
     public void findAll();
     public UserScrap findByUserId(
-        @Param("userId") Integer userId
+        @Param("userScrapId") Integer userScrapId
     );
     public int insertbyUser(
         @Param("userId") Integer userId,

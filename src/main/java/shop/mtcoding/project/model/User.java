@@ -17,6 +17,6 @@ public class User {
     private String birth;
     private String tel;
     private String photo;
-    private String userAddress;
+    private String Address;
     private Timestamp createdAt;
 }

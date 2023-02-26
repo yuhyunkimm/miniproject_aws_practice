@@ -471,17 +471,11 @@
 
         // 스크랩 id 있을때
         if (userScrap > 0) {
-            let data = {
-                userScrapId: userScrap,
-                userId: user
-            }
+            userScrapId = userScrap;
             $.ajax({
                 type: "delete",
-                url: "/user/scrap/delete",
+                url: "/user/scrap/"+userScrapId+"/delete",
                 data: JSON.stringify(data),
-                headers: {
-                    "content-type": "application/json; charset=utf-8"
-                },
                 dataType: "json"
             }).done((res) => {
                 userScrapId = res.data;
@@ -496,7 +490,7 @@
                 jobsId: jobs
             }
             $.ajax({
-                type: "put",
+                type: "post",
                 url: "/user/scrap/insert",
                 data: JSON.stringify(data),
                 headers: {
@@ -514,16 +508,13 @@
 
     function changeScrap() {
         $('#scrap-'+ jobsId +'-remove').remove();
-        renderg();
-        console.log(userScrapId);
+        renderScrap();
     }
     
-    function render(){
+    function renderScrap(){
         let el;
 
-            console.log('렌더00');
         if ( userScrapId > 0 ){
-            console.log('렌더11');
             el = `
             <div id="scrap-`+ jobsId+`-remove">
                 <i id="scrap-`+ jobsId  +`" class="fa-solid on-Clicked fa-star my-cursor"
@@ -531,7 +522,6 @@
                                     </div>
             `;
         }if (userScrapId === 0){
-            console.log('렌더22');
             el = `
             <div id="scrap-`+  jobsId +`-remove">
                 <i id="scrap-`+  jobsId  +`" class="fa-regular fa-star my-cursor"

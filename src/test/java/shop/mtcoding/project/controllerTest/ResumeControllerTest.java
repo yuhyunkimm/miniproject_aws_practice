@@ -4,7 +4,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -27,25 +27,30 @@ import shop.mtcoding.project.model.User;
 public class ResumeControllerTest {
 
     @Autowired
-    private ObjectMapper om;
-
-    @Autowired
     private MockMvc mvc;
 
     private MockHttpSession mockSession;
 
     @BeforeEach
-    public void setUp() {
-        // 세션 주입
-        User user = new User(1, "ssar@nate.com", "1234", "ssar", null, null, null, null,
-                Timestamp.valueOf(LocalDateTime.now()));
-
+    private void mockUserSession() {
+        User mockUser = new User(
+                1,
+                "ssar@nate.com",
+                "1234",
+                "ssar",
+                "2000-01-01",
+                "010-1234-1234",
+                "/images/default_profile.png",
+                "부산시 부산진구",
+                new Timestamp(System.currentTimeMillis()));
         mockSession = new MockHttpSession();
-        mockSession.setAttribute("principal", user);
+        mockSession.setAttribute("principal", mockUser);
     }
 
     @Test
+    @Transactional
     public void write_test() throws Exception {
+        ObjectMapper om = new ObjectMapper();
         // given
         ResumeWriteReqDto resumeWriteReqDto = new ResumeWriteReqDto();
         resumeWriteReqDto.setUserId(1);
@@ -55,19 +60,16 @@ public class ResumeControllerTest {
         resumeWriteReqDto.setCareer("신입");
         resumeWriteReqDto.setLink("블로그 주소");
         resumeWriteReqDto.setState(1);
-
         String requestBody = om.writeValueAsString(resumeWriteReqDto);
 
         // when
-        ResultActions resultActions = mvc.perform(
-                post("/user/resume/write")
-                        .content(requestBody)
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .session(mockSession));
+        ResultActions resultActions = mvc.perform(post("/user/resume/write")
+                                         .content(requestBody).contentType(MediaType.APPLICATION_JSON_VALUE)
+                                         .session(mockSession)
+                                         );
 
-        System.out.println("save_test : ");
         // then
-        resultActions.andExpect(status().is3xxRedirection());
+        resultActions.andExpect(status().isOk());
     }
 
 }

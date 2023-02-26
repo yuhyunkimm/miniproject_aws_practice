@@ -33,6 +33,7 @@ import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.service.JobsService;
+import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class JobsController {
@@ -46,43 +47,11 @@ public class JobsController {
     @Autowired
     private JobsRepository jobsRepository;
 
-
-
     @Autowired
     private HttpSession session;
 
-    private void mockCompSession() {
-        Comp mockcomp = new Comp(
-                1,
-                "kakao@kakao.com",
-                "1234",
-                "카카오(주)",
-                "제주 제주시 첨단로",
-                "홍은택",
-                "120-81-47521",
-                "1577-3321",
-                "/images/default_profile.png",
-                3600,
-                "1995-02-16",
-                "http://www.kakaocorp.com",
-                new Timestamp(System.currentTimeMillis())
-                );
-        session.setAttribute("principal", mockcomp);
-    }
 
-    private void mockUserSession() {
-        User mockUser = new User(
-                1,
-                "ssar@nate.com",
-                "1234",
-                "ssar",
-                "2000-01-01",
-                "010-1234-1234",
-                "/images/default_profile.png",
-                "부산시 부산진구",
-                new Timestamp(System.currentTimeMillis()));
-        session.setAttribute("principal", mockUser);
-    }
+
     
     @GetMapping("/jobs/info")
     public String info(JobsSearchReqDto jDto, Model model) throws Exception{
@@ -144,7 +113,7 @@ public class JobsController {
 
     @GetMapping("/user/interest")
     public String interest(Model model) {
-        mockUserSession();
+        MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         UserSkillAndInterestDto usi = userRepository.findByUserSkillAndInterest(principal.getUserId());
         List<String> insertList = Arrays.asList(usi.getSkillName1(),usi.getSkillName2(),usi.getSkillName3(),usi.getInterestCt1(),usi.getInterestCt2(),usi.getInterestCt3()); 

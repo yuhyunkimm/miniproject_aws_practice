@@ -17,7 +17,7 @@ public class UserResp {
         private String birth;
         private String tel;
         private String photo;
-        private String userAddress;
+        private String Address;
         private Timestamp createdAt;
     }
 
@@ -30,7 +30,7 @@ public class UserResp {
         private String name;
         private String birth;
         private String tel;
-        private String userAddress;
+        private String Address;
         private Timestamp createdAt;
     }
 

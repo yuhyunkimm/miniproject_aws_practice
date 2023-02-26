@@ -30,7 +30,7 @@
                   </div>
                   <div class="form-group">
                     <label for="inputAddress" class="form-label mt-1">주소</label>
-                    <input type="text" name="userAddress" class="form-control" value="${user.userAddress}" readonly>
+                    <input type="text" name="Address" class="form-control" value="${user.Address}" readonly>
                   </div>
                   <div class="form-group">
                     <label for="inputBirth" class="form-label mt-1">생년월일</label>

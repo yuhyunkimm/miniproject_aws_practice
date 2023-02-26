@@ -1,8 +1,6 @@
 package shop.mtcoding.project.controller;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,7 +17,7 @@ import shop.mtcoding.project.dto.resume.ResumeResp.ResumeRecommendRespDto;
 import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.ResumeRepository;
-import shop.mtcoding.project.model.User;
+import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class CompController {
@@ -33,24 +31,6 @@ public class CompController {
     @Autowired
     private ResumeRepository resumeRepository;
 
-    private void mockCompSession() {
-        Comp mockcomp = new Comp(
-                1,
-                "kakao@kakao.com",
-                "1234",
-                "카카오(주)",
-                "제주 제주시 첨단로",
-                "홍은택",
-                "120-81-47521",
-                "1577-3321",
-                "/images/kakao.png",
-                3600,
-                "1995-02-16",
-                "http://www.kakaocorp.com",
-                new Timestamp(System.currentTimeMillis()));
-        session.setAttribute("principal", mockcomp);
-    }
-
     @GetMapping("/comp/join")
     public String joinComp() {
         return "comp/joinForm";
@@ -63,7 +43,7 @@ public class CompController {
 
     @GetMapping("/comp/myhome")
     public String compMyhome() {
-        // mockCompSession();
+        // mockCompSession(session);
         return "comp/myhome";
     }
 
@@ -90,7 +70,8 @@ public class CompController {
 
     @GetMapping("/comp/talent")
     public String talent(Model model) {
-        mockCompSession();
+        MockSession.mockComp(session);
+        
         Comp principal = (Comp) session.getAttribute("principal");
             List<JobsRequiredSkill> rSkill = jobsrRepository.findByJobsRequiredSkill(principal.getCompId());
             Set<String> set = new HashSet<>();

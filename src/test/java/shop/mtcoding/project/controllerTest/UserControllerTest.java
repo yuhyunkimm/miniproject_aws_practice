@@ -1,4 +1,4 @@
-package shop.mtcoding.project.controller;
+package shop.mtcoding.project.controllerTest;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.transaction.annotation.Transactional;
 
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
@@ -20,9 +21,10 @@ public class UserControllerTest {
     private MockMvc mvc;
 
     @Test
+    @Transactional
     public void join_test() throws Exception {
         // given
-        String requestBody = "email=love@nate.com&password=1234&name=쌀&birth=11111&tel=11111&userAddress=busan";
+        String requestBody = "email=love@nate.com&password=1234&name=쌀&birth=11111&tel=11111&Address=busan";
 
         // when
         ResultActions resultActions = mvc.perform(post("/user/join").content(requestBody)
@@ -38,6 +40,6 @@ public class UserControllerTest {
     // private String name;
     // private String birth;
     // private String tel;
-    // private String userAddress; // Form에 없다
+    // private String Address; // Form에 없다
     // private Timestamp createdAt; // X
 }

@@ -1,15 +1,11 @@
 package shop.mtcoding.project.controller;
 
-import java.net.http.HttpRequest;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +19,7 @@ import shop.mtcoding.project.dto.user.UserResp.UserSkillRespDto;
 import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
+import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class MainController {
@@ -35,21 +32,6 @@ public class MainController {
 
     @Autowired
     private UserRepository userRepository;
-
-    private void mockUserSession() {
-        User mockUser = new User(
-            1,
-            "ssar@nate.com",
-            "1234",
-            "ssar",
-            "2000-01-01",
-            "010-1234-1234",
-            "/images/default_profile.png",
-            "부산시 부산진구",
-            new Timestamp(System.currentTimeMillis())
-            );
-        session.setAttribute("principal", mockUser);
-    }
 
     @GetMapping("/sample")
     public String sample(){
@@ -80,7 +62,7 @@ public class MainController {
 
     @GetMapping("/")
     public String main(Model model){
-        mockUserSession();
+        MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if ( principal != null) {
             UserSkillRespDto userSkillPS = userRepository.findByUserSkill(principal.getUserId());

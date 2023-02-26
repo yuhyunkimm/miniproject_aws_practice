@@ -1,7 +1,5 @@
 package shop.mtcoding.project.controller;
 
-import java.sql.Timestamp;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.project.dto.ResponseDto;
@@ -20,6 +17,7 @@ import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.service.UserService;
+import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class UserController {
@@ -32,20 +30,6 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
-
-    private void mockUserSession() {
-        User mockUser = new User(
-                1,
-                "ssar@nate.com",
-                "1234",
-                "ssar",
-                "2000-01-01",
-                "010-1234-1234",
-                "/images/default_profile.png",
-                "부산시 부산진구",
-                new Timestamp(System.currentTimeMillis()));
-        session.setAttribute("principal", mockUser);
-    }
 
     @PostMapping("/user/join")
     public String join(UserJoinReqDto userJoinReqDto) {
@@ -95,7 +79,7 @@ public class UserController {
 
     @GetMapping("/user/myhome")
     public String myhome() {
-        mockUserSession();
+        MockSession.mockUser(session);
         return "user/myhome";
     }
 
