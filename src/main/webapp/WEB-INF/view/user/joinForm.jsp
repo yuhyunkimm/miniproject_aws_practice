@@ -120,22 +120,18 @@
                         return;
                     }
                 }
-
+                // 이메일 중복 확인 버튼
                 function ckeckEmailBtn() {
                     let email1 = $('#email').val();
-                    console.log($('#email').val());
                     $.ajax({
                         type: "get",
-                        url: "/user/check?email=" + email1,
+                        url: "/user/emailCheck?email=" + email1,
                         datatype: "json"
                     }).done((res) => {
-                        // alert(res.msg)
-                        console.log('zz2222z');
+                        alert(res.msg)
                     }).fail((err) => {
-                        console.log('zz333333');
                         alert(err.responseJSON.msg);
                     });
-                    console.log('z55555555zz');
                 }
 
             </script>

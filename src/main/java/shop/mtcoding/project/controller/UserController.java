@@ -39,15 +39,6 @@ public class UserController {
         session.setAttribute("principal", mockUser);
     }
 
-    // @PostMapping("/user/join")
-    // public String join(UserJoinReqDto userJoinReqDto) {
-    // if (userJoinReqDto.getEmail() == null || userJoinReqDto.getEmail().isEmpty())
-    // {
-    // throw new CustomException("이메일을 작성해주세요");
-    // }
-    // return "redirect:/user/login";
-    // }
-
     @PostMapping("/user/join")
     public String join(UserJoinReqDto userJoinReqDto) {
         if (userJoinReqDto.getEmail() == null || userJoinReqDto.getEmail().isEmpty()) {
@@ -79,6 +70,16 @@ public class UserController {
     public String checkEmail(String email) {
         System.out.println("테스트 : " + email);
         return "user/joinForm";
+    }
+
+    @GetMapping("/join/emailCheck")
+    public ResponseEntity<?> sameUsernameCheck(String email) {
+        User userPS = userRepository.findByUser(username);
+
+        if (userPS != null) {
+            throw new CustomApiException("동일한 username이 존재합니다.");
+        }
+        return new ResponseEntity<>(new ResponseDto<>(1, "username 사용 가능", null), HttpStatus.OK);
     }
 
     @GetMapping("/user/join")
