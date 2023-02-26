@@ -10,11 +10,11 @@
     }
 
     .my-cursor:hover {
-        color: yellow;
+        color: rgb(226, 226, 40);
     }
 
     .on-Clicked {
-        color: yellow;
+        color: rgb(226, 226, 40);
     }
 
     .under-line {
@@ -421,7 +421,7 @@
                                     <c:choose>
                                    <c:when test="${principal != null}">
                                     <div>
-                                   <i id=`scrap-${jDto.jobsId}` class="fa-regular fa-star"
+                                   <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star my-cursor"
                                         onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${sDto.userScrapId}`)"></i>
                                     </div>
                                    </c:when>
@@ -429,7 +429,7 @@
                                    <c:otherwise>
                                     <div>
                                    <a href="/user/login">
-                                    <i id=`scrap-${jDto.jobsId}` class="fa-regular fa-star"></i>
+                                    <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star"></i>
                                    </a>
                                 </div>
                                    </c:otherwise>
@@ -453,15 +453,37 @@
     let jobsId;
     let userId;
     let userScrapId;
+
     function scrap(jobs,user,userScrap) {
-        jobsId = id;
+        jobsId = jobs;
+        console.log(jobsId)
         userId = user;
         userScrapId = userScrap;
+
+        let data = {
+            // userScrapId: userScrap,
+            userId: user,
+            jobsId: jobs
+        }
+        $.ajax({
+            type: "put",
+            url: "/user/scrap/insert",
+            data: JSON.stringify(data),
+            headers:{
+                "content-type":"application/json; charset=utf-8"
+            },
+            dataType:"json"
+        }).done((res) => {
+            changeScrap();
+        }).fail((err) => {
         
+        });
+        
+
+    }
+    function changeScrap(){
         $('#scrap-' + jobsId).toggleClass("fa-solid");
         $('#scrap-' + jobsId).toggleClass("on-Clicked");
-        // $('#scrap-' + jobsId + '-count').remove();
-        // render();
     }
 
     document.getElementById("btn1").addEventListener("click", function () {

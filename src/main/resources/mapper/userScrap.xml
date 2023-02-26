@@ -6,14 +6,14 @@
 <mapper namespace="shop.mtcoding.project.model.UserScrapRepository">
     <!-- <select id="findAll" resultType="shop.mtcoding.project.model.UserScrap">
         select * from user_scrap_tb
-    </select>
+    </select> -->
 
-    <select id="findById" resultType="shop.mtcoding.project.model.User">
-
+    <!-- <select id="findById" resultType="shop.mtcoding.project.model.UserScrap">
+      select * from user_scrap_tb
     </select> -->
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="sDto.userScrapId">
-      INSERT INTO user_scrap_tb (user_id, jobs_id, created_at) VALUES (#{userId}, #{sDto.jobs_id}, now())
+      INSERT INTO user_scrap_tb (user_id, jobs_id, created_at) VALUES (#{userId}, #{sDto.jobsId}, now())
     </insert>
 
     <!-- <update id="updateById">
