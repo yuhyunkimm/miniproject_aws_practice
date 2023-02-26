@@ -13,7 +13,7 @@ public class AppConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new CustomInterceptor())
                 .addPathPatterns("/**") // 모든 URL에 대해 인터셉터를 수행하도록 설정합니다.
-                .excludePathPatterns("/", "/user/join", "/user/check",
+                .excludePathPatterns("/", "/user/join", "/user/emailCheck",
                         "/user/login", "/comp/join",
                         "/comp/login", "/jobs/**",
                         "/user/interest", "/help"); // 인터셉터를 수행하지 않도록 설정합니다.

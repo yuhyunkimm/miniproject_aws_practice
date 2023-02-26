@@ -74,8 +74,8 @@ public class UserController {
         return "redirect:/user/login";
     }
 
-    @GetMapping("/join/emailCheck")
-    public ResponseEntity<?> sameUsernameCheck(String email) {
+    @GetMapping("/user/emailCheck")
+    public @ResponseBody ResponseEntity<?> sameEmailCheck(String email) {
         User userPS = userRepository.findByUserEmail(email);
         if (userPS != null) {
             throw new CustomApiException("동일한 email이 존재합니다.");

@@ -12,6 +12,10 @@
         select * from user_tb id = #{uDto.id}
     </select>
 
+    <select id="findByUserEmail" resultType="shop.mtcoding.project.model.User">
+        select * from user_tb where email = #{email}
+    </select>
+
     <insert id="insert">
         insert into user_tb ( email, password, name, birth, tel, user_address, created_at)
             values ( #{uDto.email}, #{uDto.password}, #{uDto.name}, #{uDto.birth}, #{uDto.tel}, #{uDto.userAddress}, now());
