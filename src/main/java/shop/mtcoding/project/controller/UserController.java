@@ -99,10 +99,7 @@ public class UserController {
         return "user/myhome";
     }
 
-    @GetMapping("/user/interest")
-    public String interest() {
-        return "user/interest";
-    }
+
 
     @GetMapping("/user/update")
     public String update() {
@@ -118,6 +115,8 @@ public class UserController {
     public String offer() {
         return "user/offer";
     }
+
+
 }
 
 // ⬜ 회원가입 "/user/join"

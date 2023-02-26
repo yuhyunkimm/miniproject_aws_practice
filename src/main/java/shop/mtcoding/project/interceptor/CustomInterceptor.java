@@ -14,31 +14,35 @@ public class CustomInterceptor implements HandlerInterceptor {
             throws Exception {
         String requestURI = request.getRequestURI();
         if (requestURI.startsWith("/user")) { // "/blocked"로 시작하는 요청을 차단
-        response.sendRedirect("/user/login");
+            response.sendRedirect("/user/login");
             return false;
         }
         if (requestURI.startsWith("/comp")) { // "/blocked"로 시작하는 요청을 차단
-        response.sendRedirect("/comp/login");
+            response.sendRedirect("/comp/login");
             return false;
         }
         return true;
 
         // System.out.println("테스트 : "+ request.getRequestURL().toString());
-        // if (request.getRequestURL().toString().equals("http://localhost:8080/user/**")) {
-        //     User principal = (User) request.getSession(false).getAttribute("principal");
-        //     if (principal == null) {
-        //         response.sendRedirect("/user/login");
-        //         return false;
-        //         // return true;
-        //     }
+        // if
+        // (request.getRequestURL().toString().equals("http://localhost:8080/user/**"))
+        // {
+        // User principal = (User) request.getSession(false).getAttribute("principal");
+        // if (principal == null) {
+        // response.sendRedirect("/user/login");
+        // return false;
+        // // return true;
         // }
-        // if (request.getRequestURL().toString().equals("http://localhost:8080/comp/**")) {
-        //     User principal = (User) request.getSession(false).getAttribute("principal");
-        //     if (principal == null) {
-        //         response.sendRedirect("/comp/login");
-        //         return false;
-        //         // return true;
-        //     }
+        // }
+        // if
+        // (request.getRequestURL().toString().equals("http://localhost:8080/comp/**"))
+        // {
+        // User principal = (User) request.getSession(false).getAttribute("principal");
+        // if (principal == null) {
+        // response.sendRedirect("/comp/login");
+        // return false;
+        // // return true;
+        // }
         // }
         // return true;
     }

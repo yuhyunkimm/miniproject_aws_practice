@@ -1,4 +1,4 @@
-create table user_tb (
+    create table user_tb (
     user_id int auto_increment primary key,
     email varchar unique not null,
     password varchar not null,
@@ -6,7 +6,7 @@ create table user_tb (
     birth varchar not null,
     tel varchar not null,
     photo varchar,
-    user_address varchar,
+    address varchar,
     created_at timestamp
 );
 
@@ -27,7 +27,6 @@ create table comp_tb (
 );
 
 create table user_skill_tb (
-    user_skill_id int auto_increment primary key,
     user_id int not null,
     skill_name1 varchar,
     skill_name2 varchar,
@@ -41,8 +40,8 @@ create table jobs_tb (
     position varchar,
     career varchar not null,
     education varchar not null,
+    address varchar not null,
     scrap_count int,
-    required_skill_id varchar,
     end_date timestamp,
     comp_id int not null,
     homepage varchar,
@@ -51,7 +50,7 @@ create table jobs_tb (
 
 create table required_skill_tb (
     required_skill_id int auto_increment primary key,
-    comp_id int not null,
+    jobs_id int not null,
     skill_name1 varchar,
     skill_name2 varchar,
     skill_name3 varchar
@@ -72,7 +71,6 @@ create table resume_tb (
     content varchar,
     education varchar not null,
     career varchar not null,
-    user_skill_id int,
     link varchar,
 	state number(1) not null,
     created_at timestamp

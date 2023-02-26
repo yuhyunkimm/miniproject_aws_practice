@@ -4,17 +4,37 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="shop.mtcoding.project.model.ResumeRepository">
-    <!-- <select id="findAll" resultType="shop.mtcoding.project.model.Resume">
+    <select id="findAll" resultType="shop.mtcoding.project.model.Resume">
         select * from resume_tb
     </select>
 
-    <select id="findById" resultType="shop.mtcoding.project.model.User">
+    <select id="findAllResumebyPublic" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeRecommendRespDto">
+      SELECT distinct r.resume_id, u.photo, u.name, r.title, u.birth, r.education, r.career, s.skill_name1, s.skill_name2, s.skill_name3, u.address  
+        FROM USER_TB u join USER_SKILL_TB s
+        on u.user_id = s.user_id
+        join resume_tb r
+        on u.user_id = r.user_id
+        join user_skill_tb
+        where r.state = 1
+    </select>
+
+    <!-- <select id="findById" resultType="shop.mtcoding.project.model.User">
 
     </select>
 
-    <insert id="insert">
+   <insert id="insertTemp" userGeneratedKeys="true"  keyProperty="rDto.resumeId">
+    INSERT INTO RESUME_TB(rt.user_id, rt.title, rt.content, rt.education, rt.career, rt.link, rt.state, rt.created_at, ust.skill_name1, ust.skill_name2, ust.skill_name3)
+        values(#{userId}, #{title}, #{content}, #{education},#{career},#{link},#{state}, now(),#{skill_name1},#{skill_name2},#{skill_name3})
+    FROM RESUME_TB RT LEFT JOIN USER_SKILL_TB UST 
+    ON RT.USER_ID = UST.USER_ID
+    </insert>  
 
-    </insert>
+   <insert id="insert">
+    INSERT INTO RESUME_TB(rt.user_id, rt.title, rt.content, rt.education, rt.career, rt.link, rt.state, rt.created_at, ust.skill_name1, ust.skill_name2, ust.skill_name3)
+        values(#{userId}, #{title}, #{content}, #{education},#{career},#{link},#{state}, now(),#{skill_name1},#{skill_name2},#{skill_name3})
+    FROM RESUME_TB RT LEFT JOIN USER_SKILL_TB UST 
+    ON RT.USER_ID = UST.USER_ID
+    </insert>    
 
     <update id="updateById">
 
@@ -22,5 +42,5 @@
 
     <delete id="deleteById">
 
-    </delete> -->
+    </delete>
 </mapper>
