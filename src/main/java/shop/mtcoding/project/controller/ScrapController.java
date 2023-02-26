@@ -46,6 +46,7 @@ public class ScrapController {
     @PutMapping("/user/scrap/insert")
     public ResponseEntity<?> insertScrap(@RequestBody UserInsertScrapReqDto sDto){
         mockUserSession();
+        System.out.println("테스트 : 스크랩추가요청 "+ sDto.getUserScrapId());
         if( sDto.getJobsId() == null ){
             throw new CustomApiException("공고 번호가 필요합니다.");
         }
@@ -56,8 +57,10 @@ public class ScrapController {
 
     @DeleteMapping("/user/scrap/delete")
     public ResponseEntity<?> deleteScrap(@RequestBody UserDeleteScrapReqDto sDto){
+        mockUserSession();
+        System.out.println("테스트 : 스크랩삭제요청"+ sDto.getUserScrapId());
         User principal = (User)session.getAttribute("principal");
         scrapService.유저스크랩삭제(principal.getUserId(), sDto);
-        return new ResponseEntity<>(new ResponseDto<>(1, "스크랩 삭제 완료", null), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseDto<>(1, "스크랩 삭제 완료", 0), HttpStatus.OK);
     }
 }

@@ -418,31 +418,33 @@
                             </div>
                         </a>
                             <div class="d-flex justify-content-between">
-                                <c:choose>
-                                    <c:when test="${principal != null}">
-                                     <div>
                                     <c:choose>
-                                            <c:when test="${jDto.userScrapId > 0}">
-                                             <i id="scrap-${jDto.jobsId}" class="fa-solid on-Clicked fa-star my-cursor"
-                                         onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
-                                            </c:when>
-                                         
-                                            <c:otherwise>
-                                            <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star my-cursor"
-                                         onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
-                                            </c:otherwise>
-                                         </c:choose>
-                                     </div>
-                                    </c:when>
-                                 
-                                    <c:otherwise>
-                                     <div>
-                                    <a href="/user/login">
-                                     <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star"></i>
-                                    </a>
-                                 </div>
-                                    </c:otherwise>
-                                 </c:choose>
+                    <c:when test="${principal != null}">
+                        <div id="scrap-${jDto.jobsId}-render">
+                        <div id="scrap-${jDto.jobsId}-remove">
+                            <c:choose>
+                                <c:when test="${jDto.userScrapId > 0}">
+                                    <i id="scrap-${jDto.jobsId}" class="fa-solid on-Clicked fa-star my-cursor"
+                                        onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
+                                </c:when>
+
+                                <c:otherwise>
+                                    <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star my-cursor"
+                                        onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                    </div>
+                    </c:when>
+
+                    <c:otherwise>
+                        <div>
+                            <a href="/user/login">
+                                <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star"></i>
+                            </a>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
                                 <div>
                                     <!-- <input type="hidden" id="endDate-${jDto.jobsId}" value="${jDto.endDate}"> -->
                                 </div>
@@ -467,24 +469,25 @@
         jobsId = jobs;
         userId = user;
 
+        // 스크랩 id 있을때
         if (userScrap > 0) {
             let data = {
                 userScrapId: userScrap,
-                userId: user,
-                jobsId: jobs
+                userId: user
             }
             $.ajax({
                 type: "delete",
                 url: "/user/scrap/delete",
                 data: JSON.stringify(data),
-                headers:{
-                    "content-type":"application/json; charset=utf-8"
+                headers: {
+                    "content-type": "application/json; charset=utf-8"
                 },
-                dataType:"json"
+                dataType: "json"
             }).done((res) => {
+                userScrapId = res.data;
                 changeScrap();
             }).fail((err) => {
-            
+                alert(err.responseJSON.msg);
             });
 
         } else {
@@ -501,17 +504,39 @@
                 },
                 dataType: "json"
             }).done((res) => {
-                res.data
+                userScrapId = res.data;
                 changeScrap();
             }).fail((err) => {
-
+                alert(err.responseJSON.msg);
             });
         }
     }
 
     function changeScrap() {
-        $('#scrap-' + jobsId).toggleClass("fa-solid");
-        $('#scrap-' + jobsId).toggleClass("on-Clicked");
+        $('#scrap-'+ jobsId +'-remove').remove();
+        renderScrap();
+        console.log(userScrapId);
+    }
+    
+    function renderScrap(){
+        let el;
+
+        if ( userScrapId > 0 ){
+            el = `
+            <div id="scrap-`+ jobsId+`-remove">
+                <i id="scrap-`+ jobsId  +`" class="fa-solid on-Clicked fa-star my-cursor"
+                                        onclick="scrap(`+ jobsId +`,`+ userId +`,`+ userScrapId +`)"></i>
+                                    </div>
+            `;
+        }if (userScrapId === 0){
+            el = `
+            <div id="scrap-`+  jobsId +`-remove">
+                <i id="scrap-`+  jobsId  +`" class="fa-regular fa-star my-cursor"
+                                        onclick="scrap(`+ jobsId +`,`+ userId +`,`+ userScrapId +`)"></i>
+                                    </div>
+            `;
+        }
+        $('#scrap-'+ jobsId +'-render').append(el);
     }
 
     document.getElementById("btn1").addEventListener("click", function () {
