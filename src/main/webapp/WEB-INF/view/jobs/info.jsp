@@ -454,34 +454,53 @@
     let userId;
     let userScrapId;
 
-    function scrap(jobs,user,userScrap) {
+    function scrap(jobs, user, userScrap) {
         jobsId = jobs;
-        console.log(jobsId)
         userId = user;
-        userScrapId = userScrap;
 
-        let data = {
-            // userScrapId: userScrap,
-            userId: user,
-            jobsId: jobs
+        if (userScrap > 0) {
+            let data = {
+                userScrapId: userScrap,
+                userId: user,
+                jobsId: jobs
+            }
+            $.ajax({
+                type: "delete",
+                url: "/user/scrap/delete",
+                data: JSON.stringify(data),
+                headers:{
+                    "content-type":"application/json; charset=utf-8"
+                },
+                dataType:"json"
+            }).done((res) => {
+                changeScrap();
+            }).fail((err) => {
+            
+            });
+
+        } else {
+            let data = {
+                userId: user,
+                jobsId: jobs
+            }
+            $.ajax({
+                type: "put",
+                url: "/user/scrap/insert",
+                data: JSON.stringify(data),
+                headers: {
+                    "content-type": "application/json; charset=utf-8"
+                },
+                dataType: "json"
+            }).done((res) => {
+                res.data
+                changeScrap();
+            }).fail((err) => {
+
+            });
         }
-        $.ajax({
-            type: "put",
-            url: "/user/scrap/insert",
-            data: JSON.stringify(data),
-            headers:{
-                "content-type":"application/json; charset=utf-8"
-            },
-            dataType:"json"
-        }).done((res) => {
-            changeScrap();
-        }).fail((err) => {
-        
-        });
-        
-
     }
-    function changeScrap(){
+
+    function changeScrap() {
         $('#scrap-' + jobsId).toggleClass("fa-solid");
         $('#scrap-' + jobsId).toggleClass("on-Clicked");
     }
@@ -648,12 +667,12 @@
             skillValues = getCheckedValues("skill");
             positionValues = getCheckedValues("position");
             careerValue = $("input[name='career']:checked").val();
-            $('#search-info-btn').text( "검색하기");
+            $('#search-info-btn').text("검색하기");
         });
     }
-    
-    function newbtn(num){
-        $('#search-info-btn').text( "'"+num+"' 건 검색하기");
+
+    function newbtn(num) {
+        $('#search-info-btn').text("'" + num + "' 건 검색하기");
     }
 
     // function deleteBox() {
@@ -693,7 +712,7 @@
         jDtos.forEach(jDto => {
             let el = `
             <div class="col-3 px-2 py-2 remove-card">
-                <a href="/jobs/`+jDto.jobsId+`">
+                <a href="/jobs/`+ jDto.jobsId + `">
                     <div class="card">
                         <div>
                             <img src='`+ jDto.photo + `' alt="" srcset="">

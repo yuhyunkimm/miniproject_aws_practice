@@ -114,7 +114,6 @@ public class UserController {
     @PutMapping("/user/scrap/insert")
     public ResponseEntity<?> insertScrap(@RequestBody UserScrapReqDto sDto){
         mockUserSession();
-        sDto.setUserScrapId(0);
         if( sDto.getJobsId() == null ){
             throw new CustomApiException("공고 번호가 필요합니다.");
         }
