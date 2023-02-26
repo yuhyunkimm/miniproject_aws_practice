@@ -12,17 +12,19 @@ import shop.mtcoding.project.dto.user.UserResp.UserDeleteRespDto;
 
 @Mapper
 public interface UserRepository {
-    public List<User> findAll();
+        public List<User> findAll();
 
-    public UserDataRespDto findById(
-            @Param("uDto") UserDataRespDto uDto);
+        public UserDataRespDto findById(
+                        @Param("uDto") UserDataRespDto uDto);
 
-    public int insert(
-            @Param("uDto") UserJoinReqDto uDto);
+        public int insert(
+                        @Param("uDto") UserJoinReqDto uDto);
 
-    public int updateById(
-            @Param("uDto") UserUpdateReqDto uDto);
+        public int updateById(
+                        @Param("uDto") UserUpdateReqDto uDto);
 
-    public int deleteById(
-            @Param("uDto") UserDeleteRespDto uDto);
+        public int deleteById(
+                        @Param("uDto") UserDeleteRespDto uDto);
+
+        public User findByUserEmail(@Param("email") String email);
 }
