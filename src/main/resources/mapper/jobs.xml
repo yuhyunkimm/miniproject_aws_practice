@@ -4,15 +4,108 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="shop.mtcoding.project.model.JobsRepository">
-    <!-- <select id="findAll" resultType="shop.mtcoding.project.model.Jobs">
+    <select id="findAll" resultType="shop.mtcoding.project.model.Jobs">
         select * from jobs_tb
     </select>
 
-    <select id="findById" resultType="shop.mtcoding.project.model.User">
-
+    <select id="findById" resultType="shop.mtcoding.project.model.Jobs">
+      select * from jobs_tb where JOBS_ID = #{jobsId}
     </select>
 
-    <insert id="insert">
+    <select id="findAlltoMain" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsMainRespDto">
+      select j.jobs_id, ( select comp_name from comp_tb where comp_id = j.comp_id) compName, 
+        ( select photo from comp_tb where comp_id = j.comp_id ) photo,
+        title, career, education, position, r.skill_name1, r.skill_name2, r.skill_name3,  address, end_date,
+        ( select user_scrap_id from user_scrap_tb where user_id = 1 and jobs_id = j.jobs_id ) user_scrap_id
+        from jobs_tb j join required_skill_tb r on
+        j.jobs_id = r.jobs_id
+    </select>
+    
+    <select id="findByJobsRequiredSkill" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsRequiredSkill">
+      SELECT r.skill_name1, r.skill_name2, r.skill_name3 
+        FROM JOBS_TB j join REQUIRED_SKILL_TB r
+        on j.jobs_id = r.jobs_id where j.comp_id = #{id}
+    </select>
+
+    <select id="findBySearch" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsSearchRespDto">
+      select j.jobs_id, ( select comp_name from comp_tb where comp_id = j.comp_id) compName, 
+        ( select photo from comp_tb where comp_id = j.comp_id ) photo,
+        title, career, education, position, r.skill_name1, r.skill_name2, r.skill_name3,  address, end_date,
+        ( select user_scrap_id from user_scrap_tb where user_id = 1 and jobs_id = j.jobs_id ) user_scrap_id
+        from jobs_tb j join required_skill_tb r on
+        j.jobs_id = r.jobs_id
+        where career regexp #{jDto.career} and
+        address regexp #{jDto.address} and
+        SKILL_NAME1 regexp #{jDto.skill} and
+        position regexp #{jDto.position}
+    </select>
+
+    <select id="findByCheckBox" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsSearchRespDto">
+      select j.jobs_id, ( select comp_name from comp_tb where comp_id = j.comp_id) compName, 
+        ( select photo from comp_tb where comp_id = j.comp_id ) photo,
+        title, career, education, position, r.skill_name1, r.skill_name2, r.skill_name3,  address, end_date
+        from jobs_tb j join required_skill_tb r 
+        on j.jobs_id = r.jobs_id
+        where 
+        <if test="jDto.address != null and jDto.address.size() > 0">
+          address in 
+          <foreach collection="jDto.address" item="address" open="(" close=")" separator=",">
+            #{address} 
+          </foreach>
+          and
+        </if>
+        <if test="jDto.skill != null and jDto.skill.size() > 0">
+          ( r.skill_name1 in 
+          <foreach collection="jDto.skill" item="skill" open="(" close=")" separator=",">
+            #{skill} 
+          </foreach>
+            or r.skill_name2 in 
+          <foreach collection="jDto.skill" item="skill" open="(" close=")" separator=",">
+            #{skill} 
+          </foreach>
+            or r.skill_name3 in 
+          <foreach collection="jDto.skill" item="skill" open="(" close=")" separator=",">
+            #{skill} 
+          </foreach>
+           ) and
+        </if>
+        <if test="jDto.position != null and jDto.position.size() > 0">
+          position in 
+          <foreach collection="jDto.position" item="position" open="(" close=")" separator=",">
+            #{position} 
+          </foreach>
+          and
+        </if>
+        career regexp #{jDto.career}
+    </select>
+
+    <select id="findByJobsDetail" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsDetailRespDto">
+      select j.jobs_id, c.photo, c.comp_name,
+        j.title, j.content,
+        j.career, j.education, j.position,
+        r.skill_name1, r.skill_name2,
+        r.skill_name3,  j.address,
+        j.homepage, j.end_date 
+        from comp_tb c 
+        join jobs_tb j 
+        on c.comp_id = j.comp_id 
+        join  REQUIRED_SKILL_TB r
+        on j.jobs_id = r.jobs_id
+        where j.jobs_id = #{jobsId}
+    </select>
+
+    <select id="findAllByJobsAndSkill" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsSkillRespDto">
+      SELECT  j.jobs_id, c.photo, c.comp_name,  
+        j.title,  j.position, j.career, 
+        j.education, j.address, j.end_date, 
+        r.skill_name1, r.skill_name2, r.skill_name3 
+        FROM JOBS_TB j join REQUIRED_SKILL_TB r
+        on j.jobs_id = r.jobs_id
+        join comp_tb c
+        on c.comp_id = j.comp_id
+    </select>
+
+    <!-- <insert id="insert">
 
     </insert>
 

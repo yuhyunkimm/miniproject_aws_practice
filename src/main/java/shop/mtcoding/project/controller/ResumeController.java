@@ -90,6 +90,8 @@ public class ResumeController {
     public String resumeDetail() {
         return "/resume/resumeDetail";
     }
+
+    
 }
 
 // 🟨 공개하면 기업이 접근 가능 🟨

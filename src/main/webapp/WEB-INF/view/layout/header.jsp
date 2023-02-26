@@ -28,7 +28,7 @@
             <div class="collapse navbar-collapse ms-5" id="collapsibleNavbar">
                 <ul class="navbar-nav">
                     <li class="nav-item mx-3 fs-5">
-                        <a class="nav-link text-dark" href="/jobs/intro">채용정보</a>
+                        <a class="nav-link text-dark" href="/jobs/info">채용정보</a>
                     </li>
                     <li class="nav-item mx-3 fs-5">
                         <a class="nav-link text-dark" href="/user/resume">이력서</a>

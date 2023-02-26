@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class UserResp {
-    
+
     @Getter
     @Setter
     public static class UserDataRespDto {
@@ -38,5 +38,24 @@ public class UserResp {
     @Setter
     public static class UserDeleteRespDto {
         private Integer userId;
+    }
+
+    @Getter
+    @Setter
+    public static class UserSkillAndInterestDto{
+        private String skillName1;
+        private String skillName2;
+        private String skillName3;
+        private String interestCt1;
+        private String interestCt2;
+        private String interestCt3;
+    }
+
+    @Getter
+    @Setter
+    public static class UserSkillRespDto{
+        private String skillName1;
+        private String skillName2;
+        private String skillName3;
     }
 }

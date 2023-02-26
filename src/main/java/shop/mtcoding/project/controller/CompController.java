@@ -1,20 +1,37 @@
 package shop.mtcoding.project.controller;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsRequiredSkill;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeRecommendRespDto;
 import shop.mtcoding.project.model.Comp;
+import shop.mtcoding.project.model.JobsRepository;
+import shop.mtcoding.project.model.ResumeRepository;
+import shop.mtcoding.project.model.User;
 
 @Controller
 public class CompController {
 
     @Autowired
     private HttpSession session;
+
+    @Autowired
+    private JobsRepository jobsrRepository;
+
+    @Autowired
+    private ResumeRepository resumeRepository;
 
     private void mockCompSession() {
         Comp mockcomp = new Comp(
@@ -26,7 +43,7 @@ public class CompController {
                 "홍은택",
                 "120-81-47521",
                 "1577-3321",
-                "/images/default_profile.png",
+                "/images/kakao.png",
                 3600,
                 "1995-02-16",
                 "http://www.kakaocorp.com",
@@ -72,7 +89,45 @@ public class CompController {
     }
 
     @GetMapping("/comp/talent")
-    public String talent() {
+    public String talent(Model model) {
+        mockCompSession();
+        Comp principal = (Comp) session.getAttribute("principal");
+            List<JobsRequiredSkill> rSkill = jobsrRepository.findByJobsRequiredSkill(principal.getCompId());
+            Set<String> set = new HashSet<>();
+            for (JobsRequiredSkill skills : rSkill) {
+                set.add(skills.getSkillName1());
+                set.add(skills.getSkillName2());
+                set.add(skills.getSkillName3());
+            }
+            model.addAttribute("compSkillDto", set);
+            List<ResumeRecommendRespDto> recommendResumeList = resumeRepository.findAllResumebyPublic();
+            List<ResumeRecommendRespDto> threeMatchDto = new ArrayList<>();
+            List<ResumeRecommendRespDto> twoMatchDto = new ArrayList<>();
+            List<ResumeRecommendRespDto> oneMatchDto = new ArrayList<>();
+            List<ResumeRecommendRespDto> recommendList = new ArrayList<>();
+            for (ResumeRecommendRespDto rcPS : recommendResumeList) {
+                if( set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2()) && set.contains(rcPS.getSkillName3()) ){
+                    threeMatchDto.add(rcPS);
+                    continue;
+                }
+                if( (set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2()) && !set.contains(rcPS.getSkillName3())) ||
+                ( set.contains(rcPS.getSkillName1()) && !set.contains(rcPS.getSkillName2()) && set.contains(rcPS.getSkillName3())) ||
+                ( !set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2()) && set.contains(rcPS.getSkillName3())) ){
+                    twoMatchDto.add(rcPS);
+                    continue;
+                }
+                if( (set.contains(rcPS.getSkillName1()) && !set.contains(rcPS.getSkillName2()) && !set.contains(rcPS.getSkillName3())) ||
+                ( !set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2()) && !set.contains(rcPS.getSkillName3())) ||
+                ( !set.contains(rcPS.getSkillName1()) && !set.contains(rcPS.getSkillName2()) && set.contains(rcPS.getSkillName3())) ){
+                    oneMatchDto.add(rcPS);
+                    continue;
+                } 
+            }
+            recommendList.addAll(threeMatchDto);
+            recommendList.addAll(twoMatchDto);
+            recommendList.addAll(oneMatchDto);
+            model.addAttribute("rDtos", recommendList);
+
         return "comp/talent";
     }
 
