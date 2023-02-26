@@ -15,7 +15,7 @@ public class AppConfig implements WebMvcConfigurer {
         .addPathPatterns("/**") // 모든 URL에 대해 인터셉터를 수행하도록 설정합니다.
         .excludePathPatterns("/", "/user/join", "/user/check",
                     "/user/login", "/comp/join", "/user/resume/write",
-                    "/comp/login", "/jobs/**",
+                    "/comp/login", "/jobs/**", "/juso",
                     "/user/interest", "/help", "/jobs/info/search" , "/comp/talent", "/user/scrap/insert", "/user/scrap/delete"
                     ); //  인터셉터를 수행하지 않도록 설정합니다.
     }

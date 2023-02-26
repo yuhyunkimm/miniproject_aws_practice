@@ -696,7 +696,11 @@
         }
     }
 
+    const radios = document.querySelectorAll('input[type="radio"]');
     function resetCheckboxes() {
+        radios.forEach((radio)=>{
+            radio.checked=false;
+        })
         checkboxes.forEach(function (checkbox) {
             checkbox.checked = false;
             $('.selectBox-remove').remove();
