@@ -514,14 +514,16 @@
 
     function changeScrap() {
         $('#scrap-'+ jobsId +'-remove').remove();
-        renderScrap();
+        renderg();
         console.log(userScrapId);
     }
     
-    function renderScrap(){
+    function render(){
         let el;
 
+            console.log('렌더00');
         if ( userScrapId > 0 ){
+            console.log('렌더11');
             el = `
             <div id="scrap-`+ jobsId+`-remove">
                 <i id="scrap-`+ jobsId  +`" class="fa-solid on-Clicked fa-star my-cursor"
@@ -529,6 +531,7 @@
                                     </div>
             `;
         }if (userScrapId === 0){
+            console.log('렌더22');
             el = `
             <div id="scrap-`+  jobsId +`-remove">
                 <i id="scrap-`+  jobsId  +`" class="fa-regular fa-star my-cursor"

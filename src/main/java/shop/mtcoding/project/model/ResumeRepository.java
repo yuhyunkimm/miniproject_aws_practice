@@ -23,7 +23,6 @@ public interface ResumeRepository {
 
         public int insert(
                         @Param("rDto") ResumeWriteReqDto rDto);
-        );
 
         public List<ResumeRecommendRespDto> findAllResumebyPublic();
 

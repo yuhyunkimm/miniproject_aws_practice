@@ -53,6 +53,7 @@ public class ResumeController {
 
     @PostMapping("/user/resume/write")
     public ResponseEntity<?> write(@RequestBody ResumeWriteReqDto resumeWriteReqDto) {
+        mockUserSession();
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
