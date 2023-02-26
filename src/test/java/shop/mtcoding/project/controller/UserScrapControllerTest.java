@@ -1,5 +1,6 @@
 package shop.mtcoding.project.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
 import java.sql.Timestamp;
@@ -17,7 +18,8 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import shop.mtcoding.project.dto.userScrap.UserScrapReq.UserScrapReqDto;
+import shop.mtcoding.project.dto.scrap.UserScrapReq.UserDeleteScrapReqDto;
+import shop.mtcoding.project.dto.scrap.UserScrapReq.UserInsertScrapReqDto;
 import shop.mtcoding.project.model.User;
 
 @AutoConfigureMockMvc
@@ -49,7 +51,7 @@ public class UserScrapControllerTest {
     public void insertScrap_test() throws Exception {
         ObjectMapper om = new ObjectMapper();
 
-        UserScrapReqDto sDto = new UserScrapReqDto();
+        UserInsertScrapReqDto sDto = new UserInsertScrapReqDto();
         sDto.setUserId(1);
         sDto.setJobsId(1);
         String jsonString = om.writeValueAsString(sDto);
@@ -60,4 +62,22 @@ public class UserScrapControllerTest {
 
         System.out.println("테스트 : "+ rs.andReturn().getResponse().getContentAsString());
     }
+
+    @Test
+    public void deleteScrap_test() throws Exception {
+        ObjectMapper om = new ObjectMapper();
+
+        UserDeleteScrapReqDto sDto = new UserDeleteScrapReqDto();
+        sDto.setUserId(1);
+        sDto.setUserScrapId(1);
+        System.out.println("테스트 : "+sDto.getUserId() +"  "+ sDto.getUserScrapId());
+        String jsonString = om.writeValueAsString(sDto);
+
+        ResultActions rs = mvc.perform(delete("/user/scrap/delete")
+                              .content(jsonString).contentType(MediaType.APPLICATION_JSON_VALUE)
+                              .session(session));
+
+        System.out.println("테스트 : "+ rs.andReturn().getResponse().getContentAsString());
+    }
 }
+    

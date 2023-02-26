@@ -5,24 +5,26 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import shop.mtcoding.project.dto.userScrap.UserScrapReq.UserScrapReqDto;
+import shop.mtcoding.project.dto.scrap.UserScrapReq.UserDeleteScrapReqDto;
+import shop.mtcoding.project.dto.scrap.UserScrapReq.UserInsertScrapReqDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.model.Jobs;
 import shop.mtcoding.project.model.JobsRepository;
-import shop.mtcoding.project.model.UserScrapRepository;
+import shop.mtcoding.project.model.ScrapRepository;
+import shop.mtcoding.project.model.UserScrap;
 
 @Transactional(readOnly = true)
 @Service
-public class UserScrapService {
+public class ScrapService {
     
     @Autowired
-    private UserScrapRepository userScrapRepository;
+    private ScrapRepository scrapRepository;
 
     @Autowired
     private JobsRepository jobsRepository;
 
     @Transactional
-    public Integer 스크랩(Integer userId, UserScrapReqDto sDto ){
+    public Integer 유저스크랩(Integer userId, UserInsertScrapReqDto sDto ){
         Integer userScrapId = 0;
         if ( userId != sDto.getUserId()){
             throw new CustomApiException("권한이 없습니다.", HttpStatus.FORBIDDEN);
@@ -32,11 +34,27 @@ public class UserScrapService {
             throw new CustomApiException("존재하지 않는 공고 입니다.");
         }
         try {
-            userScrapRepository.insert(userId, sDto);
+            scrapRepository.insertbyUser(userId, sDto);
             userScrapId = sDto.getUserScrapId();
         } catch (Exception e) {
             throw new CustomApiException("서버에 일시적인 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return userScrapId;
+    }
+
+    @Transactional
+    public void 유저스크랩삭제(Integer userId, UserDeleteScrapReqDto sDto) {
+        if ( userId != sDto.getUserId()){
+            throw new CustomApiException("권한이 없습니다.", HttpStatus.FORBIDDEN);
+        }
+        UserScrap scrap = scrapRepository.findByUserId(sDto.getUserScrapId());
+        if ( scrap == null ){
+            throw new CustomApiException("스크랩이 존재하지 않습니다.");
+        }
+        try {
+            scrapRepository.deleteByUserScrapId(sDto.getUserScrapId());
+        } catch (Exception e) {
+            throw new CustomApiException("서버에 일시적인 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

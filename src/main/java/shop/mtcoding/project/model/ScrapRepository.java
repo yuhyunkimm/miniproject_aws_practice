@@ -1,22 +1,19 @@
 package shop.mtcoding.project.model;
 
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import shop.mtcoding.project.dto.userScrap.UserScrapReq.UserScrapReqDto;
-import shop.mtcoding.project.dto.userScrap.UserScrapResp.UserScrapRespDto;
+import shop.mtcoding.project.dto.scrap.UserScrapReq.UserInsertScrapReqDto;
 
 @Mapper
-public interface UserScrapRepository {
+public interface ScrapRepository {
     public void findAll();
-    public List<UserScrapRespDto> findByUserId(
+    public UserScrap findByUserId(
         @Param("userId") Integer userId
     );
-    public int insert(
+    public int insertbyUser(
         @Param("userId") Integer userId,
-        @Param("sDto") UserScrapReqDto sDto
+        @Param("sDto") UserInsertScrapReqDto sDto
     );
     public int updateById(
 

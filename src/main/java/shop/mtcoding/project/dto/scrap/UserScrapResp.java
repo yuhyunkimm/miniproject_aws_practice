@@ -1,4 +1,4 @@
-package shop.mtcoding.project.dto.userScrap;
+package shop.mtcoding.project.dto.scrap;
 
 import lombok.Getter;
 import lombok.Setter;

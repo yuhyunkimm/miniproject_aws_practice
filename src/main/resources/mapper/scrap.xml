@@ -3,16 +3,16 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="shop.mtcoding.project.model.UserScrapRepository">
-    <!-- <select id="findAll" resultType="shop.mtcoding.project.model.UserScrap">
+<mapper namespace="shop.mtcoding.project.model.ScrapRepository">
+    <select id="findAll" resultType="shop.mtcoding.project.model.UserScrap">
         select * from user_scrap_tb
-    </select> -->
-
-    <select id="findByUserId" resultType="shop.mtcoding.project.dto.userScrap.UserScrapResp$UserScrapRespDto">
-      select user_scrap_id from user_scrap_tb where user_id = #{userId}
     </select>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="sDto.userScrapId">
+    <select id="findByUserId" resultType="shop.mtcoding.project.model.UserScrap">
+      select * from user_scrap_tb where user_scrap_id = #{userId}
+    </select>
+
+    <insert id="insertbyUser" useGeneratedKeys="true" keyProperty="sDto.userScrapId">
       INSERT INTO user_scrap_tb (user_id, jobs_id, created_at) VALUES (#{userId}, #{sDto.jobsId}, now())
     </insert>
 

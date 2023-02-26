@@ -5,21 +5,13 @@ import java.sql.Timestamp;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import shop.mtcoding.project.dto.ResponseDto;
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
-import shop.mtcoding.project.dto.userScrap.UserScrapReq.UserScrapReqDto;
-import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.User;
-import shop.mtcoding.project.service.UserScrapService;
 import shop.mtcoding.project.service.UserService;
 
 @Controller
@@ -30,11 +22,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private UserScrapService userScrapService;
-
-
 
     private void mockUserSession() {
         User mockUser = new User(
@@ -111,16 +98,7 @@ public class UserController {
         return "user/offer";
     }
 
-    @PutMapping("/user/scrap/insert")
-    public ResponseEntity<?> insertScrap(@RequestBody UserScrapReqDto sDto){
-        mockUserSession();
-        if( sDto.getJobsId() == null ){
-            throw new CustomApiException("공고 번호가 필요합니다.");
-        }
-        User principal = (User)session.getAttribute("principal");
-        Integer result = userScrapService.스크랩(principal.getUserId(), sDto);
-        return new ResponseEntity<>(new ResponseDto<>(1, "스크랩 완료", result), HttpStatus.OK);
-    }
+
 }
 
 // ⬜ 회원가입 "/user/join"
