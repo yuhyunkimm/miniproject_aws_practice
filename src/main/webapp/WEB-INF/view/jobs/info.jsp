@@ -418,22 +418,31 @@
                             </div>
                         </a>
                             <div class="d-flex justify-content-between">
+                                <c:choose>
+                                    <c:when test="${principal != null}">
+                                     <div>
                                     <c:choose>
-                                   <c:when test="${principal != null}">
-                                    <div>
-                                   <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star my-cursor"
-                                        onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${sDto.userScrapId}`)"></i>
-                                    </div>
-                                   </c:when>
-                                
-                                   <c:otherwise>
-                                    <div>
-                                   <a href="/user/login">
-                                    <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star"></i>
-                                   </a>
-                                </div>
-                                   </c:otherwise>
-                                </c:choose>
+                                            <c:when test="${jDto.userScrapId > 0}">
+                                             <i id="scrap-${jDto.jobsId}" class="fa-solid on-Clicked fa-star my-cursor"
+                                         onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
+                                            </c:when>
+                                         
+                                            <c:otherwise>
+                                            <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star my-cursor"
+                                         onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
+                                            </c:otherwise>
+                                         </c:choose>
+                                     </div>
+                                    </c:when>
+                                 
+                                    <c:otherwise>
+                                     <div>
+                                    <a href="/user/login">
+                                     <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star"></i>
+                                    </a>
+                                 </div>
+                                    </c:otherwise>
+                                 </c:choose>
                                 <div>
                                     <!-- <input type="hidden" id="endDate-${jDto.jobsId}" value="${jDto.endDate}"> -->
                                 </div>

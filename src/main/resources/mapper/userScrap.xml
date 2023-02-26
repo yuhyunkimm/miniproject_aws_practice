@@ -8,9 +8,9 @@
         select * from user_scrap_tb
     </select> -->
 
-    <!-- <select id="findById" resultType="shop.mtcoding.project.model.UserScrap">
-      select * from user_scrap_tb
-    </select> -->
+    <select id="findByUserId" resultType="shop.mtcoding.project.dto.userScrap.UserScrapResp$UserScrapRespDto">
+      select user_scrap_id from user_scrap_tb where user_id = #{userId}
+    </select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="sDto.userScrapId">
       INSERT INTO user_scrap_tb (user_id, jobs_id, created_at) VALUES (#{userId}, #{sDto.jobsId}, now())

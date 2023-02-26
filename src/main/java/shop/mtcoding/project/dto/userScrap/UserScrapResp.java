@@ -8,6 +8,6 @@ public class UserScrapResp {
     @Getter
     @Setter
     public static class UserScrapRespDto {
-        private Integer userScrapId;
+        // private Integer userScrapId;
     }
 }
