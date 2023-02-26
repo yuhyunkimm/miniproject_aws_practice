@@ -1,6 +1,5 @@
 package shop.mtcoding.project.controller;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -28,7 +27,6 @@ import shop.mtcoding.project.dto.jobs.JobsResp.JobsDetailRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSkillRespDto;
 import shop.mtcoding.project.dto.user.UserResp.UserSkillAndInterestDto;
-import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
@@ -80,14 +78,15 @@ public class JobsController {
         return "jobs/jobsDetail";
     }
 
-    @GetMapping("/comp/jobs/write")
+    @GetMapping("/jobs/write")
     public String writeJobs(){
-    return "comp/writeJobsForm";
+        MockSession.mockComp(session);
+        return "jobs/writeJobsForm";
     }
 
-    @GetMapping("/comp/jobs/{id}/update")
+    @GetMapping("/jobs/{id}/update")
     public String updateJobs(){
-    return "comp/updateJobsForm";
+    return "jobs/updateJobsForm";
     }
 
     @PostMapping("/jobs/info/search")
@@ -111,7 +110,7 @@ public class JobsController {
         return new ResponseEntity<>(new ResponseDto<>(1, "검색 성공", jDtos.size()), HttpStatus.OK);
     }
 
-    @GetMapping("/user/interest")
+    @GetMapping("/jobs/interest")
     public String interest(Model model) {
         MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
@@ -162,11 +161,11 @@ public class JobsController {
         model.addAttribute("threeMatchDto", threeMatchDto);
         model.addAttribute("twoMatchDto", twoMatchDto);
         model.addAttribute("oneMatchDto", oneMatchDto); 
-        return "user/interest";
+        return "jobs/interest";
     }
 }
 // ⬜ 채용정보    "/jobs/info"
 // ⬜ 공고    "/jobs/1"
 
-// 🟦 공고등록    "/comp/jobs/write
-// 🟦 공고수정    "/comp/jobs/공고번호/update"
+// 🟦 공고등록    "/jobs/write
+// 🟦 공고수정    "/jobs/공고번호/update"

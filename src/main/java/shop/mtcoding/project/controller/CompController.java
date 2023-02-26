@@ -43,7 +43,7 @@ public class CompController {
 
     @GetMapping("/comp/myhome")
     public String compMyhome() {
-        // mockCompSession(session);
+        MockSession.mockComp(session);
         return "comp/myhome";
     }
 
@@ -56,6 +56,8 @@ public class CompController {
     public String apply() {
         return "comp/apply";
     }
+
+
 
     // 공개이력서 열람
     @GetMapping("/comp/resume/read")
