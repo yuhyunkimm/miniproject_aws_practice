@@ -6,11 +6,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import shop.mtcoding.project.interceptor.CustomInterceptor;
 
-
-
 @Configuration
 public class AppConfig implements WebMvcConfigurer {
- 
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new CustomInterceptor())

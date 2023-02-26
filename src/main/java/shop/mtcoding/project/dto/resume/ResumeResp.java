@@ -1,8 +1,5 @@
 package shop.mtcoding.project.dto.resume;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class ResumeResp {
     
     @Getter
