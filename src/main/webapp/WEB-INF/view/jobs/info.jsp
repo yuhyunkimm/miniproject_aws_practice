@@ -10,11 +10,11 @@
     }
 
     .my-cursor:hover {
-        color: yellow;
+        color: rgb(226, 226, 40);
     }
 
     .on-Clicked {
-        color: yellow;
+        color: rgb(226, 226, 40);
     }
 
     .under-line {
@@ -416,31 +416,127 @@
                             <div>
                                 ${jDto.career} ${jDto.education} ${jDto.address}
                             </div>
+                        </a>
                             <div class="d-flex justify-content-between">
-                                <div><i id=`scrap-${jDto.jobsId}` class="fa-regular fa-star"
-                                        onclick="scrap(`${jDto.jobsId}`)"></i>
-                                    <input type="hidden" id="endDate-${jDto.jobsId}" value="${jDto.endDate}">
+                                    <c:choose>
+                    <c:when test="${principal != null}">
+                        <div id="scrap-${jDto.jobsId}-render">
+                        <div id="scrap-${jDto.jobsId}-remove">
+                            <c:choose>
+                                <c:when test="${jDto.userScrapId > 0}">
+                                    <i id="scrap-${jDto.jobsId}" class="fa-solid on-Clicked fa-star my-cursor"
+                                        onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
+                                </c:when>
+
+                                <c:otherwise>
+                                    <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star my-cursor"
+                                        onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                    </div>
+                    </c:when>
+
+                    <c:otherwise>
+                        <div>
+                            <a href="/user/login">
+                                <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star"></i>
+                            </a>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+                                <div>
+                                    <!-- <input type="hidden" id="endDate-${jDto.jobsId}" value="${jDto.endDate}"> -->
                                 </div>
                                 <div>
-
+                                    z
                                 </div>
 
                             </div>
                         </div>
                     </div>
-                </a>
+                
             </div>
         </c:forEach>
     </div>
 </div>
 <script>
     let jobsId;
-    function scrap(id) {
-        jobsId = id;
-        $('#scrap-' + jobsId).toggleClass("fa-solid");
-        $('#scrap-' + jobsId).toggleClass("on-Clicked");
-        // $('#scrap-' + jobsId + '-count').remove();
-        // render();
+    let userId;
+    let userScrapId;
+
+    function scrap(jobs, user, userScrap) {
+        jobsId = jobs;
+        userId = user;
+
+        // 스크랩 id 있을때
+        if (userScrap > 0) {
+            let data = {
+                userScrapId: userScrap,
+                userId: user
+            }
+            $.ajax({
+                type: "delete",
+                url: "/user/scrap/delete",
+                data: JSON.stringify(data),
+                headers: {
+                    "content-type": "application/json; charset=utf-8"
+                },
+                dataType: "json"
+            }).done((res) => {
+                userScrapId = res.data;
+                changeScrap();
+            }).fail((err) => {
+                alert(err.responseJSON.msg);
+            });
+
+        } else {
+            let data = {
+                userId: user,
+                jobsId: jobs
+            }
+            $.ajax({
+                type: "put",
+                url: "/user/scrap/insert",
+                data: JSON.stringify(data),
+                headers: {
+                    "content-type": "application/json; charset=utf-8"
+                },
+                dataType: "json"
+            }).done((res) => {
+                userScrapId = res.data;
+                changeScrap();
+            }).fail((err) => {
+                alert(err.responseJSON.msg);
+            });
+        }
+    }
+
+    function changeScrap() {
+        $('#scrap-'+ jobsId +'-remove').remove();
+        renderScrap();
+        console.log(userScrapId);
+    }
+    
+    function renderScrap(){
+        let el;
+
+        if ( userScrapId > 0 ){
+            el = `
+            <div id="scrap-`+ jobsId+`-remove">
+                <i id="scrap-`+ jobsId  +`" class="fa-solid on-Clicked fa-star my-cursor"
+                                        onclick="scrap(`+ jobsId +`,`+ userId +`,`+ userScrapId +`)"></i>
+                                    </div>
+            `;
+        }if (userScrapId === 0){
+            el = `
+            <div id="scrap-`+  jobsId +`-remove">
+                <i id="scrap-`+  jobsId  +`" class="fa-regular fa-star my-cursor"
+                                        onclick="scrap(`+ jobsId +`,`+ userId +`,`+ userScrapId +`)"></i>
+                                    </div>
+            `;
+        }
+        $('#scrap-'+ jobsId +'-render').append(el);
     }
 
     document.getElementById("btn1").addEventListener("click", function () {
@@ -605,12 +701,12 @@
             skillValues = getCheckedValues("skill");
             positionValues = getCheckedValues("position");
             careerValue = $("input[name='career']:checked").val();
-            $('#search-info-btn').text( "검색하기");
+            $('#search-info-btn').text("검색하기");
         });
     }
-    
-    function newbtn(num){
-        $('#search-info-btn').text( "'"+num+"' 건 검색하기");
+
+    function newbtn(num) {
+        $('#search-info-btn').text("'" + num + "' 건 검색하기");
     }
 
     // function deleteBox() {
@@ -650,7 +746,7 @@
         jDtos.forEach(jDto => {
             let el = `
             <div class="col-3 px-2 py-2 remove-card">
-                <a href="/jobs/`+jDto.jobsId+`">
+                <a href="/jobs/`+ jDto.jobsId + `">
                     <div class="card">
                         <div>
                             <img src='`+ jDto.photo + `' alt="" srcset="">

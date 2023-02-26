@@ -21,6 +21,7 @@ public class JobsResp {
         private String skillName2;
         private String skillName3;
         private String address;
+        private Integer userScrapId;
         private Timestamp endDate;
     }
     @Getter
@@ -37,6 +38,7 @@ public class JobsResp {
         private String skillName2;
         private String skillName3;
         private String address;
+        private Integer userScrapId;
         private Timestamp endDate;
     }
 
@@ -58,6 +60,7 @@ public class JobsResp {
         private String homePage;
         private Timestamp endDate;
         private String representativeName;
+        private Integer userScrapId;
         private String tel;
     }
 
@@ -92,6 +95,7 @@ public class JobsResp {
         private String skillName3;
         private String position;
         private String address;
+        private Integer userScrapId;
         private Timestamp endDate;
     }
 
@@ -109,6 +113,7 @@ public class JobsResp {
         private String skillName3;
         private String position;
         private String address;
+        private Integer userScrapId;
         private Timestamp endDate;
     }
     
@@ -126,6 +131,7 @@ public class JobsResp {
         private String skillName3;
         private String position;
         private String address;
+        private Integer userScrapId;
         private Timestamp endDate;
     }
 

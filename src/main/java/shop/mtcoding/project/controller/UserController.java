@@ -23,8 +23,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
-
     private void mockUserSession() {
         User mockUser = new User(
                 1,
@@ -99,6 +97,8 @@ public class UserController {
     public String offer() {
         return "user/offer";
     }
+
+
 }
 
 // ⬜ 회원가입 "/user/join"
