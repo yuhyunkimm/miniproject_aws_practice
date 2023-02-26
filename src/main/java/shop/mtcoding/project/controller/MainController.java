@@ -1,5 +1,6 @@
 package shop.mtcoding.project.controller;
 
+import java.net.http.HttpRequest;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,12 +8,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsMainRespDto;
 import shop.mtcoding.project.dto.user.UserResp.UserSkillRespDto;
@@ -45,6 +49,33 @@ public class MainController {
             new Timestamp(System.currentTimeMillis())
             );
         session.setAttribute("principal", mockUser);
+    }
+
+    @GetMapping("/sample")
+    public String sample(){
+
+        return "main/sample";
+    }
+
+    // 주소입력을 누르면 매핑에 연결된 jsp 사용
+    // @PostMapping("/juso")
+    // public String juso(HttpServletRequest request){
+        
+    //     System.out.println("테스트 : "+roadFullAddr);  // 부산광역시 연제구 고분로13번길 25, 2405호(연산동, 연산동 쌍용아파트)
+    //     System.out.println("테스트 : "+siNm);  // 부산광역시
+    //     System.out.println("테스트 : "+sggNm);  // 연제구
+    //     System.out.println("테스트 : "+emdNm);  // 연산동
+
+    //     return "";
+    // }
+
+    @GetMapping("/jusoPopup")
+    public String jusoPopup1(){
+        return "main/jusoPopup";
+    }
+    @PostMapping("/jusoPopup")
+    public String jusoPopup() {
+        return "main/jusoPopup";
     }
 
     @GetMapping("/")
@@ -92,18 +123,11 @@ public class MainController {
         model.addAttribute("jDtos", jDtos);
         return "main/main";
     }
-    
 
     @GetMapping("/help")
     public String help(){
         return "main/help";
     }
-
-
-
-
-
-
 }
 
 // ⬜ 메인    "/"
