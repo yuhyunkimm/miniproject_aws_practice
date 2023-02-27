@@ -123,7 +123,6 @@
                 // 이메일 중복 확인 버튼
                 function emailCheckBtn() {
                     let email1 = $("#email").val();
-                    //console.log(오류1);
                     $.ajax({
                         type: "get",
                         url: "/user/emailCheck?email=" + email1,

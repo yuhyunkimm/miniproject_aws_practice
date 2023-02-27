@@ -29,6 +29,7 @@ public class UserReq {
         private String email;
         private String password;
         private Timestamp createdAt;
+        private String rememberEmail;
     }
 
     @Getter
