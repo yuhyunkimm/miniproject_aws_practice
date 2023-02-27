@@ -6,10 +6,13 @@
 <mapper namespace="shop.mtcoding.project.model.ResumeRepository">
     
     <select id="findAllWithUser" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeManageRespDto">
-        select rt.resume_id, rt.title, rt.education, rt.career 
-        from resume_tb rt
-        inner join user_tb ut
-        on rt.resume_id = ut.user_id
+        select r.resume_id, r.title, r.education, r.career, us.user_id, us.skill_name1, us.skill_name2, us.skill_name3
+        from resume_tb r
+        join user_skill_tb us
+        on r.user_id = us.user_id
+        join user_tb u
+        on r.user_id = u.user_id
+        where r.user_id = u.user_id
     </select>
    
    

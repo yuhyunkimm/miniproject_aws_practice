@@ -3,7 +3,7 @@
 
 
         <div class="mx-auto width-53">
-            <div class="container mt-5">
+            <div class="container mt-5 mb-5">
                 <div class="row">
                     <!-- <h2> 이력서 관리</h2> -->
                     <div class="col-3" style="text-align: center;">
@@ -23,58 +23,58 @@
                         </div>
                     </div>
                     <div class="col-9">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h5 class="card-title" style="text-align: left;">이력서 title</h5>
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">학력</h6>
-                                </div>
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">기술</h6>
-                                </div>
-                                <div style="float: right;" pt-2>
-                                    <button type="button" class="btn btn-success btn-sm" onclick="window.open('/user/resume/{id}/update')">이력서
-                                        수정</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h5 class="card-title" style="text-align: left;">이력서 title</h5>
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">학력</h6>
-                                </div>
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">경력</h6>
-                                </div>
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">기술</h6>
-                                </div>
-                                <div style="float: right;" pt-2>
-                                    <button type="button" class="btn btn-success btn-sm" onclick="window.open('/user/resume/{id}/update')">이력서
-                                        수정</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h5 class="card-title" style="text-align: left;">이력서 title</h5>
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">학력</h6>
-                                </div>
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">기술</h6>
-                                </div>
-                                <div style="float: right;" pt-2>
-                                    <button type="button" class="btn btn-success btn-sm" onclick="window.open('/user/resume/{id}/update')">이력서
-                                        수정</button>
-                                </div>
-                            </div>
-                        </div>
+                        <c:choose>
+                            <c:when test="${rDto.resumeId > 0 && rDto.userId == principal.userId}">
+                                <c:forEach items="${rDtos}" var="rDto">
+                                    <div class="card mb-4">
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="text-align: left;">${rDto.title}</h5>
+                                            <div class="m-2" style="float: left;">
+                                                <h6 class="card-subtitle mb-2 text-muted">${rDto.education}</h6>
+                                            </div>
+                                            <div class="m-2" style="float: left;">
+                                                <h6 class="card-subtitle mb-2 text-muted">${rDto.career}</h6>
+                                            </div>
+                                            <div class="m-2" style="float: left;">
+                                                <h6 class="card-subtitle mb-2 text-muted">${rDto.skillName1}</h6>
+                                            </div>
+                                            <div class="m-2" style="float: left;">
+                                                <h6 class="card-subtitle mb-2 text-muted">${rDto.skillName2}</h6>
+                                            </div>
+                                            <div class="m-2" style="float: left;">
+                                                <h6 class="card-subtitle mb-2 text-muted">${rDto.skillName3}</h6>
+                                            </div>
+                                            <div style="float: right;" pt-2>
+                                                <button type="button" class="btn btn-success btn-sm"
+                                                    onclick="window.open('/user/resume/{id}/update')">이력서
+                                                    수정</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:forEach>
 
-                        <button style="float: right;" type="button" class="btn btn-success mb-4"
-                            onclick="location.href='/user/resume/write'">이력서
-                            작성</button>
+                                <button style="float: right;" type="button" class="btn btn-success mb-4"
+                                    onclick="location.href='/user/resume/write'">이력서
+                                    작성</button>
+                            </c:when>
+
+                            <c:otherwise>
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title" style="text-align: left;">이력서를 등록해주세요</h5>
+                                        <div class="mt-3">
+                                            <button style="float: left;" type="button" class="btn btn-success"
+                                                onclick="location.href='/user/resume/write'">이력서
+                                                작성</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+
+
+
+
                     </div>
                 </div>
             </div>

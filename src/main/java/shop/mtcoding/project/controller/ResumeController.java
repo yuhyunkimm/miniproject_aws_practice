@@ -34,6 +34,7 @@ public class ResumeController {
 
     @GetMapping("/user/resume") // 이력서관리
     public String resume(Model model) {
+        MockSession.mockUser(session);
         model.addAttribute("rDtos", resumeRepository.findAllWithUser());
         return "resume/manageResume";
     }
