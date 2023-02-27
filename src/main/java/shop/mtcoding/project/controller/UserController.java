@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.project.dto.user.ResponseDto;
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
+import shop.mtcoding.project.dto.user.UserReq.UserLoginReqDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.User;
@@ -70,6 +71,19 @@ public class UserController {
     @GetMapping("/user/join")
     public String joinForm() {
         return "user/joinForm";
+    }
+
+    @PostMapping
+    public String login(UserLoginReqDto userloginReqDto) {
+        if (userloginReqDto.getEmail() == null || userloginReqDto.getEmail().isEmpty()) {
+            throw new CustomException("username을 작성해주세요");
+        }
+        if (userloginReqDto.getPassword() == null || userloginReqDto.getPassword().isEmpty()) {
+            throw new CustomException("password 작성해주세요");
+        }
+        User principal = userService.로그인(userloginReqDto);
+        session.setAttribute("principal", principal);
+        return "redirect:/";
     }
 
     @GetMapping("/user/login")
