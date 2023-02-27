@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.project.dto.ResponseDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeSaveTempReqDto;
+
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
+import shop.mtcoding.project.dto.user.ResponseDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.User;
@@ -60,6 +62,7 @@ public class ResumeController {
         if (!(resumeWriteReqDto.getState() == 0 || resumeWriteReqDto.getState() == 1)) {
             throw new CustomApiException("공개여부를 선택해주세요");
         }
+
         resumeService.이력서쓰기(resumeWriteReqDto, principal.getUserId());
 
         return new ResponseEntity<>(new ResponseDto<>(1, "이력서 작성이 완료되었습니다.", null), HttpStatus.OK);

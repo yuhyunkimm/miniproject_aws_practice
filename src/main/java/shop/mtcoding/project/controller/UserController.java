@@ -1,5 +1,7 @@
 package shop.mtcoding.project.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.yaml.snakeyaml.emitter.Emitable;
 
-import shop.mtcoding.project.dto.ResponseDto;
+import shop.mtcoding.project.dto.user.ResponseDto;
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
+import shop.mtcoding.project.dto.user.UserReq.UserLoginReqDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.User;
@@ -72,6 +76,49 @@ public class UserController {
         return "user/joinForm";
     }
 
+    // @PostMapping("/user/login")
+    // public String login(UserLoginReqDto userloginReqDto) {
+    // if (userloginReqDto.getEmail() == null ||
+    // userloginReqDto.getEmail().isEmpty()) {
+    // throw new CustomException("email을 작성해주세요");
+    // }
+    // if (userloginReqDto.getPassword() == null ||
+    // userloginReqDto.getPassword().isEmpty()) {
+    // throw new CustomException("password 작성해주세요");
+    // }
+    // User principal = userService.로그인(userloginReqDto);
+    // session.setAttribute("principal", principal);
+    // return "redirect:/";
+    // }
+
+    @PostMapping("/user/login")
+    public String login(UserLoginReqDto userloginReqDto, HttpServletResponse httpServletResponse) {
+        if (userloginReqDto.getEmail() == null || userloginReqDto.getEmail().isEmpty()) {
+            throw new CustomException("email을 작성해주세요");
+        }
+        if (userloginReqDto.getPassword() == null || userloginReqDto.getPassword().isEmpty()) {
+            throw new CustomException("password 작성해주세요");
+        }
+        User principal = userService.로그인(userloginReqDto);
+        if (principal == null) {
+            return "redirect:/loginForm";
+        } else {
+            if (userloginReqDto.getRememberEmail() == null) {
+                userloginReqDto.setRememberEmail("");
+            }
+            if (userloginReqDto.getRememberEmail().equals("on")) {
+                Cookie cookie = new Cookie("rememberEmail", userloginReqDto.getEmail());
+                httpServletResponse.addCookie(cookie);
+            } else {
+                Cookie cookie = new Cookie("remember", "");
+                cookie.setMaxAge(0);
+                httpServletResponse.addCookie(cookie);
+            }
+            session.setAttribute("principal", principal);
+            return "redirect:/";
+        }
+    }
+
     @GetMapping("/user/login")
     public String loginForm() {
         return "user/loginForm";
@@ -82,8 +129,6 @@ public class UserController {
         MockSession.mockUser(session);
         return "user/myhome";
     }
-
-
 
     @GetMapping("/user/update")
     public String update() {
@@ -105,8 +150,6 @@ public class UserController {
         session.invalidate();
         return "redirect:/";
     }
-
-
 }
 
 // ⬜ 회원가입 "/user/join"

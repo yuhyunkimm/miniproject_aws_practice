@@ -17,6 +17,10 @@
         select * from user_tb where email = #{email}
     </select>
 
+    <select id="findByEmailAndPassword" resultType="shop.mtcoding.project.model.User">
+        select * from user_tb where email = #{email} and password = #{password}
+    </select>
+
     <select id="findByUserSkill" resultType="shop.mtcoding.project.dto.user.UserResp$UserSkillRespDto">
         select s.skill_name1, s.skill_name2, s.skill_name3 from user_tb u join USER_SKILL_TB s 
             on u.user_id = s.user_id

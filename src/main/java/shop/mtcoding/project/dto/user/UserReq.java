@@ -24,6 +24,16 @@ public class UserReq {
 
     @Getter
     @Setter
+    public static class UserLoginReqDto {
+        private Integer userId;
+        private String email;
+        private String password;
+        private Timestamp createdAt;
+        private String rememberEmail;
+    }
+
+    @Getter
+    @Setter
     public static class UserUpdateReqDto {
         private Integer userId;
         private String email;

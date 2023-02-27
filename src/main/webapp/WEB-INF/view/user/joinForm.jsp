@@ -23,7 +23,7 @@
         <body>
             <div class="mx-auto width-53">
                 <!-- <div class="mx-5" style="border: solid black;"> -->
-                <div class="container w-50 border border-3 p-3 mt-5">
+                <div class="container w-50 border border-3 p-3 mt-5" style="width: 300px;">
                     <div class="card-header d-flex justify-content-around my-4">
                         <div class="fs-4">
                             <a href="/user/login">로그인</a>
@@ -123,7 +123,6 @@
                 // 이메일 중복 확인 버튼
                 function emailCheckBtn() {
                     let email1 = $("#email").val();
-                    //console.log(오류1);
                     $.ajax({
                         type: "get",
                         url: "/user/emailCheck?email=" + email1,

@@ -19,20 +19,22 @@ public interface UserRepository {
     public User findByUserEmail(@Param("email") String email);
 
     public UserDataRespDto findById(
-        @Param("uDto") UserDataRespDto uDto);
+            @Param("uDto") UserDataRespDto uDto);
 
     public UserSkillAndInterestDto findByUserSkillAndInterest(
-        @Param("id") Integer id);
+            @Param("id") Integer id);
 
     public UserSkillRespDto findByUserSkill(
-        @Param("id") Integer id);        
-    
+            @Param("id") Integer id);
+
     public int insert(
-        @Param("uDto") UserJoinReqDto uDto);
+            @Param("uDto") UserJoinReqDto uDto);
 
     public int updateById(
-        @Param("uDto") UserUpdateReqDto uDto);
+            @Param("uDto") UserUpdateReqDto uDto);
 
     public int deleteById(
-        @Param("uDto") UserDeleteRespDto uDto);
+            @Param("uDto") UserDeleteRespDto uDto);
+
+    public User findByEmailAndPassword(@Param("email") String email, @Param("password") String password);
 }
