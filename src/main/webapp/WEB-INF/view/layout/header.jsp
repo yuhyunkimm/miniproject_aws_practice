@@ -60,7 +60,7 @@
                             </a>
                         </div>
                         <div class="my-auto pb-1">
-                            <a href="/comp/myhome" <span class="badge bg-success">기업서비스</span>
+                            <a href="/comp/comphome" ><span class="badge bg-success">기업서비스</span>
                             </a>
                         </div>
                     </c:when>
@@ -84,7 +84,7 @@
                             </a>
                         </div>
                         <div class="my-auto pb-1">
-                            <a href="/comp/myhome"><span class="badge bg-success">기업서비스</span>
+                            <a href="/comp/comphome"><span class="badge bg-success">기업서비스</span>
                             </a>
                         </div>
                     </c:otherwise>

@@ -41,10 +41,10 @@ public class CompController {
         return "comp/loginForm";
     }
 
-    @GetMapping("/comp/myhome")
+    @GetMapping("/comp/comphome")
     public String compMyhome() {
         MockSession.mockComp(session);
-        return "comp/myhome";
+        return "comp/comphome";
     }
 
     @GetMapping("/comp/update")
@@ -55,6 +55,11 @@ public class CompController {
     @GetMapping("/comp/apply")
     public String apply() {
         return "comp/apply";
+    }
+
+    @GetMapping("/comp/jobs")
+    public String manageJobs() {
+        return "comp/manageJobs";
     }
 
 
