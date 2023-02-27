@@ -22,7 +22,7 @@
 
         <body>
             <div class="mx-auto width-53">
-                <div class="container border border-3 p-3 mt-5" style="width: 300px;">
+                <div class="container w-50 border border-3 p-3 mt-5" style="width: 300px;">
                     <div class="card-header d-flex justify-content-around my-4">
                         <div class="fs-4">
                             <a href="/user/login">로그인</a>
