@@ -1,4 +1,4 @@
-<!-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,12 +17,6 @@
     <style>
         .width-53 {
             width: 53%;
-        }
-
-        .my-grid {
-            /* display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 10px; */
         }
 
         a {
@@ -70,34 +64,36 @@
             border: 1px solid rgb(0, 0, 0);
         }
 
-        header {
-            position: sticky;
+        .header {
+            position: fixed;
             top: 0px;
-            /* 도달했을때 고정시킬 위치 */
             padding: 5px;
-            padding-top: 25px;
-            border-bottom: 1px solid #000;
-            padding-bottom: 25px;
-            background-color: white;
-            /* border: 1px solid rgb(0, 0, 0); */
-            z-index: 10;
         }
-        .img-border{
+
+        .img-border {
             border: 1px solid rgb(0, 0, 0);
             width: 8em;
             height: 5em;
         }
-    </style>
+
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm bg-light navbar-light ">
+
+    <nav class="navbar navbar-expand-sm bg-light navbar-light  ">
         <div class="container-fluid width-53">
             <div class="">
                 <a class="navbar-brand" href="/"><i class="fa-brands fa-github-square" style="font-size: 2em;"></i></a>
             </div>
             <div class="d-flex">
+                <div class="me-4">
+                </div>
+                <div class="my-auto me-5">
+                    <a href="/user/myhome">
+                        <i class="fa-regular fa-user"></i>
+                    </a>
+                </div>
                 <div class="my-auto pb-1">
                     <a href="/comp/comphome"><span class="badge bg-success">기업홈</span>
                     </a>
@@ -105,12 +101,12 @@
             </div>
         </div>
     </nav>
-
-    <div class="mx-auto width-53">
-        <div class="relative">
-            <div class="width-l  my-5">
-                <div class="">
-                    <div>
+        <!-- 헤더 추가 요망 -->
+        <div class="mx-auto width-53 mb-5">
+            <div class="relative">
+                <div class="width-l  my-5">
+                    <div class="mb-5">
+                        <!-- 회사 정보  -->
                         <div class="d-flex justify-content-between">
                             <div>
                                 <h4>회사정보</h4>
@@ -120,70 +116,65 @@
                             </div>
                         </div>
                         <div class="row justify-content-between my-border ">
-                                <div class="my-border col-3">
-                                    <img class="img-border" src="/images/kakao.png" alt="" srcset="" style="">
-                                </div>
+                            <div class="my-border col-3">
+                                <img class="img-border" src="/images/kakao.png" alt="" srcset="" style="">
+                            </div>
 
-                                <div class="col-4 mt-3">
-                                    <div>
-                                        회사명
-                                    </div>
-                                    <div>
-                                        대표자명
-                                    </div>
-                                    <div>
-                                        기업 주소
-                                    </div>
+                            <div class="col-4 mt-3">
+                                <div>
+                                    회사명 카카오
                                 </div>
+                                <div>
+                                    대표자명 ㅇㄹㅇㄹ
+                                </div>
+                                <div>
+                                    기업 주소 ㅇㄹㅇㄹ
+                                </div>
+                            </div>
                             <div class="col-5 mt-3">
                                 <div>
-                                    설립일
+                                    설립일 오늘내일
                                 </div>
                                 <div>
-                                    사원수
+                                    사원수 맞춰봐
                                 </div>
                                 <div>
-                                    홈페이지
+                                    홈페이지 찾아봐
                                 </div>
                             </div>
                         </div>
 
-                        <div> 
-                            <h3>공고 등록</h3>
-                        </div>
-                        <div class="row mb-3">
-                                <div class="form-group">
-                                    <h4>공고 제목</h4>
+                        <!-- 공고등록 -->
+                        <div class="row my-3 my-border">
+                            <div class="d-flex my-2">
+                                <div class="col-2 my-auto">
+                                    <h5>공고 제목</h5>
+                                </div>
+                                <div class="col-10">
                                     <input type="text" name="name" class="form-control" value="">
                                 </div>
-                                <div>
-                                    <h4>두번째</h4>
-                                    <input type="text" name="name" class="form-control" value="">
-                                </div>
+                            </div>
                         </div>
 
-
-
-                        <div>
-
-
-                            <div class="d-flex justify-content-between">
-
-                                <div class="me-2 d-flex" style="width:200px">
-                                    <div style="width:50px">학력</div>
-
-                                    <select class="form-select" aria-label="Default select example"
-                                        onchange="changeDropdown(this)">
+                        <div class="row my-3 my-border">
+                            <div class="d-flex my-2">
+                                <div class="col-2 my-auto">
+                                    <h5>학력</h5>
+                                </div>
+                                <div class="col-4">
+                                    <select class="form-select" aria-label="Default select example">
                                         <option id="title" value="title">학력무관</option>
                                         <option id="title" value="title">대졸</option>
                                         <option id="content" value="content">대학원 이상</option>
                                     </select>
                                 </div>
-
-                                <div class="me-2 " style="width:150px">
-                                    경력
-                                    <select class="form-select" aria-label="Default select example"
-                                        onchange="changeDropdown(this)">
+                            </div>
+                            <div class="d-flex my-2">
+                                <div class="col-2 my-auto">
+                                    <h5>경력</h5>
+                                </div>
+                                <div class="col-4">
+                                    <select class="form-select" aria-label="Default select example">
                                         <option id="title" value="title">신입</option>
                                         <option id="title" value="title">1년차 미만</option>
                                         <option id="title" value="title">1년차</option>
@@ -196,12 +187,13 @@
                                         <option id="title" value="title">8년차 이상</option>
                                     </select>
                                 </div>
-
-                                <div class="me-2 " style="width:150px">
-                                    희망 직무
-                                    <select class="form-select" aria-label="Default select example"
-                                        onchange="changeDropdown(this)">
-
+                            </div>
+                            <div class="d-flex my-2">
+                                <div class="col-2 my-auto">
+                                    <h5>희망 직무</h5>
+                                </div>
+                                <div class="col-4">
+                                    <select class="form-select" aria-label="Default select example">
                                         <option id="writer" value="username">서버 개발자</option>
                                         <option id="writer" value="username">백엔드 개발자</option>
                                         <option id="writer" value="username">프론트엔드 개발자</option>
@@ -211,25 +203,67 @@
                                         <option id="writer" value="username">빅데이터 엔지니어</option>
                                         <option id="writer" value="username">임베디드 개발자</option>
                                         <option id="writer" value="username">devops 개발자</option>
-
-
                                     </select>
                                 </div>
-                                <div class="me-2 d-flex" style="width:200px">
-                                    <div style="width:50px">근무지역</div>
-
-                                    <select class="form-select" aria-label="Default select example"
-                                        onchange="changeDropdown(this)">
+                            </div>
+                            <div class="d-flex my-2">
+                                <div class="col-2 my-auto">
+                                    <h5>근무지역</h5>
+                                </div>
+                                <div class="col-4">
+                                    <select class="form-select" aria-label="Default select example">
                                         <option id="title" value="title">서울</option>
                                         <option id="title" value="title">부산</option>
                                         <option id="content" value="content">경기도</option>
                                     </select>
                                 </div>
-
                             </div>
-                            필요 기술
+                            <div class="d-flex my-2">
+                                <div class="col-2 my-auto">
+                                    <h5>마감일</h5>
+                                </div>
+                                <div class="col-4">
+                                    <input type="date" class="form-control">
+                                </div>
+                            </div>
+                            <div class="d-flex my-2">
+                                <div class="col-2 my-auto">
+                                    <h5>접수방법</h5>
+                                </div>
+                                <div class="col-6">
+                                    <table class="my-table table table-bordered" style="background-color: white;">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check text-center">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="checkbox" name="skill"
+                                                                value="Java">홈페이지 접수
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check text-center">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="checkbox" name="skill"
+                                                                value="JavaScript">
+                                                            공고 접수
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 공고 조건 / 공고 내용 -->
+                        <div class="row my-3 my-border">
+
+                            <h5>필요 기술 ( 최대 3개 )</h5>
                             <div id="my-table-body2">
-                                <table class="my-table table table-bordered">
+                                <table class="my-table table table-bordered" style="background-color: white;">
                                     <tbody>
                                         <tr>
                                             <td>
@@ -319,42 +353,16 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
 
-
-
-                            <div class="relative">
-                                <div>
-                                    공고 상세 내용
-                                    <div class="form-group">
-                                        <textarea class="form-control summernote" id="content" rows="5" name="content"
-                                            placeholder="글 내용을 입력해주세요"></textarea>
-                                    </div>
+                        <div class="row my-3 my-border">
+                            <div>
+                                <h5>공고 상세 내용</h5>
+                                <div class="form-group" style="background-color: white;">
+                                    <textarea class="form-control summernote" id="content" rows="5" name="content"
+                                        placeholder="글 내용을 입력해주세요"></textarea>
                                 </div>
                             </div>
-
-                            <div class="fs-4 mt-5">
-                                접수기간 및 방법
-                            </div>
-
-                            <div class="border row">
-                                <!-- 남은 날짜 -->
-                                <div class="col-4">
-                                    마감일
-                                    <input type="date" name="" id="">
-                                </div>
-                                <div class="col-8">
-                                    지원방법
-                                    <div class="me-2 " style="width:150px">
-                                        <select class="form-select" aria-label="Default select example"
-                                            onchange="changeDropdown(this)">
-                                            <option id="title" value="title">글 제목</option>
-                                            <option id="content" value="content">글 내용</option>
-                                            <option id="writer" value="username">작성자</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -371,26 +379,24 @@
                         <div class="align-self-end ">
                             <button type="button" class="btn btn-success w-100">공고등록</button>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
-            <script>
-                $('.summernote').summernote({
-                    tabsize: 2,
-                    height: 400
-                });
+        <script>
+            $('.summernote').summernote({
+                tabsize: 2,
+                height: 400
+            });
 
-                $('input:checkbox[name=skill]').click(function () {
-                    let count = $('input:checkbox[name=skill]:checked').length;
-                    if (count > 3) {
-                        alert('기술은 3개까지 선택 가능')
-                        $(this).prop('checked', false);
-                    }
-                });
-            </script>
-</body>
+            $('input:checkbox[name=skill]').click(function () {
+                let count = $('input:checkbox[name=skill]:checked').length;
+                if (count > 3) {
+                    alert('기술은 3개까지 선택 가능')
+                    $(this).prop('checked', false);
+                }
+            });
+        </script>
+    </body>
 
 </html>
