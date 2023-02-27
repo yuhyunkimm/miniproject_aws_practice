@@ -33,7 +33,25 @@
                                     <h6 class="card-subtitle mb-2 text-muted">기술</h6>
                                 </div>
                                 <div style="float: right;" pt-2>
-                                    <button type="button" class="btn btn-success btn-sm" onclick="location.href='#'">이력서
+                                    <button type="button" class="btn btn-success btn-sm" onclick="window.open('/user/resume/{id}/update')">이력서
+                                        수정</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title" style="text-align: left;">이력서 title</h5>
+                                <div class="m-2" style="float: left;">
+                                    <h6 class="card-subtitle mb-2 text-muted">학력</h6>
+                                </div>
+                                <div class="m-2" style="float: left;">
+                                    <h6 class="card-subtitle mb-2 text-muted">경력</h6>
+                                </div>
+                                <div class="m-2" style="float: left;">
+                                    <h6 class="card-subtitle mb-2 text-muted">기술</h6>
+                                </div>
+                                <div style="float: right;" pt-2>
+                                    <button type="button" class="btn btn-success btn-sm" onclick="window.open('/user/resume/{id}/update')">이력서
                                         수정</button>
                                 </div>
                             </div>
@@ -48,22 +66,7 @@
                                     <h6 class="card-subtitle mb-2 text-muted">기술</h6>
                                 </div>
                                 <div style="float: right;" pt-2>
-                                    <button type="button" class="btn btn-success btn-sm" onclick="location.href='#'">이력서
-                                        수정</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h5 class="card-title" style="text-align: left;">이력서 title</h5>
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">학력</h6>
-                                </div>
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">기술</h6>
-                                </div>
-                                <div style="float: right;" pt-2>
-                                    <button type="button" class="btn btn-success btn-sm" onclick="location.href='#'">이력서
+                                    <button type="button" class="btn btn-success btn-sm" onclick="window.open('/user/resume/{id}/update')">이력서
                                         수정</button>
                                 </div>
                             </div>
