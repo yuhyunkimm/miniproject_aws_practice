@@ -105,7 +105,7 @@
         on c.comp_id = j.comp_id
     </select>
 
-    <insert id="insert">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="jDto.jobsId">
       insert into jobs_tb set title= #{jDto.title}, 
                           content = #{jDto.content}, 
                           position = #{jDto.position}, 

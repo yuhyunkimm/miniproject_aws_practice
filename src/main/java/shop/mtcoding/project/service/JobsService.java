@@ -37,18 +37,19 @@ public class JobsService {
         try {
             compRepository.updateById(jDto);
         } catch (Exception e) {
-            throw new CustomApiException("서버에 일시적인 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new CustomApiException("서버에 일시적인 오류가 발생했습니다11.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         try {
             jobsRepository.insert(jDto);
             jobsId = jDto.getJobsId();
+            System.out.println("테스트 : "+ jobsId);
         } catch (Exception e) {
-            throw new CustomApiException("서버에 일시적인 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new CustomApiException("서버에 일시적인 오류가 발생했습니다22.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         try {
             requiredSkillRepository.insert(jDto);
         } catch (Exception e) {
-            throw new CustomApiException("서버에 일시적인 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new CustomApiException("서버에 일시적인 오류가 발생했습니다33.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return jobsId;
     }

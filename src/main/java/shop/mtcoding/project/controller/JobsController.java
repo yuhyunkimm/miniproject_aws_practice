@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -182,6 +183,41 @@ public class JobsController {
 
     @PostMapping("/jobs/write")
     public ResponseEntity<?> writeJobs(@RequestBody JobsWriteReqDto jDto){
+        // System.out.println("테스트 : "+jDto.toString());
+        Comp compSession = (Comp)session.getAttribute("compSession");
+        if( jDto.getCompId() == null ) {
+            throw new CustomApiException("회사계정이 필요합니다.", HttpStatus.UNAUTHORIZED);
+        }
+        if ( jDto.getCompName() == null || jDto.getCompName().isEmpty() ){
+            throw new CustomApiException("회사명이 필요합니다.");
+        }
+        if ( jDto.getRepresentativeName() == null || jDto.getRepresentativeName().isEmpty() ){
+            throw new CustomApiException("대표자명이 필요합니다.");
+        }    
+        if ( jDto.getTitle() == null || jDto.getTitle().isEmpty() ){
+            throw new CustomApiException("공고 제목이 필요합니다.");
+        }
+        if ( jDto.getEducation() == null || jDto.getEducation().isEmpty() ){
+            throw new CustomApiException("학력정보가 필요합니다.");
+        }
+        if ( jDto.getCareer() == null || jDto.getCareer().isEmpty() ){
+            throw new CustomApiException("경력정보가 필요합니다.");
+        }
+        if ( jDto.getPosition() == null || jDto.getPosition().isEmpty() ){
+            throw new CustomApiException("직무정보가 필요합니다.");
+        }
+        if ( jDto.getAddress() == null || jDto.getAddress() .isEmpty() ){
+            throw new CustomApiException("근무주소가 필요합니다.");
+        }
+        if ( jDto.getReceipt() == null || jDto.getReceipt().isEmpty() ){
+            throw new CustomApiException("접수방법이 필요합니다.");
+        }
+        Integer jobdId = jobsService.공고작성(jDto, compSession.getCompId());
+        return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료", jobdId), HttpStatus.OK);
+    }
+
+    @PutMapping("jobs/update")
+    public ResponseEntity<?> updateJobs(@RequestBody JobsWriteReqDto jDto){
         // System.out.println("테스트 : "+jDto.toString());
         Comp compSession = (Comp)session.getAttribute("compSession");
         if( jDto.getCompId() == null ) {
