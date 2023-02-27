@@ -20,12 +20,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import shop.mtcoding.project.dto.ResponseDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsCheckBoxReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsSearchReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsDetailRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSkillRespDto;
+import shop.mtcoding.project.dto.user.ResponseDto;
 import shop.mtcoding.project.dto.user.UserResp.UserSkillAndInterestDto;
 import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.User;
@@ -35,7 +35,7 @@ import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class JobsController {
-    
+
     @Autowired
     private JobsService service;
 
@@ -48,22 +48,19 @@ public class JobsController {
     @Autowired
     private HttpSession session;
 
-
-
-    
     @GetMapping("/jobs/info")
-    public String info(JobsSearchReqDto jDto, Model model) throws Exception{
+    public String info(JobsSearchReqDto jDto, Model model) throws Exception {
         ObjectMapper om = new ObjectMapper();
-        if( jDto.getAddress() == null || jDto.getAddress().isEmpty()){
+        if (jDto.getAddress() == null || jDto.getAddress().isEmpty()) {
             jDto.setAddress("");
         }
-        if( jDto.getCareer() == null || jDto.getCareer().isEmpty()){
+        if (jDto.getCareer() == null || jDto.getCareer().isEmpty()) {
             jDto.setCareer("");
         }
-        if( jDto.getPosition() == null || jDto.getPosition().isEmpty()){
+        if (jDto.getPosition() == null || jDto.getPosition().isEmpty()) {
             jDto.setPosition("");
         }
-        if( jDto.getSkill() == null || jDto.getSkill().isEmpty()){
+        if (jDto.getSkill() == null || jDto.getSkill().isEmpty()) {
             jDto.setSkill("");
         }
         List<JobsSearchRespDto> jDtos = jobsRepository.findBySearch(jDto);
@@ -72,27 +69,27 @@ public class JobsController {
     }
 
     @GetMapping("/jobs/{id}")
-    public String viewJobs(@PathVariable Integer id, Model model){
+    public String viewJobs(@PathVariable Integer id, Model model) {
         JobsDetailRespDto jDto = jobsRepository.findByJobsDetail(id);
         model.addAttribute("jDto", jDto);
         return "jobs/jobsDetail";
     }
 
     @GetMapping("/jobs/write")
-    public String writeJobs(){
+    public String writeJobs() {
         MockSession.mockComp(session);
         return "jobs/writeJobsForm";
     }
 
     @GetMapping("/jobs/{id}/update")
-    public String updateJobs(){
-    return "jobs/updateJobsForm";
+    public String updateJobs() {
+        return "jobs/updateJobsForm";
     }
 
     @PostMapping("/jobs/info/search")
-    public ResponseEntity<?> searchJobs(@RequestBody JobsCheckBoxReqDto jDto, Model model){
+    public ResponseEntity<?> searchJobs(@RequestBody JobsCheckBoxReqDto jDto, Model model) {
         // System.out.println("테스트 : "+ jDto.toString());
-        if( jDto.getCareer() == null || jDto.getCareer().isEmpty()){
+        if (jDto.getCareer() == null || jDto.getCareer().isEmpty()) {
             jDto.setCareer("");
         }
         List<JobsSearchRespDto> jDtos = jobsRepository.findByCheckBox(jDto);
@@ -101,9 +98,9 @@ public class JobsController {
     }
 
     @PostMapping("/jobs/info/list")
-    public ResponseEntity<?> searchJobsSize(@RequestBody JobsCheckBoxReqDto jDto, Model model){
+    public ResponseEntity<?> searchJobsSize(@RequestBody JobsCheckBoxReqDto jDto, Model model) {
         // System.out.println("테스트 : "+ jDto.toString());
-        if( jDto.getCareer() == null || jDto.getCareer().isEmpty()){
+        if (jDto.getCareer() == null || jDto.getCareer().isEmpty()) {
             jDto.setCareer("");
         }
         List<JobsSearchRespDto> jDtos = jobsRepository.findByCheckBox(jDto);
@@ -115,7 +112,8 @@ public class JobsController {
         MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         UserSkillAndInterestDto usi = userRepository.findByUserSkillAndInterest(principal.getUserId());
-        List<String> insertList = Arrays.asList(usi.getSkillName1(),usi.getSkillName2(),usi.getSkillName3(),usi.getInterestCt1(),usi.getInterestCt2(),usi.getInterestCt3()); 
+        List<String> insertList = Arrays.asList(usi.getSkillName1(), usi.getSkillName2(), usi.getSkillName3(),
+                usi.getInterestCt1(), usi.getInterestCt2(), usi.getInterestCt3());
         Set<String> set = new HashSet<>(insertList);
         List<String> matchingList = new ArrayList<>(set);
         model.addAttribute("uDto", matchingList);
@@ -126,33 +124,53 @@ public class JobsController {
         List<JobsSkillRespDto> twoMatchDto = new ArrayList<>();
         List<JobsSkillRespDto> oneMatchDto = new ArrayList<>();
         for (JobsSkillRespDto jsPS : jsList) {
-            if( set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3()) && set.contains(jsPS.getPosition()) ){
+            if (set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
+                    && set.contains(jsPS.getSkillName3()) && set.contains(jsPS.getPosition())) {
                 fourMatchDto.add(jsPS);
                 continue;
             }
-            if(( set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition()) ||
-            ( set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition()) ||
-            ( !set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition()) ||
-            ( set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition())
-            ){
+            if ((set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
+                    && !set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition()) ||
+                    (set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
+                            && set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition())
+                    ||
+                    (!set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
+                            && set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition())
+                    ||
+                    (set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
+                            && set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition())) {
                 threeMatchDto.add(jsPS);
                 continue;
             }
-            if(( set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition()) ||
-            ( set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition()) ||
-            ( set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition()) ||
-            ( !set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition()) ||
-            ( !set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition()) ||
-            ( !set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition())
-            ){
+            if ((set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
+                    && !set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition()) ||
+                    (set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
+                            && set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition())
+                    ||
+                    (set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
+                            && !set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition())
+                    ||
+                    (!set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
+                            && set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition())
+                    ||
+                    (!set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
+                            && !set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition())
+                    ||
+                    (!set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
+                            && set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition())) {
                 twoMatchDto.add(jsPS);
                 continue;
-            } 
-            if(( set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition()) ||
-            ( !set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition()) ||
-            ( !set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition()) ||
-            ( !set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2()) && !set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition())
-            ){
+            }
+            if ((set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
+                    && !set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition()) ||
+                    (!set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
+                            && !set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition())
+                    ||
+                    (!set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
+                            && set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition())
+                    ||
+                    (!set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
+                            && !set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition())) {
                 oneMatchDto.add(jsPS);
                 continue;
             }
@@ -160,12 +178,12 @@ public class JobsController {
         model.addAttribute("fourMatchDto", fourMatchDto);
         model.addAttribute("threeMatchDto", threeMatchDto);
         model.addAttribute("twoMatchDto", twoMatchDto);
-        model.addAttribute("oneMatchDto", oneMatchDto); 
+        model.addAttribute("oneMatchDto", oneMatchDto);
         return "jobs/interest";
     }
 }
-// ⬜ 채용정보    "/jobs/info"
-// ⬜ 공고    "/jobs/1"
+// ⬜ 채용정보 "/jobs/info"
+// ⬜ 공고 "/jobs/1"
 
-// 🟦 공고등록    "/jobs/write
-// 🟦 공고수정    "/jobs/공고번호/update"
+// 🟦 공고등록 "/jobs/write
+// 🟦 공고수정 "/jobs/공고번호/update"

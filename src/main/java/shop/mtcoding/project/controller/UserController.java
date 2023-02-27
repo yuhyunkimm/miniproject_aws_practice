@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import shop.mtcoding.project.dto.ResponseDto;
+import shop.mtcoding.project.dto.user.ResponseDto;
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
@@ -83,8 +83,6 @@ public class UserController {
         return "user/myhome";
     }
 
-
-
     @GetMapping("/user/update")
     public String update() {
         return "user/updateForm";
@@ -99,7 +97,6 @@ public class UserController {
     public String offer() {
         return "user/offer";
     }
-
 
 }
 
