@@ -8,8 +8,8 @@
         select * from comp_tb
     </select>
 
-    <select id="findById" resultType="shop.mtcoding.project.model.User">
-
+    <select id="findById" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsWriteRespDto">
+      SELECT comp_name, REPRESENTATIVE_NAME, photo, homepage FROM COMP_TB where comp_id = #{compId}
     </select>
 
     <insert id="insert">

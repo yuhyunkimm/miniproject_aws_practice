@@ -26,24 +26,27 @@ import shop.mtcoding.project.dto.jobs.JobsReq.JobsSearchReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsDetailRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSkillRespDto;
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsWriteRespDto;
 import shop.mtcoding.project.dto.user.UserResp.UserSkillAndInterestDto;
+import shop.mtcoding.project.exception.CustomException;
+import shop.mtcoding.project.model.Comp;
+import shop.mtcoding.project.model.CompRepository;
 import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
-import shop.mtcoding.project.service.JobsService;
 import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class JobsController {
-    
-    @Autowired
-    private JobsService service;
 
     @Autowired
     private UserRepository userRepository;
 
     @Autowired
     private JobsRepository jobsRepository;
+
+    @Autowired
+    private CompRepository compRepository;
 
     @Autowired
     private HttpSession session;
@@ -79,8 +82,14 @@ public class JobsController {
     }
 
     @GetMapping("/jobs/write")
-    public String writeJobs(){
+    public String writeJobs(Model model){
         MockSession.mockComp(session);
+        Comp compSesseion = (Comp) session.getAttribute("compSession");
+        JobsWriteRespDto cDto = compRepository.findById(compSesseion.getCompId());
+        if ( cDto == null ){
+            throw new CustomException("회사정보가 없습니다.");
+        }
+        model.addAttribute("cDto", cDto);
         return "jobs/writeJobsForm";
     }
 

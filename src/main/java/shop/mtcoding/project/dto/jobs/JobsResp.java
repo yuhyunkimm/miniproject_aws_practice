@@ -114,4 +114,13 @@ public class JobsResp {
         private String tel;
     }
 
+    @Getter
+    @Setter
+    public static class JobsWriteRespDto{
+        private String compName;
+        private String representativeName;
+        private String photo;
+        private String homepage;
+    }
+
 }

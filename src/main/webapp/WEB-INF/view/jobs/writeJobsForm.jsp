@@ -70,12 +70,6 @@
             padding: 5px;
         }
 
-        .img-border {
-            border: 1px solid rgb(0, 0, 0);
-            width: 8em;
-            height: 5em;
-        }
-
     </style>
 </head>
 
@@ -117,27 +111,29 @@
                         </div>
                         <div class="row justify-content-between my-border ">
                             <div class="my-border col-3">
-                                <img class="img-border" src="/images/kakao.png" alt="" srcset="" style="">
+                                <img class="" src="${cDto.photo}" alt="" srcset="" style="">
                             </div>
 
-                            <div class="col-4 mt-3">
+                            <div class="col-2 mt-3 ">
                                 <div>
-                                    회사명 카카오
+                                    회사명
                                 </div>
                                 <div>
-                                    대표자명 ㅇㄹㅇㄹ
+                                    대표자명
                                 </div>
-
+                                <div>
+                                    홈페이지
+                                </div>
                             </div>
-                            <div class="col-5 mt-3">
+                            <div class="col-7 mt-3">
                                 <div>
-                                    설립일 오늘내일
+                                    ${cDto.compName}
                                 </div>
                                 <div>
-                                    사원수 맞춰봐
+                                    ${cDto.representativeName}
                                 </div>
                                 <div>
-                                    홈페이지 찾아봐
+                                    ${cDto.homepage}
                                 </div>
                             </div>
                         </div>
@@ -149,7 +145,7 @@
                                     <h5>공고 제목</h5>
                                 </div>
                                 <div class="col-10">
-                                    <input type="text" name="name" class="form-control" value="">
+                                    <input type="text" name="title" class="form-control" value="" id="title">
                                 </div>
                             </div>
                         </div>
@@ -160,10 +156,10 @@
                                     <h5>학력</h5>
                                 </div>
                                 <div class="col-4">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option id="title" value="title">학력무관</option>
-                                        <option id="title" value="title">대졸</option>
-                                        <option id="content" value="content">대학원 이상</option>
+                                    <select class="form-select" aria-label="Default select example" id="education" name="education">
+                                        <option value="학력무관">학력무관</option>
+                                        <option value="대졸">대졸</option>
+                                        <option value="대학원 이상">대학원 이상</option>
                                     </select>
                                 </div>
                             </div>
@@ -369,7 +365,7 @@
                     <div class="view-fix d-grid view-right2 p-4">
                         <!-- 뷰포트 -->
                         <div class="align-self-end ">
-                            <button type="button" class="btn btn-success w-100">미리보기</button>
+                            <button type="button" class="btn btn-success w-100" onclick="test()" >미리보기</button>
                         </div>
                         <div class="align-self-end ">
                             <button type="button" class="btn btn-success w-100">임시저장</button>
@@ -394,6 +390,11 @@
                     $(this).prop('checked', false);
                 }
             });
+
+            function test(){
+                let test = $('#education').val()
+                console.log(test);
+            }
         </script>
     </body>
 

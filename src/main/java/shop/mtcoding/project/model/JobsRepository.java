@@ -18,9 +18,7 @@ import shop.mtcoding.project.dto.jobs.JobsResp.JobsSkillRespDto;
 @Mapper
 public interface JobsRepository {
     public List<Jobs> findAll();
-    public Jobs findById(
-        @Param("jobsId") Integer jobsId
-    );
+    public Jobs findById(Integer jobsId);
     public List<JobsSkillRespDto> findAllByJobsAndSkill();
     
     public int insert(
