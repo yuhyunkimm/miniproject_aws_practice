@@ -34,4 +34,13 @@ public class UserReq {
         private String Address;
         private Timestamp createdAt;
     }
+
+    @Getter
+    @Setter
+    public static class UserSkillReqDto {
+        private Integer userId;
+        private String skillName1;
+        private String skillName2;
+        private String skillName3;
+    }
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import shop.mtcoding.project.dto.ResponseDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
+import shop.mtcoding.project.dto.user.UserReq.UserSkillReqDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.User;
@@ -37,7 +38,7 @@ public class ResumeController {
     }
 
     @PostMapping("/user/resume/write")
-    public ResponseEntity<?> write(@RequestBody ResumeWriteReqDto resumeWriteReqDto) {
+    public ResponseEntity<?> write(@RequestBody ResumeWriteReqDto resumeWriteReqDto, UserSkillReqDto userSkillReqDto) {
         MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
@@ -55,8 +56,8 @@ public class ResumeController {
         if (!(resumeWriteReqDto.getState() == 0 || resumeWriteReqDto.getState() == 1)) {
             throw new CustomApiException("공개여부를 선택해주세요");
         }
-        resumeService.글쓰기(resumeWriteReqDto, principal.getUserId());
-        
+        resumeService.이력서쓰기(resumeWriteReqDto, userSkillReqDto, principal.getUserId());
+
         return new ResponseEntity<>(new ResponseDto<>(1, "이력서 작성이 완료되었습니다.", null), HttpStatus.OK);
     }
 
@@ -76,7 +77,6 @@ public class ResumeController {
         return "/resume/resumeDetail";
     }
 
-    
 }
 
 // 🟨 공개하면 기업이 접근 가능 🟨
