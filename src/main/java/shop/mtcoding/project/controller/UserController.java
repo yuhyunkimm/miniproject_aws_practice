@@ -100,6 +100,12 @@ public class UserController {
         return "user/offer";
     }
 
+    @GetMapping("/logout")
+    public String logout(){
+        session.invalidate();
+        return "redirect:/";
+    }
+
 
 }
 

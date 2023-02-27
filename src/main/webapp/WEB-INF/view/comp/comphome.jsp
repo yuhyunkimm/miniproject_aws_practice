@@ -14,12 +14,12 @@
                                 <h6 class="card-subtitle text-muted mb-3">사진</h6>
                                 <h6 class="card-subtitle text-muted">이름</h6>
                                 <hr>
-                                <h6 class="card-subtitle mb-1 text-muted"><a href="#">공고등록/수정</a></h6><br>
-                                <h6 class="card-subtitle mb-1 text-muted"><a href="#">지원자 현황</a></h6><br>
-                                <h6 class="card-subtitle mb-1 text-muted"><a href="#">이력서 스크랩</a></h6>
+                                <h6 class="card-subtitle mb-1 text-muted"><a href="/comp/jobs">공고등록/수정</a></h6><br>
+                                <h6 class="card-subtitle mb-1 text-muted"><a href="/comp/apply">지원자 현황</a></h6><br>
+                                <h6 class="card-subtitle mb-1 text-muted"><a href="/comp/resume/scrap">이력서 스크랩</a></h6>
                                 <hr>
-                                <h6 class="card-subtitle mb-1 text-muted"><a href="#">정보수정</a></h6><br>
-                                <h6 class="card-subtitle mb-1 text-muted"><a href="#">로그아웃</a></h6>
+                                <h6 class="card-subtitle mb-1 text-muted"><a href="/comp/update">정보수정</a></h6><br>
+                                <h6 class="card-subtitle mb-1 text-muted"><a href="/logout">로그아웃</a></h6>
                             </div>
                         </div>
                     </div>

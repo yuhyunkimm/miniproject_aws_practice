@@ -37,7 +37,7 @@ public class ResumeController {
 
     @GetMapping("/user/resume") // 이력서관리
     public String resume() {
-        return "resume/resume";
+        return "resume/manageResume";
     }
 
     @PostMapping("/user/resume/write")

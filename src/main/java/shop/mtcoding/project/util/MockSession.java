@@ -24,7 +24,7 @@ public class MockSession {
             "1995-02-16",
             "http://www.kakaocorp.com",
             new Timestamp(System.currentTimeMillis()));
-        session.setAttribute("principal", mockcomp);
+        session.setAttribute("compSession", mockcomp);
     }
 
     public static void mockUser(HttpSession session){
