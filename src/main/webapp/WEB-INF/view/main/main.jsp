@@ -13,8 +13,8 @@
         color: rgb(226, 226, 40);
     }
 </style>
-<div class="mx-auto width-53 mx-5 px-3 my-3">
-    <div class="d-flex flex-wrap my-3 info-card">
+<div class="mx-auto width-53 mx-5 px-3 top-80">
+    <div class="d-flex flex-wrap my-3 info-card mt-5">
         <c:forEach items="${rDtos}" var="jDto" begin="1" end="3">
             <div class="col-4 px-2 py-2 remove-card">
                 <a href="/jobs/${jDto.jobsId}">
@@ -76,7 +76,7 @@
 </div>
 
 <!-- 가운데 -->
-<div class="row ">
+<div class="row px-2">
     <div class="col-4  ">
         <button type="button" class="btn btn-success w-100">지역별</button>
     </div>
@@ -167,7 +167,6 @@
             $.ajax({
                 type: "delete",
                 url: "/user/scrap/"+userScrapId+"/delete",
-                data: JSON.stringify(data),
                 dataType: "json"
             }).done((res) => {
                 userScrapId = res.data;

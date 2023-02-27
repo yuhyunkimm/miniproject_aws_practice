@@ -40,10 +40,6 @@
             background-color: white;
         }
 
-        .relative {
-            position: relative;
-        }
-
         .width-l {
             width: 77%;
             position: absolute;
@@ -103,9 +99,9 @@
     </nav>
         <!-- 헤더 추가 요망 -->
         공고 수정 페이지
-        <div class="mx-auto width-53 mb-5">
+        <div class="mx-auto width-53 top-80">
             <div class="relative">
-                <div class="width-l  my-5">
+                <div class="width-l">
                     <div class="mb-5">
                         <!-- 회사 정보  -->
                         <div class="d-flex justify-content-between">

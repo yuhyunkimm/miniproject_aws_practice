@@ -43,7 +43,6 @@ public class JobsRepositoryTest {
         // given
         JobsWriteReqDto jDto = new JobsWriteReqDto();   
         jDto.setAddress("123");
-        jDto.setTel("123");
         jDto.setTitle("123");
         jDto.setContent("123");
         jDto.setPhoto("123");
@@ -69,7 +68,6 @@ public class JobsRepositoryTest {
         JobsUpdateReqDto jDto = new JobsUpdateReqDto();   
         jDto.setJobsId(1);
         jDto.setAddress("123");
-        jDto.setTel("123");
         jDto.setTitle("123");
         jDto.setContent("123");
         jDto.setPhoto("123");

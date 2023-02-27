@@ -1,6 +1,9 @@
 .width-53 {
     width: 53%;
 }
+.top-80{
+    margin-top: 80px;
+}
 
 .my-grid {
     /* display: grid;
@@ -20,4 +23,12 @@ a {
     top: 0;
     width: 100%;
     z-index: 999;
+}
+
+.relative {
+    position: relative;
+}
+
+.ab{
+    position: absolute;
 }

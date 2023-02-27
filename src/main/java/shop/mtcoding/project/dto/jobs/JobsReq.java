@@ -48,11 +48,8 @@ public class JobsReq {
         private String address;
         private Timestamp endDate;
         private String receipt;
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
+        private List<String> skill;
     }
-
     @Getter
     @Setter
     @ToString
@@ -71,8 +68,6 @@ public class JobsReq {
         private String address;
         private Timestamp endDate;
         private String receipt;
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
+        private List<String> skill;
     }
 }

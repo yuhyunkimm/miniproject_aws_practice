@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ include file="../layout/header.jsp" %>
 
-        <div class="mx-auto width-53">
+        <div class="mx-auto width-53 top-80">
             <div class="container mt-5 mb-5">
                 <div class="mb-3">
                     <h5>스크랩 페이지임 복사해온거 수정할거임</h5>
