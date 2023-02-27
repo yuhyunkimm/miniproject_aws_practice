@@ -78,9 +78,38 @@ public class JobsControllerTest {
         .content(test)
         .contentType(MediaType.APPLICATION_JSON_VALUE).session(mockSession));
 
+        // then
         System.out.println("테스트 : "+ rs.andReturn().getResponse().getContentAsString());
     
+    }
+    @Test
+    public void 공고수정_test() throws Exception {
+        // given
+        JobsWriteReqDto jDto = new JobsWriteReqDto();
+        jDto.setJobsId(1);
+        jDto.setSkill(List.of("123", "123", "123"));
+        jDto.setAddress("123");
+        jDto.setTitle("123");
+        jDto.setContent("123");
+        jDto.setPhoto("123");
+        jDto.setPosition("123");
+        jDto.setEducation("123");
+        jDto.setEndDate(new Timestamp(System.currentTimeMillis()));
+        jDto.setCareer("123");
+        jDto.setCompId(1);
+        jDto.setHomepage("123");
+        jDto.setReceipt("123");
+        jDto.setCompName("1234");
+        jDto.setRepresentativeName("1234");
+        String test = om.writeValueAsString(jDto);
+
+        // when
+        ResultActions rs = mvc.perform(post("/jobs/write")
+        .content(test)
+        .contentType(MediaType.APPLICATION_JSON_VALUE).session(mockSession));
+
         // then
+        System.out.println("테스트 : "+ rs.andReturn().getResponse().getContentAsString());
     
     }
 }

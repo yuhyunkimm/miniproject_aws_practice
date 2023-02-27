@@ -38,7 +38,7 @@ public class RequiredSkillRepositoryTest {
         // given
         JobsUpdateReqDto jDto = new JobsUpdateReqDto();   
         jDto.setJobsId(1);
-        jDto.setSkill(List.of("123", "123", "123"));
+        // jDto.setSkill(List.of("123", "123", "123"));
     
         // when
         System.out.println("테스트 : "+ RequiredSkillRepository.updateById(jDto)); 

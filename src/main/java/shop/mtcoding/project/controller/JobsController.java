@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import shop.mtcoding.project.dto.ResponseDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsCheckBoxReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsSearchReqDto;
+import shop.mtcoding.project.dto.jobs.JobsReq.JobsUpdateReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsWriteReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsDetailRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
@@ -212,13 +213,21 @@ public class JobsController {
         if ( jDto.getReceipt() == null || jDto.getReceipt().isEmpty() ){
             throw new CustomApiException("접수방법이 필요합니다.");
         }
+        if ( jDto.getSkill().get(0) == null || jDto.getSkill().get(0).isEmpty()) {
+            jDto.getSkill().set(0, "");
+        }
+        if ( jDto.getSkill().get(1) == null || jDto.getSkill().get(0).isEmpty()) {
+            jDto.getSkill().set(1, "");
+        }
+        if ( jDto.getSkill().get(2) == null || jDto.getSkill().get(0).isEmpty()) {
+            jDto.getSkill().set(2, "");
+        }
         Integer jobdId = jobsService.공고작성(jDto, compSession.getCompId());
         return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료", jobdId), HttpStatus.OK);
     }
 
-    @PutMapping("jobs/update")
-    public ResponseEntity<?> updateJobs(@RequestBody JobsWriteReqDto jDto){
-        // System.out.println("테스트 : "+jDto.toString());
+    @PutMapping("/jobs/update")
+    public ResponseEntity<?> updateJobs(@RequestBody JobsUpdateReqDto jDto){
         Comp compSession = (Comp)session.getAttribute("compSession");
         if( jDto.getCompId() == null ) {
             throw new CustomApiException("회사계정이 필요합니다.", HttpStatus.UNAUTHORIZED);
@@ -247,7 +256,16 @@ public class JobsController {
         if ( jDto.getReceipt() == null || jDto.getReceipt().isEmpty() ){
             throw new CustomApiException("접수방법이 필요합니다.");
         }
-        Integer jobdId = jobsService.공고작성(jDto, compSession.getCompId());
+        if ( jDto.getSkill().get(0) == null || jDto.getSkill().get(0).isEmpty()) {
+            jDto.getSkill().set(0, "");
+        }
+        if ( jDto.getSkill().get(1) == null || jDto.getSkill().get(0).isEmpty()) {
+            jDto.getSkill().set(1, "");
+        }
+        if ( jDto.getSkill().get(2) == null || jDto.getSkill().get(0).isEmpty()) {
+            jDto.getSkill().set(2, "");
+        }
+        Integer jobdId = jobsService.공고수정(jDto, compSession.getCompId());
         return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료", jobdId), HttpStatus.OK);
     }
 }
