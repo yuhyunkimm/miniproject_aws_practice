@@ -64,9 +64,8 @@ public class ResumeControllerTest {
 
         // when
         ResultActions resultActions = mvc.perform(post("/user/resume/write")
-                                         .content(requestBody).contentType(MediaType.APPLICATION_JSON_VALUE)
-                                         .session(mockSession)
-                                         );
+                .content(requestBody).contentType(MediaType.APPLICATION_JSON_VALUE)
+                .session(mockSession));
 
         // then
         resultActions.andExpect(status().isOk());

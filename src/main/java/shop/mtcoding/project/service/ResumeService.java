@@ -21,14 +21,14 @@ public class ResumeService {
     private ResumeRepository resumeRepository;
 
     @Transactional
-    public void 이력서쓰기(ResumeWriteReqDto resumeWriteReqDto, UserSkillReqDto userSkillReqDto, Integer userId) {
+    public void 이력서쓰기(ResumeWriteReqDto resumeWriteReqDto, Integer userId) {
 
         int result = resumeRepository.insert(resumeWriteReqDto);
         if (result != 1) {
             throw new CustomApiException("이력서 작성 실패", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        int result2 = userSkillRepository.insert(userSkillReqDto);
+        int result2 = userSkillRepository.insert(resumeWriteReqDto);
         if (result2 != 1) {
             throw new CustomApiException("이력서 작성 실패", HttpStatus.INTERNAL_SERVER_ERROR);
         }

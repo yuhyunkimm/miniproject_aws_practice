@@ -9,9 +9,9 @@
         select * from user_skill_tb
     </select>
 
-    <select id="findById" resultType="shop.mtcoding.project.model.UserSkill">
-        select * from user_skill_tb user_id = #{uDto.id}
-    </select>
+    <!-- <select id="findById" resultType="shop.mtcoding.project.model.UserSkill">
+        select * from user_skill_tb user_id = #{uDto.userId}
+    </select> -->
 
     <insert id="insert" useGeneratedKeys="true"  keyProperty="rDto.resumeId">
         insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3)
@@ -23,9 +23,9 @@
             skill_name1 =  #{rDto.skillName1}, 
             skill_name2 = #{rDto.skillName2}, 
             skill_name3 = #{rDto.skillName3},
-            where user_id = #{uDto.id}
+            where user_id = #{uDto.userId}
     </update>
     <delete id="deleteById">
-        delete from user_skill_tb where user_id = #{uDto.id}
+        delete from user_skill_tb where user_id = #{uDto.userId}
     </delete>
 </mapper>

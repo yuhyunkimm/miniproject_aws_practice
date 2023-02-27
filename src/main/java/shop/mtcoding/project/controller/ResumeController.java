@@ -38,7 +38,7 @@ public class ResumeController {
     }
 
     @PostMapping("/user/resume/write")
-    public ResponseEntity<?> write(@RequestBody ResumeWriteReqDto resumeWriteReqDto, UserSkillReqDto userSkillReqDto) {
+    public ResponseEntity<?> write(@RequestBody ResumeWriteReqDto resumeWriteReqDto) {
         MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
@@ -56,7 +56,7 @@ public class ResumeController {
         if (!(resumeWriteReqDto.getState() == 0 || resumeWriteReqDto.getState() == 1)) {
             throw new CustomApiException("공개여부를 선택해주세요");
         }
-        resumeService.이력서쓰기(resumeWriteReqDto, userSkillReqDto, principal.getUserId());
+        resumeService.이력서쓰기(resumeWriteReqDto, principal.getUserId());
 
         return new ResponseEntity<>(new ResponseDto<>(1, "이력서 작성이 완료되었습니다.", null), HttpStatus.OK);
     }

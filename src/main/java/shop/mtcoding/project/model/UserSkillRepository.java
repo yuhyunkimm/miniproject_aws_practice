@@ -3,7 +3,7 @@ package shop.mtcoding.project.model;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import shop.mtcoding.project.dto.user.UserReq.UserSkillReqDto;
+import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
 
 @Mapper
 public interface UserSkillRepository {
@@ -13,7 +13,7 @@ public interface UserSkillRepository {
 
     );
 
-    public int insert(@Param("uDto") UserSkillReqDto uDto);
+    public int insert(@Param("rDto") ResumeWriteReqDto rDto);
 
     public int updateById();
 
