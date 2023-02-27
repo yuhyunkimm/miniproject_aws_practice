@@ -199,10 +199,16 @@
         //이력서 id가 있을 때
         if (resumeId > 0) {
           let data = {
-            resumeId: resume,
-            userId: id
+            title: $("#title").val(),
+            content: $("#content").val(),
+            education: $("#education").val(),
+            career: $("#career").val(),
+            skillName1: $("#skillName1").val(),
+            link: $("#link").val(),
+            state: $("#state").val(),
+            userId: id,
+            resumeId: resume
           }
-          resumeId = resume;
           $.ajax({
             type: "put",
             url: "/user/resume/update",
@@ -210,7 +216,6 @@
             dataType: "json"
           }).done((res) => {
             resumeId = res.data;
-
           }).fail((err) => {
             alert(err.responseJSON.msg);
           });
@@ -268,18 +273,33 @@
           userId: id,
           resumeId: resume
         };
+        if ( resume > 0){
+          $.ajax({
+            type: "put",
+            url: "/user/resume/update",
+            data: JSON.stringify(data),
+            dataType: "json"
+          }).done((res) => {
+            resumeId = res.data;
+          }).fail((err) => {
+            alert(err.responseJSON.msg);
+          });
+        }else{
         $.ajax({
           type: "post",
           url: "/user/resume/write",
           data: JSON.stringify(data),
-          contentType: "application/json; charset=utf-8", // 바디데이터가 뭔지 알려줌
-          dataType: "json" // default : 응답의 mime 타입으로 유추함
-        }).done((res) => { // 20X 일때
+          contentType: "application/json; charset=utf-8", 
+          dataType: "json" 
+        }).done((res) => { 
           alert(res.msg);
           location.href = "/user/resume";
-        }).fail((err) => { // 40X, 50X 일때
+        }).fail((err) => { 
           alert(err.responseJSON.msg);
         });
+        }
+
+
       }
 
     </script>

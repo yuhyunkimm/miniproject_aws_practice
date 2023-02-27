@@ -27,7 +27,7 @@ public class ResumeService {
     public void 이력서쓰기(ResumeWriteReqDto resumeWriteReqDto, Integer userId) {
 
         if (resumeWriteReqDto.getUserId() != userId) {
-            throw new CustomApiException("이력서를 작성할 권한이 없습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new CustomApiException("이력서를 작성할 권한이 없습니다.", HttpStatus.FORBIDDEN);
         }
         int result = resumeRepository.insert(resumeWriteReqDto);
         if (result != 1) {
@@ -40,7 +40,12 @@ public class ResumeService {
         }
     }
 
+    @Transactional
     public void 이력서임시저장(ResumeWriteReqDto resumeWriteReqDto, Integer userId) {
+
+        if (resumeWriteReqDto.getUserId() != userId) {
+            throw new CustomApiException("이력서를 작성할 권한이 없습니다.", HttpStatus.FORBIDDEN);
+        }
 
         int result = resumeRepository.insert(resumeWriteReqDto);
         if (result != 1) {
