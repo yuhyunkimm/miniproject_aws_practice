@@ -1,6 +1,7 @@
 package shop.mtcoding.project.controllerTest;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -53,24 +54,25 @@ public class JobsControllerTest {
     }
     
     @Test
-    public void 공고작성_test() throws Exception {
+    public void writeJobs_test() throws Exception {
         // given
         JobsWriteReqDto jDto = new JobsWriteReqDto();
         jDto.setJobsId(1);
-        jDto.setSkill(List.of("123", "123", "123"));
-        jDto.setAddress("123");
-        jDto.setTitle("123");
-        jDto.setContent("123");
-        jDto.setPhoto("123");
-        jDto.setPosition("123");
-        jDto.setEducation("123");
-        jDto.setEndDate(new Timestamp(System.currentTimeMillis()));
-        jDto.setCareer("123");
         jDto.setCompId(1);
-        jDto.setHomepage("123");
-        jDto.setReceipt("123");
         jDto.setCompName("1234");
         jDto.setRepresentativeName("1234");
+        jDto.setHomepage("123");
+        jDto.setPhoto("123");
+        jDto.setTitle("123");
+        jDto.setContent("123");
+        jDto.setEducation("123");
+        jDto.setPosition("123");
+        jDto.setAddress("123");
+        jDto.setEndDate(new Timestamp(System.currentTimeMillis()));
+        jDto.setReceipt("123");
+        jDto.setCareer("123");
+        jDto.setSkill(List.of("123"));
+
         String test = om.writeValueAsString(jDto);
 
         // when
@@ -83,28 +85,29 @@ public class JobsControllerTest {
     
     }
     @Test
-    public void 공고수정_test() throws Exception {
+    public void updateJobs_test() throws Exception {
         // given
         JobsWriteReqDto jDto = new JobsWriteReqDto();
         jDto.setJobsId(1);
-        jDto.setSkill(List.of("123", "123", "123"));
-        jDto.setAddress("123");
-        jDto.setTitle("123");
-        jDto.setContent("123");
-        jDto.setPhoto("123");
-        jDto.setPosition("123");
-        jDto.setEducation("123");
-        jDto.setEndDate(new Timestamp(System.currentTimeMillis()));
-        jDto.setCareer("123");
         jDto.setCompId(1);
-        jDto.setHomepage("123");
-        jDto.setReceipt("123");
         jDto.setCompName("1234");
         jDto.setRepresentativeName("1234");
+        jDto.setHomepage("123");
+        jDto.setPhoto("123");
+        jDto.setTitle("123");
+        jDto.setContent("123");
+        jDto.setEducation("123");
+        jDto.setPosition("123");
+        jDto.setAddress("123");
+        jDto.setEndDate(new Timestamp(System.currentTimeMillis()));
+        jDto.setReceipt("123");
+        jDto.setCareer("123");
+        jDto.setSkill(List.of("123"));
+
         String test = om.writeValueAsString(jDto);
 
         // when
-        ResultActions rs = mvc.perform(post("/jobs/write")
+        ResultActions rs = mvc.perform(put("/jobs/update")
         .content(test)
         .contentType(MediaType.APPLICATION_JSON_VALUE).session(mockSession));
 

@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -213,17 +214,11 @@ public class JobsController {
         if ( jDto.getReceipt() == null || jDto.getReceipt().isEmpty() ){
             throw new CustomApiException("접수방법이 필요합니다.");
         }
-        if ( jDto.getSkill().get(0) == null || jDto.getSkill().get(0).isEmpty()) {
-            jDto.getSkill().set(0, "");
+        if ( ObjectUtils.isEmpty(jDto.getSkill()) ){
+            throw new CustomApiException("필요기술이 필요합니다.");
         }
-        if ( jDto.getSkill().get(1) == null || jDto.getSkill().get(0).isEmpty()) {
-            jDto.getSkill().set(1, "");
-        }
-        if ( jDto.getSkill().get(2) == null || jDto.getSkill().get(0).isEmpty()) {
-            jDto.getSkill().set(2, "");
-        }
-        Integer jobdId = jobsService.공고작성(jDto, compSession.getCompId());
-        return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료", jobdId), HttpStatus.OK);
+        Integer jobsId = jobsService.공고작성(jDto, compSession.getCompId());
+        return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료", jobsId), HttpStatus.OK);
     }
 
     @PutMapping("/jobs/update")
@@ -256,15 +251,7 @@ public class JobsController {
         if ( jDto.getReceipt() == null || jDto.getReceipt().isEmpty() ){
             throw new CustomApiException("접수방법이 필요합니다.");
         }
-        if ( jDto.getSkill().get(0) == null || jDto.getSkill().get(0).isEmpty()) {
-            jDto.getSkill().set(0, "");
-        }
-        if ( jDto.getSkill().get(1) == null || jDto.getSkill().get(0).isEmpty()) {
-            jDto.getSkill().set(1, "");
-        }
-        if ( jDto.getSkill().get(2) == null || jDto.getSkill().get(0).isEmpty()) {
-            jDto.getSkill().set(2, "");
-        }
+
         Integer jobdId = jobsService.공고수정(jDto, compSession.getCompId());
         return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료", jobdId), HttpStatus.OK);
     }

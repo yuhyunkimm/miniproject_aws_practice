@@ -1,5 +1,6 @@
 package shop.mtcoding.project.repositoryTest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -21,12 +22,16 @@ public class RequiredSkillRepositoryTest {
     @Transactional
     public void insert_test() throws Exception {
         // given
-        JobsWriteReqDto jDto = new JobsWriteReqDto();   
-        jDto.setJobsId(1);
-        jDto.setSkill(List.of("123", "123", "123"));
+        JobsWriteReqDto rDto = new JobsWriteReqDto();
+        List<String> list = new ArrayList<>();
+        list.add("23");
+        list.add("23");
+        list.add("23");
+        rDto.setSkill(list);
+        rDto.setJobsId(1);
     
         // when
-        System.out.println("테스트 : "+ RequiredSkillRepository.insert(jDto)); 
+        System.out.println("테스트 : "+ RequiredSkillRepository.insert(rDto)); 
     
         // then
     
@@ -36,12 +41,16 @@ public class RequiredSkillRepositoryTest {
     @Transactional
     public void updateById_test() throws Exception {
         // given
-        JobsUpdateReqDto jDto = new JobsUpdateReqDto();   
-        jDto.setJobsId(1);
-        // jDto.setSkill(List.of("123", "123", "123"));
-    
+        JobsUpdateReqDto rDto = new JobsUpdateReqDto();
+        List<String> list = new ArrayList<>();
+        list.add("23");
+        list.add("23");
+        list.add("23");
+        rDto.setSkill(list);
+        rDto.setJobsId(1);
+
         // when
-        System.out.println("테스트 : "+ RequiredSkillRepository.updateById(jDto)); 
+        System.out.println("테스트 : "+ RequiredSkillRepository.updateById(rDto)); 
     
         // then
     

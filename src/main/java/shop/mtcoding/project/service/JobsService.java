@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsSearchReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsUpdateReqDto;
@@ -53,11 +54,19 @@ public class JobsService {
         } catch (Exception e) {
             throw new CustomApiException("서버에 일시적인 오류가 발생했습니다22.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        try {
-            requiredSkillRepository.insert(jDto);
-        } catch (Exception e) {
-            throw new CustomApiException("서버에 일시적인 오류가 발생했습니다33.", HttpStatus.INTERNAL_SERVER_ERROR);
+        if ( !ObjectUtils.isEmpty(jDto.getSkill()) ){
+            if ( jDto.getSkill().size() == 1 ){
+                jDto.getSkill().add("");
+                jDto.getSkill().add("");
+            }
+            if ( jDto.getSkill().size() == 2 ){
+                jDto.getSkill().add("");
+            }
+            try {
+                requiredSkillRepository.insert(jDto);
+            } catch (Exception e) {
+                throw new CustomApiException("서버에 일시적인 오류가 발생했습니다33.", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         }
         return jobsId;
     }
@@ -78,10 +87,19 @@ public class JobsService {
         } catch (Exception e) {
             throw new CustomApiException("서버에 일시적인 오류가 발생했습니다22.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        try {
-            requiredSkillRepository.updateById(jDto);
-        } catch (Exception e) {
-            throw new CustomApiException("서버에 일시적인 오류가 발생했습니다33.", HttpStatus.INTERNAL_SERVER_ERROR);
+        if ( !ObjectUtils.isEmpty(jDto.getSkill()) ){
+            if ( jDto.getSkill().size() == 1 ){
+                jDto.getSkill().add("");
+                jDto.getSkill().add("");
+            }
+            if ( jDto.getSkill().size() == 2 ){
+                jDto.getSkill().add("");
+            }
+            try {
+                requiredSkillRepository.updateById(jDto);
+            } catch (Exception e) {
+                throw new CustomApiException("서버에 일시적인 오류가 발생했습니다33.", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         }
         return jobsId;
     }
