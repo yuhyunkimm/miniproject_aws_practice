@@ -58,6 +58,9 @@ public class ResumeControllerTest {
         resumeWriteReqDto.setContent("백엔드 이력서의 내용입니다.");
         resumeWriteReqDto.setEducation("고졸");
         resumeWriteReqDto.setCareer("신입");
+        resumeWriteReqDto.setSkillName1("자바");
+        resumeWriteReqDto.setSkillName2("JavaScript");
+        resumeWriteReqDto.setSkillName3("Spring");
         resumeWriteReqDto.setLink("블로그 주소");
         resumeWriteReqDto.setState(1);
         String requestBody = om.writeValueAsString(resumeWriteReqDto);
