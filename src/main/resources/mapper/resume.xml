@@ -27,11 +27,7 @@
         values ( #{rDto.userId}, #{rDto.title}, #{rDto.content}, #{rDto.education}, #{rDto.career}, #{rDto.link}, #{rDto.state}, now())
     </insert>  
 
-    <insert id="insertTemp" useGeneratedKeys="true"  keyProperty="rDto.resumeId">
-        insert into resume_tb ( user_id, title, content, education, career, link, state, created_at )
-        values ( #{rDto.userId}, #{rDto.title}, #{rDto.content}, #{rDto.education}, #{rDto.career}, #{rDto.link}, #{rDto.state}, now())
-    </insert>    
-
+   
     <update id="updateById">
         update resume_tb set 
             title =  #{rDto.title}, 
@@ -42,18 +38,6 @@
             state = #{rDto.state}, 
             created_at = #{rDto.createdAt}, 
             where id = #{rDto.id}
-    </update>
-
-        <update id="updateByResumeId">
-        update resume_tb set 
-            title =  #{rDto.title}, 
-            content = #{rDto.content}, 
-            education = #{rDto.education},
-            career =  #{rDto.career},
-            link = #{rDto.link}, 
-            state = #{rDto.state}, 
-            created_at = #{rDto.createdAt}, 
-            where id = #{rDto.resume_id}
     </update>
 
     <delete id="deleteById">

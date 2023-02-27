@@ -5,7 +5,7 @@
       <div class="container">
         <form>
           <div class="row">
-            <div class="col-10">
+            <div class="col-9">
               <br>
               이력서 작성<br>
               <hr />
@@ -17,11 +17,11 @@
                       프로필 사진
                     </div>
                     <div class="col-9">
-                      <p>이름</p>
-                      <p>번호</p>
-                      <p>email</p>
-                      <p>주소</p>
-                      <p>생년월일</p>
+                      <p>이름 ${uDto.name}</p>
+                      <p>번호 ${uDto.tel}</p>
+                      <p>email ${uDto.email}</p>
+                      <p>주소 ${uDto.Address}</p>
+                      <p>생년월일 ${uDto.birth}</p>
                     </div>
                   </div>
                 </div>
@@ -164,20 +164,22 @@
               </div>
             </div>
 
-            <div class="col-2 p-6">
+            <div class="col-3 p-6">
               <div id="rButton">
                 <br>
-                <div class="row p-1">
-                  <button type="button" class="btn btn-success w-70">미리보기</button>
+                <div class="row mb-2">
+                  <button type="button" class="btn btn-success w-100">미리보기</button>
                 </div>
                 <div id="resume-render">
-                <div class="row p-1" id="resume-remove">
-                  <button id="resume-${rDto.resumeId}" onclick="saveTempResume(`${principal.userId}`,`${rDto.resumeId}`)" type="button"
-                    class="btn btn-success w-70">임시 저장</button>
+                  <div class="row mb-2" id="resume-remove">
+                    <button id="resume-${rDto.resumeId}"
+                      onclick="saveTempResume(`${principal.userId}`,`${rDto.resumeId}`)" type="button"
+                      class="btn btn-success w-100">임시 저장</button>
+                  </div>
                 </div>
-                </div>
-                <div class="row p-1">
-                  <button onclick="writeResume(`${principal.userId}`,`${rDto.resumeId}`)" type="button" class="btn btn-success w-70">이력서 저장</button>
+                <div class="row mb-2">
+                  <button onclick="writeResume(`${principal.userId}`,`${rDto.resumeId}`)" type="button"
+                    class="btn btn-success w-100">이력서 저장</button>
                 </div>
               </div>
             </div>
@@ -191,14 +193,14 @@
       let resumeId;
       let userId;
 
-      function saveTempResume(id,resume) {
+      function saveTempResume(id, resume) {
         resumeId = resume;
-        userId=id;
+        userId = id;
         //이력서 id가 있을 때
         if (resumeId > 0) {
           let data = {
             resumeId: resume,
-            userId: id 
+            userId: id
           }
           resumeId = resume;
           $.ajax({
@@ -208,14 +210,14 @@
             dataType: "json"
           }).done((res) => {
             resumeId = res.data;
-            
+
           }).fail((err) => {
             alert(err.responseJSON.msg);
           });
         } else {
           let data = {
             resumeId: resume,
-            userId: id 
+            userId: id
           }
           $.ajax({
             type: "post",
@@ -234,27 +236,27 @@
         }
       }
 
-      function changeResume(){
+      function changeResume() {
         $('#resume-remove').remove();
         renderResume();
       }
 
-      function renderResume(){
-        let el=`
+      function renderResume() {
+        let el = `
                       <div class="row p-1" id="resume-remove">
-                  <button id="resume-`+resumeId+`" onclick="saveTempResume(`+userId+`,`+resumeId+`)" type="button"
+                  <button id="resume-`+ resumeId + `" onclick="saveTempResume(` + userId + `,` + resumeId + `)" type="button"
                     class="btn btn-success w-70">임시 저장</button>
                 </div>
         `;
 
 
         $('#resume-render').append(el);
-    }
-      
+      }
 
-      function writeResume(id,resume) {
+
+      function writeResume(id, resume) {
         resumeId = resume;
-        userId=id;
+        userId = id;
         let data = {
           title: $("#title").val(),
           content: $("#content").val(),
