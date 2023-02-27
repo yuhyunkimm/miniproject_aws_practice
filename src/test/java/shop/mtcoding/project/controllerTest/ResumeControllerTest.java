@@ -1,6 +1,7 @@
 package shop.mtcoding.project.controllerTest;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.sql.Timestamp;
@@ -49,7 +50,7 @@ public class ResumeControllerTest {
 
     @Test
     @Transactional
-    public void write_test() throws Exception {
+    public void writeResume_test() throws Exception {
         ObjectMapper om = new ObjectMapper();
         // given
         ResumeWriteReqDto resumeWriteReqDto = new ResumeWriteReqDto();
@@ -58,15 +59,44 @@ public class ResumeControllerTest {
         resumeWriteReqDto.setContent("백엔드 이력서의 내용입니다.");
         resumeWriteReqDto.setEducation("고졸");
         resumeWriteReqDto.setCareer("신입");
+        resumeWriteReqDto.setSkillName1("자바");
+        resumeWriteReqDto.setSkillName2("JavaScript");
+        resumeWriteReqDto.setSkillName3("Spring");
         resumeWriteReqDto.setLink("블로그 주소");
         resumeWriteReqDto.setState(1);
         String requestBody = om.writeValueAsString(resumeWriteReqDto);
 
         // when
         ResultActions resultActions = mvc.perform(post("/user/resume/write")
-                                         .content(requestBody).contentType(MediaType.APPLICATION_JSON_VALUE)
-                                         .session(mockSession)
-                                         );
+                .content(requestBody).contentType(MediaType.APPLICATION_JSON_VALUE)
+                .session(mockSession));
+
+        // then
+        resultActions.andExpect(status().isOk());
+    }
+
+    @Test
+    @Transactional
+    public void saveTempResume_test() throws Exception {
+        ObjectMapper om = new ObjectMapper();
+        // given
+        ResumeWriteReqDto resumeWriteReqDto = new ResumeWriteReqDto();
+        resumeWriteReqDto.setUserId(1);
+        resumeWriteReqDto.setTitle("벡엔드 이력서");
+        resumeWriteReqDto.setContent("백엔드 이력서의 내용입니다.");
+        resumeWriteReqDto.setEducation("고졸");
+        resumeWriteReqDto.setCareer("신입");
+        resumeWriteReqDto.setSkillName1("자바");
+        resumeWriteReqDto.setSkillName2("JavaScript");
+        resumeWriteReqDto.setSkillName3("Spring");
+        resumeWriteReqDto.setLink("블로그 주소");
+        resumeWriteReqDto.setState(1);
+        String requestBody = om.writeValueAsString(resumeWriteReqDto);
+
+        // when
+        ResultActions resultActions = mvc.perform(put("/user/resume/update")
+                .content(requestBody).contentType(MediaType.APPLICATION_JSON_VALUE)
+                .session(mockSession));
 
         // then
         resultActions.andExpect(status().isOk());

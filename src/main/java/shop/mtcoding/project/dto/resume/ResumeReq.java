@@ -42,4 +42,21 @@ public class ResumeReq {
         private String skillName3;
         private Timestamp createdAt;
     }
+
+    @Getter
+    @Setter
+    public static class ResumeSaveTempReqDto {
+        private Integer resumeId;
+        private Integer userId;
+        private String title;
+        private String content;
+        private String education;
+        private String career;
+        private String link;
+        private Integer state;
+        private String skillName1;
+        private String skillName2;
+        private String skillName3;
+        private Timestamp createdAt;
+    }
 }

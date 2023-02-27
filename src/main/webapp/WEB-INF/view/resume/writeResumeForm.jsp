@@ -5,36 +5,24 @@
       <div class="container">
         <form>
           <div class="row">
-            <div class="col-10">
+            <div class="col-9">
               <br>
               이력서 작성<br>
               <hr />
               <div class="card border-light mb-3" style="max-width: 40rem;">
                 <div class="card-header">기본 정보</div>
                 <div class="card-body">
-                  <div class="form-group">
-                    <label for="inputPhoto" class="form-label mt-1">프로필 사진</label>
-                    <input type="image" name="photo" class="form-control" src="#" value="${user.photo}" readonly>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputName" class="form-label mt-1">이름</label>
-                    <input type="text" name="name" class="form-control" value="${user.name}" readonly>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputTel" class="form-label mt-1">번호</label>
-                    <input type="tel" name="tel" class="form-control" value="${user.tel}" readonly>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputEmail" class="form-label mt-1">Email</label>
-                    <input type="email" name="email" class="form-control" value="${user.email}" readonly>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputAddress" class="form-label mt-1">주소</label>
-                    <input type="text" name="Address" class="form-control" value="${user.Address}" readonly>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputBirth" class="form-label mt-1">생년월일</label>
-                    <input type="date" name="birth" class="form-control" value="${user.birth}" readonly>
+                  <div class="row">
+                    <div class="col-3">
+                      프로필 사진
+                    </div>
+                    <div class="col-9">
+                      <p>이름 ${uDto.name}</p>
+                      <p>번호 ${uDto.tel}</p>
+                      <p>email ${uDto.email}</p>
+                      <p>주소 ${uDto.Address}</p>
+                      <p>생년월일 ${uDto.birth}</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -176,17 +164,22 @@
               </div>
             </div>
 
-            <div class="col-2 p-6">
+            <div class="col-3 p-6">
               <div id="rButton">
                 <br>
-                <div class="row p-1">
-                  <button type="button" class="btn btn-success w-70">미리보기</button>
+                <div class="row mb-2">
+                  <button type="button" class="btn btn-success w-100">미리보기</button>
                 </div>
-                <div class="row p-1">
-                  <button type="button" class="btn btn-success w-70">임시 저장</button>
+                <div id="resume-render">
+                  <div class="row mb-2" id="resume-remove">
+                    <button id="resume-${rDto.resumeId}"
+                      onclick="saveTempResume(`${principal.userId}`,`${rDto.resumeId}`)" type="button"
+                      class="btn btn-success w-100">임시 저장</button>
+                  </div>
                 </div>
-                <div class="row p-1">
-                  <button onclick="writeResume()" type="button" class="btn btn-success w-70">이력서 저장</button>
+                <div class="row mb-2">
+                  <button onclick="writeResume(`${principal.userId}`,`${rDto.resumeId}`)" type="button"
+                    class="btn btn-success w-100">이력서 저장</button>
                 </div>
               </div>
             </div>
@@ -197,7 +190,78 @@
 
     <script>
 
-      function writeResume() {
+      let resumeId;
+      let userId;
+
+      function saveTempResume(id, resume) {
+        resumeId = resume;
+        userId = id;
+        //이력서 id가 있을 때
+        if (resumeId > 0) {
+          let data = {
+            title: $("#title").val(),
+            content: $("#content").val(),
+            education: $("#education").val(),
+            career: $("#career").val(),
+            skillName1: $("#skillName1").val(),
+            link: $("#link").val(),
+            state: $("#state").val(),
+            userId: id,
+            resumeId: resume
+          }
+          $.ajax({
+            type: "put",
+            url: "/user/resume/update",
+            data: JSON.stringify(data),
+            dataType: "json"
+          }).done((res) => {
+            resumeId = res.data;
+          }).fail((err) => {
+            alert(err.responseJSON.msg);
+          });
+        } else {
+          let data = {
+            resumeId: resume,
+            userId: id
+          }
+          $.ajax({
+            type: "post",
+            url: "/user/resume/write",
+            data: JSON.stringify(data),
+            headers: {
+              "content-type": "application/json; charset=utf-8"
+            },
+            dataType: "json"
+          }).done((res) => {
+            resumeId = res.data;
+            changeResume();
+          }).fail((err) => {
+            alert(err.responseJSON.msg);
+          });
+        }
+      }
+
+      function changeResume() {
+        $('#resume-remove').remove();
+        renderResume();
+      }
+
+      function renderResume() {
+        let el = `
+                      <div class="row p-1" id="resume-remove">
+                  <button id="resume-`+ resumeId + `" onclick="saveTempResume(` + userId + `,` + resumeId + `)" type="button"
+                    class="btn btn-success w-70">임시 저장</button>
+                </div>
+        `;
+
+
+        $('#resume-render').append(el);
+      }
+
+
+      function writeResume(id, resume) {
+        resumeId = resume;
+        userId = id;
         let data = {
           title: $("#title").val(),
           content: $("#content").val(),
@@ -205,21 +269,37 @@
           career: $("#career").val(),
           skillName1: $("#skillName1").val(),
           link: $("#link").val(),
-          state: $("#state").val()
+          state: $("#state").val(),
+          userId: id,
+          resumeId: resume
         };
-
+        if ( resume > 0){
+          $.ajax({
+            type: "put",
+            url: "/user/resume/update",
+            data: JSON.stringify(data),
+            dataType: "json"
+          }).done((res) => {
+            resumeId = res.data;
+          }).fail((err) => {
+            alert(err.responseJSON.msg);
+          });
+        }else{
         $.ajax({
           type: "post",
           url: "/user/resume/write",
           data: JSON.stringify(data),
-          contentType: "application/json; charset=utf-8", // 바디데이터가 뭔지 알려줌
-          dataType: "json" // default : 응답의 mime 타입으로 유추함
-        }).done((res) => { // 20X 일때
+          contentType: "application/json; charset=utf-8", 
+          dataType: "json" 
+        }).done((res) => { 
           alert(res.msg);
           location.href = "/user/resume";
-        }).fail((err) => { // 40X, 50X 일때
+        }).fail((err) => { 
           alert(err.responseJSON.msg);
         });
+        }
+
+
       }
 
     </script>
