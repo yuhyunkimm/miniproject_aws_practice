@@ -9,12 +9,12 @@ values ('ssar3@nate.com', '1234', 'ssar3', '1994-03-17', '010-1234-1234', '/imag
 insert into user_tb (email, password, name, birth, tel, photo, address, created_at) 
 values ('ssar4@nate.com', '1234', 'ssar4', '1994-10-23', '010-1234-1234', '/images/default_profile.png', '경기도', now());
 
-insert into comp_tb (email, password, comp_name, comp_address, representative_name, business_number, tel, photo, employees, establishment_date, homepage, created_at)
-values ('http://www.kakaocorp.com', '1234', '카카오(주)', '제주 제주시 첨단로', '홍은택', '120-81-47521', '1577-3321', '/images/kakao.png', 3600, '1999-01-01', 'www.kakao.com',now());
-insert into comp_tb (email, password, comp_name, comp_address, representative_name, business_number, tel, photo, employees, establishment_date, homepage, created_at)
-values ('http://www.namver.com', '1234', '네이버(주)', '경기도 성남시', '이해진', '451-23-15631', '1577-3321', '/images/kakao.png', 3600, '1999-06-12', 'www.naver.com',now());
-insert into comp_tb (email, password, comp_name, comp_address, representative_name, business_number, tel, photo, employees, establishment_date, homepage, created_at)
-values ('http://samsung.com', '1234', '삼성', '경기도 수원시', '이재용', '111-22-33333', '1577-3321', '/images/kakao.png', 3600, '1999-01-01', 'www.kakao.com',now());
+insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
+values ('kakao@nate.com', '1234', '카카오(주)', '홍은택', '120-81-47521', '/images/kakao.png', 'www.kakao.com',now());
+insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
+values ('naver@nate.com', '1234', '네이버(주)', '이해진', '451-23-15631', '/images/kakao.png', 'www.naver.com',now());
+insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
+values ('samsung@nate.com', '1234', '삼성', '이재용', '111-22-33333', '/images/kakao.png', 'www.kakao.com',now());
 
 insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3) values (1, 'Vue.js', 'Java', 'React');
 insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3) values (2, 'JavaScript', 'Java', 'Oracle');
@@ -30,18 +30,18 @@ insert into required_skill_tb ( jobs_id, skill_name1, skill_name2, skill_name3) 
 insert into required_skill_tb ( jobs_id, skill_name1, skill_name2, skill_name3) values (5, 'HTML/CSS', 'Java', 'React');
 insert into required_skill_tb ( jobs_id, skill_name1, skill_name2, skill_name3) values (6, 'JavaScript', 'Java', 'React');
 
-insert into jobs_tb (title, content, position, career, education, address, scrap_count, end_date, comp_id, homepage, created_at)
-values ('백엔드 개발자 채용1' , '백엔드 개발자 채용하는 상세 내용1', '백엔드 개발자', '신입', '학력무관', '제주', 54,  '2023-03-07', 1, 'www.kakao.com', now());
-insert into jobs_tb (title, content, position, career, education, address, scrap_count, end_date, comp_id, homepage, created_at)
-values ('백엔드 개발자 채용2' , '백엔드 개발자 채용하는 상세 내용2', '프로트엔드 개발자', '1년차 미만', '대졸', '서울', 54, '2023-03-07', 1, 'www.kakao.com', now());
-insert into jobs_tb (title, content, position, career, education, address, scrap_count, end_date, comp_id, homepage, created_at)
-values ('백엔드 개발자 채용3' , '백엔드 개발자 채용하는 상세 내용3', '백엔드 개발자', '1년차', '대학원', '서울', 54, '2023-03-07', 1, 'www.kakao.com', now());
-insert into jobs_tb (title, content, position, career, education, address, scrap_count, end_date, comp_id, homepage, created_at)
-values ('백엔드 개발자 채용4' , '백엔드 개발자 채용하는 상세 내용4', '서버 개발자', '3년차', '학력무관', '제주', 54, '2023-03-07', 1, 'www.kakao.com', now());
-insert into jobs_tb (title, content, position, career, education, address, scrap_count, end_date, comp_id, homepage, created_at)
-values ('백엔드 개발자 채용5' , '백엔드 개발자 채용하는 상세 내용5', '안드로이드 개발자', '신입', '학력무관', '제주', 54, '2023-03-07', 1, 'www.kakao.com', now());
-insert into jobs_tb (title, content, position, career, education, address, scrap_count,  end_date, comp_id, homepage, created_at)
-values ('백엔드 개발자 채용6' , '백엔드 개발자 채용하는 상세 내용6', '안드로이드 개발자', '1년차', '학력무관', '제주', 54, '2023-03-07', 1, 'www.kakao.com', now());
+insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, homepage, receipt, created_at)
+values ('백엔드 개발자 채용1' , '백엔드 개발자 채용하는 상세 내용1', '백엔드 개발자', '신입', '학력무관', '제주',  '2023-03-07', 1, 'www.kakao.com', '홈페이지', now());
+insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, homepage, receipt, created_at)
+values ('백엔드 개발자 채용2' , '백엔드 개발자 채용하는 상세 내용2', '프로트엔드 개발자', '1년차 미만', '대졸', '서울', '2023-03-07', 1, 'www.kakao.com', '홈페이지', now());
+insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, homepage, receipt, created_at)
+values ('백엔드 개발자 채용3' , '백엔드 개발자 채용하는 상세 내용3', '백엔드 개발자', '1년차', '대학원', '서울', '2023-03-07', 1, 'www.kakao.com', '홈페이지', now());
+insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, homepage, receipt, created_at)
+values ('백엔드 개발자 채용4' , '백엔드 개발자 채용하는 상세 내용4', '서버 개발자', '3년차', '학력무관', '제주', '2023-03-07', 1, 'www.kakao.com', '홈페이지', now());
+insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, homepage, receipt, created_at)
+values ('백엔드 개발자 채용5' , '백엔드 개발자 채용하는 상세 내용5', '안드로이드 개발자', '신입', '학력무관', '제주', '2023-03-07', 1, 'www.kakao.com', '홈페이지', now());
+insert into jobs_tb (title, content, position, career, education, address,  end_date, comp_id, homepage, receipt, created_at)
+values ('백엔드 개발자 채용6' , '백엔드 개발자 채용하는 상세 내용6', '안드로이드 개발자', '1년차', '학력무관', '제주', '2023-03-07', 1, 'www.kakao.com', '홈페이지', now());
 
 
 insert into interest_tb (user_id, interest_ct1, interest_ct2, interest_ct3) values(1, '백엔드 개발자', 'Java', 'Spring');

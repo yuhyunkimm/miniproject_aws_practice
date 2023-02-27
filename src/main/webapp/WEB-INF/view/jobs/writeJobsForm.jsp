@@ -112,7 +112,7 @@
                                 <h4>회사정보</h4>
                             </div>
                             <div>
-                                <button type="button" class="btn btn-success mb-2">정보 수정</button>
+                                <button type="button" class="btn btn-success mb-2">회사 정보 수정</button>
                             </div>
                         </div>
                         <div class="row justify-content-between my-border ">
@@ -127,9 +127,7 @@
                                 <div>
                                     대표자명 ㅇㄹㅇㄹ
                                 </div>
-                                <div>
-                                    기업 주소 ㅇㄹㅇㄹ
-                                </div>
+
                             </div>
                             <div class="col-5 mt-3">
                                 <div>

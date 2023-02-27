@@ -1,7 +1,9 @@
 package shop.mtcoding.project.dto.jobs;
 
+import java.sql.Timestamp;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -26,5 +28,53 @@ public class JobsReq {
         private String skill;
         private String position;
         private String career;
+    }
+
+    @Getter
+    @Setter
+    @ToString
+    public static class JobsWriteReqDto{
+        private Integer jobsId; // 임시저장에 필요
+        private Integer compId;
+        private String photo;
+        private String compName;
+        private String representativeName;
+        private String homepage;
+        private String title;
+        private String content;
+        private String education;
+        private String career;
+        private String position;
+        private String skillName1;
+        private String skillName2;
+        private String skillName3;
+        private String address;
+        private Timestamp endDate;
+        private String receipt;
+        private String tel;
+    }
+
+    @Getter
+    @Setter
+    @ToString
+    public static class JobsUpdateReqDto{
+        private Integer jobsId; // 임시저장에 필요
+        private Integer compId;
+        private String photo;
+        private String compName;
+        private String representativeName;
+        private String homepage;
+        private String title;
+        private String content;
+        private String education;
+        private String career;
+        private String position;
+        private String skillName1;
+        private String skillName2;
+        private String skillName3;
+        private String address;
+        private Timestamp endDate;
+        private String receipt;
+        private String tel;
     }
 }

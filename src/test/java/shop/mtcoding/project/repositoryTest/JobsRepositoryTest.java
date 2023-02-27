@@ -1,13 +1,17 @@
 package shop.mtcoding.project.repositoryTest;
 
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsCheckBoxReqDto;
+import shop.mtcoding.project.dto.jobs.JobsReq.JobsUpdateReqDto;
+import shop.mtcoding.project.dto.jobs.JobsReq.JobsWriteReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 import shop.mtcoding.project.model.JobsRepository;
 
@@ -18,6 +22,7 @@ public class JobsRepositoryTest {
     private JobsRepository jobsRepository;
 
     @Test
+    @Transactional
     public void findByCheckBox_test() throws Exception {
         JobsCheckBoxReqDto j = new JobsCheckBoxReqDto();
         j.setCareer("");
@@ -31,8 +36,55 @@ public class JobsRepositoryTest {
         List<JobsSearchRespDto> t = jobsRepository.findByCheckBox(j);
         System.out.println("테스트 : "+ t.size());
     }
+
+    @Test
+    @Transactional
+    public void insert_test() throws Exception {
+        // given
+        JobsWriteReqDto jDto = new JobsWriteReqDto();   
+        jDto.setAddress("123");
+        jDto.setTel("123");
+        jDto.setTitle("123");
+        jDto.setContent("123");
+        jDto.setPhoto("123");
+        jDto.setPosition("123");
+        jDto.setEducation("123");
+        jDto.setEndDate(new Timestamp(System.currentTimeMillis()));
+        jDto.setCareer("123");
+        jDto.setCompId(123);
+        jDto.setHomepage("123");
+        jDto.setReceipt("123");
+       
+        // when
+        System.out.println("테스트 : "+jobsRepository.insert(jDto)); 
+    
+        // then
+    
+    }
+
+    @Test
+    @Transactional
+    public void updateById_test() throws Exception {
+        // given
+        JobsUpdateReqDto jDto = new JobsUpdateReqDto();   
+        jDto.setJobsId(1);
+        jDto.setAddress("123");
+        jDto.setTel("123");
+        jDto.setTitle("123");
+        jDto.setContent("123");
+        jDto.setPhoto("123");
+        jDto.setPosition("123");
+        jDto.setEducation("123");
+        jDto.setEndDate(new Timestamp(System.currentTimeMillis()));
+        jDto.setCareer("123");
+        jDto.setCompId(123);
+        jDto.setHomepage("123");
+        jDto.setReceipt("123");
+       
+        // when
+        System.out.println("테스트 : "+jobsRepository.updateById(jDto)); 
+    
+        // then
+    
+    }
 }
-        // private List<String> address;
-        // private List<String> skill;
-        // private List<String> position;
-        // private String career;

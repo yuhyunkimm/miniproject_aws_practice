@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Param;
 
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsCheckBoxReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsSearchReqDto;
+import shop.mtcoding.project.dto.jobs.JobsReq.JobsUpdateReqDto;
+import shop.mtcoding.project.dto.jobs.JobsReq.JobsWriteReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsDetailRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsMainRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsRequiredSkill;
@@ -22,10 +24,10 @@ public interface JobsRepository {
     public List<JobsSkillRespDto> findAllByJobsAndSkill();
     
     public int insert(
-
+        @Param("jDto") JobsWriteReqDto jDto
     );
     public int updateById(
-
+        @Param("jDto") JobsUpdateReqDto jDto
     );
     public int deleteById(
 

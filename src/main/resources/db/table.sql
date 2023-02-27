@@ -15,13 +15,11 @@ create table comp_tb (
     email varchar unique not null,
     password varchar not null,
     comp_name varchar not null,
-    comp_address varchar not null,
     representative_name varchar not null,
     business_number varchar not null,
-    tel varchar not null,
     photo varchar,
-    employees int,
-    establishment_date varchar,
+    -- employees int,
+    -- establishment_date varchar,
     homepage varchar,
     created_at timestamp
 );
@@ -41,10 +39,10 @@ create table jobs_tb (
     career varchar not null,
     education varchar not null,
     address varchar not null,
-    scrap_count int,
     end_date timestamp,
     comp_id int not null,
     homepage varchar,
+    receipt varchar,
     created_at timestamp
 );
 
