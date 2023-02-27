@@ -35,14 +35,14 @@ create table jobs_tb (
     jobs_id int auto_increment primary key,
     title varchar not null,
     content longtext,
-    position varchar,
+    position varchar not null,
     career varchar not null,
     education varchar not null,
     address varchar not null,
     end_date timestamp,
     comp_id int not null,
-    homepage varchar,
-    receipt varchar,
+    -- homepage varchar,
+    receipt varchar not null,
     created_at timestamp
 );
 

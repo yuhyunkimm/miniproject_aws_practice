@@ -1,5 +1,6 @@
 package shop.mtcoding.project.dto.jobs;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
 

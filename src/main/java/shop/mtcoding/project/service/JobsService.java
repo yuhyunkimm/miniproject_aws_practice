@@ -11,5 +11,8 @@ public class JobsService {
 
     public void 공고검색(JobsSearchReqDto jDto) {
     }
+
+    public static void 공고작성() {
+    }
     
 }

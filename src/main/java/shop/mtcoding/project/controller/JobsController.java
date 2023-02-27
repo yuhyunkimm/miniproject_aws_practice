@@ -23,17 +23,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import shop.mtcoding.project.dto.ResponseDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsCheckBoxReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsSearchReqDto;
+import shop.mtcoding.project.dto.jobs.JobsReq.JobsWriteReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsDetailRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSkillRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsWriteRespDto;
 import shop.mtcoding.project.dto.user.UserResp.UserSkillAndInterestDto;
+import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.CompRepository;
 import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
+import shop.mtcoding.project.service.JobsService;
 import shop.mtcoding.project.util.MockSession;
 
 @Controller
@@ -47,6 +50,9 @@ public class JobsController {
 
     @Autowired
     private CompRepository compRepository;
+
+    @Autowired
+    private JobsService jobsService;
 
     @Autowired
     private HttpSession session;
@@ -98,6 +104,7 @@ public class JobsController {
     return "jobs/updateJobsForm";
     }
 
+    // 나중에 get으로 바꿔보자
     @PostMapping("/jobs/info/search")
     public ResponseEntity<?> searchJobs(@RequestBody JobsCheckBoxReqDto jDto, Model model){
         // System.out.println("테스트 : "+ jDto.toString());
@@ -171,6 +178,41 @@ public class JobsController {
         model.addAttribute("twoMatchDto", twoMatchDto);
         model.addAttribute("oneMatchDto", oneMatchDto); 
         return "jobs/interest";
+    }
+
+    @PostMapping("/jobs/write")
+    public ResponseEntity<?> writeJobs(@RequestBody JobsWriteReqDto jDto){
+        System.out.println("테스트 : "+jDto.toString());
+        if( jDto.getCompId() == null ) {
+            throw new CustomApiException("회사계정이 필요합니다.", HttpStatus.UNAUTHORIZED);
+        }
+        if ( jDto.getCompName() == null || jDto.getCompName().isEmpty() ){
+            throw new CustomApiException("회사명이 필요합니다.");
+        }
+        if ( jDto.getRepresentativeName() == null || jDto.getRepresentativeName().isEmpty() ){
+            throw new CustomApiException("대표자명이 필요합니다.");
+        }    
+        if ( jDto.getTitle() == null || jDto.getTitle().isEmpty() ){
+            throw new CustomApiException("공고 제목이 필요합니다.");
+        }
+        if ( jDto.getEducation() == null || jDto.getEducation().isEmpty() ){
+            throw new CustomApiException("학력정보가 필요합니다.");
+        }
+        if ( jDto.getCareer() == null || jDto.getCareer().isEmpty() ){
+            throw new CustomApiException("경력정보가 필요합니다.");
+        }
+        if ( jDto.getPosition() == null || jDto.getPosition().isEmpty() ){
+            throw new CustomApiException("직무정보가 필요합니다.");
+        }
+        if ( jDto.getAddress() == null || jDto.getAddress() .isEmpty() ){
+            throw new CustomApiException("근무주소가 필요합니다.");
+        }
+        if ( jDto.getReceipt() == null || jDto.getReceipt().isEmpty() ){
+            throw new CustomApiException("접수방법이 필요합니다.");
+        }
+        JobsService.공고작성();
+        
+        return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료", null), HttpStatus.OK);
     }
 }
 // ⬜ 채용정보    "/jobs/info"

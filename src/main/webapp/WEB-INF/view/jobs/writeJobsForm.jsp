@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -103,34 +103,38 @@
                             <h4>회사정보</h4>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-success mb-2">회사 정보 수정</button>
+                            <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" 
+                            data-bs-target="#myModal">회사 정보 수정</button>
                         </div>
                     </div>
                     <div class="row justify-content-between my-border ">
                         <div class="my-border col-3">
-                            <img class="" src="${cDto.photo}" alt="" srcset="" style="">
+                            <img class="" src="${cDto.photo}" alt="" srcset="" style="" id="photo">
                         </div>
 
-                        <div class="col-2 mt-3 ">
-                            <div>
+                        <div class="col-2 mt-3 pt-3">
+                            <div class="mb-2">
                                 회사명
                             </div>
-                            <div>
+                            <div class="mb-2">
                                 대표자명
                             </div>
-                            <div>
+                            <div class="mb-2">
                                 홈페이지
                             </div>
                         </div>
-                        <div class="col-7 mt-3">
-                            <div>
+                        <div class="col-7 mt-3 pt-3">
+                            <div class="mb-2" id="compName">
                                 ${cDto.compName}
+                                <input type="hidden" id="compName1" value="${cDto.compName}">
                             </div>
-                            <div>
+                            <div class="mb-2" id="representativeName">
                                 ${cDto.representativeName}
+                                <input type="hidden" id="representativeName1" value="${cDto.representativeName}">
                             </div>
-                            <div>
+                            <div class="mb-2" id="homepage">
                                 ${cDto.homepage}
+                                <input type="hidden" id="homepage1" value="${cDto.homepage}">
                             </div>
                         </div>
                     </div>
@@ -355,7 +359,7 @@
                 <div class="view-fix d-grid view-right2 p-4" id="jobs-remove">
                     <!-- 뷰포트 -->
                     <div class="align-self-end">
-                        <button type="button" class="btn btn-success w-100" onclick="test()">미리보기</button>
+                        <button type="button" class="btn btn-success w-100" onclick="">미리보기</button>
                     </div>
                     <div class="align-self-end">
                         <button type="button" class="btn btn-success w-100"
@@ -369,11 +373,39 @@
             </div>
         </div>
     </div>
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <!-- modal-sm modal-lg modal-xl 모달 사이즈 -->
+            <!-- modal-dialog-centered 화면 가운데 -->
+            <!-- modal-dialog-scrollable 스크롤 기능 -->
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">회사 정보 수정</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input id="update-compName" placeholder="회사명" class="form-control" value="${cDto.compName}" > <br>
+                        <input id="update-representativeName" placeholder="대표자명" class="form-control" value="${cDto.representativeName}"> <br>
+                        <input id="update-homepage" placeholder="홈페이지" class="form-control" value="${cDto.homepage}"><br>
+                        <button type="button" class="btn btn-success mt-2" style="float: right;" onclick="updateComp()"  data-bs-dismiss="modal">수정 완료</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         $('.summernote').summernote({
             tabsize: 2,
             height: 400
         });
+
+        function updateComp(){
+            $('#compName').text($('#update-compName').val());
+            $('#representativeName').text($('#update-representativeName').val());
+            $('#homepage').text($('#update-homepage').val());
+        }
 
         $('input:checkbox[name=skill]').click(function () {
             let count = $('input:checkbox[name=skill]:checked').length;
@@ -408,12 +440,16 @@
         });
 
         let jobsId;
-        let userId;
+        let compId;
         function saveTemp(id, jobs) {
             resumeId = jobs;
-            userId = id;
+            compId = id;
 
             let data = {
+                photo: $("#photo").attr('src'),
+                compName: $('#update-compName').val(),
+                representativeName: $('#update-representativeName').val(),
+                homepage: $('#update-homepage').val(),
                 title: $("#title").val(),
                 content: $("#content").val(),
                 education: $("#education").val(),
@@ -423,14 +459,14 @@
                 endDate: $("#endDate").val(),
                 receipt: $("#receipt").val(),
                 skill: skillValues,
-                userId: id,
+                compId: id,
                 jobsId: jobs
             };
 
             if (resumeId > 0) {
                 $.ajax({
                     type: "put",
-                    url: "/user/jobs/update",
+                    url: "/jobs/update",
                     data: JSON.stringify(data),
                     headers: {
                         "content-type": "application/json; charset=utf-8"
@@ -444,7 +480,7 @@
             } else {
                 $.ajax({
                     type: "post",
-                    url: "/user/jobs/write",
+                    url: "/jobs/write",
                     data: JSON.stringify(data),
                     headers: {
                         "content-type": "application/json; charset=utf-8"
@@ -471,10 +507,10 @@
                             <button type="button" class="btn btn-success w-100" onclick="test()" >미리보기</button>
                         </div>
                         <div class="align-self-end">
-                            <button type="button" class="btn btn-success w-100" onclick="saveTemp(`+ userId + `,` + jobsId + `)">임시저장</button>
+                            <button type="button" class="btn btn-success w-100" onclick="saveTemp(`+ compId + `,` + jobsId + `)">임시저장</button>
                         </div>
                         <div class="align-self-end">
-                            <button type="button" class="btn btn-success w-100" onclick="saveJobs(`+ userId + `,` + jobsId + `)">공고등록</button>
+                            <button type="button" class="btn btn-success w-100" onclick="saveJobs(`+ compId + `,` + jobsId + `)">공고등록</button>
                         </div>
                     </div>
         `;
@@ -483,9 +519,13 @@
 
         function saveJobs(id, jobs) {
             jobsId = jobs;
-            userId = id;
+            compId = id;
 
             let data = {
+                photo: $("#photo").attr('src'),
+                compName: $('#update-compName').val(),
+                representativeName: $('#update-representativeName').val(),
+                homepage: $('#update-homepage').val(),
                 title: $("#title").val(),
                 content: $("#content").val(),
                 education: $("#education").val(),
@@ -495,14 +535,14 @@
                 endDate: $("#endDate").val(),
                 receipt: $("#receipt").val(),
                 skill: skillValues,
-                userId: id,
+                compId: id,
                 jobsId: jobs
             };
 
-            if (resume > 0) {
+            if (jobsId > 0) {
                 $.ajax({
                     type: "put",
-                    url: "/user/jobs/update",
+                    url: "/jobs/update",
                     data: JSON.stringify(data),
                     headers: {
                         "content-type": "application/json; charset=utf-8"
@@ -516,7 +556,7 @@
             } else {
                 $.ajax({
                     type: "post",
-                    url: "/user/jobs/write",
+                    url: "/jobs/write",
                     data: JSON.stringify(data),
                     headers: {
                         "content-type": "application/json; charset=utf-8"
