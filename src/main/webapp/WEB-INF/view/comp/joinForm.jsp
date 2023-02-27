@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <form action="/" method="post">
+            <form action="/comp/join" method="post">
                 <div class="d-flex form-group mb-2">
                     <input type="email" name="email" class="form-control" placeholder="Enter email" id="email">
                 </div>
@@ -61,60 +61,8 @@
                         id="compAddress">
                 </div>
 
-                <!-- <div class="form-group mb-2">
-                    <input type="text" name="representativeName" class="form-control" placeholder="Enter representativeName" id="representativeName">
-                </div> -->
-
                 <div class="form-group mb-2">
                     <input type="text" name="homePage" class="form-control" placeholder="Enter homePage" id="homePage">
-                </div>
-
-                <div class="form-group mb-2">
-                    <select autofocus name="representativeName">
-                        <option value="">필요 기술 (선택1)</option>
-                        <option value="">Java</option>
-                        <option value="">JavaScript</option>
-                        <option value="">Spring</option>
-                        <option value="">HTML/CSS</option>
-                        <option value="">jQuery</option>
-                        <option value="">JSP</option>
-                        <option value="">Vue.js</option>
-                        <option value="">Oracle</option>
-                        <option value="">MySQL</option>
-                        <option value="">React</option>
-                    </select>
-                    <select autofocus name="representativeName">
-                        <option value="">필요 기술 (선택2)</option>
-                        <option value="">Java</option>
-                        <option value="">JavaScript</option>
-                        <option value="">Spring</option>
-                        <option value="">HTML/CSS</option>
-                        <option value="">jQuery</option>
-                        <option value="">JSP</option>
-                        <option value="">Vue.js</option>
-                        <option value="">Oracle</option>
-                        <option value="">MySQL</option>
-                        <option value="">React</option>
-                    </select>
-                    <select autofocus name="representativeName">
-                        <option value="">필요 기술 (선택3)</option>
-                        <option value="">Java</option>
-                        <option value="">JavaScript</option>
-                        <option value="">Spring</option>
-                        <option value="">HTML/CSS</option>
-                        <option value="">jQuery</option>
-                        <option value="">JSP</option>
-                        <option value="">Vue.js</option>
-                        <option value="">Oracle</option>
-                        <option value="">MySQL</option>
-                        <option value="">React</option>
-                    </select>
-                </div>
-
-
-
-                <div class="d-grid gap-2 mb-4">
-                    <input id="button" class=" btn btn-primary" type="submit" value="가입완료" onclick="submitForm()">
                 </div>
 
                 <div class="form-check">
@@ -123,19 +71,32 @@
                         (필수) 이용약관 동의
                     </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check mb-4">
                     <input class="form-check-input" type="checkbox" id="flexCheckChecked2">
                     <label class="form-check-label" for="flexCheckChecked">
                         (필수) 개인정보 수집 및 이용 동의
                     </label>
                 </div>
 
+                <div class="d-grid gap-2 mb-4">
+                    <input id="button" class=" btn btn-primary" type="submit" value="가입완료" onclick="submitForm()">
+                </div>
+
+
             </form>
         </div>
     </div>
     </div>
     <script>
-
+        // 회원가입 버튼 클릭 이벤트
+        function submitForm() {
+            let agreeCheckbox1 = document.getElementById("flexCheckChecked1");
+            let agreeCheckbox2 = document.getElementById("flexCheckChecked2");
+            if (!agreeCheckbox1.checked || !agreeCheckbox2.checked) {
+                alert("약관에 동의해주세요.");
+                return;
+            }
+        }
     </script>
 
 </body>
