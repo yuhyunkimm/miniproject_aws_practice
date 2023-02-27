@@ -33,7 +33,8 @@ public class ResumeController {
     private HttpSession session;
 
     @GetMapping("/user/resume") // 이력서관리
-    public String resume() {
+    public String resume(Model model) {
+        model.addAttribute("rDtos", resumeRepository.findAllWithUser());
         return "resume/manageResume";
     }
 
