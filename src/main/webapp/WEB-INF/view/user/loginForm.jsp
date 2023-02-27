@@ -50,14 +50,14 @@
                             </span>
                         </div>
 
-                        <div class="d-flex justify-content">
+                        <!-- <div class="d-flex justify-content">
                             <div>
                                 <a href="/" class="emailSearch" id="emailSearch">이메일 찾기</a>
                             </div>
                             <div>
                                 <a href="/" class="pwSearch" id="pwSearch">비밀번호 찾기</a>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="d-grid gap-2 mb-2">
                             <input id="button" class=" btn btn-primary" type="submit" value="로그인"
