@@ -77,9 +77,9 @@ public class CompController {
 
     @GetMapping("/comp/talent")
     public String talent(Model model) {
-        MockSession.mockComp(session);
+        // MockSession.mockComp(session);
         
-        Comp principal = (Comp) session.getAttribute("principal");
+        Comp principal = (Comp) session.getAttribute("compSession");
             List<JobsRequiredSkill> rSkill = jobsrRepository.findByJobsRequiredSkill(principal.getCompId());
             Set<String> set = new HashSet<>();
             for (JobsRequiredSkill skills : rSkill) {

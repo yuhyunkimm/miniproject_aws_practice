@@ -70,8 +70,7 @@
                         </div>
 
                         <button style="float: right;" type="button" class="btn btn-success mb-4"
-                            onclick="location.href='/user/resume/write'">이력서
-                            작성</button>
+                            onclick="location.href='/jobs/write'">공고 작성</button>
                     </div>
                 </div>
             </div>

@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>Blog</title>
     <meta charset="utf-8">
@@ -25,19 +24,45 @@
                 <a class="navbar-brand" href="/"><i class="fa-brands fa-github-square" style="font-size: 2em;"></i></a>
             </div>
 
-            <div class="collapse navbar-collapse ms-5" id="collapsibleNavbar">
-                <ul class="navbar-nav">
-                    <li class="nav-item mx-3 fs-5">
-                        <a class="nav-link text-dark" href="/jobs/info">채용정보</a>
-                    </li>
-                    <li class="nav-item mx-3 fs-5">
-                        <a class="nav-link text-dark" href="/user/resume">이력서</a>
-                    </li>
-                    <li class="nav-item mx-3 fs-5">
-                        <a class="nav-link text-dark" href="/user/interest">관심기업</a>
-                    </li>
-                </ul>
-            </div>
+                <c:choose>
+                   <c:when test="${compSession == null}">
+                   <div class="collapse navbar-collapse ms-5" id="collapsibleNavbar">
+                        <ul class="navbar-nav">
+                            <li class="nav-item mx-3 fs-5">
+                                <a class="nav-link text-dark" href="/jobs/info">채용정보</a>
+                            </li>
+                            <li class="nav-item mx-3 fs-5">
+                                <a class="nav-link text-dark" href="/user/resume">이력서</a>
+                            </li>
+
+                            <li class="nav-item mx-3 fs-5">
+                                <a class="nav-link text-dark" href="/jobs/interest">관심기업</a>
+                            </li>
+                        </ul>
+                    </div>
+                   </c:when>
+                
+                   <c:otherwise>
+                   <div class="collapse navbar-collapse ms-5" id="collapsibleNavbar">
+                        <ul class="navbar-nav">
+                            <li class="nav-item mx-3 fs-5">
+                                <a class="nav-link text-dark" href="/jobs/info">채용정보</a>
+                            </li>
+                            <li class="nav-item mx-3 fs-5">
+                                <a class="nav-link text-dark" href="/comp/resume/read">공개이력서 열람</a>
+                            </li>
+                            <li class="nav-item mx-3 fs-5">
+                                <a class="nav-link text-dark" href="/comp/talent">인재추천</a>
+                            </li>
+                        </ul>
+                    </div>
+            
+                   </c:otherwise>
+                </c:choose>
+                    
+              
+                
+                    
 
             <div class="d-flex">
                 <c:choose>
@@ -60,7 +85,7 @@
                             </a>
                         </div>
                         <div class="my-auto pb-1">
-                            <a href="/comp/comphome" ><span class="badge bg-success">기업서비스</span>
+                            <a href="/comp/comphome"><span class="badge bg-success">기업서비스</span>
                             </a>
                         </div>
                     </c:when>
