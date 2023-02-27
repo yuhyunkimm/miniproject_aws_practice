@@ -6,12 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
 import shop.mtcoding.project.model.ResumeRepository;
+import shop.mtcoding.project.model.UserSkillRepository;
 
 @MybatisTest
 public class ResumeRepositoryTest {
-    
+
     @Autowired
     private ResumeRepository resumeRepository;
+
+    @Autowired
+    private UserSkillRepository userSkillRepository;
 
     @Test
     public void insert_test() throws Exception {
@@ -24,11 +28,27 @@ public class ResumeRepositoryTest {
         resumeWriteReqDto.setCareer("신입");
         resumeWriteReqDto.setLink("블로그 주소");
         resumeWriteReqDto.setState(1);
-    
+
         // when
-        System.out.println("테스트 : "+resumeRepository.insert(resumeWriteReqDto));
-    
+        System.out.println("테스트 : " + resumeRepository.insert(resumeWriteReqDto));
+
         // then
-    
+
+    }
+
+    @Test
+    public void insert2_test() throws Exception {
+        // given
+        ResumeWriteReqDto resumeWriteReqDto = new ResumeWriteReqDto();
+        resumeWriteReqDto.setSkillName1("sdfdf");
+        resumeWriteReqDto.setSkillName2("sdfdf");
+        resumeWriteReqDto.setSkillName3("sdfdf");
+        resumeWriteReqDto.setUserId(1);
+
+        // when
+        int result2 = userSkillRepository.insert(resumeWriteReqDto);
+
+        // then
+        System.out.println(result2);
     }
 }

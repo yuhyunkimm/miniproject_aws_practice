@@ -18,20 +18,30 @@
         where r.state = 1
     </select>
 
-    <!-- <select id="findById" resultType="shop.mtcoding.project.model.User">
-
-    </select> -->
+     <select id="findById" resultType="shop.mtcoding.project.model.User">
+        select * from resume_tb id = #{rDto.id}
+    </select>
 
     <insert id="insert" useGeneratedKeys="true"  keyProperty="rDto.resumeId">
         insert into resume_tb ( user_id, title, content, education, career, link, state, created_at )
         values ( #{rDto.userId}, #{rDto.title}, #{rDto.content}, #{rDto.education}, #{rDto.career}, #{rDto.link}, #{rDto.state}, now())
-    </insert>    
+    </insert>  
 
-    <!-- <update id="updateById">
+   
+    <update id="updateById">
+        update resume_tb set 
+            title =  #{rDto.title}, 
+            content = #{rDto.content}, 
+            education = #{rDto.education},
+            career =  #{rDto.career},
+            link = #{rDto.link}, 
+            state = #{rDto.state}, 
+            created_at = #{rDto.createdAt}, 
+            where id = #{rDto.id}
+    </update>
 
-    </update> -->
-
-    <!-- <delete id="deleteById">
-
-    </delete> -->
+    <delete id="deleteById">
+        delete from resume_tb where id = #{rDto.id}
+    </delete>
+    
 </mapper>

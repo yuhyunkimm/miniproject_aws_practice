@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../layout/header.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <%@ include file="../layout/header.jsp" %>
 
 <div class="mx-auto width-53">
     <div class="container mt-5 mb-5">
@@ -14,11 +14,11 @@
                         <h6 class="card-subtitle text-muted mb-3">사진</h6>
                         <h6 class="card-subtitle text-muted">이름</h6>
                         <hr>
-                        <h6 class="card-subtitle mb-1 text-muted"><a href="#">이력서</a></h6><br>
-                        <h6 class="card-subtitle mb-1 text-muted"><a href="#">지원 / 제안</a></h6><br>
-                        <h6 class="card-subtitle mb-1 text-muted"><a href="#">스크랩</a></h6>
+                        <h6 class="card-subtitle mb-1 text-muted"><a href="/user/resume">이력서</a></h6><br>
+                        <h6 class="card-subtitle mb-1 text-muted"><a href="/user/offer">지원/제안</a></h6><br>
+                        <h6 class="card-subtitle mb-1 text-muted"><a href="/user/scrap">스크랩</a></h6>
                         <hr>
-                        <h6 class="card-subtitle mb-1 text-muted"><a href="#">정보수정</a></h6><br>
+                        <h6 class="card-subtitle mb-1 text-muted"><a href="/user/update">정보수정</a></h6><br>
                         <h6 class="card-subtitle mb-1 text-muted"><a href="#">로그아웃</a></h6>
                     </div>
                 </div>
@@ -79,5 +79,4 @@
     </div>
 </div>
 </div>
-
-<%@ include file="../layout/footer.jsp" %>  
+<%@ include file="../layout/footer.jsp" %>
