@@ -68,11 +68,19 @@
                 <div class="card-header">보유 기술</div>
                 <div class="card-body">
                   <div class="form-group">
-                        <div class="form-check text-center">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="skillName1" value="skillName1">자바
-                            </label>
-                        </div>
+                    <select class="form-select" name="skillName1" id="skillName1">
+                      <option selected disabled>보유 기술을 선택해주세요</option>
+                      <option value="Java">Java</option>
+                      <option value="JavaScript">JavaScript</option>
+                      <option value="Spring">Spring</option>
+                      <option value="HTML/CSS">HTML/CSS</option>
+                      <option value="jQuery">jQuery</option>
+                      <option value="JSP">JSP</option>
+                      <option value="Vue.js">Vue.js</option>
+                      <option value="Oracle">Oracle</option>
+                      <option value="MySQL">MySQL</option>
+                      <option value="React">React</option>
+                    </select>
                     <select class="form-select" name="skillName2" id="skillName2">
                       <option selected disabled>보유 기술을 선택해주세요</option>
                       <option value="Java">Java</option>
@@ -162,11 +170,14 @@
                 <div class="row p-1">
                   <button type="button" class="btn btn-success w-70">미리보기</button>
                 </div>
-                <div class="row p-1">
-                  <button type="button" class="btn btn-success w-70">임시 저장</button>
+                <div id="resume-render">
+                <div class="row p-1" id="resume-remove">
+                  <button id="resume-${rDto.resumeId}" onclick="saveTempResume(`${principal.userId}`,`${rDto.resumeId}`)" type="button"
+                    class="btn btn-success w-70">임시 저장</button>
+                </div>
                 </div>
                 <div class="row p-1">
-                  <button onclick="writeResume()" type="button" class="btn btn-success w-70">이력서 저장</button>
+                  <button onclick="writeResume(`${principal.userId}`,`${rDto.resumeId}`)" type="button" class="btn btn-success w-70">이력서 저장</button>
                 </div>
               </div>
             </div>
@@ -177,7 +188,73 @@
 
     <script>
 
-      function writeResume() {
+      let resumeId;
+      let userId;
+
+      function saveTempResume(id,resume) {
+        resumeId = resume;
+        userId=id;
+        //이력서 id가 있을 때
+        if (resumeId > 0) {
+          let data = {
+            resumeId: resume,
+            userId: id 
+          }
+          resumeId = resume;
+          $.ajax({
+            type: "put",
+            url: "/user/resume/update",
+            data: JSON.stringify(data),
+            dataType: "json"
+          }).done((res) => {
+            resumeId = res.data;
+            
+          }).fail((err) => {
+            alert(err.responseJSON.msg);
+          });
+        } else {
+          let data = {
+            resumeId: resume,
+            userId: id 
+          }
+          $.ajax({
+            type: "post",
+            url: "/user/resume/write",
+            data: JSON.stringify(data),
+            headers: {
+              "content-type": "application/json; charset=utf-8"
+            },
+            dataType: "json"
+          }).done((res) => {
+            resumeId = res.data;
+            changeResume();
+          }).fail((err) => {
+            alert(err.responseJSON.msg);
+          });
+        }
+      }
+
+      function changeResume(){
+        $('#resume-remove').remove();
+        renderResume();
+      }
+
+      function renderResume(){
+        let el=`
+                      <div class="row p-1" id="resume-remove">
+                  <button id="resume-`+resumeId+`" onclick="saveTempResume(`+userId+`,`+resumeId+`)" type="button"
+                    class="btn btn-success w-70">임시 저장</button>
+                </div>
+        `;
+
+
+        $('#resume-render').append(el);
+    }
+      
+
+      function writeResume(id,resume) {
+        resumeId = resume;
+        userId=id;
         let data = {
           title: $("#title").val(),
           content: $("#content").val(),
@@ -185,9 +262,10 @@
           career: $("#career").val(),
           skillName1: $("#skillName1").val(),
           link: $("#link").val(),
-          state: $("#state").val()
+          state: $("#state").val(),
+          userId: id,
+          resumeId: resume
         };
-
         $.ajax({
           type: "post",
           url: "/user/resume/write",

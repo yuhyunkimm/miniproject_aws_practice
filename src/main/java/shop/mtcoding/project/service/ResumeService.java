@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import shop.mtcoding.project.dto.resume.ResumeReq.ResumeSaveTempReqDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserSkillReqDto;
 import shop.mtcoding.project.exception.CustomApiException;
@@ -22,7 +23,7 @@ public class ResumeService {
 
     @Transactional
     public void 이력서쓰기(ResumeWriteReqDto resumeWriteReqDto, Integer userId) {
-
+        // userId 비교
         int result = resumeRepository.insert(resumeWriteReqDto);
         if (result != 1) {
             throw new CustomApiException("이력서 작성 실패", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -32,5 +33,14 @@ public class ResumeService {
         if (result2 != 1) {
             throw new CustomApiException("이력서 작성 실패", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    public void 이력서임시저장(ResumeWriteReqDto resumeWriteReqDto, Integer userId) {
+        int result = resumeRepository.insert(resumeWriteReqDto);
+
+        if (result != 1) {
+            throw new CustomApiException("이력서 임시저장 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 }
