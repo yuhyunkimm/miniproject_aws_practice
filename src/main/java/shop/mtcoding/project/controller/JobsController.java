@@ -182,7 +182,8 @@ public class JobsController {
 
     @PostMapping("/jobs/write")
     public ResponseEntity<?> writeJobs(@RequestBody JobsWriteReqDto jDto){
-        System.out.println("테스트 : "+jDto.toString());
+        // System.out.println("테스트 : "+jDto.toString());
+        Comp compSession = (Comp)session.getAttribute("compSession");
         if( jDto.getCompId() == null ) {
             throw new CustomApiException("회사계정이 필요합니다.", HttpStatus.UNAUTHORIZED);
         }
@@ -210,9 +211,8 @@ public class JobsController {
         if ( jDto.getReceipt() == null || jDto.getReceipt().isEmpty() ){
             throw new CustomApiException("접수방법이 필요합니다.");
         }
-        JobsService.공고작성();
-        
-        return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료", null), HttpStatus.OK);
+        Integer jobdId = jobsService.공고작성(jDto, compSession.getCompId());
+        return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료", jobdId), HttpStatus.OK);
     }
 }
 // ⬜ 채용정보    "/jobs/info"

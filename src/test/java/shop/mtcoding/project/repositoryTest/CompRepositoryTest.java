@@ -5,7 +5,7 @@ import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import shop.mtcoding.project.dto.jobs.JobsReq.JobsUpdateReqDto;
+import shop.mtcoding.project.dto.jobs.JobsReq.JobsWriteReqDto;
 import shop.mtcoding.project.model.CompRepository;
 
 @MybatisTest
@@ -18,7 +18,7 @@ public class CompRepositoryTest {
     @Transactional
     public void updateById_test() throws Exception {
         // given
-        JobsUpdateReqDto jDto = new JobsUpdateReqDto();
+        JobsWriteReqDto jDto = new JobsWriteReqDto();
         jDto.setCompId(1);
         jDto.setCompName("1234");
         jDto.setRepresentativeName("1234");

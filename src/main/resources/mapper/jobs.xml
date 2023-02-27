@@ -114,7 +114,7 @@
                           address = #{jDto.address}, 
                           end_date = #{jDto.endDate}, 
                           comp_id = #{jDto.compId}, 
-                          homepage = #{jDto.homepage}, 
+                          <!-- homepage = #{jDto.homepage},  -->
                           receipt = #{jDto.receipt}, 
                           created_at = now() 
     </insert>
@@ -128,7 +128,7 @@
                          address = #{jDto.address}, 
                          end_date = #{jDto.endDate}, 
                          comp_id = #{jDto.compId}, 
-                         homepage = #{jDto.homepage}, 
+                         <!-- homepage = #{jDto.homepage},  -->
                          receipt = #{jDto.receipt}, 
                          created_at = now()
       where jobs_id = #{jDto.jobsId}

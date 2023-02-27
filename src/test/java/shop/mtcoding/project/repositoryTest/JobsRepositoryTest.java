@@ -51,7 +51,7 @@ public class JobsRepositoryTest {
         jDto.setEndDate(new Timestamp(System.currentTimeMillis()));
         jDto.setCareer("123");
         jDto.setCompId(123);
-        jDto.setHomepage("123");
+        // jDto.setHomepage("123");
         jDto.setReceipt("123");
        
         // when
@@ -76,7 +76,7 @@ public class JobsRepositoryTest {
         jDto.setEndDate(new Timestamp(System.currentTimeMillis()));
         jDto.setCareer("123");
         jDto.setCompId(123);
-        jDto.setHomepage("123");
+        // jDto.setHomepage("123");
         jDto.setReceipt("123");
        
         // when

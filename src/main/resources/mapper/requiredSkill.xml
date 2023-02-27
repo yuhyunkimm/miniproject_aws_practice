@@ -14,13 +14,19 @@
 
     <insert id="insert">
       insert into required_skill_tb (jobs_id, skill_name1, skill_name2, skill_name3) 
-        values (#{rDto.jobsId}, #{rDto.skillName1}, #{rDto.skillName2}, #{rDto.skillName3})
+        values (#{rDto.jobsId}, 
+        <if test="rDto.skill != null and rDto.skill.size() > 0">
+          <foreach collection="rDto.skill" item="skill" separator=",">
+            #{skill} 
+          </foreach>
+        </if>
+        )
     </insert >
     <update id="updateById">
-      update required_skill_tb set jobs_id = #{rDto.jobsId}, 
-                                   skill_name1 = #{rDto.skillName1}, 
-                                   skill_name2 = #{rDto.skillName2}, 
-                                   skill_name3 = #{rDto.skillName3}
+      update required_skill_tb set jobs_id = #{rDto.jobsId},
+                                   skill_name1 = #{rDto.skill[0]}, 
+                                   skill_name2 = #{rDto.skill[1]}, 
+                                   skill_name3 = #{rDto.skill[2]}
       where jobs_id = #{rDto.jobsId}
     </update>
 

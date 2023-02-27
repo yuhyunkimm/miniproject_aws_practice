@@ -1,10 +1,8 @@
 package shop.mtcoding.project.dto.jobs;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
