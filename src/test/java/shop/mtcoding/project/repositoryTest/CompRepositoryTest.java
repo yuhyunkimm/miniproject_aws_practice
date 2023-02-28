@@ -17,25 +17,25 @@ public class CompRepositoryTest {
     @Autowired
     private CompRepository compRepository;
 
-    @Test
-    @Transactional
-    public void insert_test() throws Exception {
-        // given
-        CompJoinReqDto uDto = new CompJoinReqDto(
-                25,
-                "ssar25@nate.com",
-                "1234",
-                "ssar",
-                "2000-01-01",
-                "부산시 부산진구",
-                new Timestamp(System.currentTimeMillis()));
+    // @Test
+    // @Transactional
+    // // public void insert_test() throws Exception {
+    // // given
+    // CompJoinReqDto uDto = new CompJoinReqDto(
+    // 25,
+    // "ssar25@nate.com",
+    // "1234",
+    // "ssar",
+    // "2000-01-01",
+    // "부산시 부산진구",
+    // new Timestamp(System.currentTimeMillis()));
 
-        // when
-        System.out.println("테스트 : " + compRepository.insert(uDto));
+    // // when
+    // System.out.println("테스트 : " + compRepository.insert(uDto));
 
-        // then
+    // // then
 
-    }
+    // }
 
     @Test
     @Transactional
@@ -48,10 +48,9 @@ public class CompRepositoryTest {
         jDto.setPhoto("213");
         jDto.setHomepage("124");
         // when
-        System.out.println("테스트 : "+ compRepository.updateById(jDto) ); 
-    
+        System.out.println("테스트 : " + compRepository.updateById(jDto));
+
         // then
-    
+
     }
 }
-

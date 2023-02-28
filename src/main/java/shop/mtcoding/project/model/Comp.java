@@ -2,11 +2,9 @@ package shop.mtcoding.project.model;
 
 import java.sql.Timestamp;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@AllArgsConstructor
 @Getter
 @Setter
 public class Comp {
@@ -20,6 +18,6 @@ public class Comp {
     private String photo;
     private Integer employees;
     private String establishmentDate;
-    private String homePage;
+    private String homepage;
     private Timestamp createdAt;
 }

@@ -24,16 +24,17 @@
         <div class="container w-50 border border-3 p-3 mt-5" style="width: 300px;">
             <div class="card-header d-flex justify-content-around my-4">
                 <div class="fs-4">
-                    <a href="/comp/login">로그인</a>
+                    <a href="/comp/login">기업 로그인</a>
                 </div>
                 <div class="fs-4">
-                    <a href="/comp/join">회원가입</a>
+                    <a href="/comp/join">기업 회원가입</a>
                 </div>
             </div>
 
-            <form action="/user/join" method="post">
-                <div class="d-flex form-group mb-2">
-                    <input type="email" name="email" class="form-control" placeholder="Enter email" id="email">
+            <form action="/comp/login" method="post">
+               <div class="d-flex form-group mb-2">
+                    <input type="email" name="email" class="form-control" placeholder="Enter email" id="email"
+                    value="${cookie.rememberEmail.value}">
                 </div>
 
                 <div class="form-group mb-2">
@@ -41,50 +42,43 @@
                         id="password">
                 </div>
 
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
+                <div class="box mb-2">
+                    <span class="input-wrap mb-2">
+                        <input type="checkbox" id="rememberEmail" name="rememberEmail">
                         이메일을 기억 하시겠습니까?
-                    </label>
+                    </span>
                 </div>
 
-                <div class="d-grid gap-2 mb-4">
-                    <input id="button" class=" btn btn-primary" type="submit" value="로그인" onclick="submitForm()">
-                </div>
-
-                <div class="d-flex form-group mb-2">
-                    <a href="/">계정을 잊으셨나요?</a>
-                </div>
-                <hr>
-
-                <div class="d-grid gap-2 mb-4">
-                    <a href="/"></a>
-                </div>
-
-                <!-- <div class="card-header d-flex justify-content-around">
-                    <div class="fs-4">
-                        <a href="/">이용 약관</a>
+                <!-- <div class="d-flex justify-content">
+                    <div>
+                        <a href="/" class="emailSearch" id="emailSearch">이메일 찾기</a>
                     </div>
-                    <div class="fs-4">
-                        <a href="/">개인정보처리방법</a>
+                    <div>
+                        <a href="/" class="pwSearch" id="pwSearch">비밀번호 찾기</a>
                     </div>
                 </div> -->
 
-                <div class="card-header d-flex justify-content-around">
-                    <a href="/">이용 약관</a>
-                    <a href="/">개인정보처리방법</a>
+                <div class="d-grid gap-2 mb-2">
+                    <input id="button" class=" btn btn-primary" type="submit" value="로그인"
+                        onclick="submitForm()">
                 </div>
 
-
-
-            </form>
+                <hr>
+                <div class="d-flex justify-content-around ">
+                    <div>
+                        <a href="/" class="emailSearch" id="emailSearch">이용 약관</a>
+                    </div>
+                    <div>
+                        <a href="/" class="pwSearch" id="pwSearch">개인정보 처리방법</a>
+                    </div>
+                </div>
+                </form>
+            </div>
         </div>
     </div>
-    </div>
-    <script>
-      
-    </script>
 
-</body>
+        <script>
 
+        </script>
+    </body>
 </html>

@@ -64,7 +64,7 @@ public class MainController {
 
     @GetMapping("/")
     public String main(Model model) {
-        MockSession.mockUser(session);
+        // MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal != null) {
             UserSkillRespDto userSkillPS = userRepository.findByUserSkill(principal.getUserId());
