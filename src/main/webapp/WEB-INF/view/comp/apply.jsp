@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ include file="../layout/header.jsp" %>
-        <div class="mx-auto width-53">
+        <div class="mx-auto width-53 top-80">
             <div class="container mt-5 mb-5">
                 <div class="mb-3">
                     <h5>지원자 현황 페이지임 수정할거임</h5>
@@ -18,7 +18,7 @@
                                 <h6 class="card-subtitle mb-1 text-muted"><a href="/comp/resume/scrap">이력서 스크랩</a></h6>
                                 <hr>
                                 <h6 class="card-subtitle mb-1 text-muted"><a href="/comp/update">정보수정</a></h6><br>
-                                <h6 class="card-subtitle mb-1 text-muted"><a href="#">로그아웃</a></h6>
+                                <h6 class="card-subtitle mb-1 text-muted"><a href="/logout">로그아웃</a></h6>
                             </div>
                         </div>
                     </div>

@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="shop.mtcoding.project.model.RequiredSkillRepository">
-    <!-- <select id="findAll" resultType="shop.mtcoding.project.model.RequiredSkill">
+    <select id="findAll" resultType="shop.mtcoding.project.model.RequiredSkill">
         select * from required_skill_tb
     </select>
 
@@ -13,14 +13,20 @@
     </select>
 
     <insert id="insert">
+      insert into required_skill_tb (jobs_id, skill_name1, skill_name2, skill_name3) 
+        values (#{rDto.jobsId}, #{rDto.skill[0]}, #{rDto.skill[1]}, #{rDto.skill[2]})
+    </insert >
 
-    </insert>
-
+    
     <update id="updateById">
+      update required_skill_tb set skill_name1 = #{rDto.skill[0]}, 
+                                   skill_name2 = #{rDto.skill[1]},
+                                   skill_name3 = #{rDto.skill[2]}
+      where jobs_id = #{rDto.jobsId}
 
     </update>
 
     <delete id="deleteById">
 
-    </delete> -->
+    </delete>
 </mapper>

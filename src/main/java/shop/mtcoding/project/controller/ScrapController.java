@@ -30,7 +30,6 @@ public class ScrapController {
     @PostMapping("/user/scrap/insert")
     public ResponseEntity<?> insertScrap(@RequestBody UserInsertScrapReqDto sDto) {
         MockSession.mockUser(session);
-        System.out.println("테스트 : 스크랩추가요청 " + sDto.getUserScrapId());
         if (sDto.getJobsId() == null) {
             throw new CustomApiException("공고 번호가 필요합니다.");
         }

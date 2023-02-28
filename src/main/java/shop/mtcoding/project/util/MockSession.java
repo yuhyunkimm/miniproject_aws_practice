@@ -11,19 +11,18 @@ public class MockSession {
 
     public static void mockComp(HttpSession session) {
         Comp mockcomp = new Comp(
-                1,
-                "kakao@kakao.com",
-                "1234",
-                "카카오(주)",
-                "제주 제주시 첨단로",
-                "홍은택",
-                "120-81-47521",
-                "1577-3321",
-                "/images/kakao.png",
-                3600,
-                "1995-02-16",
-                "http://www.kakaocorp.com",
-                new Timestamp(System.currentTimeMillis()));
+            1,
+            "kakao@kakao.com",
+            "1234",
+            "카카오(주)",
+            "홍은택",
+            "120-81-47521",
+            "1577-3321",
+            "/images/kakao.png",
+            3600,
+            "1995-02-16",
+            "http://www.kakaocorp.com",
+            new Timestamp(System.currentTimeMillis()));
         session.setAttribute("compSession", mockcomp);
     }
 

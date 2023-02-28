@@ -4,23 +4,34 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="shop.mtcoding.project.model.CompRepository">
-    <!-- <select id="findAll" resultType="shop.mtcoding.project.model.Comp">
+    <select id="findAll" resultType="shop.mtcoding.project.model.Comp">
         select * from comp_tb
     </select>
 
-    <select id="findById" resultType="shop.mtcoding.project.model.User">
-
+    <select id="findById" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsWriteRespDto">
+      SELECT comp_name, REPRESENTATIVE_NAME, photo, homepage FROM COMP_TB where comp_id = #{compId}
     </select>
 
     <insert id="insert">
-
+      insert into comp_tb ( email, password, comp_name, representative_name, business_number, created_at)
+            values ( #{uDto.email}, #{uDto.password}, #{uDto.compName}, #{uDto.representativeName}, #{uDto.businessNumber}, now());
     </insert>
 
-    <update id="updateById">
+    <select id="findByCompEmail" resultType="shop.mtcoding.project.model.Comp">
+      select * from comp_tb where email = #{email}
+    </select>
 
+
+    <update id="updateById">
+      update comp_tb set comp_name = #{cDto.compName}, 
+                         photo = #{cDto.photo}, 
+                         representative_name = #{cDto.representativeName}, 
+                         homepage = #{cDto.homepage}
+      where comp_id = #{cDto.compId}
     </update>
 
     <delete id="deleteById">
 
-    </delete> -->
+    </delete>
 </mapper>
+
