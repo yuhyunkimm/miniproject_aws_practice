@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import shop.mtcoding.project.dto.user.ResponseDto;
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserLoginReqDto;
+import shop.mtcoding.project.dto.user.UserReq.UserUpdateReqDto;
 import shop.mtcoding.project.dto.user.UserResp.UserDataRespDto;
+import shop.mtcoding.project.dto.user.UserResp.UserUpdateRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.User;
@@ -77,21 +79,6 @@ public class UserController {
         return "user/joinForm";
     }
 
-    // @PostMapping("/user/login")
-    // public String login(UserLoginReqDto userloginReqDto) {
-    // if (userloginReqDto.getEmail() == null ||
-    // userloginReqDto.getEmail().isEmpty()) {
-    // throw new CustomException("email을 작성해주세요");
-    // }
-    // if (userloginReqDto.getPassword() == null ||
-    // userloginReqDto.getPassword().isEmpty()) {
-    // throw new CustomException("password 작성해주세요");
-    // }
-    // User principal = userService.로그인(userloginReqDto);
-    // session.setAttribute("principal", principal);
-    // return "redirect:/";
-    // }
-
     @PostMapping("/user/login")
     public String login(UserLoginReqDto userloginReqDto, HttpServletResponse httpServletResponse) {
         if (userloginReqDto.getEmail() == null || userloginReqDto.getEmail().isEmpty()) {
@@ -126,12 +113,12 @@ public class UserController {
     }
 
     @PostMapping("/user/update")
-    public String update(UserDataRespDto userDataRespDto, Model model) {
+    public String update(UserUpdateRespDto userUpdateRespDto, Model model) {
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             return "redirect:/loginForm";
         }
-        UserDataRespDto userPS = userRepository.findById(userDataRespDto);
+        UserDataRespDto userPS = userRepository.findById(userUpdateRespDto);
         model.addAttribute("user", userPS);
         return "redirect:/user/updateForm";
     }
