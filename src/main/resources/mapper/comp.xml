@@ -22,7 +22,7 @@
     </select>
 
     <select id="findByEmailAndPassword" resultType="shop.mtcoding.project.model.Comp">
-      select * from user_tb where email = #{email} and password = #{password}
+      select * from comp_tb where email = #{email} and password = #{password}
     </select>
 
 
