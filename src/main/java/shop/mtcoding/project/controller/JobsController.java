@@ -109,7 +109,6 @@ public class JobsController {
         MockSession.mockComp(session);
         JobsDetailRespDto jDto = jobsRepository.findByJobsDetail(id);
         model.addAttribute("cDto", jDto);
-        System.out.println("테스트 : "+ jDto.toString());
         return "jobs/updateJobsForm";
     }
 

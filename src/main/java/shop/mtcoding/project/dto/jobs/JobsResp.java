@@ -123,4 +123,14 @@ public class JobsResp {
         private String homepage;
     }
 
+    @Getter
+    @Setter
+    public static class JobsManageJobsRespDto{
+        private Integer num;
+        private Integer jobsId;
+        private String title;
+        private String position;
+        private String career;
+    }
+
 }

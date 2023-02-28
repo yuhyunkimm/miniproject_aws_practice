@@ -11,6 +11,7 @@ import shop.mtcoding.project.dto.jobs.JobsReq.JobsUpdateReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsWriteReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsDetailRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsMainRespDto;
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsManageJobsRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsRequiredSkill;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSkillRespDto;
@@ -20,6 +21,8 @@ public interface JobsRepository {
     public List<Jobs> findAll();
     public Jobs findById(Integer jobsId);
     public List<JobsSkillRespDto> findAllByJobsAndSkill();
+
+    public  List<JobsManageJobsRespDto> findByIdtoManageJobs(Integer compId);
     
     public int insert(
         @Param("jDto") JobsWriteReqDto jDto
