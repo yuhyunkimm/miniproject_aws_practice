@@ -7,11 +7,16 @@ import org.apache.ibatis.annotations.Param;
 
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeSaveTempReqDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
-
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeManageRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeRecommendRespDto;
 
 @Mapper
 public interface ResumeRepository {
+
+        public List<ResumeManageRespDto> findAllWithUser();
+
+        public List<ResumeManageRespDto> findAllWithUserById(Integer userId);
+
         public void findAll();
 
         public void findById();

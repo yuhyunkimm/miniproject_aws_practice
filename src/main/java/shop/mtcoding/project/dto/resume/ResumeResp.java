@@ -2,12 +2,13 @@ package shop.mtcoding.project.dto.resume;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 public class ResumeResp {
-    
+
     @Getter
     @Setter
-    public static class ResumeRecommendRespDto{
+    public static class ResumeRecommendRespDto {
         private Integer resumeId;
         private String photo;
         private String name;
@@ -20,4 +21,18 @@ public class ResumeResp {
         private String skillName3;
         private String address;
     }
+
+    @Getter
+    @Setter
+    @ToString
+    public static class ResumeManageRespDto {
+        private Integer resumeId;
+        private String title;
+        private String education;
+        private String career;
+        private String skillName1;
+        private String skillName2;
+        private String skillName3;
+    }
+
 }

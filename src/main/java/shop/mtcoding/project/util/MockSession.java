@@ -8,8 +8,8 @@ import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.User;
 
 public class MockSession {
-    
-    public static void mockComp(HttpSession session){
+
+    public static void mockComp(HttpSession session) {
         Comp mockcomp = new Comp(
             1,
             "kakao@kakao.com",
@@ -26,18 +26,17 @@ public class MockSession {
         session.setAttribute("compSession", mockcomp);
     }
 
-    public static void mockUser(HttpSession session){
+    public static void mockUser(HttpSession session) {
         User mockUser = new User(
-            1,
-            "ssar@nate.com",
-            "1234",
-            "ssar",
-            "2000-01-01",
-            "010-1234-1234",
-            "/images/default_profile.png",
-            "부산시 부산진구",
-            new Timestamp(System.currentTimeMillis()));
+                1,
+                "ssar@nate.com",
+                "1234",
+                "ssar",
+                "2000-01-01",
+                "010-1234-1234",
+                "/images/default_profile.png",
+                "부산시 부산진구",
+                new Timestamp(System.currentTimeMillis()));
         session.setAttribute("principal", mockUser);
     }
 }
-    

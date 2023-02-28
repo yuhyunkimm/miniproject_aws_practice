@@ -1,10 +1,14 @@
 package shop.mtcoding.project.controllerTest;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.sql.Timestamp;
+import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,11 +25,15 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
+import shop.mtcoding.project.dto.resume.ResumeResp;
 import shop.mtcoding.project.model.User;
 
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
 public class ResumeControllerTest {
+
+    @Autowired
+    private ObjectMapper om;
 
     @Autowired
     private MockMvc mvc;
@@ -53,6 +61,34 @@ public class ResumeControllerTest {
 
     @Test
     @Transactional
+
+    public void manageResume_test() throws Exception {
+        // given
+
+        // when
+        ResultActions resultActions = mvc.perform(
+                get("/user/resume"));
+        Map<String, Object> map = resultActions.andReturn().getModelAndView().getModel();
+        List<ResumeResp.ResumeManageRespDto> rDtos = (List<ResumeResp.ResumeManageRespDto>) map.get("rDtos");
+        String model = om.writeValueAsString(rDtos);
+        System.out.println("main_test : " + model);
+
+        // then
+        resultActions.andExpect(status().isOk());
+        assertThat(rDtos.size()).isEqualTo(1);
+        assertThat(rDtos.get(0).getTitle()).isEqualTo("벡엔드 이력서");
+        assertThat(rDtos.get(0).getEducation()).isEqualTo("고졸");
+        assertThat(rDtos.get(0).getCareer()).isEqualTo("신입");
+        assertThat(rDtos.get(0).getSkillName1()).isEqualTo("Vue.js");
+        assertThat(rDtos.get(0).getSkillName2()).isEqualTo("Java");
+        assertThat(rDtos.get(0).getSkillName3()).isEqualTo("React");
+    }
+
+    @Test
+    @Transactional
+    public void writeResume_test() throws Exception {
+        ObjectMapper om = new ObjectMapper();
+
     public void write_test() throws Exception {
         // given
         ResumeWriteReqDto resumeWriteReqDto = new ResumeWriteReqDto();
