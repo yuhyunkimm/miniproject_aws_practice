@@ -97,7 +97,9 @@ public class CompController {
         if (compLoginReqDto.getPassword() == null || compLoginReqDto.getPassword().isEmpty()) {
             throw new CustomException("password 작성해주세요");
         }
+
         Comp principal = compService.로그인(compLoginReqDto);
+
         if (principal == null) {
             return "redirect:/loginForm";
         } else {
@@ -112,7 +114,7 @@ public class CompController {
                 cookie.setMaxAge(0);
                 httpServletResponse.addCookie(cookie);
             }
-            session.setAttribute("principal", principal);
+            session.setAttribute("compSession", principal);
             return "redirect:/";
         }
     }

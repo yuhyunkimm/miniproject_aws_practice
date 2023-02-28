@@ -163,7 +163,7 @@
                                 <span class="fs-1">d-day 계산.. ${jDto.endDate}</span> 
                             </div>
                             <div class="col-8">
-                                홈페이지 지원 ${jDto.homePage}
+                                홈페이지 지원 ${jDto.homepage}
                             </div>
                         </div>
                     </div>

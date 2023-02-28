@@ -24,7 +24,7 @@ public class CompControllerTest {
     @Transactional
     public void join_test() throws Exception {
         // given
-        String requestBody = "email=kakao@nate.com&password=1234&compName=카카오(주)&representativeName=홍은택&businessNumber=120-81-47521";
+        String requestBody = "email=2kakao@nate.com&password=1234&compName=카카오(주)&representativeName=홍은택&businessNumber=120-81-47521";
 
         // when
         ResultActions resultActions = mvc.perform(post("/comp/join").content(requestBody)
