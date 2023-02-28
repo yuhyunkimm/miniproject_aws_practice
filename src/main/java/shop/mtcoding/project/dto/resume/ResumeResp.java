@@ -2,6 +2,7 @@ package shop.mtcoding.project.dto.resume;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 public class ResumeResp {
 
@@ -23,6 +24,7 @@ public class ResumeResp {
 
     @Getter
     @Setter
+    @ToString
     public static class ResumeManageRespDto {
         private Integer resumeId;
         private String title;

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
 import shop.mtcoding.project.dto.user.ResponseDto;
 import shop.mtcoding.project.exception.CustomApiException;
+import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.service.ResumeService;
@@ -33,9 +34,14 @@ public class ResumeController {
     private HttpSession session;
 
     @GetMapping("/user/resume") // 이력서관리
-    public String resume(Model model) {
+    public String manageResume(Model model) {
         MockSession.mockUser(session);
-        model.addAttribute("rDtos", resumeRepository.findAllWithUser());
+        User principal = (User) session.getAttribute("principal");
+        if (principal == null) {
+            throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        }
+        // System.out.println("테스트 : " + resumeRepository.findAllWithUser().toString());
+        model.addAttribute("rDtos", resumeRepository.findAllWithUserById(principal.getUserId()));
         return "resume/manageResume";
     }
 

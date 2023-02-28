@@ -15,6 +15,8 @@ public interface ResumeRepository {
 
         public List<ResumeManageRespDto> findAllWithUser();
 
+        public List<ResumeManageRespDto> findAllWithUserById(Integer userId);
+
         public void findAll();
 
         public void findById();

@@ -24,7 +24,8 @@
                     </div>
                     <div class="col-9">
                         <c:choose>
-                            <c:when test="${rDto.resumeId > 0 && rDto.userId == principal.userId}">
+
+                            <c:when test="${rDtos != null }">
                                 <c:forEach items="${rDtos}" var="rDto">
                                     <div class="card mb-4">
                                         <div class="card-body">
@@ -46,7 +47,7 @@
                                             </div>
                                             <div style="float: right;" pt-2>
                                                 <button type="button" class="btn btn-success btn-sm"
-                                                    onclick="window.open('/user/resume/{id}/update')">이력서
+                                                    onclick="location.href='/user/resume/{id}/update'">이력서
                                                     수정</button>
                                             </div>
                                         </div>
