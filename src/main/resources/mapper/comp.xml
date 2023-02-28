@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="shop.mtcoding.project.model.CompRepository">
-    <!-- <select id="findAll" resultType="shop.mtcoding.project.model.Comp">
+    <select id="findAll" resultType="shop.mtcoding.project.model.Comp">
         select * from comp_tb
     </select>
 
@@ -13,7 +13,8 @@
     </select>
 
     <insert id="insert">
-
+      insert into comp_tb ( email, password, compName, representativeName, businessNumber, created_at)
+            values ( #{uDto.email}, #{uDto.password}, #{uDto.compName}, #{uDto.representativeName}, #{uDto.businessNumber}, now());
     </insert>
 
     <update id="updateById">
@@ -22,5 +23,5 @@
 
     <delete id="deleteById">
 
-    </delete> -->
+    </delete>
 </mapper>

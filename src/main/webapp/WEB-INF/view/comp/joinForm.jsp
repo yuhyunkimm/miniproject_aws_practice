@@ -53,18 +53,16 @@
                 </div>
 
                 <div class="form-group mb-2">
+                    <input type="text" name="representativeName" class="form-control" placeholder="Enter representativeName"
+                        id="representativeName">
+                </div>
+
+                <div class="form-group mb-2">
                     <input type="text" name="businessNumber" class="form-control" placeholder="Enter businessNumber"
                         id="businessNumber">
                 </div>
 
-                <div class="form-group mb-2">
-                    <input type="text" name="compAddress" class="form-control" placeholder="Enter companyAddress"
-                        id="compAddress">
-                </div>
-
-                <div class="form-group mb-2">
-                    <input type="text" name="homePage" class="form-control" placeholder="Enter homePage" id="homePage">
-                </div>
+                
 
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="flexCheckChecked1">

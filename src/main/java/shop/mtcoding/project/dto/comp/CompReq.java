@@ -14,10 +14,8 @@ public class CompReq {
         private String email;
         private String password;
         private String compName;
+        private String representativeName;
         private String businessNumber;
-        private String tel;
-        private String compAddress;
-        private String homePage;
         private Timestamp createdAt;
     }
 }

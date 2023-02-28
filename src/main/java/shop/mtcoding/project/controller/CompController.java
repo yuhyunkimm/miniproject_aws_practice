@@ -48,16 +48,13 @@ public class CompController {
         if (compJoinReqDto.getCompName() == null || compJoinReqDto.getCompName().isEmpty()) {
             throw new CustomException("회사이름을 작성해주세요");
         }
-        if (compJoinReqDto.getTel() == null || compJoinReqDto.getTel().isEmpty()) {
-            throw new CustomException("회사번호을 작성해주세요");
+        if (compJoinReqDto.getRepresentativeName() == null || compJoinReqDto.getRepresentativeName().isEmpty()) {
+            throw new CustomException("대표자명을 작성해주세요");
         }
-        if (compJoinReqDto.getCompAddress() == null || compJoinReqDto.getCompAddress().isEmpty()) {
-            throw new CustomException("회사주소를 작성해주세요");
+        if (compJoinReqDto.getBusinessNumber() == null || compJoinReqDto.getBusinessNumber().isEmpty()) {
+            throw new CustomException("사업자번호를 작성해주세요");
         }
-        if (compJoinReqDto.getHomePage() == null || compJoinReqDto.getHomePage().isEmpty()) {
-            throw new CustomException("회사홈페이지를 작성해주세요");
-        }
-        userService.회원가입(compJoinReqDto);
+        // compService.회원가입();
 
         return "redirect:/comp/login";
     }
