@@ -27,5 +27,4 @@ public class CompService {
             throw new CustomException("서버 에러가 발생 했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 }

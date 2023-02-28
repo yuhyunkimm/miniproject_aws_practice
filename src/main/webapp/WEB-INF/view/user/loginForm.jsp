@@ -43,7 +43,7 @@
                                 id="password">
                         </div>
 
-                        <div class="box">
+                        <div class="box mb-2">
                             <span class="input-wrap mb-2">
                                 <input type="checkbox" id="rememberEmail" name="rememberEmail">
                                 이메일을 기억 하시겠습니까?
