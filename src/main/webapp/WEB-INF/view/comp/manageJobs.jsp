@@ -24,52 +24,24 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-9">
+                       <div class="col-9">
+                    <c:forEach items="${jDtos}" var="jDto">
                         <div class="card mb-4">
                             <div class="card-body">
-                                <h5 class="card-title" style="text-align: left;">이력서 title</h5>
+                                <h5 class="card-title" style="text-align: left;">${jDto.title}</h5>
                                 <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">학력</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted">${jDto.position}</h6>
                                 </div>
                                 <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">기술</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted">${jDto.career}</h6>
                                 </div>
                                 <div style="float: right;" pt-2>
-                                    <button type="button" class="btn btn-success btn-sm" onclick="location.href='#'">이력서
-                                        수정</button>
+                                    <button type="button" class="btn btn-success btn-sm" onclick="location.href=`/jobs/`+${jDto.jobsId}+`/update`">공고 수정</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h5 class="card-title" style="text-align: left;">이력서 title</h5>
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">학력</h6>
-                                </div>
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">기술</h6>
-                                </div>
-                                <div style="float: right;" pt-2>
-                                    <button type="button" class="btn btn-success btn-sm" onclick="location.href='#'">이력서
-                                        수정</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h5 class="card-title" style="text-align: left;">이력서 title</h5>
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">학력</h6>
-                                </div>
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">기술</h6>
-                                </div>
-                                <div style="float: right;" pt-2>
-                                    <button type="button" class="btn btn-success btn-sm" onclick="location.href='#'">이력서
-                                        수정</button>
-                                </div>
-                            </div>
-                        </div>
+
+                    </c:forEach>
 
                         <button style="float: right;" type="button" class="btn btn-success mb-4"
                             onclick="location.href='/jobs/write'">공고 작성</button>

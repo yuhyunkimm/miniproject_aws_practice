@@ -20,6 +20,12 @@
         from jobs_tb j join required_skill_tb r on
         j.jobs_id = r.jobs_id
     </select>
+
+    <select id="findByIdtoManageJobs" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsManageJobsRespDto">
+      select ROW_NUMBER() OVER(ORDER BY jobs_id desc)num, jobs_id, title, position, career from jobs_tb where comp_id = #{compId}
+    </select>
+
+    
     
     <select id="findByJobsRequiredSkill" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsRequiredSkill">
       SELECT r.skill_name1, r.skill_name2, r.skill_name3 
@@ -85,7 +91,7 @@
         j.career, j.education, j.position,
         r.skill_name1, r.skill_name2,
         r.skill_name3,  j.address,
-        j.homepage, j.end_date 
+        c.homepage, c.representative_name, j.end_date 
         from comp_tb c 
         join jobs_tb j 
         on c.comp_id = j.comp_id 

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.project.dto.comp.CompReq.CompJoinReqDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompLoginReqDto;
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsManageJobsRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsRequiredSkill;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeRecommendRespDto;
 import shop.mtcoding.project.dto.user.ResponseDto;
@@ -141,7 +142,11 @@ public class CompController {
     }
 
     @GetMapping("/comp/jobs")
-    public String manageJobs() {
+    public String manageJobs(Model model) {
+        Comp compSession = (Comp)session.getAttribute("compSession");
+        List<JobsManageJobsRespDto> jDtos = jobsrRepository.findByIdtoManageJobs(compSession.getCompId());
+        model.addAttribute("jDtos", jDtos);
+
         return "comp/manageJobs";
     }
 

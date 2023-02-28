@@ -105,7 +105,10 @@ public class JobsController {
     }
 
     @GetMapping("/jobs/{id}/update")
-    public String updateJobs() {
+    public String updateJobs(@PathVariable Integer id, Model model) {
+        MockSession.mockComp(session);
+        JobsDetailRespDto jDto = jobsRepository.findByJobsDetail(id);
+        model.addAttribute("cDto", jDto);
         return "jobs/updateJobsForm";
     }
 
