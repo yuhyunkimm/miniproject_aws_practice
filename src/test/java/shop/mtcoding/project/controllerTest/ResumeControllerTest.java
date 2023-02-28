@@ -29,9 +29,12 @@ public class ResumeControllerTest {
 
     @Autowired
     private MockMvc mvc;
+    
+    @Autowired
+    private ObjectMapper om;
 
     private MockHttpSession mockSession;
-
+    
     @BeforeEach
     private void mockUserSession() {
         User mockUser = new User(
@@ -50,8 +53,7 @@ public class ResumeControllerTest {
 
     @Test
     @Transactional
-    public void writeResume_test() throws Exception {
-        ObjectMapper om = new ObjectMapper();
+    public void write_test() throws Exception {
         // given
         ResumeWriteReqDto resumeWriteReqDto = new ResumeWriteReqDto();
         resumeWriteReqDto.setUserId(1);

@@ -8,8 +8,8 @@
         select * from comp_tb
     </select>
 
-    <select id="findById" resultType="shop.mtcoding.project.model.Comp">
-
+    <select id="findById" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsWriteRespDto">
+      SELECT comp_name, REPRESENTATIVE_NAME, photo, homepage FROM COMP_TB where comp_id = #{compId}
     </select>
 
     <insert id="insert">
@@ -23,10 +23,15 @@
 
 
     <update id="updateById">
-
+      update comp_tb set comp_name = #{cDto.compName}, 
+                         photo = #{cDto.photo}, 
+                         representative_name = #{cDto.representativeName}, 
+                         homepage = #{cDto.homepage}
+      where comp_id = #{cDto.compId}
     </update>
 
     <delete id="deleteById">
 
     </delete>
 </mapper>
+

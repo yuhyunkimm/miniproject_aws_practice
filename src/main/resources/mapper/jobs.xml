@@ -105,15 +105,36 @@
         on c.comp_id = j.comp_id
     </select>
 
-    <!-- <insert id="insert">
-
+    <insert id="insert" useGeneratedKeys="true" keyProperty="jDto.jobsId">
+      insert into jobs_tb set title= #{jDto.title}, 
+                          content = #{jDto.content}, 
+                          position = #{jDto.position}, 
+                          career = #{jDto.career}, 
+                          education = #{jDto.education}, 
+                          address = #{jDto.address}, 
+                          end_date = #{jDto.endDate}, 
+                          comp_id = #{jDto.compId}, 
+                          <!-- homepage = #{jDto.homepage},  -->
+                          receipt = #{jDto.receipt}, 
+                          created_at = now() 
     </insert>
 
     <update id="updateById">
-
+      update jobs_tb set title= #{jDto.title}, 
+                         content = #{jDto.content}, 
+                         position = #{jDto.position}, 
+                         career = #{jDto.career}, 
+                         education = #{jDto.education}, 
+                         address = #{jDto.address}, 
+                         end_date = #{jDto.endDate}, 
+                         comp_id = #{jDto.compId}, 
+                         <!-- homepage = #{jDto.homepage},  -->
+                         receipt = #{jDto.receipt}, 
+                         created_at = now()
+      where jobs_id = #{jDto.jobsId}
     </update>
 
-    <delete id="deleteById">
+    <!-- <delete id="deleteById">
 
     </delete> -->
 </mapper>

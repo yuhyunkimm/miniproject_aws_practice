@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
 
-        <div class="mx-auto width-53">
+        <div class="mx-auto width-53 top-80">
             <div class="container mt-5 mb-5">
                 <div class="mb-3">
-                    <h5> 마이 홈 이긴 한테 기업 홈 훔쳐온거임</h5>
+                    <h5> 마이 홈 ( 수정 필요 )</h5>
                 </div>
                 <div class="row">
                     <div class="col-3" style="text-align: center;">
@@ -18,7 +18,7 @@
                                 <h6 class="card-subtitle mb-1 text-muted"><a href="/user/offer">지원 / 제안</a></h6><br>
                                 <h6 class="card-subtitle mb-1 text-muted"><a href="/user/scrap">스크랩</a></h6>
                                 <hr>
-                                <h6 class="card-subtitle mb-1 text-muted"><a href="#">정보수정</a></h6><br>
+                                <h6 class="card-subtitle mb-1 text-muted"><a href="/user/update">정보수정</a></h6><br>
                                 <h6 class="card-subtitle mb-1 text-muted"><a href="/logout">로그아웃</a></h6>
                             </div>
                         </div>
