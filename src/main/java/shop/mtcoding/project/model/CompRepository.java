@@ -11,19 +11,16 @@ import shop.mtcoding.project.dto.comp.CompReq.CompJoinReqDto;
 @Mapper
 public interface CompRepository {
     public List<Comp> findAll();
-    
+
     public Comp findByCompEmail(@Param("email") String email);
-    
+
+    public Comp findByEmailAndPassword(@Param("email") String email, @Param("password") String password);
+
     public JobsWriteRespDto findById(Integer CompId);
 
-    public int insert(
-            @Param("uDto") CompJoinReqDto uDto);
+    public int insert(@Param("uDto") CompJoinReqDto uDto);
 
-    public int updateById(
-        @Param("cDto")  JobsUpdateReqDto cDto
-    );
+    public int updateById(@Param("cDto") JobsUpdateReqDto cDto);
 
-    public int deleteById(
-
-    );  
+    public int deleteById();
 }

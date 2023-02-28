@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.project.dto.comp.CompReq.CompJoinReqDto;
+import shop.mtcoding.project.dto.comp.CompReq.CompLoginReqDto;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.CompRepository;
@@ -26,5 +27,15 @@ public class CompService {
         } catch (Exception e) {
             throw new CustomException("서버 에러가 발생 했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @Transactional(readOnly = true)
+    public Comp 로그인(CompLoginReqDto compLoginReqDto) {
+        Comp principal = compRepository.findByEmailAndPassword(compLoginReqDto.getEmail(),
+                compLoginReqDto.getPassword());
+        if (principal == null) {
+            throw new CustomException("이메일 혹은 패스워드가 잘못 입력 되었습니다.");
+        }
+        return principal;
     }
 }

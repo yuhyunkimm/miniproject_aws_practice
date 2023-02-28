@@ -5,10 +5,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.project.dto.comp.CompReq.CompJoinReqDto;
+import shop.mtcoding.project.dto.comp.CompReq.CompLoginReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsRequiredSkill;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeRecommendRespDto;
 import shop.mtcoding.project.dto.user.ResponseDto;
@@ -85,6 +87,34 @@ public class CompController {
     @GetMapping("/comp/join")
     public String joinComp() {
         return "comp/joinForm";
+    }
+
+    @PostMapping("/comp/login")
+    public String login(CompLoginReqDto compLoginReqDto, HttpServletResponse httpServletResponse) {
+        if (compLoginReqDto.getEmail() == null || compLoginReqDto.getEmail().isEmpty()) {
+            throw new CustomException("email을 작성해주세요");
+        }
+        if (compLoginReqDto.getPassword() == null || compLoginReqDto.getPassword().isEmpty()) {
+            throw new CustomException("password 작성해주세요");
+        }
+        Comp principal = compService.로그인(compLoginReqDto);
+        if (principal == null) {
+            return "redirect:/loginForm";
+        } else {
+            if (compLoginReqDto.getRememberEmail() == null) {
+                compLoginReqDto.setRememberEmail("");
+            }
+            if (compLoginReqDto.getRememberEmail().equals("on")) {
+                Cookie cookie = new Cookie("rememberEmail", compLoginReqDto.getEmail());
+                httpServletResponse.addCookie(cookie);
+            } else {
+                Cookie cookie = new Cookie("remember", "");
+                cookie.setMaxAge(0);
+                httpServletResponse.addCookie(cookie);
+            }
+            session.setAttribute("principal", principal);
+            return "redirect:/";
+        }
     }
 
     @GetMapping("/comp/login")

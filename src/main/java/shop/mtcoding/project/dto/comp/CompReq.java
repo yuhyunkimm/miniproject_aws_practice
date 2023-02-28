@@ -20,4 +20,14 @@ public class CompReq {
         private String businessNumber;
         private Timestamp createdAt;
     }
+
+    @Getter
+    @Setter
+    public static class CompLoginReqDto{
+        private Integer compId;
+        private String email;
+        private String password;
+        private Timestamp createdAt;
+        private String rememberEmail;
+    }
 }
