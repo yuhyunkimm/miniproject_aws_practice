@@ -18,17 +18,16 @@ public class UserRepositoryTest {
     @Test
     public void insert_test() throws Exception{
         //given
-        UserJoinReqDto uDto = new UserJoinReqDto(
-            25,
-            "ssar25@nate.com",
-            "1234",
-            "ssar",
-            "2000-01-01",
-            "010-1234-1234",
-            "부산시 부산진구",
-            new Timestamp(System.currentTimeMillis())
-        );
-
+        UserJoinReqDto uDto = new UserJoinReqDto();
+        uDto.setUserId(24);
+        uDto.setEmail("ssar25@nate.com");
+        uDto.setPassword("1234");
+        uDto.setName("ssar");
+        uDto.setBirth( "2000-01-01");
+        uDto.setTel("010-1234-1234");
+        uDto.setAddress("부산시 부산진구");
+        uDto.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+        
         //when
         System.out.println("테스트 : "+ userRepository.insert(uDto));
 

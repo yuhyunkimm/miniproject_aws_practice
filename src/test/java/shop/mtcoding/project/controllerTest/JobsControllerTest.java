@@ -43,10 +43,7 @@ public class JobsControllerTest {
             "카카오(주)",
             "홍은택",
             "120-81-47521",
-            "1577-3321",
             "/images/kakao.png",
-            3600,
-            "1995-02-16",
             "http://www.kakaocorp.com",
             new Timestamp(System.currentTimeMillis()));
             mockSession = new MockHttpSession();

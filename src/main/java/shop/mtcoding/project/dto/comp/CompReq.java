@@ -10,7 +10,6 @@ public class CompReq {
 
     @Getter
     @Setter
-    @AllArgsConstructor
     public static class CompJoinReqDto {
         private Integer compId;
         private String email;
