@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeSaveTempReqDto;
+import shop.mtcoding.project.dto.resume.ResumeReq.ResumeUpdateReqDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserSkillReqDto;
 import shop.mtcoding.project.exception.CustomApiException;
+import shop.mtcoding.project.model.Resume;
 import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.UserSkillRepository;
 
@@ -55,6 +57,28 @@ public class ResumeService {
         int result2 = userSkillRepository.insert(resumeWriteReqDto);
         if (result2 != 1) {
             throw new CustomApiException("이력서 임시저장 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
+    public void 이력서수정(ResumeUpdateReqDto resumeUpdateReqDto, Integer userId) {
+
+        Resume resumePS = resumeRepository.findById(userId);
+        if (resumePS == null) {
+            throw new CustomApiException("해당 이력서를 찾을 수 없습니다.");
+        }
+
+        if (resumeUpdateReqDto.getUserId() != userId) {
+            throw new CustomApiException("이력서를 수정할 권한이 없습니다.", HttpStatus.FORBIDDEN);
+        }
+
+        int result = resumeRepository.updateById(resumeUpdateReqDto);
+        if (result != 1) {
+            throw new CustomApiException("이력서 수정에 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        int result2 = userSkillRepository.updateById(resumeUpdateReqDto);
+        if (result2 != 1) {
+            throw new CustomApiException("이력서 수정에 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }

@@ -117,7 +117,7 @@
                                     <div class="form-group">
                                         <!-- <label for="exampleTextarea" class="form-label mt-4">자기소개서</label>
                         <hr> -->
-                                        <textarea class="form-control" name="content" id="content" rows="3"></textarea>
+                                        <textarea class="form-control" name="content" id="content" rows="3">${resume.content}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -170,14 +170,15 @@
                             <div id="rButton">
                                 <br>
                                 <div class="row p-1">
-                                    <button type="button" class="btn btn-success w-90">미리보기</button>
+                                    <button type="button" class="btn btn-success w-100">미리보기</button>
                                 </div>
                                 <div class="row p-1">
-                                    <button type="button" class="btn btn-success w-90">임시 저장</button>
+                                    <button type="button" class="btn btn-success w-100">임시 저장</button>
                                 </div>
                                 <div class="row p-1">
-                                    <button onclick="updateResume()" type="button" class="btn btn-success w-90">이력서
-                                        저장</button>
+                                    <button onclick="updateResume(${resume.resumeId})" type="button"
+                                        class="btn btn-success w-100">이력서
+                                        수정</button>
                                 </div>
                             </div>
                         </div>
@@ -185,5 +186,33 @@
                 </form>
             </div>
         </div>
+        <script>
+            let resumeId;
+
+            function updateResume(id) {
+                let data = {
+                    title: $("#title").val(),
+                    content: $("#content").val(),
+                    education: $("#education").val(),
+                    career: $("#career").val(),
+                    skillName1: $("#skillName1").val(),
+                    link: $("#link").val(),
+                    state: $("#state").val(),
+                    resumeId: id
+                }
+                $.ajax({
+                    type: "put",
+                    url: "/user/resume/" + id + "/update",
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json" // default : 응답의 mime 타입으로 유추함
+                }).done((res) => { // 20X 일때
+                    alert(res.msg);
+                    location.href = "resume/manageResume";
+                }).fail((err) => { // 40X, 50X 일때
+                    alert(err.responseJSON.msg);
+                });
+            }
+        </script>
 
         <%@ include file="../layout/footer.jsp" %>
