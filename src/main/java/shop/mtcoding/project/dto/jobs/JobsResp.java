@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 public class JobsResp {
     
@@ -44,6 +45,7 @@ public class JobsResp {
 
     @Getter
     @Setter
+    @ToString
     public static class JobsDetailRespDto {
         private Integer jobsId;
         private String photo;
@@ -57,11 +59,10 @@ public class JobsResp {
         private String skillName3;
         private String position;
         private String address;
-        private String homePage;
+        private String homepage;
         private Timestamp endDate;
         private String representativeName;
         private Integer userScrapId;
-        private String tel;
     }
 
     @Getter
@@ -98,7 +99,7 @@ public class JobsResp {
         private String representativeName;
         private String establishmentDate;
         private Integer employees;
-        private String homePage;
+        private String homepage;
         private String title;
         private String content;
         private String education;
@@ -111,7 +112,6 @@ public class JobsResp {
         private Timestamp endDate;
         private String receipt;
         private Integer userScrapId;
-        private String tel;
     }
 
     @Getter

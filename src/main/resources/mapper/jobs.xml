@@ -85,7 +85,7 @@
         j.career, j.education, j.position,
         r.skill_name1, r.skill_name2,
         r.skill_name3,  j.address,
-        j.homepage, j.end_date 
+        c.homepage, c.representative_name, j.end_date 
         from comp_tb c 
         join jobs_tb j 
         on c.comp_id = j.comp_id 

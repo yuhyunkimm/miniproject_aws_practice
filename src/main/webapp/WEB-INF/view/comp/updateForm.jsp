@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="form-group mb-2">
-                    <input type="text" name="homePage" class="form-control" placeholder="Enter homePage" id="homePage">
+                    <input type="text" name="homepage" class="form-control" placeholder="Enter homepage" id="homepage">
                 </div>
 
                 <div class="d-grid gap-2 mb-4">
