@@ -26,7 +26,5 @@ public interface CompRepository {
 
     );
 
-    public Comp findByCompEmail();
-
-    public Comp findByUserEmail(@Param("email") String email);
+    public Comp findByCompEmail(@Param("email") String email);
 }

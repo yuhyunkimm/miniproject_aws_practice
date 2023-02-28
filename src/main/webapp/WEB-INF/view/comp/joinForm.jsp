@@ -78,10 +78,8 @@
                 </div>
 
                 <div class="d-grid gap-2 mb-4">
-                    <input id="button" class=" btn btn-primary" type="submit" value="가입완료" onclick="submitForm()">
+                    <input id="button" class=" btn btn-primary" type="submit" value="회원가입" onclick="submitForm()">
                 </div>
-
-
             </form>
         </div>
     </div>

@@ -75,7 +75,7 @@ public class CompController {
 
     @GetMapping("/comp/emailCheck")
     public @ResponseBody ResponseEntity<?> sameEmailCheck(String email) {
-        Comp compPS = compRepository.findByUserEmail(email);
+        Comp compPS = compRepository.findByCompEmail(email);
         if (compPS != null) {
             throw new CustomApiException("동일한 email이 존재합니다.");
         }

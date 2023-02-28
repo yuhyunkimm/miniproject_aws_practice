@@ -9,12 +9,12 @@ values ('ssar3@nate.com', '1234', 'ssar3', '1994-03-17', '010-1234-1234', '/imag
 insert into user_tb (email, password, name, birth, tel, photo, address, created_at) 
 values ('ssar4@nate.com', '1234', 'ssar4', '1994-10-23', '010-1234-1234', '/images/default_profile.png', '경기도', now());
 
-insert into comp_tb (email, password, comp_name, comp_address, representative_name, business_number, tel, photo, employees, establishment_date, homepage, created_at)
-values ('http://www.kakaocorp.com', '1234', '카카오(주)', '제주 제주시 첨단로', '홍은택', '120-81-47521', '1577-3321', '/images/kakao.png', 3600, '1999-01-01', 'www.kakao.com',now());
-insert into comp_tb (email, password, comp_name, comp_address, representative_name, business_number, tel, photo, employees, establishment_date, homepage, created_at)
-values ('http://www.namver.com', '1234', '네이버(주)', '경기도 성남시', '이해진', '451-23-15631', '1577-3321', '/images/kakao.png', 3600, '1999-06-12', 'www.naver.com',now());
-insert into comp_tb (email, password, comp_name, comp_address, representative_name, business_number, tel, photo, employees, establishment_date, homepage, created_at)
-values ('http://samsung.com', '1234', '삼성', '경기도 수원시', '이재용', '111-22-33333', '1577-3321', '/images/kakao.png', 3600, '1999-01-01', 'www.kakao.com',now());
+insert into comp_tb (email, password, comp_name,  representative_name, business_number, photo, employees, establishment_date, homepage, created_at)
+values ('http://www.kakaocorp.com', '1234', '카카오(주)', '홍은택', '120-81-47521', '/images/kakao.png', 3600, '1999-01-01', 'www.kakao.com',now());
+insert into comp_tb (email, password, comp_name,  representative_name, business_number, photo, employees, establishment_date, homepage, created_at)
+values ('http://www.namver.com', '1234', '네이버(주)', '이해진', '451-23-15631', '/images/kakao.png', 3600, '1999-06-12', 'www.naver.com',now());
+insert into comp_tb (email, password, comp_name,  representative_name, business_number, photo, employees, establishment_date, homepage, created_at)
+values ('http://samsung.com', '1234', '삼성', '이재용', '111-22-33333', '/images/kakao.png', 3600, '1999-01-01', 'www.kakao.com',now());
 
 insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3) values (1, 'Vue.js', 'Java', 'React');
 insert into user_skill_tb (user_id, skill_name1, skill_name2, skill_name3) values (2, 'JavaScript', 'Java', 'Oracle');

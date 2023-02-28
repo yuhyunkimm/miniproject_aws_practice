@@ -8,15 +8,18 @@
         select * from comp_tb
     </select>
 
-    <select id="findById" resultType="shop.mtcoding.project.model.User">
+    <select id="findById" resultType="shop.mtcoding.project.model.Comp">
 
     </select>
 
     <insert id="insert">
-      insert into comp_tb ( email, password, compName, representativeName, businessNumber, created_at)
+      insert into comp_tb ( email, password, comp_name, representative_name, business_number, created_at)
             values ( #{uDto.email}, #{uDto.password}, #{uDto.compName}, #{uDto.representativeName}, #{uDto.businessNumber}, now());
     </insert>
 
+    <select id="findByCompEmail" resultType="shop.mtcoding.project.model.Comp">
+      select * from comp_tb where email = #{email}
+    </select>
 
 
     <update id="updateById">

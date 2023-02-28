@@ -18,7 +18,7 @@ public class CompService {
 
     @Transactional
     public void 회원가입(CompJoinReqDto compJoinReqDto) {
-        Comp compPS = compRepository.findByCompEmail();
+        Comp compPS = compRepository.findByCompEmail(compJoinReqDto.getEmail());
         if (compPS != null)
             throw new CustomException("존재하는 회원입니다.");
         try {
