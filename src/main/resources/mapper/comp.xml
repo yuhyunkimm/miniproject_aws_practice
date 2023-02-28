@@ -13,8 +13,14 @@
     </select>
 
     <insert id="insert">
-
+      insert into comp_tb ( email, password, comp_name, representative_name, business_number, created_at)
+            values ( #{uDto.email}, #{uDto.password}, #{uDto.compName}, #{uDto.representativeName}, #{uDto.businessNumber}, now());
     </insert>
+
+    <select id="findByCompEmail" resultType="shop.mtcoding.project.model.Comp">
+      select * from comp_tb where email = #{email}
+    </select>
+
 
     <update id="updateById">
       update comp_tb set comp_name = #{cDto.compName}, 
@@ -29,8 +35,3 @@
     </delete>
 </mapper>
 
-<!-- jDto.setCompId(1);
-jDto.setCompName("1234");
-jDto.setRepresentativeName("1234");
-jDto.setPhoto("213");
-jDto.setHomepage("124"); -->
