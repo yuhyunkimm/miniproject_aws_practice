@@ -26,7 +26,7 @@
             <div style="text-align: center;">
                 <h4>개인 회원정보 수정</h4>
             </div>
-            <form action="/" method="post">
+            <form action="/user/update" method="post">
 
                 <div class="form-group mb-2">
                     <input type="password" name="password" class="form-control" placeholder="Enter password"

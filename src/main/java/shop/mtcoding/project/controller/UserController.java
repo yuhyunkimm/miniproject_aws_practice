@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import shop.mtcoding.project.dto.user.ResponseDto;
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserLoginReqDto;
+import shop.mtcoding.project.dto.user.UserResp.UserDataRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.User;
@@ -123,15 +125,26 @@ public class UserController {
         return "user/loginForm";
     }
 
+    @PostMapping("/user/update")
+    public String update(UserDataRespDto userDataRespDto, Model model) {
+        User principal = (User) session.getAttribute("principal");
+        if (principal == null) {
+            return "redirect:/loginForm";
+        }
+        UserDataRespDto userPS = userRepository.findById(userDataRespDto);
+        model.addAttribute("user", userPS);
+        return "redirect:/user/updateForm";
+    }
+
+    @GetMapping("/user/update")
+    public String updateForm() {
+        return "user/updateForm";
+    }
+
     @GetMapping("/user/myhome")
     public String myhome() {
         MockSession.mockUser(session);
         return "user/myhome";
-    }
-
-    @GetMapping("/user/update")
-    public String update() {
-        return "user/updateForm";
     }
 
     @GetMapping("/user/scrap")
@@ -145,7 +158,7 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    public String logout(){
+    public String logout() {
         session.invalidate();
         return "redirect:/";
     }
