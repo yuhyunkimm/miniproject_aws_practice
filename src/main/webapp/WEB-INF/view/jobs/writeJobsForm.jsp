@@ -550,6 +550,8 @@
                     dataType: "json"
                 }).done((res) => {
                     jobsId = res.data;
+                    alert('등록 완료 !');
+                    location.href="/comp/comphome";
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
                 });
@@ -564,6 +566,8 @@
                     dataType: "json"
                 }).done((res) => {
                     jobsId = res.data;
+                    alert('등록 완료 !');
+                    location.href="/comp/comphome";
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
                 });
