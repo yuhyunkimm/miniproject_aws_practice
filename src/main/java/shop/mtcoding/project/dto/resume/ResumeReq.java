@@ -28,6 +28,7 @@ public class ResumeReq {
 
     @Getter
     @Setter
+    @ToString
     public static class ResumeUpdateReqDto {
         private Integer resumeId;
         private Integer userId;

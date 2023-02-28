@@ -48,7 +48,7 @@
                                             </div>
                                             <div style="float: right;" pt-2>
                                                 <button type="button" class="btn btn-success btn-sm"
-                                                    onclick="location.href='/user/resume/{id}/update'">이력서
+                                                    onclick="location.href=`/user/resume/`+${rDto.resumeId}+`/update`">이력서
                                                     수정</button>
                                             </div>
                                         </div>

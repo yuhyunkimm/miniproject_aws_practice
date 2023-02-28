@@ -41,8 +41,8 @@
         where r.state = 1
     </select>
 
-     <select id="findById" resultType="shop.mtcoding.project.model.User">
-        select * from resume_tb id = #{rDto.id}
+     <select id="findById" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeSaveRespDto">
+        select * from resume_tb where user_id = #{rDto.userId}
     </select>
 
     <insert id="insert" useGeneratedKeys="true"  keyProperty="rDto.resumeId">
@@ -59,12 +59,12 @@
             career =  #{rDto.career},
             link = #{rDto.link}, 
             state = #{rDto.state}, 
-            created_at = #{rDto.createdAt}, 
-            where id = #{rDto.id}
+            created_at = #{rDto.createdAt}
+            where user_id = #{rDto.userId}
     </update>
 
     <delete id="deleteById">
-        delete from resume_tb where id = #{rDto.id}
+        delete from resume_tb where id = #{rDto.userId}
     </delete>
     
 </mapper>
