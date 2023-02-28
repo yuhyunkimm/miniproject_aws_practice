@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.project.dto.user.ResponseDto;
@@ -112,18 +114,32 @@ public class UserController {
         return "user/loginForm";
     }
 
-    @PostMapping("/user/update")
-    public String update(UserUpdateRespDto userUpdateRespDto, Model model) {
+    @PutMapping("/user/{id}/update")
+    public ResponseEntity<?> updateUser(@RequestBody UserUpdateReqDto userUpdateReqDto) {
+        MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
-            return "redirect:/loginForm";
+            throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
-        UserDataRespDto userPS = userRepository.findById(userUpdateRespDto);
-        model.addAttribute("user", userPS);
-        return "redirect:/user/updateForm";
+        if (userUpdateReqDto.getPassword() == null || userUpdateReqDto.getPassword().isEmpty()) {
+            throw new CustomApiException("비밀번호를 입력하세요");
+        }
+        if (userUpdateReqDto.getBirth() == null || userUpdateReqDto.getBirth().isEmpty()) {
+            throw new CustomApiException("생년월일을 입력하세요");
+        }
+        if (userUpdateReqDto.getTel() == null || userUpdateReqDto.getTel().isEmpty()) {
+            throw new CustomApiException("휴대전화를 입력하세요");
+        }
+        if (userUpdateReqDto.getAddress() == null || userUpdateReqDto.getAddress().isEmpty()) {
+            throw new CustomApiException("주소를 입력하세요");
+        }
+
+        // userService.개인정보수정();
+        return new ResponseEntity<>(new ResponseDto<>(1, "수정완료", null), HttpStatus.OK);
+
     }
 
-    @GetMapping("/user/update")
+    @GetMapping("/user/{id}/update")
     public String updateForm() {
         return "user/updateForm";
     }

@@ -19,8 +19,8 @@ public interface UserRepository {
 
         public User findByUserEmail(@Param("email") String email);
 
-        public UserDataRespDto findById(
-                        @Param("uDto") UserUpdateRespDto userUpdateRespDto);
+        public User findById(
+                        @Param("id") Integer id);
 
         public UserSkillAndInterestDto findByUserSkillAndInterest(
                         @Param("id") Integer id);
