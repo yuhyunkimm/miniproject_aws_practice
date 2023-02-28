@@ -1,9 +1,12 @@
 package shop.mtcoding.project.repositoryTest;
 
+import java.sql.Timestamp;
+
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+
 import shop.mtcoding.project.dto.comp.CompReq.CompJoinReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsUpdateReqDto;
 import shop.mtcoding.project.model.CompRepository;
@@ -34,7 +37,6 @@ public class CompRepositoryTest {
 
     }
 
-}
     @Test
     @Transactional
     public void updateById_test() throws Exception {
