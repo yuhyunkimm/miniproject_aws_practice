@@ -9,6 +9,7 @@ import shop.mtcoding.project.dto.resume.ResumeReq.ResumeUpdateReqDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeManageRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeRecommendRespDto;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeSaveRespDto;
 
 @Mapper
 public interface ResumeRepository {
@@ -19,7 +20,7 @@ public interface ResumeRepository {
 
         public void findAll();
 
-        public Resume findById(Integer resumeId);
+        public ResumeSaveRespDto findById(Integer resumeId);
 
         public List<ResumeRecommendRespDto> findAllResumebyPublic();
 

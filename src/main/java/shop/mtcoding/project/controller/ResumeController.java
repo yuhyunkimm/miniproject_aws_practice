@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeUpdateReqDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeSaveRespDto;
 import shop.mtcoding.project.dto.user.ResponseDto;
 import shop.mtcoding.project.dto.user.UserResp.UserDataRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
@@ -114,11 +116,13 @@ public class ResumeController {
     @PutMapping("/user/resume/{id}/update")
     public @ResponseBody ResponseEntity<?> updateResume(@PathVariable Integer id,
             @RequestBody ResumeUpdateReqDto resumeUpdateReqDto) {
+        System.out.println("테스트 : " + resumeUpdateReqDto.toString());
+        MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
-        if (resumeUpdateReqDto.getEducation() == null || resumeUpdateReqDto.getEducation().isEmpty()) {
+        if (ObjectUtils.isEmpty(resumeUpdateReqDto.getEducation())) {
             throw new CustomApiException("학력을 입력해주세요");
         }
         if (resumeUpdateReqDto.getCareer() == null || resumeUpdateReqDto.getCareer().isEmpty()) {
@@ -138,8 +142,13 @@ public class ResumeController {
 
     @GetMapping("/user/resume/{id}/update")
     public String updateResumeForm(@PathVariable Integer id, Model model) {
-        Resume resumePS = resumeRepository.findById(id);
-        model.addAttribute("resume", resumePS);
+        MockSession.mockUser(session);
+        User principal = (User) session.getAttribute("principal");
+        if (principal == null) {
+            throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        }
+        ResumeSaveRespDto rDto = resumeRepository.findById(id);
+        model.addAttribute("rDto", rDto);
         return "resume/updateResumeForm";
     }
 

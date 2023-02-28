@@ -117,7 +117,7 @@
                                     <div class="form-group">
                                         <!-- <label for="exampleTextarea" class="form-label mt-4">자기소개서</label>
                         <hr> -->
-                                        <textarea class="form-control" name="content" id="content" rows="3">${resume.content}</textarea>
+                                        <textarea class="form-control" name="content" id="content" rows="3">${rDto.content}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -126,7 +126,7 @@
                                 <div class="card-header">링크</div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <input type="text" name="link" id="link" class="form-control">
+                                        <input type="text" name="link" id="link" class="form-control" value="${rDto.link}">
                                     </div>
                                 </div>
                             </div>
@@ -137,7 +137,7 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <input type="text" name="title" id="title" class="form-control">
+                                            <input type="text" name="title" id="title" class="form-control" value="${rDto.title}">
                                         </div>
                                     </div>
                                 </div>
@@ -176,7 +176,7 @@
                                     <button type="button" class="btn btn-success w-100">임시 저장</button>
                                 </div>
                                 <div class="row p-1">
-                                    <button onclick="updateResume(${resume.resumeId})" type="button"
+                                    <button onclick="updateResume(`${rDto.resumeId}`,`${principal.userId}`)" type="button"
                                         class="btn btn-success w-100">이력서
                                         수정</button>
                                 </div>
@@ -188,17 +188,20 @@
         </div>
         <script>
             let resumeId;
-
-            function updateResume(id) {
+            let userId;
+            function updateResume(id,uId) {
                 let data = {
                     title: $("#title").val(),
                     content: $("#content").val(),
                     education: $("#education").val(),
                     career: $("#career").val(),
                     skillName1: $("#skillName1").val(),
+                    skillName2: $("#skillName2").val(),
+                    skillName3: $("#skillName3").val(),
                     link: $("#link").val(),
-                    state: $("#state").val(),
-                    resumeId: id
+                    state: $("input[name='state']:checked").val(),
+                    resumeId: id,
+                    userId: uId
                 }
                 $.ajax({
                     type: "put",
@@ -208,7 +211,7 @@
                     dataType: "json" // default : 응답의 mime 타입으로 유추함
                 }).done((res) => { // 20X 일때
                     alert(res.msg);
-                    location.href = "resume/manageResume";
+                    location.href = "/resume/manageResume";
                 }).fail((err) => { // 40X, 50X 일때
                     alert(err.responseJSON.msg);
                 });

@@ -22,8 +22,8 @@
         update user_skill_tb set 
             skill_name1 =  #{rDto.skillName1}, 
             skill_name2 = #{rDto.skillName2}, 
-            skill_name3 = #{rDto.skillName3},
-            where user_id = #{uDto.userId}
+            skill_name3 = #{rDto.skillName3}
+            where user_id = #{rDto.userId}
     </update>
     <delete id="deleteById">
         delete from user_skill_tb where user_id = #{uDto.userId}

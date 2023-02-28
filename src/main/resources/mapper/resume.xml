@@ -41,7 +41,7 @@
         where r.state = 1
     </select>
 
-     <select id="findById" resultType="shop.mtcoding.project.model.Resume">
+     <select id="findById" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeSaveRespDto">
         select * from resume_tb where user_id = #{rDto.userId}
     </select>
 
@@ -59,8 +59,8 @@
             career =  #{rDto.career},
             link = #{rDto.link}, 
             state = #{rDto.state}, 
-            created_at = #{rDto.createdAt}, 
-            where id = #{rDto.userId}
+            created_at = #{rDto.createdAt}
+            where user_id = #{rDto.userId}
     </update>
 
     <delete id="deleteById">
