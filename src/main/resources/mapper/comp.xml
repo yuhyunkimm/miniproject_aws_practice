@@ -17,6 +17,8 @@
             values ( #{uDto.email}, #{uDto.password}, #{uDto.compName}, #{uDto.representativeName}, #{uDto.businessNumber}, now());
     </insert>
 
+
+
     <update id="updateById">
 
     </update>

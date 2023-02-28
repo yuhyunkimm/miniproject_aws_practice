@@ -8,18 +8,26 @@ import java.util.Set;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.project.dto.comp.CompReq.CompJoinReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsRequiredSkill;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeRecommendRespDto;
+import shop.mtcoding.project.dto.user.ResponseDto;
+import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.Comp;
+import shop.mtcoding.project.model.CompRepository;
 import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.ResumeRepository;
+import shop.mtcoding.project.service.CompService;
 import shop.mtcoding.project.util.MockSession;
 
 @Controller
@@ -34,7 +42,13 @@ public class CompController {
     @Autowired
     private ResumeRepository resumeRepository;
 
-    @PostMapping("/user/join")
+    @Autowired
+    private CompService compService;
+
+    @Autowired
+    private CompRepository compRepository;
+
+    @PostMapping("/comp/join")
     public String join(CompJoinReqDto compJoinReqDto) {
         if (compJoinReqDto.getEmail() == null || compJoinReqDto.getEmail().isEmpty()) {
             throw new CustomException("이메일을 작성해주세요");
@@ -54,9 +68,18 @@ public class CompController {
         if (compJoinReqDto.getBusinessNumber() == null || compJoinReqDto.getBusinessNumber().isEmpty()) {
             throw new CustomException("사업자번호를 작성해주세요");
         }
-        // compService.회원가입();
+        compService.회원가입(compJoinReqDto);
 
         return "redirect:/comp/login";
+    }
+
+    @GetMapping("/comp/emailCheck")
+    public @ResponseBody ResponseEntity<?> sameEmailCheck(String email) {
+        Comp compPS = compRepository.findByUserEmail(email);
+        if (compPS != null) {
+            throw new CustomApiException("동일한 email이 존재합니다.");
+        }
+        return new ResponseEntity<>(new ResponseDto<>(1, "해당 email은 사용 가능합니다.", null), HttpStatus.OK);
     }
 
     @GetMapping("/comp/join")
