@@ -1,12 +1,8 @@
 package shop.mtcoding.project.controllerTest;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.sql.Timestamp;
-
-import javax.servlet.http.HttpSession;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,14 +16,20 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import shop.mtcoding.project.dto.apply.ApplyReq.ApplyReqDto;
 import shop.mtcoding.project.model.User;
 
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
-public class UserControllerTest {
-
+public class ApplyControllerTest {
+    
     @Autowired
     private MockMvc mvc;
+
+    @Autowired
+    private ObjectMapper om;
 
     private MockHttpSession mockSession;
 
@@ -46,37 +48,24 @@ public class UserControllerTest {
         mockSession = new MockHttpSession();
         mockSession.setAttribute("principal", mockUser);
     }
-    
+
     @Test
     @Transactional
-    public void join_test() throws Exception {
+    public void applyResume_test() throws Exception {
         // given
-        String requestBody = "email=love@nate.com&password=1234&name=쌀&birth=11111&tel=11111&Address=busan";
-
+        ApplyReqDto aDto = new ApplyReqDto();
+        aDto.setJobsId(1);
+        aDto.setResumeId(1);
+        aDto.setUserId(1);
+        String json = om.writeValueAsString(aDto);
+    
         // when
-        ResultActions resultActions = mvc.perform(post("/user/join").content(requestBody)
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE));
-
+        ResultActions rs = mvc.perform(post("/apply/resume")
+                              .content(json).contentType(MediaType.APPLICATION_JSON_VALUE).session(mockSession));
+    
         // then
-        resultActions.andExpect(status().is3xxRedirection());
+        System.out.println("테스트 : "+ rs.andReturn().getResponse().getContentAsString()); 
+    
     }
-
-    @Test
-    public void login_test() throws Exception {
-        // given
-        String requestBody = "email=ssar@nate.com&password=1234";
-
-        // when
-        ResultActions resultActions = mvc.perform(post("/user/login").content(requestBody)
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE));
-
-        HttpSession session = resultActions.andReturn().getRequest().getSession();
-        User principal = (User) session.getAttribute("principal");
-
-        // then
-        assertThat(principal.getEmail()).isEqualTo("ssar@nate.com");
-        assertThat(principal.getPassword()).isEqualTo("1234");
-        resultActions.andExpect(status().is3xxRedirection());
-    }
-
+        
 }
