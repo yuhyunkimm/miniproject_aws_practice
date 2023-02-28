@@ -42,7 +42,7 @@ public class UserResp {
 
     @Getter
     @Setter
-    public static class UserSkillAndInterestDto{
+    public static class UserSkillAndInterestDto {
         private String skillName1;
         private String skillName2;
         private String skillName3;
@@ -53,9 +53,10 @@ public class UserResp {
 
     @Getter
     @Setter
-    public static class UserSkillRespDto{
+    public static class UserSkillRespDto {
         private String skillName1;
         private String skillName2;
         private String skillName3;
     }
+
 }
