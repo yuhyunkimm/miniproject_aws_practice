@@ -30,7 +30,7 @@
         display: none;
     }
 </style>
-<div class="mx-auto width-53 mx-5 px-3 my-3">
+<div class="mx-auto width-53 mx-5 px-3 top-80">
     <div class="mb-4">
         <ul class="nav nav-pills nav-justified">
             <li class="nav-item mx-2">
@@ -475,7 +475,6 @@
             $.ajax({
                 type: "delete",
                 url: "/user/scrap/"+userScrapId+"/delete",
-                data: JSON.stringify(data),
                 dataType: "json"
             }).done((res) => {
                 userScrapId = res.data;

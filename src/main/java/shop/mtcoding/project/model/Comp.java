@@ -14,7 +14,6 @@ public class Comp {
     private String email;
     private String password;
     private String compName;
-    private String compAddress;
     private String representativeName;
     private String businessNumber;
     private String tel;
