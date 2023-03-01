@@ -163,7 +163,8 @@ public class ResumeController {
 
     // 공개 이력서
     @GetMapping("/resume/{id}")
-    public String resumeDetail() {
+    public String resumeDetail(Model model) {
+        
         return "/resume/resumeDetail";
     }
 

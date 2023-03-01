@@ -87,9 +87,11 @@
                         <div class="row p-1">
                             <button type="button" class="btn btn-secondary  w-100">스크랩</button>
                         </div>
-                        <div class="row p-1 ">
-                            <button type="button" class="btn btn-success w-100" data-bs-toggle="modal"
+                        <div class="row p-1" id="suggest-render">
+                            <div id="suggest-btn">
+                                <button type="button" class="btn btn-success w-100" data-bs-toggle="modal"
                             data-bs-target="#myModal" onclick="requestJobs()">제안하기</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -114,7 +116,7 @@
 
                 </div>
                 <button type="button" class="btn btn-success mt-2" style="float: right;"
-                    onclick="apply(`${jDto.jobsId}`,`${principal.userId}`)" data-bs-dismiss="modal" >제안 하기</button>
+                    onclick="suggest(`${jDto.resumeId}`,`${compSession.compId}`)" data-bs-dismiss="modal" >제안 하기</button>
             </div>
         </div>
     </div>
@@ -126,6 +128,9 @@ function requestJobs(){
 }
 
 let rDtos;
+let jobsId;
+let compId;
+let resumeId;
         function requestJobs() {
             $.ajax({
                 type: "get",
@@ -138,10 +143,10 @@ let rDtos;
             });
         }
         function renderRes(rDtoss) {
-            $('#apply-btn').remove();
+            $('#suggest-btn').remove();
             renderBtn();
-            rDtoss.forEach((rd) => {
-                renderResumeOne(rd);
+            rDtoss.forEach((rj) => {
+                renderJobsOne(rj);
             });
             let resumes = document.querySelectorAll('.resumeList');
             console.log(resumes);
@@ -158,13 +163,13 @@ let rDtos;
         }
         function renderBtn() {
             let el = `
-            <div id="apply-btn">
-                            <button type="button" class="btn btn-success w-100" data-bs-toggle="modal"
-                            data-bs-target="#myModal">지원하기</button>
-                        </div>
+            <div id="suggest-btn">
+                                <button type="button" class="btn btn-success w-100" data-bs-toggle="modal"
+                            data-bs-target="#myModal">제안하기</button>
+                            </div>
             `;
-            $('#apply-render').append(el);
-        }
+            $('#suggest-render').append(el);
+        }        
         function renderBtnSuccess() {
             let el = `
             <div id="apply-btn">
@@ -173,40 +178,40 @@ let rDtos;
             `;
             $('#apply-render').append(el);
         }
-        function renderResumeOne(rDto) {
+        function renderJobsOne(jDto) {
             let el = `
-                        <div class="card mb-4 resumeList" onclick="selectResume(`+ rDto.resumeId + `)">
+                        <div class="card mb-4 resumeList" onclick="selectJobs(`+ jDto.jobsId + `)">
                                 <div class="card-body">
-                                    <h5 class="card-title" style="text-align: left;">`+ rDto.title + `</h5>
+                                    <h5 class="card-title" style="text-align: left;">`+ jDto.title + `</h5>
                                     <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle mb-2 text-muted">`+ rDto.education + `</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">`+ jDto.position + `</h6>
                                     </div>
                                     <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle mb-2 text-muted">`+ rDto.career + `</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">`+ jDto.skillName1 + `</h6>
                                     </div>
                                     <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle mb-2 text-muted">`+ rDto.skillName1 + `</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">`+ jDto.skillName2 + `</h6>
                                     </div>
                                     <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle mb-2 text-muted">`+ rDto.skillName2 + `</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">`+ jDto.skillName3 + `</h6>
                                     </div>
                                     <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle mb-2 text-muted">`+ rDto.skillName3 + `</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">`+ jDto.endDate + `</h6>
                                     </div>
                                 </div>
                             </div>
         `;
-            $('#render-resume').append(el);
+            $('#render-jobs').append(el);
         }
 
-        function selectResume(id) {
-            resumeId1 = id;
+        function selectJobs(id) {
+            jobsId = id;
         }
-        function apply(job, user) {
+        function suggest(job, comp) {
             let date = {
                 jobsId: job,
                 resumeId: resumeId1,
-                userId: user
+                compId: comp
             }
             $.ajax({
                 type: "post",

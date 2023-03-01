@@ -29,6 +29,7 @@ import shop.mtcoding.project.dto.jobs.JobsReq.JobsWriteReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsDetailRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSkillRespDto;
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsSuggestRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsWriteRespDto;
 import shop.mtcoding.project.dto.user.ResponseDto;
 import shop.mtcoding.project.dto.user.UserResp.UserSkillAndInterestDto;
@@ -66,8 +67,8 @@ public class JobsController {
     @GetMapping("/request/jobs")
     public ResponseEntity<?> requestJobs(){
     Comp compSession = (Comp)session.getAttribute("compSession");
-    
-    return new ResponseEntity<>(new ResponseDto<>(1, "공고 불러오기 완료", null), HttpStatus.OK);
+    List<JobsSuggestRespDto> jDtos = jobsRepository.findAllToReqSuggest(compSession.getCompId());
+    return new ResponseEntity<>(new ResponseDto<>(1, "공고 불러오기 완료", jDtos), HttpStatus.OK);
     }
 
     @GetMapping("/jobs/info")

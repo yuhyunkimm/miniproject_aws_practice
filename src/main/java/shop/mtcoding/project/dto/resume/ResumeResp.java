@@ -10,6 +10,7 @@ public class ResumeResp {
 
     @Getter
     @Setter
+    @ToString
     public static class ResumeRecommendRespDto {
         private Integer resumeId;
         private String photo;
@@ -22,6 +23,8 @@ public class ResumeResp {
         private String skillName2;
         private String skillName3;
         private String address;
+        private String content;
+        private String link;
     }
 
     @Getter

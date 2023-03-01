@@ -1,10 +1,13 @@
 package shop.mtcoding.project.repositoryTest;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeRecommendRespDto;
 import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.UserSkillRepository;
 
@@ -51,4 +54,15 @@ public class ResumeRepositoryTest {
         // then
         System.out.println(result2);
     }
+    @Test
+    public void findAllResumebyPublic_test() throws Exception {
+        // given
+        
+    
+        // when
+        List<ResumeRecommendRespDto> rList = resumeRepository.findAllResumebyPublic();
+
+        // then
+        rList.forEach((s)->{System.out.println("테스트 : "+ s.toString());});
+    }   
 }
