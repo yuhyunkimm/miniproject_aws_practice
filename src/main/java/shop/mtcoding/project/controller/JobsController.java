@@ -29,10 +29,8 @@ import shop.mtcoding.project.dto.jobs.JobsReq.JobsWriteReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsDetailRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSkillRespDto;
-
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsWriteRespDto;
 import shop.mtcoding.project.dto.user.ResponseDto;
-
 import shop.mtcoding.project.dto.user.UserResp.UserSkillAndInterestDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
@@ -67,7 +65,6 @@ public class JobsController {
 
     @GetMapping("/jobs/info")
     public String info(JobsSearchReqDto jDto, Model model) throws Exception {
-        ObjectMapper om = new ObjectMapper();
         if (jDto.getAddress() == null || jDto.getAddress().isEmpty()) {
             jDto.setAddress("");
         }
@@ -80,15 +77,29 @@ public class JobsController {
         if (jDto.getSkill() == null || jDto.getSkill().isEmpty()) {
             jDto.setSkill("");
         }
-        List<JobsSearchRespDto> jDtos = jobsRepository.findBySearch(jDto);
-        model.addAttribute("jDtos", jDtos);
+        User principal = (User) session.getAttribute("principal");
+        if ( principal != null  ){
+            List<JobsSearchRespDto> jDtos = jobsRepository.findBySearch(jDto, principal.getUserId());
+            model.addAttribute("jDtos", jDtos);
+        }else{
+            List<JobsSearchRespDto> jDtos = jobsRepository.findBySearch(jDto,null);
+            model.addAttribute("jDtos", jDtos);
+        }
+        
         return "jobs/info";
     }
 
     @GetMapping("/jobs/{id}")
     public String viewJobs(@PathVariable Integer id, Model model) {
-        JobsDetailRespDto jDto = jobsRepository.findByJobsDetail(id);
+        User principal = (User) session.getAttribute("principal");
+        if ( principal != null ){
+            JobsDetailRespDto jDto = jobsRepository.findByJobsDetail(id, principal.getUserId());
         model.addAttribute("jDto", jDto);
+        }
+        else{
+            JobsDetailRespDto jDto = jobsRepository.findByJobsDetail(id, null);
+            model.addAttribute("jDto", jDto);
+        }
         return "jobs/jobsDetail";
     }
 
@@ -107,7 +118,8 @@ public class JobsController {
     @GetMapping("/jobs/{id}/update")
     public String updateJobs(@PathVariable Integer id, Model model) {
         MockSession.mockComp(session);
-        JobsDetailRespDto jDto = jobsRepository.findByJobsDetail(id);
+        User principal = (User) session.getAttribute("principal");
+        JobsDetailRespDto jDto = jobsRepository.findByJobsDetail(id, principal.getUserId());
         model.addAttribute("cDto", jDto);
         return "jobs/updateJobsForm";
     }
@@ -145,7 +157,7 @@ public class JobsController {
         List<String> matchingList = new ArrayList<>(set);
         model.addAttribute("uDto", matchingList);
 
-        List<JobsSkillRespDto> jsList = jobsRepository.findAllByJobsAndSkill();
+        List<JobsSkillRespDto> jsList = jobsRepository.findAllByJobsAndSkill(principal.getUserId());
         List<JobsSkillRespDto> fourMatchDto = new ArrayList<>();
         List<JobsSkillRespDto> threeMatchDto = new ArrayList<>();
         List<JobsSkillRespDto> twoMatchDto = new ArrayList<>();

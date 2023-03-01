@@ -20,7 +20,7 @@ import shop.mtcoding.project.dto.jobs.JobsResp.JobsSkillRespDto;
 public interface JobsRepository {
     public List<Jobs> findAll();
     public Jobs findById(Integer jobsId);
-    public List<JobsSkillRespDto> findAllByJobsAndSkill();
+    public List<JobsSkillRespDto> findAllByJobsAndSkill(Integer userId);
 
     public  List<JobsManageJobsRespDto> findByIdtoManageJobs(Integer compId);
     
@@ -36,15 +36,17 @@ public interface JobsRepository {
     public List<JobsRequiredSkill> findByJobsRequiredSkill(
         @Param("id") Integer id
     ); 
-    public List<JobsMainRespDto> findAlltoMain();
+    public List<JobsMainRespDto> findAlltoMain(Integer userId);
 
     public List<JobsSearchRespDto> findBySearch(
-        @Param("jDto") JobsSearchReqDto jDto
+        @Param("jDto") JobsSearchReqDto jDto,
+        @Param("userId") Integer userId
         );
     public List<JobsSearchRespDto> findByCheckBox(
         @Param("jDto") JobsCheckBoxReqDto jDto
         );
     public JobsDetailRespDto findByJobsDetail(
-        @Param("jobsId") Integer jobsId
+        @Param("jobsId") Integer jobsId,
+        @Param("userId") Integer userId
     );
 }

@@ -368,7 +368,7 @@
     <div class="d-flex flex-wrap my-3 info-card">
         <c:forEach items="${jDtos}" var="jDto">
             <div class="col-3 px-2 py-2 remove-card">
-                <a href="/jobs/${jDto.jobsId}">
+                <a href="/jobs/${jDto.jobsId}" onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
                     <div class="card">
                         <div>
                             <img src='${jDto.photo}' alt="" srcset="">

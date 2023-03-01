@@ -84,11 +84,13 @@
 </head>
 
 <body>
+    <div >
     <div class="header">
         <div class="progress-container">
             <div class="progress-bar progress-bar-striped progress-bar-animated"></div>
         </div>
     </div>
+    
     <div class="mx-auto width-53">
         <div class="relative">
             <div class="width-l my-border relative my-5">
@@ -243,7 +245,7 @@
         </div>
     </div>
 
-
+</div>
     <script>
         let resumeId1;
         let jobsId;

@@ -80,6 +80,7 @@ public class JobsResp {
         private String position;
         private String address;
         private Timestamp endDate;
+        private Integer userScrapId;
     }
 
     @Getter
