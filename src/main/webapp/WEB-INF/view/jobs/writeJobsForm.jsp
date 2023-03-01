@@ -1,19 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Blog</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://kit.fontawesome.com/32aa2b8683.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-    <link rel="stylesheet" href="/css/style.css">
+<%@ include file="../layout/header-simple.jsp" %>
     <style>
         .my-border {
             background-color: #f8f8f8;
@@ -24,29 +10,6 @@
             border: 1px solid rgb(0, 0, 0);
         }
     </style>
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-sm bg-light navbar-light  ">
-        <div class="container-fluid width-53">
-            <div class="">
-                <a class="navbar-brand" href="/"><i class="fa-brands fa-github-square" style="font-size: 2em;"></i></a>
-            </div>
-            <div class="d-flex">
-                <div class="me-4">
-                </div>
-                <div class="my-auto me-5">
-                    <a href="/user/myhome">
-                        <i class="fa-regular fa-user"></i>
-                    </a>
-                </div>
-                <div class="my-auto pb-1">
-                    <a href="/comp/comphome"><span class="badge bg-success">기업홈</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
     <!-- 헤더 추가 요망 -->
     <div class="mx-auto width-53 top-80">
         <div class="relative">

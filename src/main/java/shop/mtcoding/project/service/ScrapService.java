@@ -92,8 +92,9 @@ public class ScrapService {
         if ( compId != CSPS.getCompId()){
             throw new CustomApiException("삭제 권한이 없습니다.", HttpStatus.FORBIDDEN);
         }
+        System.out.println("테스트 : "+ compScrapId);
         try {
-            scrapRepository.deleteByUserScrapId(compScrapId);
+            scrapRepository.deleteByCompScrapId(compScrapId);
         } catch (Exception e) {
             throw new CustomApiException("서버에 일시적인 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
