@@ -54,6 +54,12 @@ insert into interest_tb (user_id, interest_ct1, interest_ct2, interest_ct3) valu
 insert into resume_tb (user_id, title, content, education, career, link, state, created_at) 
 values (1, '벡엔드 이력서', '백엔드 이력서의 내용입니다.', '고졸', '신입', '블로그 주소', 1, now());
 
+insert into resume_tb (user_id, title, content, education, career, link, state, created_at) 
+values (1, '벡엔드 이력서22', '백엔드 이력서의 내용입니다.', '고졸', '신입', '블로그 주소', 1, now());
+
+insert into resume_tb (user_id, title, content, education, career, link, state, created_at) 
+values (1, '벡엔드 이력서33', '백엔드 이력서의 내용입니다.', '고졸', '신입', '블로그 주소', 1, now());
+
 insert into resume_tb (user_id, title, content, education, career,  link, state, created_at) 
 values (2, '벡엔드 이력서', '백엔드 이력서의 내용입니다.', '대졸', '2년차', '블로그 주소', 1, now());
 

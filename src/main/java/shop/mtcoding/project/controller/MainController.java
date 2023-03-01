@@ -72,7 +72,7 @@ public class MainController {
                     userSkillPS.getSkillName3());
             Set<String> set = new HashSet<>(skillList);
 
-            List<JobsMainRespDto> JobsList = jobsRepository.findAlltoMain();
+            List<JobsMainRespDto> JobsList = jobsRepository.findAlltoMain(principal.getUserId());
             List<JobsMainRespDto> threeMatchRecommend = new ArrayList<>();
             List<JobsMainRespDto> twoMatchRecommend = new ArrayList<>();
             List<JobsMainRespDto> oneMatchRecommend = new ArrayList<>();
@@ -109,12 +109,15 @@ public class MainController {
             recommendListDto.addAll(oneMatchRecommend);
             // recommendListDto.addAll(JobsList);
             model.addAttribute("rDtos", recommendListDto);
+            List<JobsMainRespDto> jDtos = jobsRepository.findAlltoMain(principal.getUserId());
+            model.addAttribute("jDtos", jDtos);
         } else {
-            List<JobsMainRespDto> jDtos = jobsRepository.findAlltoMain();
-            model.addAttribute("rDtos", jDtos);
+            List<JobsMainRespDto> jDtost = jobsRepository.findAlltoMain(null);
+            model.addAttribute("rDtos", jDtost);
+            List<JobsMainRespDto> jDtosb = jobsRepository.findAlltoMain(null);
+            model.addAttribute("jDtos", jDtosb);
         }
-        List<JobsMainRespDto> jDtos = jobsRepository.findAlltoMain();
-        model.addAttribute("jDtos", jDtos);
+        
         return "main/main";
     }
 

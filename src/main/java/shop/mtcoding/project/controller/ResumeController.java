@@ -1,5 +1,7 @@
 package shop.mtcoding.project.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeUpdateReqDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeManageRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeSaveRespDto;
 import shop.mtcoding.project.dto.user.ResponseDto;
-import shop.mtcoding.project.dto.user.UserResp.UserDataRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
-import shop.mtcoding.project.model.Resume;
 import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
@@ -56,10 +57,18 @@ public class ResumeController {
         return "resume/manageResume";
     }
 
+    @GetMapping("/user/request/resume") // 공고에 지원할 이력서 불러오기
+    public ResponseEntity<?> requestResume(Model model) {
+        MockSession.mockUser(session);
+        User principal = (User) session.getAttribute("principal");
+        List<ResumeManageRespDto> rDtos = resumeRepository.findAllWithUserById(principal.getUserId());
+        return new ResponseEntity<>(new ResponseDto<>(1, "이력서 불러오기 성공", rDtos), HttpStatus.OK);
+    }
+
     @PostMapping("/user/resume/write")
     public ResponseEntity<?> writeResume(@RequestBody ResumeWriteReqDto resumeWriteReqDto) {
         MockSession.mockUser(session);
-        System.out.println("테스트 : " + resumeWriteReqDto.getUserId());
+        // System.out.println("테스트 : " + resumeWriteReqDto.getUserId());
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
@@ -116,7 +125,7 @@ public class ResumeController {
     @PutMapping("/user/resume/{id}/update")
     public @ResponseBody ResponseEntity<?> updateResume(@PathVariable Integer id,
             @RequestBody ResumeUpdateReqDto resumeUpdateReqDto) {
-        System.out.println("테스트 : " + resumeUpdateReqDto.toString());
+        // System.out.println("테스트 : " + resumeUpdateReqDto.toString());
         MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {

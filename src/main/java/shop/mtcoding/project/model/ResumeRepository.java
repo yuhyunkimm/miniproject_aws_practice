@@ -16,11 +16,13 @@ public interface ResumeRepository {
 
         public List<ResumeManageRespDto> findAllWithUser();
 
+        public ResumeSaveRespDto findById(Integer resumeId);
+
+        public Resume findByResumeId(Integer resumeId);
+
         public List<ResumeManageRespDto> findAllWithUserById(Integer userId);
 
         public void findAll();
-
-        public ResumeSaveRespDto findById(Integer resumeId);
 
         public List<ResumeRecommendRespDto> findAllResumebyPublic();
 

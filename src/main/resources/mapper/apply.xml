@@ -4,16 +4,17 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="shop.mtcoding.project.model.ApplyRepository">
-    <!-- <select id="findAll" resultType="shop.mtcoding.project.model.Apply">
+    <select id="findAll" resultType="shop.mtcoding.project.model.Apply">
         select * from apply_tb
     </select>
 
     <select id="findById" resultType="shop.mtcoding.project.model.User">
-
+      
     </select>
 
     <insert id="insert">
-
+      insert into apply_tb ( resume_id, jobs_id, state, created_at ) 
+        values ( #{aDto.resumeId}, #{aDto.jobsId}, 1, now() )
     </insert>
 
     <update id="updateById">
@@ -22,5 +23,5 @@
 
     <delete id="deleteById">
 
-    </delete> -->
+    </delete>
 </mapper>

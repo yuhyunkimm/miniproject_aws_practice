@@ -1,35 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
-<style>
-    .my-xl {
-        color: 000;
-    }
-
-    .my-cursor {
-        cursor: pointer;
-    }
-
-    .my-cursor:hover {
-        color: rgb(226, 226, 40);
-    }
-
-    .on-Clicked {
-        color: rgb(226, 226, 40);
-    }
-
-    .under-line {
-        border-bottom: 1px solid rgb(150, 150, 150);
-    }
-
-    .nav-pills>.nav-item>.active {
-        color: rgb(255, 255, 255);
-        background-color: rgb(77, 143, 77)
-    }
-
-    .display-none {
-        display: none;
-    }
-</style>
 <div class="mx-auto width-53 mx-5 px-3 top-80">
     <div class="mb-4">
         <ul class="nav nav-pills nav-justified">
@@ -398,7 +368,7 @@
     <div class="d-flex flex-wrap my-3 info-card">
         <c:forEach items="${jDtos}" var="jDto">
             <div class="col-3 px-2 py-2 remove-card">
-                <a href="/jobs/${jDto.jobsId}">
+                <a href="/jobs/${jDto.jobsId}" onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
                     <div class="card">
                         <div>
                             <img src='${jDto.photo}' alt="" srcset="">
