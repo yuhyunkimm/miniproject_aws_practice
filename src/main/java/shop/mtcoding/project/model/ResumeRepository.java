@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeUpdateReqDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeDetailRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeManageRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeRecommendRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeSaveRespDto;
@@ -25,6 +26,7 @@ public interface ResumeRepository {
         public void findAll();
 
         public List<ResumeRecommendRespDto> findAllResumebyPublic();
+        public ResumeDetailRespDto findDetailResumebyPublicById(Integer resumeId);
 
         public int insert(
                         @Param("rDto") ResumeWriteReqDto rDto);

@@ -16,67 +16,13 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <link rel="stylesheet" href="/css/style.css">
     <style>
-        .view-up {
-            width: 50em;
-        }
-
         .my-border {
             border: 1px solid rgb(0, 0, 0);
             padding: 40px;
             padding-top: 0;
             margin-top: 0;
         }
-
-        .border {
-            border: 1px solid rgb(0, 0, 0);
-        }
-
-        header {
-            position: sticky;
-            top: 1em;
-            padding: 5px;
-            border-bottom: 1px solid #000;
-            background-color: white;
-            /* border: 1px solid rgb(0, 0, 0); */
-            z-index: 10;
-        }
-
-        html {
-            width: 100%;
-            height: 100%;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
-        .header {
-            position: fixed;
-            top: 0;
-            z-index: 1;
-            width: 100%;
-            background-color: #F1F1F1;
-        }
-
-        .progress-container {
-            width: 100%;
-            height: 8px;
-            background: #CCCCCC;
-        }
-
-        .progress-container .progress-bar {
-            width: 0;
-            height: 8px;
-            background: #4CAF50;
-        }
-
-        .content_obj {
-            width: 100%;
-            height: 5000px;
-            background-color: #eeeeee;
-        }
-
+    
         .selected {
             background-color: #c5f1c5;
         }

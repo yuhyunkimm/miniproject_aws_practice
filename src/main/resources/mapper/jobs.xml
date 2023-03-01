@@ -23,6 +23,16 @@
         j.jobs_id = r.jobs_id
     </select>
 
+    <select id="findAllToReqSuggest" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsSuggestRespDto">
+      select j.jobs_id,
+      title, position, r.skill_name1, r.skill_name2, r.skill_name3,  end_date,
+      <if test="compId != null">
+        ifnull(( select comp_scrap_id from comp_scrap_tb where comp_id = #{compId} and comp_id = j.comp_id ),null) comp_scrap_id
+      </if>
+      from jobs_tb j join required_skill_tb r on
+      j.jobs_id = r.jobs_id
+    </select>
+
     <select id="findByIdtoManageJobs" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsManageJobsRespDto">
       select ROW_NUMBER() OVER(ORDER BY jobs_id desc)num, jobs_id, title, position, career from jobs_tb where comp_id = #{compId}
     </select>

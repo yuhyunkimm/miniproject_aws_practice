@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import shop.mtcoding.project.dto.common.ResponseDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsCheckBoxReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsSearchReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsUpdateReqDto;
@@ -29,8 +30,8 @@ import shop.mtcoding.project.dto.jobs.JobsReq.JobsWriteReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsDetailRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSkillRespDto;
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsSuggestRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsWriteRespDto;
-import shop.mtcoding.project.dto.user.ResponseDto;
 import shop.mtcoding.project.dto.user.UserResp.UserSkillAndInterestDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
@@ -63,6 +64,14 @@ public class JobsController {
     @Autowired
     private HttpSession session;
 
+    @GetMapping("/request/jobs")
+    public ResponseEntity<?> requestJobs() {
+        MockSession.mockComp(session);
+        Comp compSession = (Comp) session.getAttribute("compSession");
+        List<JobsSuggestRespDto> jDtos = jobsRepository.findAllToReqSuggest(compSession.getCompId());
+        return new ResponseEntity<>(new ResponseDto<>(1, "공고 불러오기 완료", jDtos), HttpStatus.OK);
+    }
+
     @GetMapping("/jobs/info")
     public String info(JobsSearchReqDto jDto, Model model) throws Exception {
         if (jDto.getAddress() == null || jDto.getAddress().isEmpty()) {
@@ -78,25 +87,24 @@ public class JobsController {
             jDto.setSkill("");
         }
         User principal = (User) session.getAttribute("principal");
-        if ( principal != null  ){
+        if (principal != null) {
             List<JobsSearchRespDto> jDtos = jobsRepository.findBySearch(jDto, principal.getUserId());
             model.addAttribute("jDtos", jDtos);
-        }else{
-            List<JobsSearchRespDto> jDtos = jobsRepository.findBySearch(jDto,null);
+        } else {
+            List<JobsSearchRespDto> jDtos = jobsRepository.findBySearch(jDto, null);
             model.addAttribute("jDtos", jDtos);
         }
-        
+
         return "jobs/info";
     }
 
     @GetMapping("/jobs/{id}")
     public String viewJobs(@PathVariable Integer id, Model model) {
         User principal = (User) session.getAttribute("principal");
-        if ( principal != null ){
+        if (principal != null) {
             JobsDetailRespDto jDto = jobsRepository.findByJobsDetail(id, principal.getUserId());
-        model.addAttribute("jDto", jDto);
-        }
-        else{
+            model.addAttribute("jDto", jDto);
+        } else {
             JobsDetailRespDto jDto = jobsRepository.findByJobsDetail(id, null);
             model.addAttribute("jDto", jDto);
         }
@@ -104,11 +112,11 @@ public class JobsController {
     }
 
     @GetMapping("/jobs/write")
-    public String writeJobs(Model model){
+    public String writeJobs(Model model) {
         MockSession.mockComp(session);
         Comp compSesseion = (Comp) session.getAttribute("compSession");
         JobsWriteRespDto cDto = compRepository.findById(compSesseion.getCompId());
-        if ( cDto == null ){
+        if (cDto == null) {
             throw new CustomException("회사정보가 없습니다.");
         }
         model.addAttribute("cDto", cDto);
@@ -222,37 +230,37 @@ public class JobsController {
     }
 
     @PostMapping("/jobs/write")
-    public ResponseEntity<?> writeJobs(@RequestBody JobsWriteReqDto jDto){
+    public ResponseEntity<?> writeJobs(@RequestBody JobsWriteReqDto jDto) {
         // System.out.println("테스트 : "+jDto.toString());
-        Comp compSession = (Comp)session.getAttribute("compSession");
-        if( jDto.getCompId() == null ) {
+        Comp compSession = (Comp) session.getAttribute("compSession");
+        if (jDto.getCompId() == null) {
             throw new CustomApiException("회사계정이 필요합니다.", HttpStatus.UNAUTHORIZED);
         }
-        if ( jDto.getCompName() == null || jDto.getCompName().isEmpty() ){
+        if (jDto.getCompName() == null || jDto.getCompName().isEmpty()) {
             throw new CustomApiException("회사명이 필요합니다.");
         }
-        if ( jDto.getRepresentativeName() == null || jDto.getRepresentativeName().isEmpty() ){
+        if (jDto.getRepresentativeName() == null || jDto.getRepresentativeName().isEmpty()) {
             throw new CustomApiException("대표자명이 필요합니다.");
-        }    
-        if ( jDto.getTitle() == null || jDto.getTitle().isEmpty() ){
+        }
+        if (jDto.getTitle() == null || jDto.getTitle().isEmpty()) {
             throw new CustomApiException("공고 제목이 필요합니다.");
         }
-        if ( jDto.getEducation() == null || jDto.getEducation().isEmpty() ){
+        if (jDto.getEducation() == null || jDto.getEducation().isEmpty()) {
             throw new CustomApiException("학력정보가 필요합니다.");
         }
-        if ( jDto.getCareer() == null || jDto.getCareer().isEmpty() ){
+        if (jDto.getCareer() == null || jDto.getCareer().isEmpty()) {
             throw new CustomApiException("경력정보가 필요합니다.");
         }
-        if ( jDto.getPosition() == null || jDto.getPosition().isEmpty() ){
+        if (jDto.getPosition() == null || jDto.getPosition().isEmpty()) {
             throw new CustomApiException("직무정보가 필요합니다.");
         }
-        if ( jDto.getAddress() == null || jDto.getAddress() .isEmpty() ){
+        if (jDto.getAddress() == null || jDto.getAddress().isEmpty()) {
             throw new CustomApiException("근무주소가 필요합니다.");
         }
-        if ( jDto.getReceipt() == null || jDto.getReceipt().isEmpty() ){
+        if (jDto.getReceipt() == null || jDto.getReceipt().isEmpty()) {
             throw new CustomApiException("접수방법이 필요합니다.");
         }
-        if ( ObjectUtils.isEmpty(jDto.getSkill()) ){
+        if (ObjectUtils.isEmpty(jDto.getSkill())) {
             throw new CustomApiException("필요기술이 필요합니다.");
         }
         Integer jobsId = jobsService.공고작성(jDto, compSession.getCompId());
@@ -260,33 +268,33 @@ public class JobsController {
     }
 
     @PutMapping("/jobs/update")
-    public ResponseEntity<?> updateJobs(@RequestBody JobsUpdateReqDto jDto){
-        Comp compSession = (Comp)session.getAttribute("compSession");
-        if( jDto.getCompId() == null ) {
+    public ResponseEntity<?> updateJobs(@RequestBody JobsUpdateReqDto jDto) {
+        Comp compSession = (Comp) session.getAttribute("compSession");
+        if (jDto.getCompId() == null) {
             throw new CustomApiException("회사계정이 필요합니다.", HttpStatus.UNAUTHORIZED);
         }
-        if ( jDto.getCompName() == null || jDto.getCompName().isEmpty() ){
+        if (jDto.getCompName() == null || jDto.getCompName().isEmpty()) {
             throw new CustomApiException("회사명이 필요합니다.");
         }
-        if ( jDto.getRepresentativeName() == null || jDto.getRepresentativeName().isEmpty() ){
+        if (jDto.getRepresentativeName() == null || jDto.getRepresentativeName().isEmpty()) {
             throw new CustomApiException("대표자명이 필요합니다.");
-        }    
-        if ( jDto.getTitle() == null || jDto.getTitle().isEmpty() ){
+        }
+        if (jDto.getTitle() == null || jDto.getTitle().isEmpty()) {
             throw new CustomApiException("공고 제목이 필요합니다.");
         }
-        if ( jDto.getEducation() == null || jDto.getEducation().isEmpty() ){
+        if (jDto.getEducation() == null || jDto.getEducation().isEmpty()) {
             throw new CustomApiException("학력정보가 필요합니다.");
         }
-        if ( jDto.getCareer() == null || jDto.getCareer().isEmpty() ){
+        if (jDto.getCareer() == null || jDto.getCareer().isEmpty()) {
             throw new CustomApiException("경력정보가 필요합니다.");
         }
-        if ( jDto.getPosition() == null || jDto.getPosition().isEmpty() ){
+        if (jDto.getPosition() == null || jDto.getPosition().isEmpty()) {
             throw new CustomApiException("직무정보가 필요합니다.");
         }
-        if ( jDto.getAddress() == null || jDto.getAddress() .isEmpty() ){
+        if (jDto.getAddress() == null || jDto.getAddress().isEmpty()) {
             throw new CustomApiException("근무주소가 필요합니다.");
         }
-        if ( jDto.getReceipt() == null || jDto.getReceipt().isEmpty() ){
+        if (jDto.getReceipt() == null || jDto.getReceipt().isEmpty()) {
             throw new CustomApiException("접수방법이 필요합니다.");
         }
 

@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Blog</title>
     <meta charset="utf-8">
@@ -24,9 +25,9 @@
                 <a class="navbar-brand" href="/"><i class="fa-brands fa-github-square" style="font-size: 2em;"></i></a>
             </div>
 
-                <c:choose>
-                   <c:when test="${compSession == null}">
-                   <div class="collapse navbar-collapse ms-5" id="collapsibleNavbar">
+            <c:choose>
+                <c:when test="${compSession == null}">
+                    <div class="collapse navbar-collapse ms-5" id="collapsibleNavbar">
                         <ul class="navbar-nav">
                             <li class="nav-item mx-3 fs-5">
                                 <a class="nav-link text-dark" href="/jobs/info">채용정보</a>
@@ -40,10 +41,10 @@
                             </li>
                         </ul>
                     </div>
-                   </c:when>
-                
-                   <c:otherwise>
-                   <div class="collapse navbar-collapse ms-5" id="collapsibleNavbar">
+                </c:when>
+
+                <c:otherwise>
+                    <div class="collapse navbar-collapse ms-5" id="collapsibleNavbar">
                         <ul class="navbar-nav">
                             <li class="nav-item mx-3 fs-5">
                                 <a class="nav-link text-dark" href="/jobs/info">채용정보</a>
@@ -56,19 +57,19 @@
                             </li>
                         </ul>
                     </div>
-            
-                   </c:otherwise>
-                </c:choose>
-                    
-              
-                
-                    
+
+                </c:otherwise>
+            </c:choose>
+
+
+
+
 
             <div class="d-flex">
                 <c:choose>
-                    <c:when test="${principal == null}">
-                        <div class="me-3">
-                            <div class="input-group me-3">
+                    <c:when test="${compSession != null}">
+                        <div class="me-4">
+                            <div class="input-group me-4">
                                 <div class="form-outline me-4">
                                     <input id="search-header" type="search" name="title" class="form-control"
                                         placeholder="검색" style="display: none;"
@@ -79,18 +80,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="my-auto me-3">
-                            <a class="text-dark" href="/user/login">
-                                로그인 / 회원가입
+                        <div class="my-auto me-5">
+                            <a href="/comp/comphome">
+                                <i class="fa-regular fa-user"></i>
                             </a>
                         </div>
                         <div class="my-auto pb-1">
-                            <a href="/comp/comphome"><span class="badge bg-success">기업서비스</span>
+                            <a href="/user/myhome"><span class="badge bg-success">개인서비스</span>
                             </a>
                         </div>
+
                     </c:when>
 
-                    <c:otherwise>
+
+                    <c:when test="${principal != null}">
                         <div class="me-4">
                             <div class="input-group me-4">
                                 <div class="form-outline me-4">
@@ -112,8 +115,43 @@
                             <a href="/comp/comphome"><span class="badge bg-success">기업서비스</span>
                             </a>
                         </div>
+
+                    </c:when>
+
+                    <c:otherwise>
+
+                        <div class="me-3">
+                            <div class="input-group me-3">
+                                <div class="form-outline me-4">
+                                    <input id="search-header" type="search" name="title" class="form-control"
+                                        placeholder="검색" style="display: none;"
+                                        onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt();}" />
+                                </div>
+                                <div class="my-auto">
+                                    <i class="fa-solid fa-magnifying-glass btn btn-light" onclick="searchBox()"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-auto me-3">
+                            <a class="text-dark" href="/user/login">
+                                로그인 / 회원가입
+                            </a>
+                        </div>
+                        <div class="my-auto pb-1">
+                            <a href="/comp/comphome"><span class="badge bg-success">기업서비스</span>
+                            </a>
+                        </div>
                     </c:otherwise>
                 </c:choose>
             </div>
         </div>
     </nav>
+
+
+
+
+
+
+
+
+

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import shop.mtcoding.project.dto.apply.ApplyReq.ApplyReqDto;
-import shop.mtcoding.project.dto.user.ResponseDto;
+import shop.mtcoding.project.dto.common.ResponseDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.service.ApplyService;

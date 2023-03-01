@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import shop.mtcoding.project.dto.common.ResponseDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompJoinReqDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompLoginReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsManageJobsRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsRequiredSkill;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeRecommendRespDto;
-import shop.mtcoding.project.dto.user.ResponseDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.Comp;

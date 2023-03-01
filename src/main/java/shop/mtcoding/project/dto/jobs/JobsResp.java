@@ -134,4 +134,17 @@ public class JobsResp {
         private String career;
     }
 
+    @Getter
+    @Setter
+    @ToString
+    public static class JobsSuggestRespDto{
+        private Integer jobsId;
+        private String title;
+        private String position;
+        private String skillName1;
+        private String skillName2;
+        private String skillName3;
+        private Timestamp endDate;
+    }
+
 }
