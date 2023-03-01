@@ -68,7 +68,7 @@ public class ResumeController {
     @PostMapping("/user/resume/write")
     public ResponseEntity<?> writeResume(@RequestBody ResumeWriteReqDto resumeWriteReqDto) {
         MockSession.mockUser(session);
-        System.out.println("테스트 : " + resumeWriteReqDto.getUserId());
+        // System.out.println("테스트 : " + resumeWriteReqDto.getUserId());
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
@@ -125,7 +125,7 @@ public class ResumeController {
     @PutMapping("/user/resume/{id}/update")
     public @ResponseBody ResponseEntity<?> updateResume(@PathVariable Integer id,
             @RequestBody ResumeUpdateReqDto resumeUpdateReqDto) {
-        System.out.println("테스트 : " + resumeUpdateReqDto.toString());
+        // System.out.println("테스트 : " + resumeUpdateReqDto.toString());
         MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {

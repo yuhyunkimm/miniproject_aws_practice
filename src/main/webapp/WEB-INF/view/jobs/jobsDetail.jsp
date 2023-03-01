@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -175,11 +176,36 @@
                     <!-- 뷰포트 -->
                     <div class="d-flex justify-content-between">
                         <div>
-                            <img class="" src="${jDto.photo}" style="height: 20px;">
+                            ${jDto.compName}
                         </div>
-                        <div class="me-2"><i id=`scrap-${jDto.jobsId}` class=" fa-regular fa-star"
-                                onclick="scrap(`${jDto.jobsId}`)"></i>
-                        </div>
+                        <c:choose>
+                            <c:when test="${principal != null}">
+                                <div id="scrap-${jDto.jobsId}-render">
+                                    <div id="scrap-${jDto.jobsId}-remove">
+                                        <c:choose>
+                                            <c:when test="${jDto.userScrapId > 0}">
+                                                <i id="scrap-${jDto.jobsId}"
+                                                    class="fa-solid on-Clicked fa-star my-cursor"
+                                                    onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
+                                            </c:when>
+
+                                            <c:otherwise>
+                                                <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star my-cursor"
+                                                    onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
+                                </div>
+                            </c:when>
+
+                            <c:otherwise>
+                                <div>
+                                    <a href="/user/login">
+                                        <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star"></i>
+                                    </a>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                     <div class="my-1 fs-5">
                         ${jDto.title}
@@ -210,8 +236,8 @@
 
 
                     </div>
-                    <button type="button" class="btn btn-success mt-2" style="float: right;" onclick="apply(`${jDto.jobsId}`,`${principal.userId}`)"
-                        data-bs-dismiss="modal">지원 하기</button>
+                    <button type="button" class="btn btn-success mt-2" style="float: right;"
+                        onclick="apply(`${jDto.jobsId}`,`${principal.userId}`)" data-bs-dismiss="modal">지원 하기</button>
                 </div>
             </div>
         </div>
@@ -220,6 +246,75 @@
 
     <script>
         let resumeId1;
+        let jobsId;
+        let userId;
+        let userScrapId;
+
+        function scrap(jobs, user, userScrap) {
+            jobsId = jobs;
+            userId = user;
+
+            // 스크랩 id 있을때
+            if (userScrap > 0) {
+                userScrapId = userScrap;
+                $.ajax({
+                    type: "delete",
+                    url: "/user/scrap/" + userScrapId + "/delete",
+                    dataType: "json"
+                }).done((res) => {
+                    userScrapId = res.data;
+                    changeScrap();
+                }).fail((err) => {
+                    alert(err.responseJSON.msg);
+                });
+
+            } else {
+                let data = {
+                    userId: user,
+                    jobsId: jobs
+                }
+                $.ajax({
+                    type: "post",
+                    url: "/user/scrap/insert",
+                    data: JSON.stringify(data),
+                    headers: {
+                        "content-type": "application/json; charset=utf-8"
+                    },
+                    dataType: "json"
+                }).done((res) => {
+                    userScrapId = res.data;
+                    changeScrap();
+                }).fail((err) => {
+                    alert(err.responseJSON.msg);
+                });
+            }
+        }
+
+        function changeScrap() {
+            $('#scrap-' + jobsId + '-remove').remove();
+            renderScrap();
+        }
+
+        function renderScrap() {
+            let el;
+
+            if (userScrapId > 0) {
+                el = `
+            <div id="scrap-`+ jobsId + `-remove">
+                <i id="scrap-`+ jobsId + `" class="fa-solid on-Clicked fa-star my-cursor"
+                                        onclick="scrap(`+ jobsId + `,` + userId + `,` + userScrapId + `)"></i>
+                                    </div>
+            `;
+            } if (userScrapId === 0) {
+                el = `
+            <div id="scrap-`+ jobsId + `-remove">
+                <i id="scrap-`+ jobsId + `" class="fa-regular fa-star my-cursor"
+                                        onclick="scrap(`+ jobsId + `,` + userId + `,` + userScrapId + `)"></i>
+                                    </div>
+            `;
+            }
+            $('#scrap-' + jobsId + '-render').append(el);
+        }
 
         window.onscroll = function () {
             progressBar()
@@ -308,7 +403,7 @@
         function selectResume(id) {
             resumeId1 = id;
         }
-        function apply(job,user) {
+        function apply(job, user) {
             let date = {
                 jobsId: job,
                 resumeId: resumeId1,

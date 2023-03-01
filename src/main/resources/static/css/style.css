@@ -17,6 +17,35 @@ a {
     text-decoration: none;
 }
 
+.my-cursor:hover {
+    color: rgb(226, 226, 40);
+}
+
+.on-Clicked {
+    color: rgb(226, 226, 40);
+}
+
+.my-xl {
+    color: 000;
+}
+
+.my-cursor {
+    cursor: pointer;
+}
+
+.under-line {
+    border-bottom: 1px solid rgb(150, 150, 150);
+}
+
+.nav-pills>.nav-item>.active {
+    color: rgb(255, 255, 255);
+    background-color: rgb(77, 143, 77)
+}
+
+.display-none {
+    display: none;
+}
+
 #rButton {
     position: fixed;
 }
