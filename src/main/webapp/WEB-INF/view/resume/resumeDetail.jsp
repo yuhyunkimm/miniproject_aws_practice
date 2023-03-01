@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="../layout/header.jsp" %>
+<style>
+    .selected {
+        background-color: #c5c8f1;
+    }
+</style>
 <div class="mx-auto width-53 top-80">
     <div class="container mb-5">
         <form>
@@ -126,7 +131,7 @@ function requestJobs(){
 }
 
 let rDtos;
-let jobsId;
+let jobsId1;
 let compId;
 let resumeId;
         function requestJobs() {
@@ -146,14 +151,13 @@ let resumeId;
             rDtoss.forEach((rj) => {
                 renderJobsOne(rj);
             });
-            let resumes = document.querySelectorAll('.resumeList');
-            console.log(resumes);
-            resumes.forEach(function (resume) {
-                resume.addEventListener('click', function (evt) {
+            let jobs = document.querySelectorAll('.jobsList');
+            jobs.forEach(function (job) {
+                job.addEventListener('click', function (evt) {
                     // 모든 탭 버튼에서 active 클래스를 제거
-                    resumes = document.getElementsByClassName("resumeList");
-                    for (i = 0; i < resumes.length; i++) {
-                        resumes[i].classList.remove("selected");
+                    jobs = document.getElementsByClassName("jobsList");
+                    for (i = 0; i < jobs.length; i++) {
+                        jobs[i].classList.remove("selected");
                     }
                     evt.currentTarget.classList.add("selected");
                 })
@@ -167,18 +171,18 @@ let resumeId;
                             </div>
             `;
             $('#suggest-render').append(el);
-        }        
+        }
         function renderBtnSuccess() {
             let el = `
-            <div id="apply-btn">
-                            <button type="button" class="btn btn-secondary w-100">지원완료</button>
+            <div id="suggest-btn">
+                            <button type="button" class="btn btn-secondary w-100">제안완료</button>
                         </div>
             `;
-            $('#apply-render').append(el);
+            $('#suggest-render').append(el);
         }
         function renderJobsOne(jDto) {
             let el = `
-                        <div class="card mb-4 resumeList" onclick="selectJobs(`+ jDto.jobsId + `)">
+                        <div class="card mb-4 jobsList" onclick="selectJobs(`+ jDto.jobsId + `)">
                                 <div class="card-body">
                                     <h5 class="card-title" style="text-align: left;">`+ jDto.title + `</h5>
                                     <div class="m-2" style="float: left;">
@@ -203,25 +207,26 @@ let resumeId;
         }
 
         function selectJobs(id) {
-            jobsId = id;
+            jobsId1 = id;
         }
-        function suggest(job, comp) {
-            let date = {
-                jobsId: job,
-                resumeId: resumeId1,
+        function suggest(resume, comp) {
+            let data = {
+                jobsId: jobsId1,
+                resumeId: resume,
                 compId: comp
             }
             $.ajax({
                 type: "post",
-                url: "/apply/resume",
-                data: JSON.stringify(date),
+                url: "/suggest/jobs",
+                data: JSON.stringify(data),
                 headers: {
                     "content-type": "application/json; charset=utf-8"
                 },
                 dataType: "json"
             }).done((res) => {
                 alert(res.msg);
-                $('#apply-btn').remove();
+                $('#suggest-btn').remove();
+                location.href="/comp/apply";
                 renderBtnSuccess();
             }).fail((err) => {
                 alert(err.responseJSON.msg);

@@ -121,7 +121,7 @@ public class JobsRepositoryTest {
     @Transactional
     public void findAllToReqSuggest_test() throws Exception {
         // given
-        Integer test = null;
+        Integer test = 1;
         // when
         List<JobsSuggestRespDto> sList = jobsRepository.findAllToReqSuggest(test);
 

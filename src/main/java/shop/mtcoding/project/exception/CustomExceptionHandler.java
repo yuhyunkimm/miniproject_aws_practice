@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import shop.mtcoding.project.dto.user.ResponseDto;
+import shop.mtcoding.project.dto.common.ResponseDto;
 import shop.mtcoding.project.util.Script;
 
 @RestControllerAdvice

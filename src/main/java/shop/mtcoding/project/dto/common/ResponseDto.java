@@ -1,4 +1,4 @@
-package shop.mtcoding.project.dto.user;
+package shop.mtcoding.project.dto.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -45,7 +45,7 @@ public class SuggestController {
             "http://www.kakaocorp.com",
             new Timestamp(System.currentTimeMillis()));
         mockSession = new MockHttpSession();
-        mockSession.setAttribute("principal", mockcomp);
+        mockSession.setAttribute("compSession", mockcomp);
     }
 
     @Test

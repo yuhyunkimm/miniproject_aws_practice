@@ -140,3 +140,7 @@ a {
     top: 0px;
     padding: 5px;
 }
+
+.selected {
+    background-color: #c5f1c5;
+}

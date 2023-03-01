@@ -22,7 +22,7 @@
             padding-top: 0;
             margin-top: 0;
         }
-
+    
         .selected {
             background-color: #c5f1c5;
         }
