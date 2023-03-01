@@ -12,6 +12,9 @@ public interface ScrapRepository {
     public UserScrap findByUserId(
         @Param("userScrapId") Integer userScrapId
     );
+    public CompScrap findByCompId(
+        @Param("compScrapId") Integer compScrapId
+    );
     public int insertbyUser(
         @Param("userId") Integer userId,
         @Param("sDto") UserInsertScrapReqDto sDto
