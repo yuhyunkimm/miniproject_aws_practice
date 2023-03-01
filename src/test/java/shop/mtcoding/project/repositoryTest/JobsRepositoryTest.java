@@ -64,9 +64,6 @@ public class JobsRepositoryTest {
         //then
         System.out.println("테스트 : "+ t.size());
     }
-    
-
-
 
     @Test
     @Transactional

@@ -44,7 +44,8 @@
     </select>
 
     <select id="findDetailResumebyPublicById" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeDetailRespDto">
-        SELECT distinct r.resume_id, u.photo, u.name, r.title, u.birth, r.education, r.career, s.skill_name1, s.skill_name2, s.skill_name3, u.address, r.content, r.link
+        SELECT distinct r.resume_id, u.photo, u.name, r.title, u.birth, r.education, r.career, s.skill_name1, s.skill_name2, s.skill_name3, u.address, r.content, r.link,
+        ( select comp_scrap_id from comp_scrap_tb where resume_id = r.resume_id ) comp_scrap_id 
           FROM USER_TB u join USER_SKILL_TB s
           on u.user_id = s.user_id
           join resume_tb r

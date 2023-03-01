@@ -27,7 +27,6 @@ public class SuggestController {
 
     @PostMapping("/suggest/jobs")
     public ResponseEntity<?> suggestJobs(@RequestBody SuggestReqDto sDto){
-        System.out.println("테스트 : "+ sDto.toString());
         if ( ObjectUtils.isEmpty(sDto.getJobsId())){
             throw new CustomApiException("공고 아이디가 없습니다.") ;
         }

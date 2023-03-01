@@ -19,13 +19,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import shop.mtcoding.project.dto.scrap.CompScrapReq.CompDeleteScrapReqDto;
+import shop.mtcoding.project.dto.scrap.CompScrapReq.CompInsertScrapReqDto;
 import shop.mtcoding.project.dto.scrap.UserScrapReq.UserDeleteScrapReqDto;
 import shop.mtcoding.project.dto.scrap.UserScrapReq.UserInsertScrapReqDto;
 import shop.mtcoding.project.model.User;
 
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
-public class UserScrapControllerTest {
+public class ScrapControllerTest {
     
     @Autowired
     private MockMvc mvc;
@@ -50,7 +52,7 @@ public class UserScrapControllerTest {
 
     @Test
     @Transactional
-    public void insertScrap_test() throws Exception {
+    public void insertJobsScrap_test() throws Exception {
         ObjectMapper om = new ObjectMapper();
 
         UserInsertScrapReqDto sDto = new UserInsertScrapReqDto();
@@ -67,7 +69,7 @@ public class UserScrapControllerTest {
 
     @Test
     @Transactional
-    public void deleteScrap_test() throws Exception {
+    public void deleteJobsScrap_test() throws Exception {
         ObjectMapper om = new ObjectMapper();
         //given
         UserDeleteScrapReqDto sDto = new UserDeleteScrapReqDto();
@@ -81,5 +83,41 @@ public class UserScrapControllerTest {
         //then
         System.out.println("테스트 : "+ rs.andReturn().getResponse().getContentAsString());
     }
+
+    @Test
+    @Transactional
+    public void insertResumeScrap_test() throws Exception {
+        ObjectMapper om = new ObjectMapper();
+
+        CompInsertScrapReqDto sDto = new CompInsertScrapReqDto();
+        sDto.setCompId(1);
+        sDto.setResumeId(1);
+        String jsonString = om.writeValueAsString(sDto);
+
+        ResultActions rs = mvc.perform(put("/comp/scrap/insert")
+                              .content(jsonString).contentType(MediaType.APPLICATION_JSON_VALUE)
+                              .session(mockSession));
+
+        System.out.println("테스트 : "+ rs.andReturn().getResponse().getContentAsString());
+    }
+
+    @Test
+    @Transactional
+    public void deleteResumeScrap_test() throws Exception {
+        ObjectMapper om = new ObjectMapper();
+        //given
+        CompDeleteScrapReqDto sDto = new CompDeleteScrapReqDto();
+        sDto.setCompScrapId(1);
+        String jsonString = om.writeValueAsString(sDto);
+
+        //when
+        ResultActions rs = mvc.perform(delete("/comp/scrap/delete")
+                              .content(jsonString).contentType(MediaType.APPLICATION_JSON_VALUE)
+                              .session(mockSession));
+        //then
+        System.out.println("테스트 : "+ rs.andReturn().getResponse().getContentAsString());
+    }
 }
+
+
     

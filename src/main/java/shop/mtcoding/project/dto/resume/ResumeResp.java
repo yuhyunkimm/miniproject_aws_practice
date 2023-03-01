@@ -39,6 +39,7 @@ public class ResumeResp {
         private String skillName1;
         private String skillName2;
         private String skillName3;
+        private String compScrapId;
         private String address;
         private String content;
         private String link;
