@@ -14,6 +14,7 @@ import shop.mtcoding.project.dto.jobs.JobsReq.JobsUpdateReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsWriteReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsMainRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsSuggestRespDto;
 import shop.mtcoding.project.model.JobsRepository;
 
 @MybatisTest
@@ -115,4 +116,16 @@ public class JobsRepositoryTest {
         // then
     
     }
+
+    @Test
+    @Transactional
+    public void findAllToReqSuggest_test() throws Exception {
+        // given
+        Integer test = null;
+        // when
+        List<JobsSuggestRespDto> sList = jobsRepository.findAllToReqSuggest(test);
+
+        // then
+        sList.forEach((s)->{System.out.println("테스트 : "+ s.toString());});
+        }
 }

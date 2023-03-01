@@ -27,8 +27,8 @@ public class SuggestService {
     private JobsRepository jobsRepository;
 
     @Transactional
-    public void 제안하기(SuggestReqDto sDto, Integer userId){
-        if ( userId != sDto.getUserId()){
+    public void 제안하기(SuggestReqDto sDto, Integer compId){
+        if ( compId != sDto.getCompId()){
             throw new CustomApiException("정상적인 접근이 아닙니다." , HttpStatus.FORBIDDEN);
         }
         Resume resumePS = resumeRepository.findByResumeId(sDto.getResumeId());

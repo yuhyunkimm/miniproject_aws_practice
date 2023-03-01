@@ -15,6 +15,7 @@ import shop.mtcoding.project.dto.jobs.JobsResp.JobsManageJobsRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsRequiredSkill;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSkillRespDto;
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsSuggestRespDto;
 
 @Mapper
 public interface JobsRepository {
@@ -23,6 +24,9 @@ public interface JobsRepository {
     public List<JobsSkillRespDto> findAllByJobsAndSkill(Integer userId);
 
     public  List<JobsManageJobsRespDto> findByIdtoManageJobs(Integer compId);
+
+    public List<JobsSuggestRespDto> findAllToReqSuggest(Integer compId);
+
     
     public int insert(
         @Param("jDto") JobsWriteReqDto jDto

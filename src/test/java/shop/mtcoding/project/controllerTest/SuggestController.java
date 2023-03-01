@@ -54,7 +54,7 @@ public class SuggestController {
         SuggestReqDto sDto = new SuggestReqDto();
         sDto.setJobsId(1);
         sDto.setResumeId(1);
-        sDto.setUserId(1);
+        sDto.setCompId(1);
         String json = om.writeValueAsString(sDto);
     
         // when

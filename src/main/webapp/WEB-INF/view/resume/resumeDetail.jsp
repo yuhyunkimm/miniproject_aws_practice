@@ -1,101 +1,228 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@ include file="../layout/header.jsp" %>
-
-        <div class="mx-auto width-53 top-80">
-            <div class="container mb-5">
-                <form>
-                    <div class="row">
-                        <div class="col-10">
-                            <br>
-                            <h5>이력서 상세보기<br></h5>
-                            <hr />
-                            <div class="card border-light mb-3" style="max-width: 40rem;">
-                                <div class="card-header">기본 정보</div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-3">
-                                            프로필 사진
-                                        </div>
-                                        <div class="col-9">
-                                            <p>이름</p>
-                                            <p>번호</p>
-                                            <p>email</p>
-                                            <p>주소</p>
-                                            <p>생년월일</p>
-                                        </div>
-                                    </div>
+<%@ include file="../layout/header.jsp" %>
+<div class="mx-auto width-53 top-80">
+    <div class="container mb-5">
+        <form>
+            <div class="row">
+                <div class="col-8">
+                    <br>
+                    <h5>이력서 상세보기<br></h5>
+                    <hr />
+                    <div class="card border-light mb-3" style="max-width: 40rem;">
+                        <div class="card-header">기본 정보</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-3">
+                                    프로필 사진
                                 </div>
-                            </div>
-
-                            <div class="card border-light mb-3" style="max-width: 40rem;">
-                                <div class="card-header">학력 사항</div>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <input type="text" name="education" id="education" class="form-control"
-                                            value="학력사항" readonly>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card border-light mb-3" style="max-width: 40rem;">
-                                <div class="card-header">경력 사항</div>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <input type="text" name="career" id="career" class="form-control" value="경력사항"
-                                            readonly>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card border-light mb-3" style="max-width: 40rem;">
-                                <div class="card-header">보유 기술</div>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <input type="text" name="skillName1" id="skillName1" class="form-control"
-                                            value="경력사항" readonly>
-                                        <input type="text" name="skillName2" id="skillName1" class="form-control"
-                                            value="경력사항" readonly>
-                                        <input type="text" name="skillName3" id="skillName3" class="form-control"
-                                            value="경력사항" readonly>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card border-light mb-3" style="max-width: 40rem;">
-                                <div class="card-header">자기소개서</div>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <textarea class="form-control" name="content" id="content" rows="3" readonly>
-                                            자기소개글
-                                        </textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card border-light mb-3" style="max-width: 40rem;">
-                                <div class="card-header">링크</div>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <input type="text" name="link" id="link" class="form-control" value="링크">
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-2">
-                            <div id="rButton">
-                                <br>
-                                <div class="row p-1">
-                                    <button type="button" class="btn btn-success w-80">스크랩</button>
-                                </div>
-                                <div class="row p-1">
-                                    <button type="button" class="btn btn-success w-80">제안하기</button>
+                                <div class="col-9">
+                                    <p>이름</p>
+                                    <p>번호</p>
+                                    <p>email</p>
+                                    <p>주소</p>
+                                    <p>생년월일</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
+
+                    <div class="card border-light mb-3" style="max-width: 40rem;">
+                        <div class="card-header">학력 사항</div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <input type="text" name="education" id="education" class="form-control" value="학력사항"
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-light mb-3" style="max-width: 40rem;">
+                        <div class="card-header">경력 사항</div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <input type="text" name="career" id="career" class="form-control" value="경력사항" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-light mb-3" style="max-width: 40rem;">
+                        <div class="card-header">보유 기술</div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <input type="text" name="skillName1" id="skillName1" class="form-control" value="경력사항"
+                                    readonly>
+                                <input type="text" name="skillName2" id="skillName1" class="form-control" value="경력사항"
+                                    readonly>
+                                <input type="text" name="skillName3" id="skillName3" class="form-control" value="경력사항"
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-light mb-3" style="max-width: 40rem;">
+                        <div class="card-header">자기소개서</div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <textarea class="form-control" name="content" id="content" rows="3" readonly>
+                                            자기소개글
+                                        </textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-light mb-3" style="max-width: 40rem;">
+                        <div class="card-header">링크</div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <input type="text" name="link" id="link" class="form-control" value="링크">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-4">
+                    <div id="rButton" style="width: 10em;">
+                        <br>
+                        <div class="row p-1">
+                            <button type="button" class="btn btn-secondary  w-100">스크랩</button>
+                        </div>
+                        <div class="row p-1 ">
+                            <button type="button" class="btn btn-success w-100" data-bs-toggle="modal"
+                            data-bs-target="#myModal" onclick="requestJobs()">제안하기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <!-- modal-sm modal-lg modal-xl 모달 사이즈 -->
+        <!-- modal-dialog-centered 화면 가운데 -->
+        <!-- modal-dialog-scrollable 스크롤 기능 -->
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">제안할 공고 선택</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="render-jobs">
+
+
+                </div>
+                <button type="button" class="btn btn-success mt-2" style="float: right;"
+                    onclick="apply(`${jDto.jobsId}`,`${principal.userId}`)" data-bs-dismiss="modal" >제안 하기</button>
             </div>
         </div>
-        <%@ include file="../layout/footer.jsp" %>
+    </div>
+</div>
+<script>
+function requestJobs(){
+
+
+}
+
+let rDtos;
+        function requestJobs() {
+            $.ajax({
+                type: "get",
+                url: "/request/jobs",
+                dataType: "json"
+            }).done((res) => {
+                renderRes(res.data);
+            }).fail((err) => {
+                alert(err.responseJSON.msg);
+            });
+        }
+        function renderRes(rDtoss) {
+            $('#apply-btn').remove();
+            renderBtn();
+            rDtoss.forEach((rd) => {
+                renderResumeOne(rd);
+            });
+            let resumes = document.querySelectorAll('.resumeList');
+            console.log(resumes);
+            resumes.forEach(function (resume) {
+                resume.addEventListener('click', function (evt) {
+                    // 모든 탭 버튼에서 active 클래스를 제거
+                    resumes = document.getElementsByClassName("resumeList");
+                    for (i = 0; i < resumes.length; i++) {
+                        resumes[i].classList.remove("selected");
+                    }
+                    evt.currentTarget.classList.add("selected");
+                })
+            });
+        }
+        function renderBtn() {
+            let el = `
+            <div id="apply-btn">
+                            <button type="button" class="btn btn-success w-100" data-bs-toggle="modal"
+                            data-bs-target="#myModal">지원하기</button>
+                        </div>
+            `;
+            $('#apply-render').append(el);
+        }
+        function renderBtnSuccess() {
+            let el = `
+            <div id="apply-btn">
+                            <button type="button" class="btn btn-secondary w-100">지원완료</button>
+                        </div>
+            `;
+            $('#apply-render').append(el);
+        }
+        function renderResumeOne(rDto) {
+            let el = `
+                        <div class="card mb-4 resumeList" onclick="selectResume(`+ rDto.resumeId + `)">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="text-align: left;">`+ rDto.title + `</h5>
+                                    <div class="m-2" style="float: left;">
+                                        <h6 class="card-subtitle mb-2 text-muted">`+ rDto.education + `</h6>
+                                    </div>
+                                    <div class="m-2" style="float: left;">
+                                        <h6 class="card-subtitle mb-2 text-muted">`+ rDto.career + `</h6>
+                                    </div>
+                                    <div class="m-2" style="float: left;">
+                                        <h6 class="card-subtitle mb-2 text-muted">`+ rDto.skillName1 + `</h6>
+                                    </div>
+                                    <div class="m-2" style="float: left;">
+                                        <h6 class="card-subtitle mb-2 text-muted">`+ rDto.skillName2 + `</h6>
+                                    </div>
+                                    <div class="m-2" style="float: left;">
+                                        <h6 class="card-subtitle mb-2 text-muted">`+ rDto.skillName3 + `</h6>
+                                    </div>
+                                </div>
+                            </div>
+        `;
+            $('#render-resume').append(el);
+        }
+
+        function selectResume(id) {
+            resumeId1 = id;
+        }
+        function apply(job, user) {
+            let date = {
+                jobsId: job,
+                resumeId: resumeId1,
+                userId: user
+            }
+            $.ajax({
+                type: "post",
+                url: "/apply/resume",
+                data: JSON.stringify(date),
+                headers: {
+                    "content-type": "application/json; charset=utf-8"
+                },
+                dataType: "json"
+            }).done((res) => {
+                alert(res.msg);
+                $('#apply-btn').remove();
+                renderBtnSuccess();
+            }).fail((err) => {
+                alert(err.responseJSON.msg);
+            });
+        }
+</script>
+<%@ include file="../layout/footer.jsp" %>

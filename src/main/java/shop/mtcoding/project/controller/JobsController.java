@@ -63,6 +63,13 @@ public class JobsController {
     @Autowired
     private HttpSession session;
 
+    @GetMapping("/request/jobs")
+    public ResponseEntity<?> requestJobs(){
+    Comp compSession = (Comp)session.getAttribute("compSession");
+    
+    return new ResponseEntity<>(new ResponseDto<>(1, "공고 불러오기 완료", null), HttpStatus.OK);
+    }
+
     @GetMapping("/jobs/info")
     public String info(JobsSearchReqDto jDto, Model model) throws Exception {
         if (jDto.getAddress() == null || jDto.getAddress().isEmpty()) {

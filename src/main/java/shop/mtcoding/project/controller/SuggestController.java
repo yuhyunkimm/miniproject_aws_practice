@@ -31,12 +31,12 @@ public class SuggestController {
         if ( ObjectUtils.isEmpty(sDto.getResumeId())){
             throw new CustomApiException("이력서 아이디가 없습니다.");
         }
-        if ( ObjectUtils.isEmpty(sDto.getUserId())){
-            throw new CustomApiException("유저 아이디가 없습니다");
+        if ( ObjectUtils.isEmpty(sDto.getCompId())){
+            throw new CustomApiException("회사 아이디가 없습니다");
         }
         Comp compSession = (Comp) session.getAttribute("principal");
         suggestService.제안하기(sDto, compSession.getCompId());
         
-        return new ResponseEntity<>(new ResponseDto<>(1, "지원 성공", null), HttpStatus.CREATED);
+        return new ResponseEntity<>(new ResponseDto<>(1, "제안 성공", null), HttpStatus.CREATED);
     }
 }
