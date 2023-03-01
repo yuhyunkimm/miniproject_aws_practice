@@ -5,10 +5,14 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import shop.mtcoding.project.dto.skill.ResumeSkillresp.ResumeSkillRespDto;
+
 @Mapper
 public interface SkillRepository {
     public void findAll();
     public void findById();
+
+    public List<ResumeSkillRespDto> findByUserSkill(Integer resumeId);
 
     public int insertRequiredSkill(
         @Param("skillList") List<String> skillList,

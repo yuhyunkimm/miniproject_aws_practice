@@ -254,10 +254,10 @@ public class JobsController {
             throw new CustomApiException("접수방법이 필요합니다.");
         }
         if (ObjectUtils.isEmpty(jDto.getSkillList())) {
-            throw new CustomApiException("필요기술이 필요합니다.");
+            throw new CustomApiException("기술을 선택해주세요");
         }
         Integer jobsId = jobsService.공고작성(jDto, compSession.getCompId());
-        return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료", jobsId), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료", jobsId), HttpStatus.CREATED);
     }
 
     @PutMapping("/jobs/update")
@@ -290,9 +290,12 @@ public class JobsController {
         if (jDto.getReceipt() == null || jDto.getReceipt().isEmpty()) {
             throw new CustomApiException("접수방법이 필요합니다.");
         }
+        if ( ObjectUtils.isEmpty(jDto.getSkillList())){
+            throw new CustomApiException("기술을 선택해주세요");
+        }   
 
         Integer jobdId = jobsService.공고수정(jDto, compSession.getCompId());
-        return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료", jobdId), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료", jobdId), HttpStatus.CREATED);
     }
 }
 // ⬜ 채용정보 "/jobs/info"

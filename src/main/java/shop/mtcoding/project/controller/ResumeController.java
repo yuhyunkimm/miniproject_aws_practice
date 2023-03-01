@@ -89,7 +89,7 @@ public class ResumeController {
 
         Integer resumeId = resumeService.이력서쓰기(resumeWriteReqDto, principal.getUserId());
 
-        return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료!", resumeId), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료!", resumeId), HttpStatus.CREATED);
     }
 
     @PutMapping("/user/resume/update")
@@ -118,40 +118,13 @@ public class ResumeController {
 
          resumeService.이력서수정(resumeWriteReqDto, principal.getUserId());
 
-        return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료!", null), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료!", null), HttpStatus.CREATED);
     }
 
     @GetMapping("/user/resume/write")
     public String writeResumeForm(Model model) {
         MockSession.mockUser(session);
         return "resume/writeResumeForm";
-    }
-
-    @PutMapping("/user/resume/{id}/update")
-    public @ResponseBody ResponseEntity<?> updateResume(@PathVariable Integer id,
-            @RequestBody ResumeUpdateReqDto resumeUpdateReqDto) {
-        // System.out.println("테스트 : " + resumeUpdateReqDto.toString());
-        MockSession.mockUser(session);
-        User principal = (User) session.getAttribute("principal");
-        if (principal == null) {
-            throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
-        }
-        if (ObjectUtils.isEmpty(resumeUpdateReqDto.getEducation())) {
-            throw new CustomApiException("학력을 입력해주세요");
-        }
-        if (resumeUpdateReqDto.getCareer() == null || resumeUpdateReqDto.getCareer().isEmpty()) {
-            throw new CustomApiException("경력을 입력해주세요");
-        }
-        if (resumeUpdateReqDto.getTitle() == null || resumeUpdateReqDto.getTitle().isEmpty()) {
-            throw new CustomApiException("제목을 입력해주세요");
-        }
-        if (!(resumeUpdateReqDto.getState() == 0 || resumeUpdateReqDto.getState() == 1)) {
-            throw new CustomApiException("공개여부를 선택해주세요");
-        }
-
-        resumeService.이력서수정(resumeUpdateReqDto, principal.getUserId());
-
-        return new ResponseEntity<>(new ResponseDto<>(1, "이력서 수정이 완료되었습니다.", null), HttpStatus.OK);
     }
 
     @GetMapping("/user/resume/{id}/update")

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeUpdateReqDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
@@ -27,7 +28,7 @@ public class ResumeService {
         if (rDto.getUserId() != userId) {
             throw new CustomApiException("이력서를 작성할 권한이 없습니다.", HttpStatus.FORBIDDEN);
         }
-        
+
         try {
             resumeRepository.insert(rDto);
             resumeId = rDto.getResumeId();
@@ -44,24 +45,26 @@ public class ResumeService {
 
     // @Transactional
     // public Integer 이력서임시저장(ResumeWriteReqDto rDto, Integer userId) {
-    //     Integer resumeId = 0;
-    //     if (rDto.getUserId() != userId) {
-    //         throw new CustomApiException("이력서를 작성할 권한이 없습니다.", HttpStatus.FORBIDDEN);
-    //     }
+    // Integer resumeId = 0;
+    // if (rDto.getUserId() != userId) {
+    // throw new CustomApiException("이력서를 작성할 권한이 없습니다.", HttpStatus.FORBIDDEN);
+    // }
 
-    //     try {
-    //         resumeRepository.insert(rDto);
-    //         resumeId = rDto.getResumeId();
-    //     } catch (Exception e) {
-    //         throw new CustomApiException("이력서 임시저장 실패", HttpStatus.INTERNAL_SERVER_ERROR);
-    //     }
+    // try {
+    // resumeRepository.insert(rDto);
+    // resumeId = rDto.getResumeId();
+    // } catch (Exception e) {
+    // throw new CustomApiException("이력서 임시저장 실패",
+    // HttpStatus.INTERNAL_SERVER_ERROR);
+    // }
 
-    //     try {
-    //         skillRepository.insertResumeSkill(rDto.getSkillList(), resumeId);
-    //     } catch (Exception e) {
-    //         throw new CustomApiException("이력서 임시저장 실패", HttpStatus.INTERNAL_SERVER_ERROR);
-    //     }
-    //     return resumeId;
+    // try {
+    // skillRepository.insertResumeSkill(rDto.getSkillList(), resumeId);
+    // } catch (Exception e) {
+    // throw new CustomApiException("이력서 임시저장 실패",
+    // HttpStatus.INTERNAL_SERVER_ERROR);
+    // }
+    // return resumeId;
     // }
 
     @Transactional
@@ -87,12 +90,13 @@ public class ResumeService {
             throw new CustomApiException("이력서 수정에 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        try {
-            skillRepository.insertResumeSkill(rDto.getSkillList(), rDto.getResumeId());
-            // skillRepository.updateResumeSkillById(rDto.getSkillList());
-        } catch (Exception e) {
-            throw new CustomApiException("이력서 수정에 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        if (!ObjectUtils.isEmpty(rDto.getSkillList())) {
+            try {
+                skillRepository.insertResumeSkill(rDto.getSkillList(), rDto.getResumeId());
+                // skillRepository.updateResumeSkillById(rDto.getSkillList());
+            } catch (Exception e) {
+                throw new CustomApiException("이력서 수정에 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         }
-
     }
 }

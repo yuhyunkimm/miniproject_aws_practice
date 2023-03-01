@@ -48,10 +48,4 @@ public class UserResp {
         private List<String> interestList;
     }
 
-    @Getter
-    @Setter
-    public static class UserSkillRespDto {
-        private List<String> skillList;
-    }
-
 }

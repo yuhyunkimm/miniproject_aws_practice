@@ -82,9 +82,16 @@ public class JobsService {
         } catch (Exception e) {
             throw new CustomApiException("서버에 일시적인 오류가 발생했습니다22.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+
+        try {
+            skillRepository.deleteByJobsId(jDto.getJobsId());
+        } catch (Exception e) {
+            throw new CustomApiException("서버에 일시적인 오류가 발생했습니다22.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
         if ( !ObjectUtils.isEmpty(jDto.getSkillList()) ){
-            
             try {
+                skillRepository.insertRequiredSkill(jDto.getSkillList(),jDto.getJobsId());
                 // skillRepository.updateRequiredSkillById(jDto.getSkillList());
             } catch (Exception e) {
                 throw new CustomApiException("서버에 일시적인 오류가 발생했습니다33.", HttpStatus.INTERNAL_SERVER_ERROR);

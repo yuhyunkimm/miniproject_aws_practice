@@ -85,10 +85,6 @@ a {
     display: none;
 }
 
-#rButton {
-    position: fixed;
-}
-
 .navbar {
     position: fixed;
     top: 0;
@@ -103,8 +99,7 @@ a {
 .ab {
     position: absolute;
 }
-
-.view-fix {
+.rButton {
     position: fixed;
 }
 
@@ -128,10 +123,8 @@ a {
 }
 
 .view-right2 {
-    top: 5em;
-    right: 24em;
-    width: 270px;
-    height: 200px;
+    top: 7em;
+    width:10em;
     background-color: white;
 }
 

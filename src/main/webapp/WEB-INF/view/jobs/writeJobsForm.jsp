@@ -12,8 +12,9 @@
     </style>
     <!-- 헤더 추가 요망 -->
     <div class="mx-auto width-53 top-80">
-        <div class="relative">
-            <div class="width-l">
+    <div class="container">  
+        <div class="row">
+            <div class="col-9">
                 <div class="mb-5">
                     <!-- 회사 정보  -->
                     <div class="d-flex justify-content-between">
@@ -273,23 +274,25 @@
                 </div>
             </div>
 
-            <div class="width-r" id="jobs-render">
-                <div class="view-fix d-grid view-right2 p-4" id="jobs-remove">
+            <div class="col-3" id="jobs-render">
+                <div class="rButton ms-5 view-right2" id="jobs-remove">
                     <!-- 뷰포트 -->
-                    <div class="align-self-end">
-                        <button type="button" class="btn btn-success w-100" onclick="">미리보기</button>
+                    <div class="row mb-2">
+                        <button type="button" class="btn btn-success " onclick="">미리보기</button>
                     </div>
-                    <div class="align-self-end">
-                        <button type="button" class="btn btn-success w-100"
+                    <div class="row mb-2">
+                        <button type="button" class="btn btn-success "
                             onclick="saveTemp(`${compSession.compId}`,`${jDto.jobsId}`)">임시저장</button>
                     </div>
-                    <div class="align-self-end">
-                        <button type="button" class="btn btn-success w-100"
+                    <div class="row mb-2">
+                        <button type="button" class="btn btn-success"
                             onclick="saveJobs(`${compSession.compId}`,`${jDto.jobsId}`)">공고등록</button>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+        
     </div>
     <div class="modal" id="myModal">
         <div class="modal-dialog">
@@ -392,6 +395,7 @@
                     dataType: "json"
                 }).done((res) => {
                     jobsId = res.data;
+                    alert(res.msg);
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
                 });
@@ -407,6 +411,7 @@
                 }).done((res) => {
                     jobsId = res.data;
                     changeBtn();
+                    alert(res.msg);
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
                 });
@@ -420,15 +425,15 @@
 
         function renderBtn() {
             let el = `
-                <div class="view-fix d-grid view-right2 p-4" id="jobs-remove">
-                        <div class="align-self-end">
-                            <button type="button" class="btn btn-success w-100" onclick="test()" >미리보기</button>
+                    <div class="rButton ms-5 view-right2" id="jobs-remove">
+                        <div class="row mb-2">
+                            <button type="button" class="btn btn-success" onclick="test()" >미리보기</button>
                         </div>
-                        <div class="align-self-end">
-                            <button type="button" class="btn btn-success w-100" onclick="saveTemp(`+ compId + `,` + jobsId + `)">임시저장</button>
+                        <div class="row mb-2">
+                            <button type="button" class="btn btn-success" onclick="saveTemp(`+ compId + `,` + jobsId + `)">임시저장</button>
                         </div>
-                        <div class="align-self-end">
-                            <button type="button" class="btn btn-success w-100" onclick="saveJobs(`+ compId + `,` + jobsId + `)">공고등록</button>
+                        <div class="row mb-2">
+                            <button type="button" class="btn btn-success" onclick="saveJobs(`+ compId + `,` + jobsId + `)">공고등록</button>
                         </div>
                     </div>
         `;
@@ -468,7 +473,7 @@
                     dataType: "json"
                 }).done((res) => {
                     jobsId = res.data;
-                    alert('등록 완료 !');
+                    alert(res.msg);
                     location.href = "/comp/comphome";
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
@@ -484,7 +489,7 @@
                     dataType: "json"
                 }).done((res) => {
                     jobsId = res.data;
-                    alert('등록 완료 !');
+                    alert(res.msg);
                     location.href = "/comp/comphome";
                 }).fail((err) => {
                     alert(err.responseJSON.msg);

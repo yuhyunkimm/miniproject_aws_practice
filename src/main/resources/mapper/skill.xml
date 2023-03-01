@@ -12,6 +12,12 @@
         select * from user_skill_tb user_id = #{uDto.userId}
     </select> 
 
+    <select id="findByUserSkill" resultType="shop.mtcoding.project.dto.skill.ResumeSkillresp$ResumeSkillRespDto">
+        select skill from resume_SKILL_TB 
+            where resume_id = #{resumeId}
+    </select>
+
+
     <insert id="insertRequiredSkill">
         insert into required_skill_tb (jobs_id, skill)
             values 
