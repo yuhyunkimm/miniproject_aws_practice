@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeUpdateReqDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeDetailRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeManageRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeSaveRespDto;
 import shop.mtcoding.project.dto.user.ResponseDto;
@@ -163,8 +164,9 @@ public class ResumeController {
 
     // 공개 이력서
     @GetMapping("/resume/{id}")
-    public String resumeDetail(Model model) {
-        
+    public String resumeDetail(@PathVariable Integer id, Model model) {
+        ResumeDetailRespDto rDto = resumeRepository.findDetailResumebyPublicById(id);
+        model.addAttribute("rDto", rDto);
         return "/resume/resumeDetail";
     }
 

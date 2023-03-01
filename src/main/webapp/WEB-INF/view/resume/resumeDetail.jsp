@@ -13,14 +13,12 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-3">
-                                    프로필 사진
+                                    프로필 사진 ${rDto.photo}
                                 </div>
                                 <div class="col-9">
-                                    <p>이름</p>
-                                    <p>번호</p>
-                                    <p>email</p>
-                                    <p>주소</p>
-                                    <p>생년월일</p>
+                                    <p>이름</p> ${rDto.name}
+                                    <p>주소</p>${rDto.address}
+                                    <p>생년월일</p>${rDto.birth}
                                 </div>
                             </div>
                         </div>
@@ -30,7 +28,7 @@
                         <div class="card-header">학력 사항</div>
                         <div class="card-body">
                             <div class="form-group">
-                                <input type="text" name="education" id="education" class="form-control" value="학력사항"
+                                <input type="text" name="education" id="education" class="form-control" value="${rDto.education}"
                                     readonly>
                             </div>
                         </div>
@@ -40,7 +38,7 @@
                         <div class="card-header">경력 사항</div>
                         <div class="card-body">
                             <div class="form-group">
-                                <input type="text" name="career" id="career" class="form-control" value="경력사항" readonly>
+                                <input type="text" name="career" id="career" class="form-control" value="${rDto.career}" readonly>
                             </div>
                         </div>
                     </div>
@@ -49,11 +47,11 @@
                         <div class="card-header">보유 기술</div>
                         <div class="card-body">
                             <div class="form-group">
-                                <input type="text" name="skillName1" id="skillName1" class="form-control" value="경력사항"
+                                <input type="text" name="skillName1" id="skillName1" class="form-control" value="${rDto.skillName1}"
                                     readonly>
-                                <input type="text" name="skillName2" id="skillName1" class="form-control" value="경력사항"
+                                <input type="text" name="skillName2" id="skillName1" class="form-control" value="${rDto.skillName2}"
                                     readonly>
-                                <input type="text" name="skillName3" id="skillName3" class="form-control" value="경력사항"
+                                <input type="text" name="skillName3" id="skillName3" class="form-control" value="${rDto.skillName3}"
                                     readonly>
                             </div>
                         </div>
@@ -64,7 +62,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <textarea class="form-control" name="content" id="content" rows="3" readonly>
-                                            자기소개글
+                                    ${rDto.content}
                                         </textarea>
                             </div>
                         </div>
@@ -74,7 +72,7 @@
                         <div class="card-header">링크</div>
                         <div class="card-body">
                             <div class="form-group">
-                                <input type="text" name="link" id="link" class="form-control" value="링크">
+                                <input type="text" name="link" id="link" class="form-control" value="${rDto.link}">
                             </div>
                         </div>
                     </div>
@@ -116,7 +114,7 @@
 
                 </div>
                 <button type="button" class="btn btn-success mt-2" style="float: right;"
-                    onclick="suggest(`${jDto.resumeId}`,`${compSession.compId}`)" data-bs-dismiss="modal" >제안 하기</button>
+                    onclick="suggest(`${rDto.resumeId}`,`${compSession.compId}`)" data-bs-dismiss="modal" >제안 하기</button>
             </div>
         </div>
     </div>

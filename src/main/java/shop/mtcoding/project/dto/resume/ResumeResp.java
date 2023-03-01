@@ -23,6 +23,23 @@ public class ResumeResp {
         private String skillName2;
         private String skillName3;
         private String address;
+    }
+
+    @Getter
+    @Setter
+    @ToString
+    public static class ResumeDetailRespDto {
+        private Integer resumeId;
+        private String photo;
+        private String name;
+        private String title;
+        private String birth;
+        private String education;
+        private String career;
+        private String skillName1;
+        private String skillName2;
+        private String skillName3;
+        private String address;
         private String content;
         private String link;
     }

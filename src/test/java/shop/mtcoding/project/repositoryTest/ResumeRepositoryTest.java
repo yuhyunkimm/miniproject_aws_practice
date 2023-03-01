@@ -5,8 +5,11 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeDetailRespDto;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeDetailRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeRecommendRespDto;
 import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.UserSkillRepository;
@@ -21,6 +24,7 @@ public class ResumeRepositoryTest {
     private UserSkillRepository userSkillRepository;
 
     @Test
+    @Transactional
     public void insert_test() throws Exception {
         // given
         ResumeWriteReqDto resumeWriteReqDto = new ResumeWriteReqDto();
@@ -40,6 +44,7 @@ public class ResumeRepositoryTest {
     }
 
     @Test
+    @Transactional
     public void insert2_test() throws Exception {
         // given
         ResumeWriteReqDto resumeWriteReqDto = new ResumeWriteReqDto();
@@ -58,11 +63,23 @@ public class ResumeRepositoryTest {
     public void findAllResumebyPublic_test() throws Exception {
         // given
         
-    
         // when
         List<ResumeRecommendRespDto> rList = resumeRepository.findAllResumebyPublic();
 
         // then
         rList.forEach((s)->{System.out.println("테스트 : "+ s.toString());});
     }   
+
+    @Test
+    public void findDetailResumebyPublicById_test() throws Exception {
+        // given
+        Integer test = 1;
+        // when
+        ResumeDetailRespDto rDto = resumeRepository.findDetailResumebyPublicById(test);
+
+        // then
+        System.out.println("테스트 : "+ rDto.toString());
+    }   
+
+
 }

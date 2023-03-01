@@ -34,7 +34,7 @@
     </select>
 
     <select id="findAllResumebyPublic" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeRecommendRespDto">
-      SELECT distinct r.resume_id, u.photo, u.name, r.title, u.birth, r.education, r.career, s.skill_name1, s.skill_name2, s.skill_name3, u.address, r.content, r.link
+      SELECT distinct r.resume_id, u.photo, u.name, r.title, u.birth, r.education, r.career, s.skill_name1, s.skill_name2, s.skill_name3, u.address
         FROM USER_TB u join USER_SKILL_TB s
         on u.user_id = s.user_id
         join resume_tb r
@@ -42,6 +42,17 @@
         join user_skill_tb
         where r.state = 1
     </select>
+
+    <select id="findDetailResumebyPublicById" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeDetailRespDto">
+        SELECT distinct r.resume_id, u.photo, u.name, r.title, u.birth, r.education, r.career, s.skill_name1, s.skill_name2, s.skill_name3, u.address, r.content, r.link
+          FROM USER_TB u join USER_SKILL_TB s
+          on u.user_id = s.user_id
+          join resume_tb r
+          on u.user_id = r.user_id
+          join user_skill_tb
+          where r.state = 1
+          and r.resume_id = #{resumeId}
+      </select>
 
      <select id="findById" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeSaveRespDto">
         select * from resume_tb where user_id = #{rDto.userId}
