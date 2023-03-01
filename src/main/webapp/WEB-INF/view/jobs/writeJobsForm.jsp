@@ -15,44 +15,6 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <link rel="stylesheet" href="/css/style.css">
     <style>
-        .width-53 {
-            width: 53%;
-        }
-
-        a {
-            color: #000;
-            text-decoration: none;
-        }
-
-        .view-fix {
-            position: fixed;
-        }
-
-        .view-up {
-            width: 64em;
-        }
-
-        .view-right2 {
-            top: 5em;
-            right: 24em;
-            width: 270px;
-            height: 200px;
-            background-color: white;
-        }
-
-
-
-        .width-l {
-            width: 77%;
-            position: absolute;
-        }
-
-        .width-r {
-            width: 23%;
-            position: absolute;
-
-        }
-
         .my-border {
             background-color: #f8f8f8;
             padding: 20px;
@@ -61,17 +23,10 @@
         .border {
             border: 1px solid rgb(0, 0, 0);
         }
-
-        .header {
-            position: fixed;
-            top: 0px;
-            padding: 5px;
-        }
     </style>
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-sm bg-light navbar-light  ">
         <div class="container-fluid width-53">
             <div class="">
@@ -103,8 +58,8 @@
                             <h4>회사정보</h4>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" 
-                            data-bs-target="#myModal">회사 정보 수정</button>
+                            <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal"
+                                data-bs-target="#myModal">회사 정보 수정</button>
                         </div>
                     </div>
                     <div class="row justify-content-between my-border ">
@@ -386,10 +341,14 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                        <input id="update-compName" placeholder="회사명" class="form-control" value="${cDto.compName}" > <br>
-                        <input id="update-representativeName" placeholder="대표자명" class="form-control" value="${cDto.representativeName}"> <br>
-                        <input id="update-homepage" placeholder="홈페이지" class="form-control" value="${cDto.homepage}"><br>
-                        <button type="button" class="btn btn-success mt-2" style="float: right;" onclick="updateComp()"  data-bs-dismiss="modal">수정 완료</button>
+                        <input id="update-compName" placeholder="회사명" class="form-control" value="${cDto.compName}">
+                        <br>
+                        <input id="update-representativeName" placeholder="대표자명" class="form-control"
+                            value="${cDto.representativeName}"> <br>
+                        <input id="update-homepage" placeholder="홈페이지" class="form-control"
+                            value="${cDto.homepage}"><br>
+                        <button type="button" class="btn btn-success mt-2" style="float: right;" onclick="updateComp()"
+                            data-bs-dismiss="modal">수정 완료</button>
                     </form>
                 </div>
             </div>
@@ -401,7 +360,7 @@
             height: 400
         });
 
-        function updateComp(){
+        function updateComp() {
             $('#compName').text($('#update-compName').val());
             $('#representativeName').text($('#update-representativeName').val());
             $('#homepage').text($('#update-homepage').val());
@@ -551,7 +510,7 @@
                 }).done((res) => {
                     jobsId = res.data;
                     alert('등록 완료 !');
-                    location.href="/comp/comphome";
+                    location.href = "/comp/comphome";
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
                 });
@@ -567,7 +526,7 @@
                 }).done((res) => {
                     jobsId = res.data;
                     alert('등록 완료 !');
-                    location.href="/comp/comphome";
+                    location.href = "/comp/comphome";
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
                 });

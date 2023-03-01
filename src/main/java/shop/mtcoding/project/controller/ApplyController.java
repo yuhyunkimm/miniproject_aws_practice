@@ -41,4 +41,5 @@ public class ApplyController {
         
         return new ResponseEntity<>(new ResponseDto<>(1, "지원 성공", null), HttpStatus.CREATED);
     }
+    
 }
