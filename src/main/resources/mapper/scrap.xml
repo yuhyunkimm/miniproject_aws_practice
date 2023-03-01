@@ -16,11 +16,19 @@
       INSERT INTO user_scrap_tb (user_id, jobs_id, created_at) VALUES (#{userId}, #{sDto.jobsId}, now())
     </insert>
 
+    <insert id="insertbyComp" useGeneratedKeys="true" keyProperty="sDto.compScrapId">
+      INSERT INTO comp_scrap_tb (comp_id, resume_id, created_at) VALUES (#{compId}, #{sDto.resumeId}, now())
+    </insert>
+
     <!-- <update id="updateById">
 
     </update> -->
 
     <delete id="deleteByUserScrapId">
       delete from user_scrap_tb where user_scrap_id = #{userScrapId}
+    </delete>
+
+    <delete id="deleteByCompScrapId">
+      delete from comp_scrap_tb where comp_scrap_id = #{compScrapId}
     </delete>
 </mapper>

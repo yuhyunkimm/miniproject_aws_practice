@@ -64,9 +64,12 @@ insert into resume_tb (user_id, title, content, education, career,  link, state,
 values (2, '벡엔드 이력서', '백엔드 이력서의 내용입니다.', '대졸', '2년차', '블로그 주소', 1, now());
 
 
-insert into user_scrap_tb (user_scrap_id, user_id, jobs_id, created_at) values (1, 1, 1, now());
+insert into user_scrap_tb (user_id, jobs_id, created_at) values (1, 1, now());
+insert into user_scrap_tb (user_id, jobs_id, created_at) values (1, 2, now());
+insert into user_scrap_tb (user_id, jobs_id, created_at) values (1, 5, now());
 
-insert into comp_scrap_tb (comp_scrap_id, comp_id, resume_id, created_at) values (1, 1, 1, now());
+insert into comp_scrap_tb (comp_id, resume_id, created_at) values (1, 1, now());
+insert into comp_scrap_tb (comp_id, resume_id, created_at) values (1, 3, now());
 
 insert into apply_tb (resume_id, jobs_id, state, created_at) values (1, 1, 1, now());
 
