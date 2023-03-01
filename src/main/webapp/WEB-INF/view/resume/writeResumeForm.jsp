@@ -67,47 +67,99 @@
               <div class="card border-light mb-3" style="max-width: 40rem;">
                 <div class="card-header">보유 기술</div>
                 <div class="card-body">
-                  <div class="form-group">
-                    <select class="form-select" name="skillName1" id="skillName1">
-                      <option selected disabled>보유 기술을 선택해주세요</option>
-                      <option value="Java">Java</option>
-                      <option value="JavaScript">JavaScript</option>
-                      <option value="Spring">Spring</option>
-                      <option value="HTML/CSS">HTML/CSS</option>
-                      <option value="jQuery">jQuery</option>
-                      <option value="JSP">JSP</option>
-                      <option value="Vue.js">Vue.js</option>
-                      <option value="Oracle">Oracle</option>
-                      <option value="MySQL">MySQL</option>
-                      <option value="React">React</option>
-                    </select>
-                    <select class="form-select" name="skillName2" id="skillName2">
-                      <option selected disabled>보유 기술을 선택해주세요</option>
-                      <option value="Java">Java</option>
-                      <option value="JavaScript">JavaScript</option>
-                      <option value="Spring">Spring</option>
-                      <option value="HTML/CSS">HTML/CSS</option>
-                      <option value="jQuery">jQuery</option>
-                      <option value="JSP">JSP</option>
-                      <option value="Vue.js">Vue.js</option>
-                      <option value="Oracle">Oracle</option>
-                      <option value="MySQL">MySQL</option>
-                      <option value="React">React</option>
-                    </select>
-                    <select class="form-select" name="skillName3" id="skillName3">
-                      <option selected disabled>보유 기술을 선택해주세요</option>
-                      <option value="Java">Java</option>
-                      <option value="JavaScript">JavaScript</option>
-                      <option value="Spring">Spring</option>
-                      <option value="HTML/CSS">HTML/CSS</option>
-                      <option value="jQuery">jQuery</option>
-                      <option value="JSP">JSP</option>
-                      <option value="Vue.js">Vue.js</option>
-                      <option value="Oracle">Oracle</option>
-                      <option value="MySQL">MySQL</option>
-                      <option value="React">React</option>
-                    </select>
-                  </div>
+                  <div class="row my-3 my-border">
+                        <div id="my-table-body2">
+                            <table class="my-table table table-bordered" style="background-color: white;">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check text-center">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="skill"
+                                                        value="Java">Java
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check text-center">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="skill"
+                                                        value="JavaScript">
+                                                    JavaScript
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check text-center">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="skill"
+                                                        value="Spring"> Spring
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check text-center">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="skill"
+                                                        value="HTML"> HTML
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check text-center">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="skill"
+                                                        value="jQuery"> jQuery
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check text-center">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="skill"
+                                                        value="JSP"> JSP
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check text-center">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="skill"
+                                                        value="Vue.js"> Vue.js
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check text-center">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="skill"
+                                                        value="Oracle"> Oracle
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check text-center">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="skill"
+                                                        value="MySQL"> MySQL
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check text-center">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="skill"
+                                                        value="React"> React
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
               </div>
 
@@ -171,16 +223,21 @@
                   <button type="button" class="btn btn-success w-100">미리보기</button>
                 </div>
                 <div id="resume-render">
-                  <div class="row mb-2" id="resume-remove">
+                <div id="resume-remove">
+                  <div class="row mb-2" >
                     <button id="resume-${rDto.resumeId}"
                       onclick="saveTempResume(`${principal.userId}`,`${rDto.resumeId}`)" type="button"
                       class="btn btn-success w-100">임시 저장</button>
                   </div>
-                </div>
-                <div class="row mb-2">
+                  <div class="row mb-2">
                   <button onclick="writeResume(`${principal.userId}`,`${rDto.resumeId}`)" type="button"
                     class="btn btn-success w-100">이력서 저장</button>
                 </div>
+
+                </div>
+                  
+                </div>
+                
               </div>
             </div>
           </div>
@@ -193,37 +250,42 @@
       let resumeId;
       let userId;
 
+
+
       function saveTempResume(id, resume) {
         resumeId = resume;
         userId = id;
+
+        let data = {
+          title: $("#title").val(),
+          content: $("#content").val(),
+          education: $("#education").val(),
+          career: $("#career").val(),
+          skillList: skillValues,
+          link: $("#link").val(),
+          state: $("#state").val(),
+          userId: id,
+          resumeId: resume
+        };
+
         //이력서 id가 있을 때
-        if (resumeId > 0) {
-          let data = {
-            title: $("#title").val(),
-            content: $("#content").val(),
-            education: $("#education").val(),
-            career: $("#career").val(),
-            skillName1: $("#skillName1").val(),
-            link: $("#link").val(),
-            state: $("#state").val(),
-            userId: id,
-            resumeId: resume
-          }
+        if (resume > 0) {
           $.ajax({
             type: "put",
             url: "/user/resume/update",
             data: JSON.stringify(data),
+            headers: {
+              "content-type": "application/json; charset=utf-8"
+            },
             dataType: "json"
           }).done((res) => {
             resumeId = res.data;
+            alert('임시저장 완료!');
           }).fail((err) => {
             alert(err.responseJSON.msg);
           });
+
         } else {
-          let data = {
-            resumeId: resume,
-            userId: id
-          }
           $.ajax({
             type: "post",
             url: "/user/resume/write",
@@ -234,7 +296,9 @@
             dataType: "json"
           }).done((res) => {
             resumeId = res.data;
+            console.log(resumeId);
             changeResume();
+            alert('임시저장 완료!');
           }).fail((err) => {
             alert(err.responseJSON.msg);
           });
@@ -248,12 +312,17 @@
 
       function renderResume() {
         let el = `
-                      <div class="row p-1" id="resume-remove">
-                  <button id="resume-`+ resumeId + `" onclick="saveTempResume(` + userId + `,` + resumeId + `)" type="button"
-                    class="btn btn-success w-70">임시 저장</button>
+        <div id="resume-remove">
+                  <div class="row mb-2" >
+                    <button id="resume-`+resumeId+`"
+                      onclick="saveTempResume(`+userId+`,`+resumeId+`)" type="button"
+                      class="btn btn-success w-100">임시 저장</button>
+                  </div>
+                  <div class="row mb-2">
+                  <button onclick="writeResume(`+userId+`,`+resumeId+`)" type="button"
+                    class="btn btn-success w-100">이력서 저장</button>
                 </div>
         `;
-
 
         $('#resume-render').append(el);
       }
@@ -262,28 +331,35 @@
       function writeResume(id, resume) {
         resumeId = resume;
         userId = id;
+
         let data = {
           title: $("#title").val(),
           content: $("#content").val(),
           education: $("#education").val(),
           career: $("#career").val(),
-          skillName1: $("#skillName1").val(),
+          skillList: skillValues,
           link: $("#link").val(),
           state: $("#state").val(),
           userId: id,
           resumeId: resume
         };
+        
         if ( resume > 0){
           $.ajax({
             type: "put",
             url: "/user/resume/update",
             data: JSON.stringify(data),
+            headers: {
+              "content-type": "application/json; charset=utf-8"
+            },
             dataType: "json"
           }).done((res) => {
-            resumeId = res.data;
+            alert(res.msg);
+            location.href = "/user/resume";
           }).fail((err) => {
             alert(err.responseJSON.msg);
           });
+
         }else{
         $.ajax({
           type: "post",
@@ -298,9 +374,27 @@
           alert(err.responseJSON.msg);
         });
         }
-
-
       }
+
+       function getCheckedValues(name) {
+            var checkedValues = [];
+            var checkboxes = document.getElementsByName(name);
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    checkedValues.push(checkboxes[i].value);
+                }
+            }
+            return checkedValues;
+        };
+
+        let skillValues;
+
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('click', function () {
+                skillValues = getCheckedValues("skill");
+            })
+        });
 
     </script>
     <%@ include file="../layout/footer.jsp" %>

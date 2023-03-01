@@ -38,13 +38,13 @@
                                                 <h6 class="card-subtitle mb-2 text-muted">${rDto.career}</h6>
                                             </div>
                                             <div class="m-2" style="float: left;">
-                                                <h6 class="card-subtitle mb-2 text-muted">${rDto.skillName1}</h6>
+                                                <h6 class="card-subtitle mb-2 text-muted"></h6>
                                             </div>
                                             <div class="m-2" style="float: left;">
-                                                <h6 class="card-subtitle mb-2 text-muted">${rDto.skillName2}</h6>
+                                                <h6 class="card-subtitle mb-2 text-muted"></h6>
                                             </div>
                                             <div class="m-2" style="float: left;">
-                                                <h6 class="card-subtitle mb-2 text-muted">${rDto.skillName3}</h6>
+                                                <h6 class="card-subtitle mb-2 text-muted"></h6>
                                             </div>
                                             <div style="float: right;" pt-2>
                                                 <button type="button" class="btn btn-success btn-sm"

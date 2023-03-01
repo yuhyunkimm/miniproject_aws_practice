@@ -19,9 +19,7 @@ public class ResumeResp {
         private String birth;
         private String education;
         private String career;
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
+        // private List<String> skillList;
         private String address;
     }
 
@@ -36,9 +34,7 @@ public class ResumeResp {
         private String birth;
         private String education;
         private String career;
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
+        // private List<String> skillList;
         private String compScrapId;
         private String address;
         private String content;
@@ -53,9 +49,7 @@ public class ResumeResp {
         private String title;
         private String education;
         private String career;
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
+        // private List<String> skillList;
     }
 
     @Getter
@@ -69,9 +63,7 @@ public class ResumeResp {
         private String career;
         private String link;
         private Integer state;
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
+        // private List<String> skillList;
         private Timestamp createdAt;
     }
 

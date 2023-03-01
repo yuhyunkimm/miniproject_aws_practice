@@ -16,6 +16,8 @@ import shop.mtcoding.project.dto.user.UserResp.UserSkillRespDto;
 public interface UserRepository {
     public List<User> findAll();
 
+    public User findByEmailAndPassword(@Param("email") String email, @Param("password") String password);
+
     public User findByUserEmail(@Param("email") String email);
 
     public UserDataRespDto findById(
@@ -35,6 +37,4 @@ public interface UserRepository {
 
     public int deleteById(
             @Param("uDto") UserDeleteRespDto uDto);
-
-    public User findByEmailAndPassword(@Param("email") String email, @Param("password") String password);
 }

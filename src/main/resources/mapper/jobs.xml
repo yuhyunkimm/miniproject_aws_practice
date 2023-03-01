@@ -15,19 +15,17 @@
     <select id="findAlltoMain" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsMainRespDto">
       select j.jobs_id, ( select comp_name from comp_tb where comp_id = j.comp_id) compName, 
         ( select photo from comp_tb where comp_id = j.comp_id ) photo,
-        title, career, education, position, r.skill_name1, r.skill_name2, r.skill_name3,  address, end_date,
+        title, career, education, position, address, end_date,
         <if test="userId != null">
           ifnull(( select user_scrap_id from user_scrap_tb where user_id = #{userId} and jobs_id = j.jobs_id ),null) user_scrap_id
         </if>
-        from jobs_tb j join required_skill_tb r on
-        j.jobs_id = r.jobs_id
+        from jobs_tb j
     </select>
 
-    <select id="findAllToReqSuggest" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsSuggestRespDto">
-      select j.jobs_id,
-      title, position, r.skill_name1, r.skill_name2, r.skill_name3,  end_date,
-      from jobs_tb j join required_skill_tb r on
-      j.jobs_id = r.jobs_id
+    <select id="findAllToSuggestReq" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsSuggestRespDto">
+      select jobs_id,
+      title, position, end_date,
+      from jobs_tb
       where comp_id = #{compId}
     </select>
 
@@ -38,31 +36,31 @@
     
     
     <select id="findByJobsRequiredSkill" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsRequiredSkill">
-      SELECT r.skill_name1, r.skill_name2, r.skill_name3 
-        FROM JOBS_TB j join REQUIRED_SKILL_TB r
-        on j.jobs_id = r.jobs_id where j.comp_id = #{id}
+      SELECT * FROM REQUIRED_SKILL_TB where jobs_id = #{jobsId}
     </select>
 
     <select id="findBySearch" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsSearchRespDto">
-      select j.jobs_id, ( select comp_name from comp_tb where comp_id = j.comp_id) compName, 
+        select j.jobs_id, ( select comp_name from comp_tb where comp_id = j.comp_id) compName, 
         ( select photo from comp_tb where comp_id = j.comp_id ) photo,
-        title, career, education, position, r.skill_name1, r.skill_name2, r.skill_name3,  address, end_date,
+        title, career, education, position, address, end_date, r.skill
         <if test="userId != null">
           ifnull(( select user_scrap_id from user_scrap_tb where user_id = #{userId} and jobs_id = j.jobs_id ),null) user_scrap_id
         </if>
-        from jobs_tb j join required_skill_tb r on
-        j.jobs_id = r.jobs_id
-        where career regexp #{jDto.career} and
-        address regexp #{jDto.address} and
-        SKILL_NAME1 regexp #{jDto.skill} and
-        position regexp #{jDto.position}
+        from jobs_tb j join required_skill_tb r
+        on j.jobs_id = r.jobs_id
+        where title regexp #{keyword} and
+        career regexp #{keyword} and
+        education regexp #{keyword} and
+        position regexp #{keyword} and
+        address regexp #{keyword} and
+        skill regexp  #{keyword}
     </select>
 
     <select id="findByCheckBox" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsSearchRespDto">
       select j.jobs_id, ( select comp_name from comp_tb where comp_id = j.comp_id) compName, 
         ( select photo from comp_tb where comp_id = j.comp_id ) photo,
-        title, career, education, position, r.skill_name1, r.skill_name2, r.skill_name3,  address, end_date
-        from jobs_tb j join required_skill_tb r 
+        title, career, education, position, address, end_date, r.skill
+        from jobs_tb j join required_skill_tb r
         on j.jobs_id = r.jobs_id
         where 
         <if test="jDto.address != null and jDto.address.size() > 0">
@@ -73,19 +71,11 @@
           and
         </if>
         <if test="jDto.skill != null and jDto.skill.size() > 0">
-          ( r.skill_name1 in 
+          skill in
           <foreach collection="jDto.skill" item="skill" open="(" close=")" separator=",">
             #{skill} 
           </foreach>
-            or r.skill_name2 in 
-          <foreach collection="jDto.skill" item="skill" open="(" close=")" separator=",">
-            #{skill} 
-          </foreach>
-            or r.skill_name3 in 
-          <foreach collection="jDto.skill" item="skill" open="(" close=")" separator=",">
-            #{skill} 
-          </foreach>
-           ) and
+          and
         </if>
         <if test="jDto.position != null and jDto.position.size() > 0">
           position in 
@@ -101,33 +91,28 @@
       select j.jobs_id, c.photo, c.comp_name,
         j.title, j.content,
         j.career, j.education, j.position,
-        r.skill_name1, r.skill_name2,
-        r.skill_name3,  j.address,
+        j.address,
         c.homepage, c.representative_name, j.end_date,
         <if test="userId != null">
           ifnull(( select user_scrap_id from user_scrap_tb where user_id = #{userId} and jobs_id = j.jobs_id ),null) user_scrap_id
         </if>
         from comp_tb c 
         join jobs_tb j 
-        on c.comp_id = j.comp_id 
-        join  REQUIRED_SKILL_TB r
-        on j.jobs_id = r.jobs_id
+        on c.comp_id = j.comp_id
         where j.jobs_id = #{jobsId}
     </select>
 
-    <select id="findAllByJobsAndSkill" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsSkillRespDto">
+    <!-- <select id="findAllByJobsAndSkill" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsSkillRespDto">
       SELECT  j.jobs_id, c.photo, c.comp_name,  
         j.title,  j.position, j.career, 
         j.education, j.address, j.end_date, 
-        r.skill_name1, r.skill_name2, r.skill_name3 ,
         <if test="userId != null">
           ifnull(( select user_scrap_id from user_scrap_tb where user_id = #{userId} and jobs_id = j.jobs_id ),null) user_scrap_id
         </if>
-        FROM JOBS_TB j join REQUIRED_SKILL_TB r
-        on j.jobs_id = r.jobs_id
+        FROM JOBS_TB j
         join comp_tb c
         on c.comp_id = j.comp_id
-    </select>
+    </select> -->
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="jDto.jobsId">
       insert into jobs_tb set title= #{jDto.title}, 
@@ -138,7 +123,6 @@
                           address = #{jDto.address}, 
                           end_date = #{jDto.endDate}, 
                           comp_id = #{jDto.compId}, 
-                          <!-- homepage = #{jDto.homepage},  -->
                           receipt = #{jDto.receipt}, 
                           created_at = now() 
     </insert>
@@ -152,13 +136,8 @@
                          address = #{jDto.address}, 
                          end_date = #{jDto.endDate}, 
                          comp_id = #{jDto.compId}, 
-                         <!-- homepage = #{jDto.homepage},  -->
                          receipt = #{jDto.receipt}, 
                          created_at = now()
       where jobs_id = #{jDto.jobsId}
     </update>
-
-    <!-- <delete id="deleteById">
-
-    </delete> -->
 </mapper>

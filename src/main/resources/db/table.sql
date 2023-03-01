@@ -24,11 +24,10 @@ create table comp_tb (
     created_at timestamp
 );
 
-create table user_skill_tb (
-    user_id int not null,
-    skill_name1 varchar,
-    skill_name2 varchar,
-    skill_name3 varchar
+create table resume_skill_tb (
+    resume_skill_id int auto_increment primary key,
+    resume_id int not null,
+    skill varchar not null
 );
 
 create table jobs_tb (
@@ -49,17 +48,14 @@ create table jobs_tb (
 create table required_skill_tb (
     required_skill_id int auto_increment primary key,
     jobs_id int not null,
-    skill_name1 varchar,
-    skill_name2 varchar,
-    skill_name3 varchar
+    skill varchar not null
+
 );
 
 create table interest_tb (
     interest_id int auto_increment primary key,
     user_id int not null,
-    interest_ct1 varchar,
-    interest_ct2 varchar,
-    interest_ct3 varchar
+    interest_ct varchar not null
 );
 
 create table resume_tb (

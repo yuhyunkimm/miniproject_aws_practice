@@ -9,19 +9,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeDetailRespDto;
-import shop.mtcoding.project.dto.resume.ResumeResp.ResumeDetailRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeRecommendRespDto;
 import shop.mtcoding.project.model.ResumeRepository;
-import shop.mtcoding.project.model.UserSkillRepository;
 
 @MybatisTest
 public class ResumeRepositoryTest {
 
     @Autowired
     private ResumeRepository resumeRepository;
-
-    @Autowired
-    private UserSkillRepository userSkillRepository;
 
     @Test
     @Transactional
@@ -40,25 +35,8 @@ public class ResumeRepositoryTest {
         System.out.println("테스트 : " + resumeRepository.insert(resumeWriteReqDto));
 
         // then
-
     }
 
-    @Test
-    @Transactional
-    public void insert2_test() throws Exception {
-        // given
-        ResumeWriteReqDto resumeWriteReqDto = new ResumeWriteReqDto();
-        resumeWriteReqDto.setSkillName1("sdfdf");
-        resumeWriteReqDto.setSkillName2("sdfdf");
-        resumeWriteReqDto.setSkillName3("sdfdf");
-        resumeWriteReqDto.setUserId(1);
-
-        // when
-        int result2 = userSkillRepository.insert(resumeWriteReqDto);
-
-        // then
-        System.out.println(result2);
-    }
     @Test
     public void findAllResumebyPublic_test() throws Exception {
         // given
@@ -71,11 +49,11 @@ public class ResumeRepositoryTest {
     }   
 
     @Test
-    public void findDetailResumebyPublicById_test() throws Exception {
+    public void findDetailPublicResumebyById_test() throws Exception {
         // given
         Integer test = 1;
         // when
-        ResumeDetailRespDto rDto = resumeRepository.findDetailResumebyPublicById(test);
+        ResumeDetailRespDto rDto = resumeRepository.findDetailPublicResumebyById(test);
 
         // then
         System.out.println("테스트 : "+ rDto.toString());

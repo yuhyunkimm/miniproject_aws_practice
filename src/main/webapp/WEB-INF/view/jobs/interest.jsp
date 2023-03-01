@@ -25,7 +25,7 @@
                                 ${jDto.title}
                             </div>
                             <div>
-                                ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3}
+                                <%-- ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3} --%>
                             </div>
                             <div>
                                 ${jDto.career} ${jDto.education} ${jDto.address}
@@ -87,7 +87,7 @@
                                 ${jDto.title}
                             </div>
                             <div>
-                                ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3}
+                                <%-- ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3} --%>
                             </div>
                             <div>
                                 ${jDto.career} ${jDto.education} ${jDto.address}
@@ -149,7 +149,7 @@
                                 ${jDto.title}
                             </div>
                             <div>
-                                ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3}
+                                <%-- ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3} --%>
                             </div>
                             <div>
                                 ${jDto.career} ${jDto.education} ${jDto.address}
@@ -211,7 +211,7 @@
                                 ${jDto.title}
                             </div>
                             <div>
-                                ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3}
+                                <%-- ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3} --%>
                             </div>
                             <div>
                                 ${jDto.career} ${jDto.education} ${jDto.address}

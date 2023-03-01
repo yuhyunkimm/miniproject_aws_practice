@@ -1,6 +1,7 @@
 package shop.mtcoding.project.dto.jobs;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,9 +19,7 @@ public class JobsResp {
         private String career;
         private String education;
         private String position;
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
+        // private List<String> skillList;
         private String address;
         private Integer userScrapId;
         private Timestamp endDate;
@@ -35,9 +34,7 @@ public class JobsResp {
         private String career;
         private String education;
         private String position;
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
+        // private List<String> skillList;
         private String address;
         private Integer userScrapId;
         private Timestamp endDate;
@@ -54,9 +51,7 @@ public class JobsResp {
         private String content;
         private String career;
         private String education;
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
+        // private List<String> skillList;
         private String position;
         private String address;
         private String homepage;
@@ -74,9 +69,7 @@ public class JobsResp {
         private String title;
         private String career;
         private String education;
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
+        // private List<String> skillList;
         private String position;
         private String address;
         private Timestamp endDate;
@@ -86,9 +79,7 @@ public class JobsResp {
     @Getter
     @Setter
     public static class JobsRequiredSkill {
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
+        private List<String> skillList;
     }
 
     @Getter
@@ -106,9 +97,7 @@ public class JobsResp {
         private String education;
         private String career;
         private String position;
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
+        // private List<String> skillList;
         private String address;
         private Timestamp endDate;
         private String receipt;
@@ -141,9 +130,7 @@ public class JobsResp {
         private Integer jobsId;
         private String title;
         private String position;
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
+        // private List<String> skillList;
         private Timestamp endDate;
     }
 

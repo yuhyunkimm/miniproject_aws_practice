@@ -38,7 +38,7 @@
 
     <insert id="insert">
         insert into user_tb ( email, password, name, birth, tel, address, created_at)
-            values ( #{uDto.email}, #{uDto.password}, #{uDto.name}, #{uDto.birth}, #{uDto.tel}, #{uDto.Address}, now());
+            values ( #{uDto.email}, #{uDto.password}, #{uDto.name}, #{uDto.birth}, #{uDto.tel}, #{uDto.address}, now());
     </insert>
 
     <update id="updateById">
@@ -47,11 +47,11 @@
             name = #{uDto.name}, 
             birth = #{uDto.birth},
             tel =  #{uDto.tel},
-            Address = #{uDto.Address}, 
-            where id = #{uDto.id}
+            address = #{uDto.address}
+            where user_id = #{uDto.userId}
     </update>
 
     <delete id="deleteById">
-        delete from user_tb where id = #{uDto.id}
+        delete from user_tb where id = #{uDto.userId}
     </delete>
 </mapper>

@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="shop.mtcoding.project.model.ScrapRepository">
-    <select id="findAll" resultType="shop.mtcoding.project.model.UserScrap">
+  <select id="findAll" resultType="shop.mtcoding.project.model.UserScrap">
         select * from user_scrap_tb
     </select>
 
@@ -23,10 +23,6 @@
     <insert id="insertbyComp" useGeneratedKeys="true" keyProperty="sDto.compScrapId">
       INSERT INTO comp_scrap_tb (comp_id, resume_id, created_at) VALUES (#{compId}, #{sDto.resumeId}, now())
     </insert>
-
-    <!-- <update id="updateById">
-
-    </update> -->
 
     <delete id="deleteByUserScrapId">
       delete from user_scrap_tb where user_scrap_id = #{userScrapId}

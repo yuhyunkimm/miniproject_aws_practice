@@ -14,27 +14,24 @@ import shop.mtcoding.project.dto.resume.ResumeResp.ResumeSaveRespDto;
 
 @Mapper
 public interface ResumeRepository {
-
-        public List<ResumeManageRespDto> findAllWithUser();
+        public void findAll();
 
         public ResumeSaveRespDto findById(Integer resumeId);
 
         public Resume findByResumeId(Integer resumeId);
 
+        public List<ResumeManageRespDto> findAllByUserId();
+
         public List<ResumeManageRespDto> findAllWithUserById(Integer userId);
 
-        public void findAll();
-
         public List<ResumeRecommendRespDto> findAllResumebyPublic();
-        public ResumeDetailRespDto findDetailResumebyPublicById(Integer resumeId);
+        public ResumeDetailRespDto findDetailPublicResumebyById(Integer resumeId);
 
         public int insert(
-                        @Param("rDto") ResumeWriteReqDto rDto);
+                @Param("rDto") ResumeWriteReqDto rDto);
 
         public int updateById(
-                        @Param("rDto") ResumeUpdateReqDto rDto);
+                @Param("rDto") ResumeUpdateReqDto rDto);
 
-        public int deleteById(
-
-        );
+        public int deleteById();
 }

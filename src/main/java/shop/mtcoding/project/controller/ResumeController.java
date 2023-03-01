@@ -27,15 +27,11 @@ import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.User;
-import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.service.ResumeService;
 import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class ResumeController {
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     private ResumeService resumeService;
@@ -53,8 +49,9 @@ public class ResumeController {
         if (principal == null) {
             throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
-        // System.out.println("테스트 : " + resumeRepository.findAllWithUser().toString());
-        model.addAttribute("rDtos", resumeRepository.findAllWithUserById(principal.getUserId()));
+        List<ResumeManageRespDto> rList = resumeRepository.findAllWithUserById(principal.getUserId());
+        model.addAttribute("rDtos", rList);
+        rList.forEach((s)->{System.out.println("테스트 : "+ s.toString());});
         return "resume/manageResume";
     }
 
@@ -69,7 +66,7 @@ public class ResumeController {
     @PostMapping("/user/resume/write")
     public ResponseEntity<?> writeResume(@RequestBody ResumeWriteReqDto resumeWriteReqDto) {
         MockSession.mockUser(session);
-        // System.out.println("테스트 : " + resumeWriteReqDto.getUserId());
+        // System.out.println("테스트 : "+ resumeWriteReqDto.toString());
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
@@ -86,14 +83,18 @@ public class ResumeController {
         if (!(resumeWriteReqDto.getState() == 0 || resumeWriteReqDto.getState() == 1)) {
             throw new CustomApiException("공개여부를 선택해주세요");
         }
+        if ( ObjectUtils.isEmpty(resumeWriteReqDto.getSkillList())){
+            throw new CustomApiException("기술을 선택해주세요");
+        }   
 
-        resumeService.이력서쓰기(resumeWriteReqDto, principal.getUserId());
+        Integer resumeId = resumeService.이력서쓰기(resumeWriteReqDto, principal.getUserId());
 
-        return new ResponseEntity<>(new ResponseDto<>(1, "이력서 작성이 완료되었습니다.", null), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료!", resumeId), HttpStatus.OK);
     }
 
     @PutMapping("/user/resume/update")
-    public ResponseEntity<?> saveTempResume(@RequestBody ResumeWriteReqDto resumeWriteReqDto) {
+    public ResponseEntity<?> saveTempResume(@RequestBody ResumeUpdateReqDto resumeWriteReqDto) {
+        System.out.println("테스트 : "+ resumeWriteReqDto.toString());
         MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
@@ -111,10 +112,13 @@ public class ResumeController {
         if (!(resumeWriteReqDto.getState() == 0 || resumeWriteReqDto.getState() == 1)) {
             throw new CustomApiException("공개여부를 선택해주세요");
         }
+        if ( ObjectUtils.isEmpty(resumeWriteReqDto.getSkillList())){
+            throw new CustomApiException("기술을 선택해주세요");
+        }   
 
-        resumeService.이력서임시저장(resumeWriteReqDto, principal.getUserId());
+         resumeService.이력서수정(resumeWriteReqDto, principal.getUserId());
 
-        return new ResponseEntity<>(new ResponseDto<>(1, "임시저장이 완료되었습니다.", null), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료!", null), HttpStatus.OK);
     }
 
     @GetMapping("/user/resume/write")
@@ -165,7 +169,7 @@ public class ResumeController {
     // 공개 이력서
     @GetMapping("/resume/{id}")
     public String resumeDetail(@PathVariable Integer id, Model model) {
-        ResumeDetailRespDto rDto = resumeRepository.findDetailResumebyPublicById(id);
+        ResumeDetailRespDto rDto = resumeRepository.findDetailPublicResumebyById(id);
         model.addAttribute("rDto", rDto);
         return "/resume/resumeDetail";
     }

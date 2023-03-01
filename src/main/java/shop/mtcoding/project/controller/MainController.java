@@ -67,50 +67,50 @@ public class MainController {
         // MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal != null) {
-            UserSkillRespDto userSkillPS = userRepository.findByUserSkill(principal.getUserId());
-            List<String> skillList = Arrays.asList(userSkillPS.getSkillName1(), userSkillPS.getSkillName2(),
-                    userSkillPS.getSkillName3());
-            Set<String> set = new HashSet<>(skillList);
+            // UserSkillRespDto userSkillPS = userRepository.findByUserSkill(principal.getUserId());
+            // List<String> skillList = Arrays.asList(userSkillPS.getSkillName1(), userSkillPS.getSkillName2(),
+            //         userSkillPS.getSkillName3());
+            // Set<String> set = new HashSet<>(skillList);
 
-            List<JobsMainRespDto> JobsList = jobsRepository.findAlltoMain(principal.getUserId());
-            List<JobsMainRespDto> threeMatchRecommend = new ArrayList<>();
-            List<JobsMainRespDto> twoMatchRecommend = new ArrayList<>();
-            List<JobsMainRespDto> oneMatchRecommend = new ArrayList<>();
-            List<JobsMainRespDto> recommendListDto = new ArrayList<>();
-            for (JobsMainRespDto jsPS : JobsList) {
-                if (set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
-                        && set.contains(jsPS.getSkillName3())) {
-                    threeMatchRecommend.add(jsPS);
-                    continue;
-                }
-                if ((set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
-                        && !set.contains(jsPS.getSkillName3())) ||
-                        (set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
-                                && set.contains(jsPS.getSkillName3()))
-                        ||
-                        (!set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
-                                && set.contains(jsPS.getSkillName3()))) {
-                    twoMatchRecommend.add(jsPS);
-                    continue;
-                }
-                if ((set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
-                        && !set.contains(jsPS.getSkillName3())) ||
-                        (!set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
-                                && !set.contains(jsPS.getSkillName3()))
-                        ||
-                        (!set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
-                                && set.contains(jsPS.getSkillName3()))) {
-                    oneMatchRecommend.add(jsPS);
-                    continue;
-                }
-            }
-            recommendListDto.addAll(threeMatchRecommend);
-            recommendListDto.addAll(twoMatchRecommend);
-            recommendListDto.addAll(oneMatchRecommend);
-            // recommendListDto.addAll(JobsList);
-            model.addAttribute("rDtos", recommendListDto);
-            List<JobsMainRespDto> jDtos = jobsRepository.findAlltoMain(principal.getUserId());
-            model.addAttribute("jDtos", jDtos);
+            // List<JobsMainRespDto> JobsList = jobsRepository.findAlltoMain(principal.getUserId());
+            // List<JobsMainRespDto> threeMatchRecommend = new ArrayList<>();
+            // List<JobsMainRespDto> twoMatchRecommend = new ArrayList<>();
+            // List<JobsMainRespDto> oneMatchRecommend = new ArrayList<>();
+            // List<JobsMainRespDto> recommendListDto = new ArrayList<>();
+            // for (JobsMainRespDto jsPS : JobsList) {
+            //     if (set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
+            //             && set.contains(jsPS.getSkillName3())) {
+            //         threeMatchRecommend.add(jsPS);
+            //         continue;
+            //     }
+            //     if ((set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
+            //             && !set.contains(jsPS.getSkillName3())) ||
+            //             (set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
+            //                     && set.contains(jsPS.getSkillName3()))
+            //             ||
+            //             (!set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
+            //                     && set.contains(jsPS.getSkillName3()))) {
+            //         twoMatchRecommend.add(jsPS);
+            //         continue;
+            //     }
+            //     if ((set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
+            //             && !set.contains(jsPS.getSkillName3())) ||
+            //             (!set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
+            //                     && !set.contains(jsPS.getSkillName3()))
+            //             ||
+            //             (!set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
+            //                     && set.contains(jsPS.getSkillName3()))) {
+            //         oneMatchRecommend.add(jsPS);
+            //         continue;
+            //     }
+            // }
+            // recommendListDto.addAll(threeMatchRecommend);
+            // recommendListDto.addAll(twoMatchRecommend);
+            // recommendListDto.addAll(oneMatchRecommend);
+            // // recommendListDto.addAll(JobsList);
+            // model.addAttribute("rDtos", recommendListDto);
+            // List<JobsMainRespDto> jDtos = jobsRepository.findAlltoMain(principal.getUserId());
+            // model.addAttribute("jDtos", jDtos);
         } else {
             List<JobsMainRespDto> jDtost = jobsRepository.findAlltoMain(null);
             model.addAttribute("rDtos", jDtost);

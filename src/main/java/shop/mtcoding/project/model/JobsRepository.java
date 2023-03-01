@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsCheckBoxReqDto;
-import shop.mtcoding.project.dto.jobs.JobsReq.JobsSearchReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsUpdateReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsWriteReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsDetailRespDto;
@@ -25,7 +24,7 @@ public interface JobsRepository {
 
     public  List<JobsManageJobsRespDto> findByIdtoManageJobs(Integer compId);
 
-    public List<JobsSuggestRespDto> findAllToReqSuggest(Integer compId);
+    public List<JobsSuggestRespDto> findAllToSuggestReq(Integer compId);
 
     
     public int insert(
@@ -38,13 +37,12 @@ public interface JobsRepository {
 
     );
     public List<JobsRequiredSkill> findByJobsRequiredSkill(
-        @Param("id") Integer id
+        @Param("jobsId") Integer jobsId
     ); 
     public List<JobsMainRespDto> findAlltoMain(Integer userId);
 
     public List<JobsSearchRespDto> findBySearch(
-        @Param("jDto") JobsSearchReqDto jDto,
-        @Param("userId") Integer userId
+        @Param("keyword") String keyword
         );
     public List<JobsSearchRespDto> findByCheckBox(
         @Param("jDto") JobsCheckBoxReqDto jDto

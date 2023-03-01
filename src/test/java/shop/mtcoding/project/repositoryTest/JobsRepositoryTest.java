@@ -116,11 +116,11 @@ public class JobsRepositoryTest {
 
     @Test
     @Transactional
-    public void findAllToReqSuggest_test() throws Exception {
+    public void findAllToSuggestReq_test() throws Exception {
         // given
         Integer test = 1;
         // when
-        List<JobsSuggestRespDto> sList = jobsRepository.findAllToReqSuggest(test);
+        List<JobsSuggestRespDto> sList = jobsRepository.findAllToSuggestReq(test);
 
         // then
         sList.forEach((s)->{System.out.println("테스트 : "+ s.toString());});

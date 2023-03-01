@@ -90,7 +90,7 @@
                             </div>
                             <div class="col-4">
                                 <div>
-                                    ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3}
+                                    <%-- ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3} --%>
                                 </div>
                                 <div>
                                     ${jDto.address}
@@ -334,13 +334,13 @@
                                         <h6 class="card-subtitle mb-2 text-muted">`+ rDto.career + `</h6>
                                     </div>
                                     <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle mb-2 text-muted">`+ rDto.skillName1 + `</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">`+  + `</h6>
                                     </div>
                                     <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle mb-2 text-muted">`+ rDto.skillName2 + `</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">`+  + `</h6>
                                     </div>
                                     <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle mb-2 text-muted">`+ rDto.skillName3 + `</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">`+  + `</h6>
                                     </div>
                                 </div>
                             </div>

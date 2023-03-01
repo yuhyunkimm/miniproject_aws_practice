@@ -10,6 +10,7 @@ public class CompReq {
 
     @Getter
     @Setter
+    @AllArgsConstructor
     public static class CompJoinReqDto {
         private Integer compId;
         private String email;
@@ -17,6 +18,7 @@ public class CompReq {
         private String compName;
         private String representativeName;
         private String businessNumber;
+        private Timestamp createdAt;
     }
 
     @Getter

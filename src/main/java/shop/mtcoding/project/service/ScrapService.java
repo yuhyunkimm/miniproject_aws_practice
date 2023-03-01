@@ -92,7 +92,6 @@ public class ScrapService {
         if ( compId != CSPS.getCompId()){
             throw new CustomApiException("삭제 권한이 없습니다.", HttpStatus.FORBIDDEN);
         }
-        System.out.println("테스트 : "+ compScrapId);
         try {
             scrapRepository.deleteByCompScrapId(compScrapId);
         } catch (Exception e) {

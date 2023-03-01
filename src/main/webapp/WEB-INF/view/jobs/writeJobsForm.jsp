@@ -167,7 +167,7 @@
                     <!-- 공고 조건 / 공고 내용 -->
                     <div class="row my-3 my-border">
 
-                        <h5>필요 기술 ( 최대 3개 )</h5>
+                        <h5>필요 기술 </h5>
                         <div id="my-table-body2">
                             <table class="my-table table table-bordered" style="background-color: white;">
                                 <tbody>
@@ -329,17 +329,13 @@
             $('#homepage').text($('#update-homepage').val());
         }
 
-        $('input:checkbox[name=skill]').click(function () {
-            let count = $('input:checkbox[name=skill]:checked').length;
-            if (count > 3) {
-                alert('기술은 3개까지 선택 가능')
-                $(this).prop('checked', false);
-            }
-        });
-
-        // function test(){
-
-        // }
+        // $('input:checkbox[name=skill]').click(function () {
+        //     let count = $('input:checkbox[name=skill]:checked').length;
+        //     if (count > 3) {
+        //         alert('기술은 3개까지 선택 가능')
+        //         $(this).prop('checked', false);
+        //     }
+        // });
 
         function getCheckedValues(name) {
             var checkedValues = [];
@@ -380,7 +376,7 @@
                 address: $("#address").val(),
                 endDate: $("#endDate").val(),
                 receipt: $("#receipt").val(),
-                skill: skillValues,
+                skillList: skillValues,
                 compId: id,
                 jobsId: jobs
             };
@@ -456,7 +452,7 @@
                 address: $("#address").val(),
                 endDate: $("#endDate").val(),
                 receipt: $("#receipt").val(),
-                skill: skillValues,
+                skillList: skillValues,
                 compId: id,
                 jobsId: jobs
             };

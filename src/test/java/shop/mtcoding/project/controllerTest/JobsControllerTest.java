@@ -4,6 +4,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -68,7 +69,13 @@ public class JobsControllerTest {
         jDto.setEndDate(new Timestamp(System.currentTimeMillis()));
         jDto.setReceipt("123");
         jDto.setCareer("123");
-        jDto.setSkill(List.of("123"));
+        List<String> skillList = new ArrayList<>();
+        skillList.add( "자바");
+        skillList.add( "자바1");
+        skillList.add( "자바2");
+        skillList.add( "자바3");
+        skillList.add( "자바4");
+        jDto.setSkillList(skillList);
 
         String test = om.writeValueAsString(jDto);
 
@@ -99,7 +106,13 @@ public class JobsControllerTest {
         jDto.setEndDate(new Timestamp(System.currentTimeMillis()));
         jDto.setReceipt("123");
         jDto.setCareer("123");
-        jDto.setSkill(List.of("123"));
+        List<String> skillList = new ArrayList<>();
+        skillList.add( "자바");
+        skillList.add( "자바1");
+        skillList.add( "자바2");
+        skillList.add( "자바3");
+        skillList.add( "자바4");
+        jDto.setSkillList(skillList);
 
         String test = om.writeValueAsString(jDto);
 

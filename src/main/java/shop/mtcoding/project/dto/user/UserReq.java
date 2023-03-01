@@ -17,7 +17,7 @@ public class UserReq {
         private String name;
         private String birth;
         private String tel;
-        private String Address;
+        private String address;
         private Timestamp createdAt;
     }
 
@@ -40,25 +40,7 @@ public class UserReq {
         private String name;
         private String birth;
         private String tel;
-        private String Address;
+        private String address;
         private Timestamp createdAt;
-    }
-
-    @Getter
-    @Setter
-    public static class UserSkillReqDto {
-        private Integer userId;
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
-    }
-
-    @Getter
-    @Setter
-    public static class UserSkillUpdateReqDto {
-        private Integer userId;
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
     }
 }

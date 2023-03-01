@@ -1,5 +1,4 @@
 package shop.mtcoding.project.dto.jobs;
-
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class JobsReq {
     @Getter
     @Setter
     @ToString
-    public static class JobsSearchReqDto{
+    public static class JobsSearchReqDto{ // 이거 언제씀 ?
         private String address;
         private String skill;
         private String position;
@@ -47,8 +46,9 @@ public class JobsReq {
         private String address;
         private Timestamp endDate;
         private String receipt;
-        private List<String> skill;
+        private List<String> skillList;
     }
+    
     @Getter
     @Setter
     @ToString
@@ -67,6 +67,6 @@ public class JobsReq {
         private String address;
         private Timestamp endDate;
         private String receipt;
-        private List<String> skill;
+        private List<String> skillList;
     }
 }

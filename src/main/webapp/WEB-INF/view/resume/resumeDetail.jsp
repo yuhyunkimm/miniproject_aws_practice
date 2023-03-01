@@ -56,11 +56,11 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <input type="text" name="skillName1" id="skillName1" class="form-control"
-                                        value="${rDto.skillName1}" readonly>
+                                        value="" readonly>
                                     <input type="text" name="skillName2" id="skillName1" class="form-control"
-                                        value="${rDto.skillName2}" readonly>
+                                        value="" readonly>
                                     <input type="text" name="skillName3" id="skillName3" class="form-control"
-                                        value="${rDto.skillName3}" readonly>
+                                        value="" readonly>
                                 </div>
                             </div>
                         </div>
@@ -218,13 +218,13 @@
                                         <h6 class="card-subtitle mb-2 text-muted">`+ jDto.position + `</h6>
                                     </div>
                                     <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle mb-2 text-muted">`+ jDto.skillName1 + `</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">`+  + `</h6>
                                     </div>
                                     <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle mb-2 text-muted">`+ jDto.skillName2 + `</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">`+  + `</h6>
                                     </div>
                                     <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle mb-2 text-muted">`+ jDto.skillName3 + `</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">`+  + `</h6>
                                     </div>
                                     <div class="m-2" style="float: left;">
                                         <h6 class="card-subtitle mb-2 text-muted">`+ jDto.endDate + `</h6>
