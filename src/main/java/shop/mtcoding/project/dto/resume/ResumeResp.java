@@ -60,6 +60,12 @@ public class ResumeResp {
     public static class ResumeSaveRespDto {
         private Integer resumeId;
         private Integer userId;
+        private String photo;
+        private String name;
+        private String tel;
+        private String email;
+        private String address;
+        private String birth;
         private String title;
         private String content;
         private String education;

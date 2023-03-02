@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ include file="../layout/header.jsp" %>
-
+        <div class="mx-auto width-53 top-80">
 
             <div class="container my-5 py-5">
 
@@ -112,6 +112,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         <script>
             function checkPS(uId){

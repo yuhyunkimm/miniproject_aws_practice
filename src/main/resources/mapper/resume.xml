@@ -12,8 +12,11 @@
         select * from resume_tb where resume_id = #{resumeId}
     </select>
 
-        <select id="findById" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeSaveRespDto">
-        select * from resume_tb where resume_id = #{resumeId}
+    <select id="findById" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeSaveRespDto">
+        select r.RESUME_ID, r.USER_ID, r.TITLE, r.CONTENT, r.EDUCATION, r.CAREER, r.LINK, r.STATE, r.CREATED_AT, u.photo, u.name, u.tel, u.email, u.address, u.birth from resume_tb r 
+            join user_tb u
+            on r.user_id= u.user_id
+            where r.resume_id = #{resumeId}
     </select>
     
     <!-- <select id="findAllByUserId" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeManageRespDto">
