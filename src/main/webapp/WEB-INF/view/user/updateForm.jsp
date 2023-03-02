@@ -20,70 +20,97 @@
             <title>개인 회원수정 페이지</title>
         </head>
 
-<body>
-    <div class="mx-auto width-53">
-        <div class="container border border-3 p-3 mt-5" style="width: 350px;">
-            <div style="text-align: center;">
-                <h4>개인 회원정보 수정</h4>
-            </div>
-            <form>
+        <body>
+            <div class="mx-auto width-53">
+                <div class="container border border-3 p-3 mt-5" style="width: 350px;">
+                    <div style="text-align: center;">
+                        <h4>개인 회원정보 수정</h4>
+                    </div>
 
-                <div class="form-group mb-2">
-                    <input type="password" name="password" class="form-control" placeholder="Enter password" id="password">
-                </div>
+                    <div>
 
-                <div class="form-group mb-2">
-                    <input type="password" class="form-control" placeholder="Enter passwordCheck" id="passwordCheck">
-                </div>
-
-                <div class="form-group mb-2">
-                    <input type="date" name="birth" class="form-control" placeholder="Enter birth" id="birth" value="${user.birth}">
-                </div>
-
-                <div class="form-group mb-2">
-                    <input type="tel" name="tel" class="form-control" placeholder="Enter tel" id="tel" value="${user.tel}">
-                </div>
-
-                <div class="form-group mb-4">
-                    <input type="text" name="Address" class="form-control" placeholder="Enter Address" id="Address" value="${user.adress}">
-                </div>
-
-                <div class="d-grid gap-2 mb-2">
-                    <input id="button" class=" btn btn-primary" type="submit" value="수정완료" onclick="submitForm()">
-                </div>
-
-            </form>
-        </div>
-    </div>
-    </div>
-     <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">비밀번호 확인</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                        <div class="form-group mb-2">
+                            <input type="password" name="password" class="form-control" placeholder="Enter password"
+                                id="password">
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">passwordCheck</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+
+                        <div class="form-group mb-2">
+                            <input type="password" class="form-control" placeholder="Enter passwordCheck"
+                                id="passwordCheck">
                         </div>
-                        
-                        <button type="button" class="btn btn-success mt-2" style="float: right;" onclick="updateComp()"  data-bs-dismiss="modal">인증 완료</button>
-                    </form>
+
+                        <div class="form-group mb-2">
+                            <input type="text" name="name" class="form-control" placeholder="Enter name" id="name"
+                                value="${user.name}">
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <input type="date" name="birth" class="form-control" placeholder="Enter birth" id="birth"
+                                value="${user.birth}">
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <input type="tel" name="tel" class="form-control" placeholder="Enter tel" id="tel"
+                                value="${user.tel}">
+                        </div>
+
+                        <form name="form" id="form" method="post">
+                            <input class="btn btn-outline-primary mb-2" type="button" onClick="goPopup();"
+                                value="도로명주소 검색" />
+                            <div id="list"></div>
+                            <div id="callBackDiv">
+                                <div class="form-group mb-4">
+                                    <input type="text" name="address" class="form-control" id="roadFullAddr"
+                                        placeholder="Enter address" readonly id="address" value="${user.adress}">
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="d-grid gap-2 mb-2">
+                            <button onclick="updateUser(${principal.userId})" class=" btn btn-primary">수정완료</button>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <script>
 
-    </script>
+            </div>
+            <script language="javascript">
+                function goPopup() {
+                    var pop = window.open("/jusoPopup", "pop", "width=570,height=420, scrollbars=yes, resizable=yes");
+                }
 
-</body>
+                function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail, roadAddrPart2, engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn, detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn, buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno, emdNo) {
+                    document.form.roadFullAddr.value = roadFullAddr;
+                }
 
-</html>
+            </script>
+            <script>
+                // 회원 수정 update 버튼
+                function updateUser(id) {
+                    let data = {
+                        userId: id,
+                        password: $("#password").val(),
+                        name: $("#name").val(),
+                        birth: $("#birth").val(),
+                        tel: $("#tel").val(),
+                        address: $("#address").val()
+                    };
+                    $.ajax({
+                        type: "put",
+                        url: "/user/update",
+                        data: JSON.stringify(data),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json"
+                    }).done((res) => {
+                        alert(res.msg);
+                        location.href = "/user/myhome";
+                    }).fail((err) => {
+                        alert(err.responseJSON.msg);
+                    });
+                }
+            </script>
+
+        </body>
+
+        </html>
