@@ -20,7 +20,7 @@ public interface UserRepository {
 
     public User findByUserEmail(@Param("email") String email);
 
-    public User findById(@Param("id") Integer id);
+    public User findById(@Param("userId") Integer userId);
 
     public UserSkillAndInterestDto findByUserSkillAndInterest(@Param("id") Integer id);
 

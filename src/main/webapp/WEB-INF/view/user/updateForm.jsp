@@ -39,6 +39,11 @@
                         </div>
 
                         <div class="form-group mb-2">
+                            <input type="text" name="name" class="form-control" placeholder="Enter name" id="name"
+                                value="${user.name}">
+                        </div>
+
+                        <div class="form-group mb-2">
                             <input type="date" name="birth" class="form-control" placeholder="Enter birth" id="birth"
                                 value="${user.birth}">
                         </div>
@@ -68,6 +73,7 @@
                     let data = {
                         userId: id,
                         password: $("#password").val(),
+                        name: $("#name").val(),
                         birth: $("#birth").val(),
                         tel: $("#tel").val(),
                         address: $("#address").val()

@@ -129,7 +129,7 @@ public class UserController {
     }
 
     @PutMapping("/user/update")
-    public ResponseEntity<?> updateUser(@PathVariable Integer userId, @RequestBody UserUpdateReqDto userUpdateReqDto) {
+    public ResponseEntity<?> updateUser(@RequestBody UserUpdateReqDto userUpdateReqDto) {
         MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
@@ -137,6 +137,9 @@ public class UserController {
         }
         if (userUpdateReqDto.getPassword() == null || userUpdateReqDto.getPassword().isEmpty()) {
             throw new CustomApiException("비밀번호를 입력하세요");
+        }
+        if (userUpdateReqDto.getName() == null || userUpdateReqDto.getName().isEmpty()) {
+            throw new CustomApiException("이름을 입력하세요");
         }
         if (userUpdateReqDto.getBirth() == null || userUpdateReqDto.getBirth().isEmpty()) {
             throw new CustomApiException("생년월일을 입력하세요");

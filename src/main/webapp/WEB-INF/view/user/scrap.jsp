@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ include file="../layout/header.jsp" %>
         <div class="mx-auto width-53 top-80">
-            <div class="container mt-5 mb-5">
-                <div class="mb-3">
-                <div>
-                    <h5>이력서 스크랩</h5>
+            <div class="container mt-5">
+                            <div class="mb-3">
+                    <h5> 이력서 스크랩</h5>
                 </div>
                 <div class="row">
+                    <!-- <h2> 이력서 관리</h2> -->
                     <div class="col-3" style="text-align: center;">
                         <div class="card">
                             <div class="card-body">
@@ -82,7 +82,7 @@
     </div>
 </div>
 </div>
-    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -94,16 +94,49 @@
                             <div class="mb-3">
                                 <label for="inputPassword" class="form-label">Password</label>
                                 <input type="password" class="form-control" id="inputPassword"
-                                    aria-describedby="passwordHelp">
+                                    aria-describedby="passwordHelp" onkeypress="if(event.keyCode=='13'){event.preventDefault(); checkPS(${principal.userId});}">
                                 <div id="passwordHelp" class="form-text">현재 비밀번호를 입력해 주세요.</div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" onclick="checkPassword()">Check</button>
+                        <button type="button" class="btn btn-primary"
+                            onclick="passwordCheckBtn(${principal.userId})">Check</button>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            function checkPS(uId){
+                passwordCheckBtn(uId);
+            }
+      
+            const passwordInputEl = document.querySelector('#inputPassword')
+            const modalEl = document.querySelector('#modal')
+
+            modalEl.addEventListener('shown.bs.modal', function () {
+                passwordInputEl.focus()
+            })
+
+            function passwordCheckBtn(uId) {
+
+                let data = {
+                    userId: uId,
+                    password: $('#inputPassword').val()
+                }
+
+                $.ajax({
+                    type: "post",
+                    url: "/user/passwordCheck",
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    datatype: "json"
+                }).done((res) => {
+                    location.href = "/user/update";
+                }).fail((err) => {
+                    alert(err.responseJSON.msg);
+                });
+            }
+        </script>
 <%@ include file="../layout/footer.jsp" %>
