@@ -38,8 +38,9 @@
     </div>
     
     <div class="mx-auto width-53">
+    <div class="container">
         <div class="row">
-            <div class="col-9 my-border relative my-5">
+            <div class="col-9 my-border my-5">
                 <header>
                     <div class="view-up d-flex py-0 my-0">
                         <div class="  my-auto me-3">
@@ -120,7 +121,7 @@
             </div>
 
             <div class="col-3">
-                <div class="d-grid view-right p-4">
+                <div class="rButton d-grid view-right p-4">
                     <!-- 뷰포트 -->
                     <div class="d-flex justify-content-between">
                         <div>
@@ -160,14 +161,25 @@
                     </div>
                     <div class="align-self-end" id="apply-render">
                         <div id="apply-btn">
-                            <button type="button" class="btn btn-success w-100" data-bs-toggle="modal"
+                            <c:choose>
+                               <c:when test="${compSession == null}">
+                               <button type="button" class="btn btn-success w-100" data-bs-toggle="modal"
                                 data-bs-target="#myModal" onclick="requestResume()">지원하기</button>
+                               </c:when>
+                            
+                               <c:otherwise>
+                               <button type="button" class="btn btn-secondary w-100">지원하기</button>
+                               </c:otherwise>
+                            </c:choose>
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
+        
     <div class="modal" id="myModal">
         <div class="modal-dialog">
             <!-- modal-sm modal-lg modal-xl 모달 사이즈 -->

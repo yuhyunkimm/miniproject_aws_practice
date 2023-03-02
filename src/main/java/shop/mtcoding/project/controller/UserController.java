@@ -130,7 +130,7 @@ public class UserController {
 
     @PutMapping("/user/update")
     public ResponseEntity<?> updateUser(@RequestBody UserUpdateReqDto userUpdateReqDto) {
-        MockSession.mockUser(session);
+        // MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
@@ -162,7 +162,7 @@ public class UserController {
 
     @GetMapping("/user/myhome")
     public String myhome() {
-        MockSession.mockUser(session);
+        // MockSession.mockUser(session);
         return "user/myhome";
     }
 

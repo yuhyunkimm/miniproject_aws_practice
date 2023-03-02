@@ -59,7 +59,7 @@ public class ResumeController {
 
     @GetMapping("/user/request/resume") // 공고에 지원할 이력서 불러오기
     public ResponseEntity<?> requestResume(Model model) {
-        MockSession.mockUser(session);
+        // MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         List<ResumeManageRespDto> rDtos = resumeRepository.findAllWithUserById(principal.getUserId());
         return new ResponseEntity<>(new ResponseDto<>(1, "이력서 불러오기 성공", rDtos), HttpStatus.OK);
@@ -67,7 +67,7 @@ public class ResumeController {
 
     @PostMapping("/user/resume/write")
     public ResponseEntity<?> writeResume(@RequestBody ResumeWriteReqDto resumeWriteReqDto) {
-        MockSession.mockUser(session);
+        // MockSession.mockUser(session);
         // System.out.println("테스트 : "+ resumeWriteReqDto.toString());
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
@@ -99,7 +99,7 @@ public class ResumeController {
 
         // System.out.println("테스트 : "+ resumeWriteReqDto.toString());
 
-        MockSession.mockUser(session);
+        // MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
@@ -127,13 +127,13 @@ public class ResumeController {
 
     @GetMapping("/user/resume/write")
     public String writeResumeForm(Model model) {
-        MockSession.mockUser(session);
+        // MockSession.mockUser(session);
         return "resume/writeResumeForm";
     }
 
     @GetMapping("/user/resume/{id}/update")
     public String updateResumeForm(@PathVariable Integer id, Model model) {
-        MockSession.mockUser(session);
+        // MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);

@@ -12,15 +12,18 @@
     .on-Clicked {
         color: rgb(226, 226, 40);
     }
+    .main-card{
+        max-height: 15em;
+    }
 </style>
 <div class="mx-auto width-53 mx-5 px-3 top-80">
     <div class="d-flex flex-wrap my-3 info-card mt-5">
         <c:forEach items="${rDtos}" var="jDto" begin="1" end="3">
             <div class="col-4 px-2 py-2 remove-card">
                 <a href="/jobs/${jDto.jobsId}" onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
-                    <div class="card">
-                        <div>
-                            <img src='${jDto.photo}' alt="" srcset="">
+                    <div class="card main-card">
+                        <div class="ms-5 pt-4" >
+                            <img src='${jDto.photo}' alt="" srcset="" style="height: 4em;">
                         </div>
                         <div class="card-body">
                             <div>
@@ -96,9 +99,9 @@
     <c:forEach items="${jDtos}" var="jDto" varStatus="status">
         <div class="col-3 px-2 py-2 remove-card">
             <a href="/jobs/${jDto.jobsId}" onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
-                <div class="card">
-                    <div>
-                        <img src='${jDto.photo}' alt="" srcset="">
+                <div class="card main-card">
+                    <div class=" pt-4 px-auto" >
+                        <img src='${jDto.photo}' alt="" srcset="" style="height: 4em;">
                     </div>
                     <div class="card-body">
                         <div>

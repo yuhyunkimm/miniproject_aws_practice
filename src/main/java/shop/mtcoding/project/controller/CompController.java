@@ -128,8 +128,11 @@ public class CompController {
 
     @GetMapping("/comp/comphome")
     public String compMyhome(Model model) {
-        MockSession.mockComp(session);
+        // MockSession.mockComp(session);
         Comp compSession = (Comp)session.getAttribute("compSession");
+        if ( compSession == null ){
+            return "redirect:/comp/login";
+        }
         List<JobsManageJobsRespDto> jDtos = jobsrRepository.findByIdtoManageJobs(compSession.getCompId());
         model.addAttribute("jDtos", jDtos);
         return "comp/comphome";
