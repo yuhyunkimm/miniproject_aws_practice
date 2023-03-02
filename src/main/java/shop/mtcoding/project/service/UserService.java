@@ -47,7 +47,7 @@ public class UserService {
             throw new CustomApiException("정상적인 접근이 아닙니다.", HttpStatus.FORBIDDEN);
         }
         User userPS = userRepository.findById(userUpdateReqDto.getUserId());
-        if (userPS != null)
+        if (userPS == null)
             throw new CustomException("존재하지 않는 회원입니다.");
         try {
             userRepository.updateById(userUpdateReqDto);

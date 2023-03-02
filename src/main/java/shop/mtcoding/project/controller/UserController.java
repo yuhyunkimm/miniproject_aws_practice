@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -115,7 +116,7 @@ public class UserController {
     }
 
     @PutMapping("/user/{id}/update")
-    public ResponseEntity<?> updateUser(@RequestBody UserUpdateReqDto userUpdateReqDto) {
+    public ResponseEntity<?> updateUser(@PathVariable Integer id, @RequestBody UserUpdateReqDto userUpdateReqDto) {
         MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
@@ -133,8 +134,7 @@ public class UserController {
         if (userUpdateReqDto.getAddress() == null || userUpdateReqDto.getAddress().isEmpty()) {
             throw new CustomApiException("주소를 입력하세요");
         }
-
-        // userService.개인정보수정();
+        userService.개인정보수정(userUpdateReqDto, principal.getUserId());
         return new ResponseEntity<>(new ResponseDto<>(1, "수정완료", null), HttpStatus.OK);
 
     }

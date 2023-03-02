@@ -20,70 +20,87 @@
             <title>개인 회원수정 페이지</title>
         </head>
 
-<body>
-    <div class="mx-auto width-53">
-        <div class="container border border-3 p-3 mt-5" style="width: 350px;">
-            <div style="text-align: center;">
-                <h4>개인 회원정보 수정</h4>
-            </div>
-            <form>
-
-                <div class="form-group mb-2">
-                    <input type="password" name="password" class="form-control" placeholder="Enter password" id="password">
-                </div>
-
-                <div class="form-group mb-2">
-                    <input type="password" class="form-control" placeholder="Enter passwordCheck" id="passwordCheck">
-                </div>
-
-                <div class="form-group mb-2">
-                    <input type="date" name="birth" class="form-control" placeholder="Enter birth" id="birth" value="${user.birth}">
-                </div>
-
-                <div class="form-group mb-2">
-                    <input type="tel" name="tel" class="form-control" placeholder="Enter tel" id="tel" value="${user.tel}">
-                </div>
-
-                <div class="form-group mb-4">
-                    <input type="text" name="Address" class="form-control" placeholder="Enter Address" id="Address" value="${user.adress}">
-                </div>
-
-                <div class="d-grid gap-2 mb-2">
-                    <input id="button" class=" btn btn-primary" type="submit" value="수정완료" onclick="submitForm()">
-                </div>
-
-            </form>
-        </div>
-    </div>
-    </div>
-     <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">비밀번호 확인</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
+        <body>
+            <div class="mx-auto width-53">
+                <div class="container border border-3 p-3 mt-5" style="width: 350px;">
+                    <div style="text-align: center;">
+                        <h4>개인 회원정보 수정</h4>
+                    </div>
                     <form>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+
+                        <div class="form-group mb-2">
+                            <input type="password" name="password" class="form-control" placeholder="Enter password"
+                                id="password">
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">passwordCheck</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+
+                        <div class="form-group mb-2">
+                            <input type="password" class="form-control" placeholder="Enter passwordCheck"
+                                id="passwordCheck">
                         </div>
-                        
-                        <button type="button" class="btn btn-success mt-2" style="float: right;" onclick="updateComp()"  data-bs-dismiss="modal">인증 완료</button>
+
+                        <div class="form-group mb-2">
+                            <input type="date" name="birth" class="form-control" placeholder="Enter birth" id="birth"
+                                value="${user.birth}">
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <input type="tel" name="tel" class="form-control" placeholder="Enter tel" id="tel"
+                                value="${user.tel}">
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <input type="text" name="Address" class="form-control" placeholder="Enter Address"
+                                id="Address" value="${user.adress}">
+                        </div>
+
+                        <div class="d-grid gap-2 mb-2">
+                            <input id="button" class=" btn btn-primary" type="submit" value="수정완료"
+                                onclick="submitForm()">
+                        </div>
+
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
-    <script>
+            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabel">비밀번호 인증</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="inputPassword" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="inputPassword"
+                                        aria-describedby="passwordHelp1">
+                                    <div id="passwordHelp1" class="form-text">현재 비밀번호를 입력해 주세요.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="inputPassword" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="inputPassword"
+                                        aria-describedby="passwordHelp2">
+                                    <div id="passwordHelp2" class="form-text">비밀번호를 한번 더 입력해 주세요.</div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <script>
+                const passwordInputEl = document.querySelector('#inputPassword')
+                const modalEl = document.querySelector('#modal')
 
-    </script>
+                modalEl.addEventListener('shown.bs.modal', function () {
+                    passwordInputEl.focus()
+                })
+            </script>
 
-</body>
+        </body>
 
-</html>
+        </html>
