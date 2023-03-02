@@ -27,7 +27,7 @@ public class MainController {
     @GetMapping("/sample")
     public String sample() {
 
-        return "main/sample";
+        return "user/sample";
     }
 
     // 주소입력을 누르면 매핑에 연결된 jsp 사용

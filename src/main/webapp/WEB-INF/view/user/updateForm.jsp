@@ -26,7 +26,8 @@
                     <div style="text-align: center;">
                         <h4>개인 회원정보 수정</h4>
                     </div>
-                    <form>
+
+                    <div>
 
                         <div class="form-group mb-2">
                             <input type="password" name="password" class="form-control" placeholder="Enter password"
@@ -53,20 +54,37 @@
                                 value="${user.tel}">
                         </div>
 
-                        <div class="form-group mb-4">
-                            <input type="text" name="address" class="form-control" placeholder="Enter address"
-                                id="address" value="${user.adress}">
-                        </div>
+                        <form name="form" id="form" method="post">
+                            <input class="btn btn-outline-primary mb-2" type="button" onClick="goPopup();"
+                                value="도로명주소 검색" />
+                            <div id="list"></div>
+                            <div id="callBackDiv">
+                                <div class="form-group mb-4">
+                                    <input type="text" name="address" class="form-control" id="roadFullAddr"
+                                        placeholder="Enter address" readonly id="address" value="${user.adress}">
+                                </div>
+                            </div>
+                        </form>
 
                         <div class="d-grid gap-2 mb-2">
                             <button onclick="updateUser(${principal.userId})" class=" btn btn-primary">수정완료</button>
                         </div>
 
-                    </form>
+                    </div>
                 </div>
             </div>
 
             </div>
+            <script language="javascript">
+                function goPopup() {
+                    var pop = window.open("/jusoPopup", "pop", "width=570,height=420, scrollbars=yes, resizable=yes");
+                }
+
+                function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail, roadAddrPart2, engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn, detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn, buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno, emdNo) {
+                    document.form.roadFullAddr.value = roadFullAddr;
+                }
+
+            </script>
             <script>
                 // 회원 수정 update 버튼
                 function updateUser(id) {
@@ -86,7 +104,7 @@
                         dataType: "json"
                     }).done((res) => {
                         alert(res.msg);
-                        location.href = "/user/update";
+                        location.href = "/user/myhome";
                     }).fail((err) => {
                         alert(err.responseJSON.msg);
                     });
