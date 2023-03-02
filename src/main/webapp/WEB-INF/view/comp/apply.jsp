@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ include file="../layout/header.jsp" %>
         <div class="mx-auto width-53 top-80">
             <div class="container my-5 py-5">
@@ -34,26 +34,27 @@
                             <table class="table" style="width:100%">
                                 <thead>
                                     <tr class="table-secondary" align=center>
-                                        <th scope="col" style="width:10%">No.</th>
-                                        <th scope="col" style="width:25%">지원회사</th>
-                                        <th scope="col" style="width:30%">채용정보</th>
+                                        <th scope="col" style="width:15%">이름/나이</th>
+                                        <th scope="col" style="width:25%">이력서 제목</th>
                                         <th scope="col" style="width:25%">상태</th>
+                                        <th scope="col" style="width:10%">상태</th>
+                                        <th scope="col" style="width:10%">상태</th>
+                                        <th scope="col" style="width:15%">상태</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <c:forEach items="${aDtos}" varStatus="status" var="aDto">
+                                    <tbody>
                                     <tr align=center>
-                                        <th scope="row">1</th>
-                                        <td>카카오</td>
-                                        <td>백엔드 개발자 모집</td>
-                                        <td>입사지원</td>
+                                        <td>${aDto.name}${aDto.birth}</td>
+                                        <td>${aDto.title}</td>
+                                        <td>${aDto.position}</td>
+                                        <td>${aDto.career}</td>
+                                        <td>${aDto.education}</td>
+                                        <td><button type="button" class="btn btn-success btn-sm" 
+                                        onclick="window.open('/resume/${aDto.resumeId}', '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">상세보기</button></td>
                                     </tr>
-                                    <tr align=center>
-                                        <th scope="row">2</th>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
+                                    </tbody>
+                                </c:forEach>
                             </table>
                             <br />
                             <table class="table" style="width:100%">
