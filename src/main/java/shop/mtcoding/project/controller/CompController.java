@@ -20,13 +20,14 @@ import shop.mtcoding.project.dto.common.ResponseDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompJoinReqDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompLoginReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsManageJobsRespDto;
+import shop.mtcoding.project.dto.scrap.CompScrapResp.CompScrapResumeRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.ApplyRepository;
 import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.CompRepository;
 import shop.mtcoding.project.model.JobsRepository;
-import shop.mtcoding.project.model.ResumeRepository;
+import shop.mtcoding.project.model.ScrapRepository;
 import shop.mtcoding.project.service.CompService;
 import shop.mtcoding.project.util.MockSession;
 
@@ -41,6 +42,9 @@ public class CompController {
 
     @Autowired
     private ApplyRepository applyRepository;
+
+    @Autowired
+    private ScrapRepository scrapRepository;
 
     @Autowired
     private CompService compService;
@@ -160,7 +164,10 @@ public class CompController {
     }
 
     @GetMapping("/comp/resume/scrap")
-    public String scrapResume() {
+    public String scrapResume(Model model) {
+        Comp compSession = (Comp)session.getAttribute("compSession");
+        List<CompScrapResumeRespDto> sList = scrapRepository.findAllScrapByCompId(compSession.getCompId());
+        model.addAttribute("sDtos", sList);
         return "comp/scrap";
     }
 

@@ -1,9 +1,12 @@
 package shop.mtcoding.project.model;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import shop.mtcoding.project.dto.scrap.CompScrapReq.CompInsertScrapReqDto;
+import shop.mtcoding.project.dto.scrap.CompScrapResp.CompScrapResumeRespDto;
 import shop.mtcoding.project.dto.scrap.UserScrapReq.UserInsertScrapReqDto;
 
 @Mapper
@@ -12,6 +15,9 @@ public interface ScrapRepository {
     public UserScrap findByUserId(
         @Param("userScrapId") Integer userScrapId
     );
+
+    public List<CompScrapResumeRespDto> findAllScrapByCompId(Integer compId);
+    
     public CompScrap findByCompId(
         @Param("compScrapId") Integer compScrapId
     );

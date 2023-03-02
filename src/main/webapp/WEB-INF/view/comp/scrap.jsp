@@ -30,44 +30,31 @@
             </div>
 
             <div class="col-9 my-4 pe-5">
-                <h6><b>전체 2</b></h6>
+                <h6><b>전체 ${sDtos.size()} </b></h6>
                 <hr />
+                <c:forEach items="${sDtos}" var="sDto">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <h5 class="card-title" style="text-align: left;">이력서 title</h5>
+                        <h5 class="card-title" style="text-align: left;">${sDto.title}</h5>
                         <div class="m-2" style="float: left;">
-                            <h6 class="card-subtitle mb-2 text-muted">이름</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">${sDto.name} ${sDto.birth}</h6>
                         </div>
                         <div class="m-2" style="float: left;">
-                            <h6 class="card-subtitle mb-2 text-muted">학력</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">${sDto.education}</h6>
                         </div>
                         <div class="m-2" style="float: left;">
-                            <h6 class="card-subtitle mb-2 text-muted">기술</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">${sDto.career}</h6>
+                        </div>
+                                               <div class="m-2" style="float: left;">
+                            <h6 class="card-subtitle mb-2 text-muted">${sDto.address}</h6>
                         </div>
                         <div style="float: right;" pt-2>
                             <button type="button" class="btn btn-success btn-sm"
-                                onclick="location.href='/resume/{id}'">상세보기</button>
+                                onclick="location.href='/resume/${sDto.resumeId}'">상세보기</button>
                         </div>
                     </div>
                 </div>
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title" style="text-align: left;">이력서 title</h5>
-                        <div class="m-2" style="float: left;">
-                            <h6 class="card-subtitle mb-2 text-muted">이름</h6>
-                        </div>
-                        <div class="m-2" style="float: left;">
-                            <h6 class="card-subtitle mb-2 text-muted">학력</h6>
-                        </div>
-                        <div class="m-2" style="float: left;">
-                            <h6 class="card-subtitle mb-2 text-muted">기술</h6>
-                        </div>
-                        <div style="float: right;" pt-2>
-                            <button type="button" class="btn btn-success btn-sm"
-                                onclick="location.href='#'">상세보기</button>
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
         </div>
     </div>
