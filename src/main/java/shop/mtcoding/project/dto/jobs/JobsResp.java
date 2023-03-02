@@ -23,6 +23,7 @@ public class JobsResp {
         private List<String> skillList;
         private String address;
         private Integer userScrapId;
+        private Long leftTime;
         private Timestamp endDate;
     }
     @Getter

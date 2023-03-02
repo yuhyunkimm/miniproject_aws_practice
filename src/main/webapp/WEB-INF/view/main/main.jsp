@@ -67,7 +67,7 @@
                         </c:otherwise>
                     </c:choose>
                     <div>
-
+                        D-${jDto.leftTime}
                     </div>
 
                 </div>
@@ -145,7 +145,7 @@
                     </c:otherwise>
                 </c:choose>
                 <div>
-
+                    D-${jDto.leftTime}
                 </div>
 
             </div>

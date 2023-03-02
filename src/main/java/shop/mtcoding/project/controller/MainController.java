@@ -17,6 +17,7 @@ import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.SkillRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
+import shop.mtcoding.project.util.DateUtil;
 
 @Controller
 public class MainController {
@@ -108,6 +109,8 @@ public class MainController {
         // } else {
             List<JobsMainRespDto> jDtost = jobsRepository.findAlltoMain(null);
             for (JobsMainRespDto jDto : jDtost) {
+                long dDay = DateUtil.dDay(jDto.getEndDate());
+                jDto.setLeftTime(dDay);
                 List<String> insertList = new ArrayList<>();
                 for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto.getJobsId())) {
                     insertList.add(skill.getSkill());
@@ -118,6 +121,8 @@ public class MainController {
 
             List<JobsMainRespDto> jDtosb = jobsRepository.findAlltoMain(null);
             for (JobsMainRespDto jDto : jDtosb) {
+                long dDay = DateUtil.dDay(jDto.getEndDate());
+                jDto.setLeftTime(dDay);
                 List<String> insertList = new ArrayList<>();
                 for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto.getJobsId())) {
                     insertList.add(skill.getSkill());
@@ -126,7 +131,6 @@ public class MainController {
             }
             model.addAttribute("jDtos", jDtosb);
         // }
-        
         return "main/main";
     }
 
