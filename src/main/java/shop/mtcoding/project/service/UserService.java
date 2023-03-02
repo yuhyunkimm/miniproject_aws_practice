@@ -42,8 +42,8 @@ public class UserService {
     }
 
     @Transactional
-    public User 개인정보수정(UserUpdateReqDto userUpdateReqDto, Integer usrId) {
-        if (usrId != userUpdateReqDto.getUserId()) {
+    public void 개인정보수정(UserUpdateReqDto userUpdateReqDto, Integer userId) {
+        if (userId != userUpdateReqDto.getUserId()) {
             throw new CustomApiException("정상적인 접근이 아닙니다.", HttpStatus.FORBIDDEN);
         }
         User userPS = userRepository.findById(userUpdateReqDto.getUserId());
@@ -54,7 +54,5 @@ public class UserService {
         } catch (Exception e) {
             throw new CustomException("서버 에러가 발생 했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return userPS;
-
     }
 }
