@@ -4,8 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="shop.mtcoding.project.model.ScrapRepository">
-  <select id="findAll" resultType="shop.mtcoding.project.model.UserScrap">
+    <select id="findAll" resultType="shop.mtcoding.project.model.UserScrap">
         select * from user_scrap_tb
+    </select>
+
+    <select id="findAllScrapByCompId" resultType="shop.mtcoding.project.dto.scrap.CompScrapResp$CompScrapResumeRespDto">
+      SELECT s.comp_scrap_id, s.resume_id, u.name, u.birth, r.title, r.career, r.education,  u.address  FROM COMP_SCRAP_TB s join resume_tb r
+        on s.resume_id = r.resume_id join user_tb u
+        on u.user_id = r.user_id
+        where s.comp_id = #{compId}
     </select>
 
     <select id="findByUserId" resultType="shop.mtcoding.project.model.UserScrap">

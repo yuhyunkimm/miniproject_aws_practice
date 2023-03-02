@@ -1,9 +1,6 @@
 package shop.mtcoding.project.controller;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -18,18 +15,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusRespDto;
 import shop.mtcoding.project.dto.common.ResponseDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompJoinReqDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompLoginReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsManageJobsRespDto;
-import shop.mtcoding.project.dto.jobs.JobsResp.JobsRequiredSkill;
-import shop.mtcoding.project.dto.resume.ResumeResp.ResumeRecommendRespDto;
+import shop.mtcoding.project.dto.scrap.CompScrapResp.CompScrapResumeRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
+import shop.mtcoding.project.model.ApplyRepository;
 import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.CompRepository;
 import shop.mtcoding.project.model.JobsRepository;
-import shop.mtcoding.project.model.ResumeRepository;
+import shop.mtcoding.project.model.ScrapRepository;
 import shop.mtcoding.project.service.CompService;
 import shop.mtcoding.project.util.MockSession;
 
@@ -43,7 +41,10 @@ public class CompController {
     private JobsRepository jobsrRepository;
 
     @Autowired
-    private ResumeRepository resumeRepository;
+    private ApplyRepository applyRepository;
+
+    @Autowired
+    private ScrapRepository scrapRepository;
 
     @Autowired
     private CompService compService;
@@ -126,8 +127,11 @@ public class CompController {
     }
 
     @GetMapping("/comp/comphome")
-    public String compMyhome() {
+    public String compMyhome(Model model) {
         MockSession.mockComp(session);
+        Comp compSession = (Comp)session.getAttribute("compSession");
+        List<JobsManageJobsRespDto> jDtos = jobsrRepository.findByIdtoManageJobs(compSession.getCompId());
+        model.addAttribute("jDtos", jDtos);
         return "comp/comphome";
     }
 
@@ -137,7 +141,10 @@ public class CompController {
     }
 
     @GetMapping("/comp/apply")
-    public String apply() {
+    public String apply(Model model) {
+        Comp compSession = (Comp)session.getAttribute("compSession");
+        List<ApllyStatusRespDto> aList = applyRepository.findAllByCompIdtoApply(compSession.getCompId());
+        model.addAttribute("aDtos", aList);
         return "comp/apply";
     }
 
@@ -157,7 +164,10 @@ public class CompController {
     }
 
     @GetMapping("/comp/resume/scrap")
-    public String scrapResume() {
+    public String scrapResume(Model model) {
+        Comp compSession = (Comp)session.getAttribute("compSession");
+        List<CompScrapResumeRespDto> sList = scrapRepository.findAllScrapByCompId(compSession.getCompId());
+        model.addAttribute("sDtos", sList);
         return "comp/scrap";
     }
 

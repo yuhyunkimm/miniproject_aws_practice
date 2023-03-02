@@ -1,6 +1,6 @@
 .width-53 {
     /* width: 53%; */
-    width: 1050px;
+    width: 1020px;
 }
 
 .top-80 {
@@ -114,6 +114,7 @@ a {
 }
 
 .view-right {
+    position: fixed;
     top: 5em;
     right: 24em;
     width: 270px;
