@@ -30,11 +30,14 @@
                                 ${jDto.title}
                             </div>
                             <div>
-                                <%-- ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3} --%>
+                                <c:forEach items="${jDto.skillList}" var="skill" begin="0" end="3">
+                                ${skill}
+                                </c:forEach>
                             </div>
                             <div>
                                 ${jDto.career} ${jDto.education} ${jDto.address}
                             </div>
+                            
                 </a>
                 <div class="d-flex justify-content-between">
                     <c:choose>
@@ -90,7 +93,7 @@
 
 <!-- 공고들 -->
 <div class="d-flex flex-wrap my-3 info-card">
-    <c:forEach items="${jDtos}" var="jDto">
+    <c:forEach items="${jDtos}" var="jDto" varStatus="status">
         <div class="col-3 px-2 py-2 remove-card">
             <a href="/jobs/${jDto.jobsId}" onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
                 <div class="card">
@@ -104,9 +107,11 @@
                         <div class="fs-5">
                             ${jDto.title}
                         </div>
-                        <div>
-                            <%-- ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3} --%>
-                        </div>
+                            <div>
+                                <c:forEach items="${jDto.skillList}" var="skill" begin="0" end="1">
+                                ${skill}
+                                </c:forEach>
+                            </div>
                         <div>
                             ${jDto.career} ${jDto.education} ${jDto.address}
                         </div>

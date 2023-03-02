@@ -6,16 +6,18 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import shop.mtcoding.project.dto.skill.RequiredSkillReq.RequiredSkillWriteReqDto;
-import shop.mtcoding.project.dto.skill.ResumeSkillresp.ResumeSkillRespDto;
 
 @Mapper
 public interface SkillRepository {
     public void findAll();
     public List<ResumeSkill> findByResumeId(Integer resumeId);
 
-    public List<ResumeSkillRespDto> findByUserSkill(Integer resumeId);
+    // public List<ResumeSkillRespDto> findByUserSkill(Integer resumeId);
 
-    public List<RequiredSkillWriteReqDto> findByJobsSkill(Integer jobsId);
+    public 
+    List<RequiredSkillWriteReqDto>
+    // List<String>
+    findByJobsSkill(Integer jobsId);
 
     public int insertRequiredSkill(
         @Param("skillList") List<String> skillList,
