@@ -8,13 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.project.dto.common.ResponseDto;
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserLoginReqDto;
+import shop.mtcoding.project.dto.user.UserReq.UserUpdateReqDto;
+import shop.mtcoding.project.dto.user.UserResp.UserDataRespDto;
+import shop.mtcoding.project.dto.user.UserResp.UserUpdateRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.User;
@@ -108,15 +114,40 @@ public class UserController {
         return "user/loginForm";
     }
 
+    @PutMapping("/user/{id}/update")
+    public ResponseEntity<?> updateUser(@RequestBody UserUpdateReqDto userUpdateReqDto) {
+        MockSession.mockUser(session);
+        User principal = (User) session.getAttribute("principal");
+        if (principal == null) {
+            throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        }
+        if (userUpdateReqDto.getPassword() == null || userUpdateReqDto.getPassword().isEmpty()) {
+            throw new CustomApiException("비밀번호를 입력하세요");
+        }
+        if (userUpdateReqDto.getBirth() == null || userUpdateReqDto.getBirth().isEmpty()) {
+            throw new CustomApiException("생년월일을 입력하세요");
+        }
+        if (userUpdateReqDto.getTel() == null || userUpdateReqDto.getTel().isEmpty()) {
+            throw new CustomApiException("휴대전화를 입력하세요");
+        }
+        if (userUpdateReqDto.getAddress() == null || userUpdateReqDto.getAddress().isEmpty()) {
+            throw new CustomApiException("주소를 입력하세요");
+        }
+
+        // userService.개인정보수정();
+        return new ResponseEntity<>(new ResponseDto<>(1, "수정완료", null), HttpStatus.OK);
+
+    }
+
+    @GetMapping("/user/{id}/update")
+    public String updateForm() {
+        return "user/updateForm";
+    }
+
     @GetMapping("/user/myhome")
     public String myhome() {
         MockSession.mockUser(session);
         return "user/myhome";
-    }
-
-    @GetMapping("/user/update")
-    public String update() {
-        return "user/updateForm";
     }
 
     @GetMapping("/user/scrap")
@@ -130,7 +161,7 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    public String logout(){
+    public String logout() {
         session.invalidate();
         return "redirect:/";
     }

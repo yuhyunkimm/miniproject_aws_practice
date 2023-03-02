@@ -26,11 +26,10 @@
             <div style="text-align: center;">
                 <h4>개인 회원정보 수정</h4>
             </div>
-            <form action="/" method="post">
+            <form>
 
                 <div class="form-group mb-2">
-                    <input type="password" name="password" class="form-control" placeholder="Enter password"
-                        id="password">
+                    <input type="password" name="password" class="form-control" placeholder="Enter password" id="password">
                 </div>
 
                 <div class="form-group mb-2">
@@ -38,47 +37,48 @@
                 </div>
 
                 <div class="form-group mb-2">
-                    <input type="date" name="birth" class="form-control" placeholder="Enter birth" id="birth">
+                    <input type="date" name="birth" class="form-control" placeholder="Enter birth" id="birth" value="${user.birth}">
                 </div>
 
                 <div class="form-group mb-2">
-                    <input type="tel" name="tel" class="form-control" placeholder="Enter tel" id="tel">
+                    <input type="tel" name="tel" class="form-control" placeholder="Enter tel" id="tel" value="${user.tel}">
                 </div>
 
-                <div class="form-group mb-2">
-                    <select autofocus name="representativeName">
-                        <option value="">변경할 보유 기술 선택(다중)</option>
-                        <option value="">Java</option>
-                        <option value="">JavaScript</option>
-                        <option value="">Spring</option>
-                        <option value="">HTML/CSS</option>
-                        <option value="">jQuery</option>
-                        <option value="">JSP</option>
-                        <option value="">Vue.js</option>
-                        <option value="">Oracle</option>
-                        <option value="">MySQL</option>
-                        <option value="">React</option>
-                    </select>
+                <div class="form-group mb-4">
+                    <input type="text" name="Address" class="form-control" placeholder="Enter Address" id="Address" value="${user.adress}">
                 </div>
 
-                <div class="form-group mb-2">
-                    <input type="text" name="" class="form-control" placeholder="변경할 관심 카테고리" id="">
-                </div>
-
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="flexCheck">
-                    <label class="form-check-label" for="flexCheckChecked">
-                        (선택) 이메일 수신 동의
-                    </label>
-                </div>
-
-                <div class="d-grid gap-2 mb-4">
+                <div class="d-grid gap-2 mb-2">
                     <input id="button" class=" btn btn-primary" type="submit" value="수정완료" onclick="submitForm()">
                 </div>
 
             </form>
         </div>
     </div>
+    </div>
+     <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">비밀번호 확인</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">passwordCheck</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        
+                        <button type="button" class="btn btn-success mt-2" style="float: right;" onclick="updateComp()"  data-bs-dismiss="modal">인증 완료</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
     <script>
 

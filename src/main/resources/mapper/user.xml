@@ -9,7 +9,7 @@
     </select>
 
     <select id="findById" resultType="shop.mtcoding.project.model.User">
-        select * from user_tb id = #{uDto.id}
+        select * from user_tb id = #{id}
     </select>
 
 
