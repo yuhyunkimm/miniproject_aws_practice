@@ -7,12 +7,8 @@ import org.apache.ibatis.annotations.Param;
 
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserUpdateReqDto;
-import shop.mtcoding.project.dto.user.UserResp.UserDataRespDto;
 import shop.mtcoding.project.dto.user.UserResp.UserDeleteRespDto;
 import shop.mtcoding.project.dto.user.UserResp.UserSkillAndInterestDto;
-
-import shop.mtcoding.project.dto.user.UserResp.UserSkillRespDto;
-import shop.mtcoding.project.dto.user.UserResp.UserUpdateRespDto;
 
 
 

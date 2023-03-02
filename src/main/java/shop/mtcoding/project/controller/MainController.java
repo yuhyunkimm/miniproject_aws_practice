@@ -1,11 +1,5 @@
 package shop.mtcoding.project.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import shop.mtcoding.project.dto.jobs.JobsResp.JobsMainRespDto;
-import shop.mtcoding.project.dto.user.UserResp.UserSkillRespDto;
 import shop.mtcoding.project.model.JobsRepository;
-import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
-import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class MainController {

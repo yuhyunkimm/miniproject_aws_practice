@@ -107,7 +107,7 @@ public class ResumeControllerTest {
                 .session(mockSession));
 
         // then
-        resultActions.andExpect(status().isOk());
+        resultActions.andExpect(status().isCreated());
     }
 
     @Test
@@ -138,7 +138,8 @@ public class ResumeControllerTest {
                 .session(mockSession));
 
         // then
-        resultActions.andExpect(status().isOk());
+        resultActions.andExpect(status().isCreated());
     }
+    
 
 }
