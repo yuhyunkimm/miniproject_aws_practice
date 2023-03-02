@@ -92,7 +92,7 @@
                                                             <div class="form-check text-center">
                                                                 <label class="form-check-label">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        name="skill" value="Java"
+                                                                        name="skillList" value="Java"
                                                                         ${rDto.skillList=='Java' ? 'checked' : '' }>Java
                                                                 </label>
                                                             </div>
@@ -101,7 +101,7 @@
                                                             <div class="form-check text-center">
                                                                 <label class="form-check-label">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        name="skill" value="JavaScript"
+                                                                        name="skillList" value="JavaScript"
                                                                         ${rDto.skillList=='JavaScript' ? 'checked' : ''
                                                                         }>
                                                                     JavaScript
@@ -112,7 +112,7 @@
                                                             <div class="form-check text-center">
                                                                 <label class="form-check-label">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        name="skill" value="Spring"
+                                                                        name="skillList" value="Spring"
                                                                         ${rDto.skillList=='Spring' ? 'checked' : '' }>
                                                                     Spring
                                                                 </label>
@@ -122,7 +122,7 @@
                                                             <div class="form-check text-center">
                                                                 <label class="form-check-label">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        name="skill" value="HTML"
+                                                                        name="skillList" value="HTML"
                                                                         ${rDto.skillList=='HTML' ? 'checked' : '' }>
                                                                     HTML
                                                                 </label>
@@ -132,7 +132,7 @@
                                                             <div class="form-check text-center">
                                                                 <label class="form-check-label">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        name="skill" value="jQuery"
+                                                                        name="skillList" value="jQuery"
                                                                         ${rDto.skillList=='jQuery' ? 'checked' : '' }>
                                                                     jQuery
                                                                 </label>
@@ -144,8 +144,8 @@
                                                             <div class="form-check text-center">
                                                                 <label class="form-check-label">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        name="skill" value="JSP" ${rDto.skillList=='JSP'
-                                                                        ? 'checked' : '' }> JSP
+                                                                        name="skillList" value="JSP"
+                                                                        ${rDto.skillList=='JSP' ? 'checked' : '' }> JSP
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -153,7 +153,7 @@
                                                             <div class="form-check text-center">
                                                                 <label class="form-check-label">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        name="skill" value="Vue.js"
+                                                                        name="skillList" value="Vue.js"
                                                                         ${rDto.skillList=='Vue' ? 'checked' : '' }>
                                                                     Vue.js
                                                                 </label>
@@ -163,7 +163,7 @@
                                                             <div class="form-check text-center">
                                                                 <label class="form-check-label">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        name="skill" value="Oracle"
+                                                                        name="skillList" value="Oracle"
                                                                         ${rDto.skillList=='Oracle' ? 'checked' : '' }>
                                                                     Oracle
                                                                 </label>
@@ -173,7 +173,7 @@
                                                             <div class="form-check text-center">
                                                                 <label class="form-check-label">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        name="skill" value="MySQL"
+                                                                        name="skillList" value="MySQL"
                                                                         ${rDto.skillList=='MySQL' ? 'checked' : '' }>
                                                                     MySQL
                                                                 </label>
@@ -183,7 +183,7 @@
                                                             <div class="form-check text-center">
                                                                 <label class="form-check-label">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        name="skill" value="React"
+                                                                        name="skillList" value="React"
                                                                         ${rDto.skillList=='React' ? 'checked' : '' }>
                                                                     React
                                                                 </label>
@@ -259,11 +259,12 @@
                             <div id="rButton">
                                 <br>
                                 <div class="row p-1">
-                                    <button type="button" class="btn btn-success w-100">미리보기</button>
+                                    <button type="button" class="btn btn-success w-100" data-bs-toggle="modal"
+                                        data-bs-target="#myModal" onclick="previewResume()">미리보기</button>
                                 </div>
                                 <div class="row p-1">
                                     <button type="button"
-                                        onclick="UpdateTempResume(`${rDto.resumeId}`,`${principal.userId}`)"
+                                        onclick="updateTempResume(`${rDto.resumeId}`,`${principal.userId}`)"
                                         class="btn btn-success w-100">임시 저장</button>
                                 </div>
                                 <div class="row p-1">
@@ -277,10 +278,246 @@
                 </form>
             </div>
         </div>
+
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content" style="width: 770px;">
+                    <div class="modal-header">
+                        <h4 class="modal-title">이력서 미리보기</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body w-100" style="margin: auto;">
+                        <div>
+
+                            <div class="card border-light mb-3" style="max-width: 46rem;">
+                                <div class="card-header">기본 정보</div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            프로필 사진
+                                        </div>
+                                        <div class="col-9">
+                                            <p>이름</p>
+                                            <p>번호</p>
+                                            <p>email</p>
+                                            <p>주소</p>
+                                            <p>생년월일</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card border-light mb-3" style="max-width: 46rem;">
+                                <div class="card-header">학력 사항</div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <input type="text" name="education" id="education" class="form-control"
+                                            value="${rDto.education}" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card border-light mb-3" style="max-width: 46rem;">
+                                <div class="card-header">경력 사항</div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <input type="text" name="career" id="education" class="form-control"
+                                            value="${rDto.career}" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card border-light mb-3" style="max-width: 46rem;">
+                                <div class="card-header">보유 기술</div>
+                                <div class="card-body">
+                                    <div class="row my-3 my-border">
+                                        <div id="my-table-body2">
+                                            <table class="my-table table table-bordered"
+                                                style="background-color: white;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="form-check text-center">
+                                                                <label class="form-check-label">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        name="skillList" value="Java"
+                                                                        ${rDto.skillList=='Java' ? 'checked' : '' }>Java
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-check text-center">
+                                                                <label class="form-check-label">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        name="skillList" value="JavaScript"
+                                                                        ${rDto.skillList=='JavaScript' ? 'checked' : ''
+                                                                        }>
+                                                                    JavaScript
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-check text-center">
+                                                                <label class="form-check-label">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        name="skillList" value="Spring"
+                                                                        ${rDto.skillList=='Spring' ? 'checked' : '' }>
+                                                                    Spring
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-check text-center">
+                                                                <label class="form-check-label">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        name="skillList" value="HTML"
+                                                                        ${rDto.skillList=='HTML' ? 'checked' : '' }>
+                                                                    HTML
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-check text-center">
+                                                                <label class="form-check-label">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        name="skillList" value="jQuery"
+                                                                        ${rDto.skillList=='jQuery' ? 'checked' : '' }>
+                                                                    jQuery
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="form-check text-center">
+                                                                <label class="form-check-label">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        name="skillList" value="JSP"
+                                                                        ${rDto.skillList=='JSP' ? 'checked' : '' }> JSP
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-check text-center">
+                                                                <label class="form-check-label">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        name="skillList" value="Vue.js"
+                                                                        ${rDto.skillList=='Vue' ? 'checked' : '' }>
+                                                                    Vue.js
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-check text-center">
+                                                                <label class="form-check-label">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        name="skillList" value="Oracle"
+                                                                        ${rDto.skillList=='Oracle' ? 'checked' : '' }>
+                                                                    Oracle
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-check text-center">
+                                                                <label class="form-check-label">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        name="skillList" value="MySQL"
+                                                                        ${rDto.skillList=='MySQL' ? 'checked' : '' }>
+                                                                    MySQL
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-check text-center">
+                                                                <label class="form-check-label">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        name="skillList" value="React"
+                                                                        ${rDto.skillList=='React' ? 'checked' : '' }>
+                                                                    React
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card border-light mb-3" style="max-width: 46rem;">
+                                <div class="card-header">자기소개서</div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <!-- <label for="exampleTextarea" class="form-label mt-4">자기소개서</label>
+                        <hr> -->
+                                        <textarea class="form-control" name="content" id="content"
+                                            rows="3">${rDto.content}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card border-light mb-3" style="max-width: 46rem;">
+                                <div class="card-header">링크</div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <input type="text" name="link" id="link" class="form-control"
+                                            value="${rDto.link}">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="card border-light mb-3" style="max-width: 46rem;">
+                                <div class="card-header">제목</div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <input type="text" name="title" id="title" class="form-control"
+                                                value="${rDto.title}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card border-light mb-3" style="max-width: 46rem;">
+                                <div class="card-header">이력서 공개 여부</div>
+                                <div class="card-body">
+                                    <fieldset class="form-group">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="state" id="state" value=1
+                                                ${rDto.state=='1' ? 'checked' : '' } checked="">
+                                            <label class="form-check-label" for="optionsRadios1">
+                                                공개
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="state" id="state"
+                                                value="0" ${rDto.state=='0' ? 'checked' : '' }>
+                                            <label class="form-check-label" for="optionsRadios2">
+                                                비공개
+                                            </label>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
         <script>
+
+            $(".btn-modal").click(function () {
+                var data = $(this).data('id');
+                $("#contents.body-contents").val(data);
+                $("#text-contents.body-contents").html(data);
+            });
+
             let resumeId;
             let userId;
-            function updateResume(id, uId) {
+            function updateResume(rId, uId) {
                 let data = {
                     title: $("#title").val(),
                     content: $("#content").val(),
@@ -289,9 +526,10 @@
                     skillList: skillValues,
                     link: $("#link").val(),
                     state: $("#state").val(),
-                    userId: id,
-                    resumeId: resume
+                    userId: uId,
+                    resumeId: rId
                 }
+
                 $.ajax({
                     type: "put",
                     url: "/user/resume/update",
@@ -306,7 +544,7 @@
                 });
             }
 
-            function UpdateTempResume(id, uId) {
+            function updateTempResume(rId, uId) {
                 let data = {
                     title: $("#title").val(),
                     content: $("#content").val(),
@@ -315,9 +553,10 @@
                     skillList: skillValues,
                     link: $("#link").val(),
                     state: $("#state").val(),
-                    userId: id,
-                    resumeId: resume
+                    userId: uId,
+                    resumeId: rId
                 }
+                console.log(skillValues);
                 $.ajax({
                     type: "put",
                     url: "/user/resume/update",
@@ -347,7 +586,7 @@
             const checkboxes = document.querySelectorAll('input[type="checkbox"]');
             checkboxes.forEach(function (checkbox) {
                 checkbox.addEventListener('click', function () {
-                    skillValues = getCheckedValues("skill");
+                    skillValues = getCheckedValues("skillList");
                 })
             });
 

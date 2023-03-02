@@ -47,9 +47,11 @@ public class ResumeResp {
     @ToString
     public static class ResumeManageRespDto {
         private Integer resumeId;
+        private String name;
         private String title;
         private String education;
         private String career;
+        private String address;
         private List<String> skillList;
     }
 

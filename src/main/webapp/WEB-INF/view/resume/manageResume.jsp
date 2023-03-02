@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ include file="../layout/header.jsp" %>
 
-<div class="mx-auto width-53 top-80">
+        <div class="mx-auto width-53 top-80">
             <div class="container mt-5">
-                            <div class="mb-3">
+                <div class="mb-3">
                     <h5> 이력서 관리 ( 수정 필요 )</h5>
                 </div>
                 <div class="row">
@@ -12,7 +12,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h6 class="card-subtitle text-muted mb-3">사진</h6>
-                                <h6 class="card-subtitle text-muted">이름</h6>
+                                <h6 class="card-subtitle text-muted">${rDto.name}</h6>
                                 <hr>
                                 <h6 class="card-subtitle mb-1 text-muted"><a href="/user/resume">이력서</a></h6><br>
                                 <h6 class="card-subtitle mb-1 text-muted"><a href="/user/offer">지원/제안</a></h6><br>
@@ -29,32 +29,29 @@
                             <c:when test="${rDtos != null }">
                                 <c:forEach items="${rDtos}" var="rDto">
                                     <div class="card mb-4">
-                                        <div class="card-body">
-                                            <h5 class="card-title" style="text-align: left;">${rDto.title}</h5>
-                                            <div class="m-2" style="float: left;">
-                                                <h6 class="card-subtitle mb-2 text-muted">${rDto.education}</h6>
+                                        <a href="/resume/${rDto.resumeId}" onclick="window.open(this.href, '_blank', 'width=1200,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                            <div class="card-body">
+                                                <h5 class="card-title" style="text-align: left;"> ${rDto.title}</h5>
+                                                <div class="m-2" style="float: left;">
+                                                    <h6 class="card-subtitle mb-2 text-muted">${rDto.education}</h6>
+                                                </div>
+                                                <div class="m-2" style="float: left;">
+                                                    <h6 class="card-subtitle mb-2 text-muted">${rDto.career}</h6>
+                                                </div>
+                                                <div class="m-2" style="float: left;">
+                                                    <h6 class="card-subtitle mb-2 text-muted">${rDto.skillList}</h6>
+                                                </div>
+                                                <div class="m-2" style="float: left;">
+                                                    <h6 class="card-subtitle mb-2 text-muted">${rDto.address}</h6>
+                                                </div>
+                                                <div style="float: right;" pt-2>
+                                                    <button type="button" class="btn btn-success btn-sm"
+                                                        onclick="location.href=`/user/resume/`+${rDto.resumeId}+`/update`">이력서
+                                                        수정</button>
+                                                </div>
                                             </div>
-                                            <div class="m-2" style="float: left;">
-                                                <h6 class="card-subtitle mb-2 text-muted">${rDto.career}</h6>
-                                            </div>
-                                            <div class="m-2" style="float: left;">
-                                                <h6 class="card-subtitle mb-2 text-muted">${rDto.skillList}</h6>
-                                            </div>
-                                            <div class="m-2" style="float: left;">
-                                                <h6 class="card-subtitle mb-2 text-muted">${rDto.skillList}</h6>
-                                            </div>
-                                            <div class="m-2" style="float: left;">
-                                                <h6 class="card-subtitle mb-2 text-muted">${rDto.skillList}</h6>
-                                            </div>
-                                            <div class="m-2" style="float: left;">
-                                                <h6 class="card-subtitle mb-2 text-muted">지역</h6>
-                                            </div>
-                                            <div style="float: right;" pt-2>
-                                                <button type="button" class="btn btn-success btn-sm"
-                                                    onclick="location.href=`/user/resume/`+${rDto.resumeId}+`/update`">이력서
-                                                    수정</button>
-                                            </div>
-                                        </div>
+                                        </a>
+
                                     </div>
                                 </c:forEach>
 

@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import shop.mtcoding.project.dto.resume.ResumeReq.ResumeUpdateReqDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
 import shop.mtcoding.project.dto.resume.ResumeResp;
 import shop.mtcoding.project.model.User;
@@ -40,7 +41,7 @@ public class ResumeControllerTest {
     private MockMvc mvc;
 
     private MockHttpSession mockSession;
-    
+
     @BeforeEach
     private void mockUserSession() {
         User mockUser = new User(
@@ -91,16 +92,16 @@ public class ResumeControllerTest {
         resumeWriteReqDto.setEducation("고졸");
         resumeWriteReqDto.setCareer("신입");
         List<String> skillList = new ArrayList<>();
-        skillList.add( "자바");
-        skillList.add( "자바1");
-        skillList.add( "자바2");
-        skillList.add( "자바3");
-        skillList.add( "자바4");
+        skillList.add("자바");
+        skillList.add("자바1");
+        skillList.add("자바2");
+        skillList.add("자바3");
+        skillList.add("자바4");
         resumeWriteReqDto.setSkillList(skillList);
         resumeWriteReqDto.setLink("블로그 주소");
         resumeWriteReqDto.setState(1);
         String requestBody = om.writeValueAsString(resumeWriteReqDto);
-        System.out.println("테스트 : "+ requestBody);
+        System.out.println("테스트 : " + requestBody);
         // when
         ResultActions resultActions = mvc.perform(post("/user/resume/write")
                 .content(requestBody).contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -122,11 +123,11 @@ public class ResumeControllerTest {
         resumeWriteReqDto.setEducation("고졸");
         resumeWriteReqDto.setCareer("신입");
         List<String> skillList = new ArrayList<>();
-        skillList.add( "자바");
-        skillList.add( "자바1");
-        skillList.add( "자바2");
-        skillList.add( "자바3");
-        skillList.add( "자바4");
+        skillList.add("자바");
+        skillList.add("자바1");
+        skillList.add("자바2");
+        skillList.add("자바3");
+        skillList.add("자바4");
         resumeWriteReqDto.setSkillList(skillList);
         resumeWriteReqDto.setLink("블로그 주소");
         resumeWriteReqDto.setState(1);
@@ -140,6 +141,5 @@ public class ResumeControllerTest {
         // then
         resultActions.andExpect(status().isCreated());
     }
-    
 
 }
