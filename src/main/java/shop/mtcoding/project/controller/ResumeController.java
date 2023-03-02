@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +24,7 @@ import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeDetailRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeManageRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeSaveRespDto;
-import shop.mtcoding.project.dto.user.UserResp.UserDataRespDto;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeUpdateRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.ResumeRepository;
@@ -137,8 +138,11 @@ public class ResumeController {
         if (principal == null) {
             throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
-        ResumeSaveRespDto wrDto = resumeRepository.findById(id);
-        model.addAttribute("rDto", wrDto);
+        // ResumeSaveRespDto rSDto = resumeRepository.findById(id);
+        // model.addAttribute("rSDto", rSDto);
+        ResumeUpdateRespDto rDto = resumeRepository.findUpdateById(id);
+        model.addAttribute("rDto", rDto);
+
         return "resume/writeResumeForm";
     }
 
@@ -149,8 +153,9 @@ public class ResumeController {
         if (principal == null) {
             throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
-        ResumeSaveRespDto rDto = resumeRepository.findById(id);
+        ResumeUpdateRespDto rDto = resumeRepository.findUpdateById(id);
         model.addAttribute("rDto", rDto);
+
         return "resume/updateResumeForm";
     }
 

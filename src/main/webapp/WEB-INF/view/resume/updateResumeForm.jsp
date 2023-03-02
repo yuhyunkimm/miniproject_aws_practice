@@ -44,6 +44,10 @@
                                                 ${rDto.tel}
                                                 <input type="hidden" id="compName1" value="${rDto.tel}">
                                             </div>
+                                            <div class="mb-2" id="compName">
+                                                ${rDto.email}
+                                                <input type="hidden" id="compName1" value="${rDto.email}">
+                                            </div>
                                             <div class="mb-2" id="representativeName">
                                                 ${rDto.address}
                                                 <input type="hidden" id="representativeName1" value="${rDto.address}">

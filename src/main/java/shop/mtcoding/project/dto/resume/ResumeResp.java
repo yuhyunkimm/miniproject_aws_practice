@@ -76,4 +76,40 @@ public class ResumeResp {
         private Timestamp createdAt;
     }
 
+    @Getter
+    @Setter
+    public static class ResumeUpdateRespDto {
+        private Integer resumeId;
+        private Integer userId;
+        private String photo;
+        private String name;
+        private String tel;
+        private String email;
+        private String address;
+        private String birth;
+        private String title;
+        private String content;
+        private String education;
+        private String career;
+        private String link;
+        private Integer state;
+        private List<String> skillList;
+        private Timestamp createdAt;
+    }
+
+    @Getter
+    @Setter
+    @ToString
+    public static class ResumeReadRespDto {
+        private Integer resumeId;
+        private Integer userId;
+        private String photo;
+        private String name;
+        private String address;
+        private String career;
+        private Integer state;
+        private List<String> skillList;
+        private Timestamp createdAt;
+    }
+
 }

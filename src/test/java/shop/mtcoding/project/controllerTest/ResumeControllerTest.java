@@ -1,9 +1,12 @@
 package shop.mtcoding.project.controllerTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.sql.Timestamp;
@@ -25,14 +28,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import shop.mtcoding.project.dto.resume.ResumeReq.ResumeUpdateReqDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
 import shop.mtcoding.project.dto.resume.ResumeResp;
+import shop.mtcoding.project.model.Resume;
+import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.User;
 
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
 public class ResumeControllerTest {
+
+    @Autowired
+    private ResumeRepository resumeRepository;
 
     @Autowired
     private ObjectMapper om;
@@ -60,7 +67,6 @@ public class ResumeControllerTest {
 
     @Test
     @Transactional
-
     public void manageResume_test() throws Exception {
         // given
 
