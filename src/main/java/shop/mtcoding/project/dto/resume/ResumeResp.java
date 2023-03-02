@@ -1,6 +1,7 @@
 package shop.mtcoding.project.dto.resume;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +20,7 @@ public class ResumeResp {
         private String birth;
         private String education;
         private String career;
-        // private List<String> skillList;
+        private List<String> skillList;
         private String address;
     }
 
@@ -34,7 +35,7 @@ public class ResumeResp {
         private String birth;
         private String education;
         private String career;
-        // private List<String> skillList;
+        private List<String> skillList;
         private String compScrapId;
         private String address;
         private String content;
@@ -46,10 +47,12 @@ public class ResumeResp {
     @ToString
     public static class ResumeManageRespDto {
         private Integer resumeId;
+        private String name;
         private String title;
         private String education;
         private String career;
-        // private List<String> skillList;
+        private String address;
+        private List<String> skillList;
     }
 
     @Getter
@@ -63,7 +66,7 @@ public class ResumeResp {
         private String career;
         private String link;
         private Integer state;
-        // private List<String> skillList;
+        private List<String> skillList;
         private Timestamp createdAt;
     }
 

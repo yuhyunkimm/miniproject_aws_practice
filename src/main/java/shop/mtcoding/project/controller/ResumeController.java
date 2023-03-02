@@ -51,7 +51,9 @@ public class ResumeController {
         }
         List<ResumeManageRespDto> rList = resumeRepository.findAllWithUserById(principal.getUserId());
         model.addAttribute("rDtos", rList);
+
         // rList.forEach((s)->{System.out.println("테스트 : "+ s.toString());});
+
         return "resume/manageResume";
     }
 
@@ -83,9 +85,9 @@ public class ResumeController {
         if (!(resumeWriteReqDto.getState() == 0 || resumeWriteReqDto.getState() == 1)) {
             throw new CustomApiException("공개여부를 선택해주세요");
         }
-        if ( ObjectUtils.isEmpty(resumeWriteReqDto.getSkillList())){
+        if (ObjectUtils.isEmpty(resumeWriteReqDto.getSkillList())) {
             throw new CustomApiException("기술을 선택해주세요");
-        }   
+        }
 
         Integer resumeId = resumeService.이력서쓰기(resumeWriteReqDto, principal.getUserId());
 
@@ -94,7 +96,9 @@ public class ResumeController {
 
     @PutMapping("/user/resume/update")
     public ResponseEntity<?> saveTempResume(@RequestBody ResumeUpdateReqDto resumeWriteReqDto) {
+
         // System.out.println("테스트 : "+ resumeWriteReqDto.toString());
+
         MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
@@ -112,11 +116,11 @@ public class ResumeController {
         if (!(resumeWriteReqDto.getState() == 0 || resumeWriteReqDto.getState() == 1)) {
             throw new CustomApiException("공개여부를 선택해주세요");
         }
-        if ( ObjectUtils.isEmpty(resumeWriteReqDto.getSkillList())){
+        if (ObjectUtils.isEmpty(resumeWriteReqDto.getSkillList())) {
             throw new CustomApiException("기술을 선택해주세요");
-        }   
+        }
 
-         resumeService.이력서수정(resumeWriteReqDto, principal.getUserId());
+        resumeService.이력서수정(resumeWriteReqDto, principal.getUserId());
 
         return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료!", null), HttpStatus.CREATED);
     }
