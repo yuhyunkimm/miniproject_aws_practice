@@ -24,7 +24,8 @@
                             <h6 class="card-subtitle mb-1 text-muted"><a href="/user/offer">지원 / 제안</a></h6><br>
                             <h6 class="card-subtitle mb-1 text-muted"><a href="/user/scrap">스크랩</a></h6>
                             <hr>
-                            <h6 class="card-subtitle mb-1 text-muted"><a href="/user/update">정보수정</a></h6><br>
+                            <h6 class="card-subtitle mb-1 text-muted"><a href="/user/update" data-bs-toggle="modal" 
+                            data-bs-target="#modal">정보수정</a></h6><br>
                             <h6 class="card-subtitle mb-1 text-muted"><a href="/logout">로그아웃</a></h6>
                         </div>
                     </div>
