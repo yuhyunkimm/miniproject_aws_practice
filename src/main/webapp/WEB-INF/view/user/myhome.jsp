@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../layout/header.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <%@ include file="../layout/header.jsp" %>
 
         <div class="mx-auto width-53 top-80">
             <div class="container mt-5 mb-5">
@@ -18,8 +18,12 @@
                                 <h6 class="card-subtitle mb-1 text-muted"><a href="/user/offer">지원 / 제안</a></h6><br>
                                 <h6 class="card-subtitle mb-1 text-muted"><a href="/user/scrap">스크랩</a></h6>
                                 <hr>
-                                <h6 class="card-subtitle mb-1 text-muted"><a href="/user/{id}/update">정보수정</a></h6><br>
-                                <h6 class="card-subtitle mb-1 text-muted"><a href="/logout">로그아웃</a></h6>
+                                <h6 class="card-subtitle mb-1 text-muted">
+                                    <div class="mb-1" data-bs-toggle="modal" data-bs-target="#modal">
+                                        정보수정
+                                    </div>
+                                    <br>
+                                    <h6 class="card-subtitle mb-1 text-muted"><a href="/logout">로그아웃</a></h6>
                             </div>
                         </div>
                     </div>
@@ -82,5 +86,41 @@
             </div>
         </div>
         </div>
+        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">비밀번호 인증</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="inputPassword" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="inputPassword"
+                                    aria-describedby="passwordHelp">
+                                <div id="passwordHelp" class="form-text">현재 비밀번호를 입력해 주세요.</div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" onclick="checkPassword()">Check</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const passwordInputEl = document.querySelector('#inputPassword')
+            const modalEl = document.querySelector('#modal')
 
-<%@ include file="../layout/footer.jsp" %>
+            modalEl.addEventListener('shown.bs.modal', function () {
+                passwordInputEl.focus()
+            })
+
+            function checkPassword() {
+                // 유저 비밀번호와 일치해야 수정 페이지로 넘어가고
+                // 틀리면 틀렸다고 문구 표시
+            }
+        </script>
+        <%@ include file="../layout/footer.jsp" %>

@@ -61,44 +61,13 @@
                     </form>
                 </div>
             </div>
-            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalLabel">비밀번호 인증</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="mb-3">
-                                    <label for="inputPassword" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="inputPassword"
-                                        aria-describedby="passwordHelp1">
-                                    <div id="passwordHelp1" class="form-text">현재 비밀번호를 입력해 주세요.</div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="inputPassword" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="inputPassword"
-                                        aria-describedby="passwordHelp2">
-                                    <div id="passwordHelp2" class="form-text">비밀번호를 한번 더 입력해 주세요.</div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             </div>
             <script>
-                const passwordInputEl = document.querySelector('#inputPassword')
-                const modalEl = document.querySelector('#modal')
+                function submitForm() {
 
-                modalEl.addEventListener('shown.bs.modal', function () {
-                    passwordInputEl.focus()
-                })
+                }
+
             </script>
 
         </body>

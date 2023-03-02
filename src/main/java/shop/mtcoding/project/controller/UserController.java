@@ -115,7 +115,7 @@ public class UserController {
         return "user/loginForm";
     }
 
-    @PutMapping("/user/{id}/update")
+    @PutMapping("/user/update")
     public ResponseEntity<?> updateUser(@PathVariable Integer id, @RequestBody UserUpdateReqDto userUpdateReqDto) {
         MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
@@ -139,7 +139,7 @@ public class UserController {
 
     }
 
-    @GetMapping("/user/{id}/update")
+    @GetMapping("/user/update")
     public String updateForm() {
         return "user/updateForm";
     }
