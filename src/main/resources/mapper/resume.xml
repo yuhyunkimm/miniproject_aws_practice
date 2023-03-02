@@ -11,6 +11,10 @@
     <select id="findByResumeId" resultType="shop.mtcoding.project.model.Resume">
         select * from resume_tb where resume_id = #{resumeId}
     </select>
+
+    <select id="findById" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeSaveRespDto">
+        select * from resume_tb where resume_id = #{resumeId}
+    </select>
     
     <!-- <select id="findAllByUserId" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeManageRespDto">
         select resume_id, title, education, career,
