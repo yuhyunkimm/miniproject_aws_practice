@@ -2,30 +2,36 @@
 <%@ include file="../layout/header.jsp" %>
 
         <div class="mx-auto width-53 top-80">
-            <div class="container my-5">
-                <div class="mb-3">
-                    <h5>기업 홈</h5>
-                </div>
+            <div class="container my-5 py-5">
                 <div class="row">
-                    <div class="col-3" style="text-align: center;">
+                    <div class="col-3 px-5" style="text-align: center;">
+                        <div class="mb-3">
+                            <div class="fs-4">기업 홈</div>
+                        </div>
                         <div class="card">
                             <div class="card-body">
                                 <!-- <h5 class="card-title">지원 및 제안</h5><br> -->
-                                <h6 class="card-subtitle text-muted mb-3">사진</h6>
-                                <h6 class="card-subtitle text-muted">이름</h6>
-                                <hr>
-                                <h6 class="card-subtitle mb-1 text-muted"><a href="/comp/jobs">공고등록/수정</a></h6><br>
-                                <h6 class="card-subtitle mb-1 text-muted"><a href="/comp/apply">지원자 현황</a></h6><br>
-                                <h6 class="card-subtitle mb-1 text-muted"><a href="/comp/resume/scrap">이력서 스크랩</a></h6>
-                                <hr>
-                                <h6 class="card-subtitle mb-1 text-muted"><a href="/comp/update">정보수정</a></h6><br>
-                                <h6 class="card-subtitle mb-1 text-muted"><a href="/logout">로그아웃</a></h6>
+                                <div class="relative mb-3">
+                                    <div>
+                                        <img src="/images/default_profile.png" class="rounded" alt="Cinque Terre" style="max-width: 80px;">
+                                    </div>
+                                    </div>
+                                    <div>
+                                        <h6 class="card-subtitle text-muted">${compSession.compName}</h6>
+                                        <hr>
+                                        <h6 class="card-subtitle mb-1 text-muted"><a href="/comp/jobs">공고등록/수정</a></h6><br>
+                                        <h6 class="card-subtitle mb-1 text-muted"><a href="/comp/apply">지원자 현황</a></h6><br>
+                                        <h6 class="card-subtitle mb-1 text-muted"><a href="/comp/resume/scrap">이력서 스크랩</a></h6>
+                                        <hr>
+                                        <h6 class="card-subtitle mb-1 text-muted"><a href="/comp/update">정보수정</a></h6><br>
+                                        <h6 class="card-subtitle mb-1 text-muted"><a href="/logout">로그아웃</a></h6>
+                                    </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-9">
+                    <div class="col-9 my-4 pe-5">
                         <div>
-                            <h6><b>동록된 공고 </b></h6>
+                            <h6><b> 등록된 공고 </b></h6>
                             <table class="table" style="width:100%">
                                 <thead>
                                     <tr class="table-secondary" align=center>
