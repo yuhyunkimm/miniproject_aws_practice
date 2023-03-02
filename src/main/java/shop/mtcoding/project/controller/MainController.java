@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.UserRepository;
+import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class MainController {
@@ -54,67 +55,72 @@ public class MainController {
 
     @GetMapping("/")
     public String main(Model model) {
-        // MockSession.mockUser(session);
+        MockSession.mockUser(session);
         // User principal = (User) session.getAttribute("principal");
         // if (principal != null) {
-        //     // 유저 아이디로 이력서 존재 확인 -> 이력서 아이디중에서 랜덤으로 ?
-        //     // 이력서 아이디로 해당 이력서의 스킬리스트를 꺼낸다
-        //     // 공고중에서 
-        //     UserSkillRespDto userSkillPS = userRepository.findByUserSkill(principal.getUserId());
-        //     List<String> skillList = Arrays.asList(userSkillPS.getSkillName1(), userSkillPS.getSkillName2(),
-        //             userSkillPS.getSkillName3());
-        //     Set<String> set = new HashSet<>(skillList);
+        // // 유저 아이디로 이력서 존재 확인 -> 이력서 아이디중에서 랜덤으로 ?
+        // // 이력서 아이디로 해당 이력서의 스킬리스트를 꺼낸다
+        // // 공고중에서
+        // UserSkillRespDto userSkillPS =
+        // userRepository.findByUserSkill(principal.getUserId());
+        // List<String> skillList = Arrays.asList(userSkillPS.getSkillName1(),
+        // userSkillPS.getSkillName2(),
+        // userSkillPS.getSkillName3());
+        // Set<String> set = new HashSet<>(skillList);
 
-        //     // 스크랩아이디 때문에 유저 아이디를 넣음
-        //     // 결과를 리스트에 저장
-        //     // 스킬은 따로 빼서 저장
-        //     // 이력서 스킬 = 공고의 스킬이 많이 매칭되는 순으로 추천공고
-        //     List<JobsMainRespDto> JobsList = jobsRepository.findAlltoMain(principal.getUserId());
-        //     List<JobsMainRespDto> threeMatchRecommend = new ArrayList<>();
-        //     List<JobsMainRespDto> twoMatchRecommend = new ArrayList<>();
-        //     List<JobsMainRespDto> oneMatchRecommend = new ArrayList<>();
-        //     List<JobsMainRespDto> recommendListDto = new ArrayList<>();
-        //     for (JobsMainRespDto jsPS : JobsList) {
-        //         if (set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
-        //                 && set.contains(jsPS.getSkillName3())) {
-        //             threeMatchRecommend.add(jsPS);
-        //             continue;
-        //         }
-        //         if ((set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
-        //                 && !set.contains(jsPS.getSkillName3())) ||
-        //                 (set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
-        //                         && set.contains(jsPS.getSkillName3()))
-        //                 ||
-        //                 (!set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
-        //                         && set.contains(jsPS.getSkillName3()))) {
-        //             twoMatchRecommend.add(jsPS);
-        //             continue;
-        //         }
-        //         if ((set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
-        //                 && !set.contains(jsPS.getSkillName3())) ||
-        //                 (!set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
-        //                         && !set.contains(jsPS.getSkillName3()))
-        //                 ||
-        //                 (!set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
-        //                         && set.contains(jsPS.getSkillName3()))) {
-        //             oneMatchRecommend.add(jsPS);
-        //             continue;
-        //         }
-        //     }
-        //     recommendListDto.addAll(threeMatchRecommend);
-        //     recommendListDto.addAll(twoMatchRecommend);
-        //     recommendListDto.addAll(oneMatchRecommend);
-        //     // recommendListDto.addAll(JobsList);
-        //     model.addAttribute("rDtos", recommendListDto);
-        //     List<JobsMainRespDto> jDtos = jobsRepository.findAlltoMain(principal.getUserId());
-        //     model.addAttribute("jDtos", jDtos);
-        // } else {
-        //     List<JobsMainRespDto> jDtost = jobsRepository.findAlltoMain(null);
-        //     model.addAttribute("rDtos", jDtost);
-        //     List<JobsMainRespDto> jDtosb = jobsRepository.findAlltoMain(null);
-        //     model.addAttribute("jDtos", jDtosb);
+        // // 스크랩아이디 때문에 유저 아이디를 넣음
+        // // 결과를 리스트에 저장
+        // // 스킬은 따로 빼서 저장
+        // // 이력서 스킬 = 공고의 스킬이 많이 매칭되는 순으로 추천공고
+        // List<JobsMainRespDto> JobsList =
+        // jobsRepository.findAlltoMain(principal.getUserId());
+        // List<JobsMainRespDto> threeMatchRecommend = new ArrayList<>();
+        // List<JobsMainRespDto> twoMatchRecommend = new ArrayList<>();
+        // List<JobsMainRespDto> oneMatchRecommend = new ArrayList<>();
+        // List<JobsMainRespDto> recommendListDto = new ArrayList<>();
+        // for (JobsMainRespDto jsPS : JobsList) {
+        // if (set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
+        // && set.contains(jsPS.getSkillName3())) {
+        // threeMatchRecommend.add(jsPS);
+        // continue;
         // }
-        
+        // if ((set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
+        // && !set.contains(jsPS.getSkillName3())) ||
+        // (set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
+        // && set.contains(jsPS.getSkillName3()))
+        // ||
+        // (!set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
+        // && set.contains(jsPS.getSkillName3()))) {
+        // twoMatchRecommend.add(jsPS);
+        // continue;
+        // }
+        // if ((set.contains(jsPS.getSkillName1()) &&
+        // !set.contains(jsPS.getSkillName2())
+        // && !set.contains(jsPS.getSkillName3())) ||
+        // (!set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
+        // && !set.contains(jsPS.getSkillName3()))
+        // ||
+        // (!set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
+        // && set.contains(jsPS.getSkillName3()))) {
+        // oneMatchRecommend.add(jsPS);
+        // continue;
+        // }
+        // }
+        // recommendListDto.addAll(threeMatchRecommend);
+        // recommendListDto.addAll(twoMatchRecommend);
+        // recommendListDto.addAll(oneMatchRecommend);
+        // // recommendListDto.addAll(JobsList);
+        // model.addAttribute("rDtos", recommendListDto);
+        // List<JobsMainRespDto> jDtos =
+        // jobsRepository.findAlltoMain(principal.getUserId());
+        // model.addAttribute("jDtos", jDtos);
+        // } else {
+        // List<JobsMainRespDto> jDtost = jobsRepository.findAlltoMain(null);
+        // model.addAttribute("rDtos", jDtost);
+        // List<JobsMainRespDto> jDtosb = jobsRepository.findAlltoMain(null);
+        // model.addAttribute("jDtos", jDtosb);
+        // }
+
         return "main/main";
     }
 

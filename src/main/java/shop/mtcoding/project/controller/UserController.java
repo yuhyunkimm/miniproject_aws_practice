@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import shop.mtcoding.project.dto.common.ResponseDto;
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserLoginReqDto;
+import shop.mtcoding.project.dto.user.UserReq.UserPasswordReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserUpdateReqDto;
 import shop.mtcoding.project.dto.user.UserResp.UserDataRespDto;
 import shop.mtcoding.project.dto.user.UserResp.UserUpdateRespDto;
@@ -115,8 +116,20 @@ public class UserController {
         return "user/loginForm";
     }
 
+    @PostMapping("/user/passwordCheck")
+    public @ResponseBody ResponseEntity<?> samePasswordCheck(@RequestBody UserPasswordReqDto userPasswordReqDto) {
+        User userPS = userRepository.findByUseridAndPassword(
+                userPasswordReqDto.getUserId(),
+                userPasswordReqDto.getPassword());
+        if (userPS == null) {
+            throw new CustomApiException("비밀번호가 틀렸습니다.");
+        }
+        return new ResponseEntity<>(new ResponseDto<>(1, "인증에 성공하였습니다.",
+                null), HttpStatus.OK);
+    }
+
     @PutMapping("/user/update")
-    public ResponseEntity<?> updateUser(@PathVariable Integer id, @RequestBody UserUpdateReqDto userUpdateReqDto) {
+    public ResponseEntity<?> updateUser(@PathVariable Integer userId, @RequestBody UserUpdateReqDto userUpdateReqDto) {
         MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {

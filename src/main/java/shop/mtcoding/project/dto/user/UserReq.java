@@ -2,7 +2,6 @@ package shop.mtcoding.project.dto.user;
 
 import java.sql.Timestamp;
 
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -42,5 +41,12 @@ public class UserReq {
         private String tel;
         private String address;
         private Timestamp createdAt;
+    }
+
+    @Getter
+    @Setter
+    public static class UserPasswordReqDto {
+        private Integer userId;
+        private String password;
     }
 }

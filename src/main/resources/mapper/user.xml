@@ -21,6 +21,10 @@
         select * from user_tb where email = #{email} and password = #{password}
     </select>
 
+    <select id="findByUseridAndPassword" resultType="shop.mtcoding.project.model.User">
+        select * from user_tb where user_id = #{userId} and password = #{password}
+    </select>
+
     <select id="findByUserSkillAndInterest" resultType="shop.mtcoding.project.dto.user.UserResp$UserSkillAndInterestDto">
         SELECT s.skill_name1, s.skill_name2, s.skill_name3, i.interest_ct1, i.interest_ct2, i.interest_ct3 
             FROM USER_TB u 
@@ -49,3 +53,5 @@
         delete from user_tb where id = #{uDto.userId}
     </delete>
 </mapper>
+   
+

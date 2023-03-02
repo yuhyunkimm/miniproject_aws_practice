@@ -10,30 +10,24 @@ import shop.mtcoding.project.dto.user.UserReq.UserUpdateReqDto;
 import shop.mtcoding.project.dto.user.UserResp.UserDeleteRespDto;
 import shop.mtcoding.project.dto.user.UserResp.UserSkillAndInterestDto;
 
-
-
 @Mapper
 public interface UserRepository {
-        public List<User> findAll();
+    public List<User> findAll();
 
     public User findByEmailAndPassword(@Param("email") String email, @Param("password") String password);
 
+    public User findByUseridAndPassword(@Param("userId") Integer userId, @Param("password") String password);
+
     public User findByUserEmail(@Param("email") String email);
 
-        public User findById(
-                        @Param("id") Integer id);
+    public User findById(@Param("id") Integer id);
 
-        public UserSkillAndInterestDto findByUserSkillAndInterest(
-                        @Param("id") Integer id);
+    public UserSkillAndInterestDto findByUserSkillAndInterest(@Param("id") Integer id);
 
-        public int insert(
-            @Param("uDto") UserJoinReqDto uDto);
+    public int insert(@Param("uDto") UserJoinReqDto uDto);
 
+    public int updateById(@Param("uDto") UserUpdateReqDto uDto);
 
-        public int updateById(
-                        @Param("uDto") UserUpdateReqDto uDto);
-
-        public int deleteById(
-            @Param("uDto") UserDeleteRespDto uDto);
+    public int deleteById(@Param("uDto") UserDeleteRespDto uDto);
 
 }

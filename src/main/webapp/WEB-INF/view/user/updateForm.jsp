@@ -49,13 +49,12 @@
                         </div>
 
                         <div class="form-group mb-4">
-                            <input type="text" name="Address" class="form-control" placeholder="Enter Address"
-                                id="Address" value="${user.adress}">
+                            <input type="text" name="address" class="form-control" placeholder="Enter address"
+                                id="address" value="${user.adress}">
                         </div>
 
                         <div class="d-grid gap-2 mb-2">
-                            <input id="button" class=" btn btn-primary" type="submit" value="수정완료"
-                                onclick="submitForm()">
+                            <button onclick="updateUser(${principal.userId})" class=" btn btn-primary">수정완료</button>
                         </div>
 
                     </form>
@@ -64,10 +63,28 @@
 
             </div>
             <script>
-                function submitForm() {
-
+                // 회원 수정 update 버튼
+                function updateUser(id) {
+                    let data = {
+                        userId: id,
+                        password: $("#password").val(),
+                        birth: $("#birth").val(),
+                        tel: $("#tel").val(),
+                        address: $("#address").val()
+                    };
+                    $.ajax({
+                        type: "put",
+                        url: "/user/update",
+                        data: JSON.stringify(data),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json"
+                    }).done((res) => {
+                        alert(res.msg);
+                        location.href = "/user/update";
+                    }).fail((err) => {
+                        alert(err.responseJSON.msg);
+                    });
                 }
-
             </script>
 
         </body>
