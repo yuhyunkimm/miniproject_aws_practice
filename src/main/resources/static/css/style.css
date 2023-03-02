@@ -114,6 +114,7 @@ a {
 }
 
 .view-right {
+    position: fixed;
     top: 5em;
     right: 24em;
     width: 270px;

@@ -126,8 +126,11 @@ public class CompController {
     }
 
     @GetMapping("/comp/comphome")
-    public String compMyhome() {
+    public String compMyhome(Model model) {
         MockSession.mockComp(session);
+        Comp compSession = (Comp)session.getAttribute("compSession");
+        List<JobsManageJobsRespDto> jDtos = jobsrRepository.findByIdtoManageJobs(compSession.getCompId());
+        model.addAttribute("jDtos", jDtos);
         return "comp/comphome";
     }
 

@@ -35,30 +35,29 @@
                             <table class="table" style="width:100%">
                                 <thead>
                                     <tr class="table-secondary" align=center>
-                                        <th scope="col" style="width:30%">No.</th>
-                                        <th scope="col" colspan=2 style="width:40%">제목</th>
-                                        <th scope="col"></th>
-                                        <th scope="col" style="width:30%"></th>
+                                        <th scope="col" style="width:10%">No.</th>
+                                        <th scope="col" colspan=2 style="width:30%">제목</th>
+                                        <th scope="col" style="width:30%">포지션</th>
+                                        <th scope="col" style="width:20%"></th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <c:forEach items="${jDtos}" varStatus="status" var="jDto">
+                                    <tbody>
                                     <tr align=center>
-                                        <th scope="row">1</th>
-                                        <td colspan=2>경력직 서버개발자 모집</td>
-                                        <td></td>
-                                        <td><button type="button" class="btn btn-success btn-sm">상세보기</button></td>
+                                        <th scope="row">${status.count}</th>
+                                        <td colspan=2>${jDto.title}</td>
+                                        <td>${jDto.position}</td>
+                                        <td><button type="button" class="btn btn-success btn-sm" 
+                                        onclick="window.open('/jobs/${jDto.jobsId}', '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">상세보기</button></td>
                                     </tr>
-                                    <tr align=center>
-                                        <th scope="row">2</th>
-                                        <td colspan=2></td>
-                                        <td></td>
-                                        <td><button type="button" class="btn btn-success btn-sm">상세보기</button></td>
-                                    </tr>
-                                </tbody>
+                                    </tbody>
+                                </c:forEach>
+
+                                
                             </table>
                             <br />
-                            <table class="table" style="width:100%">
                                 <h6><b>추천 인재</b></h6>
+                            <table class="table" style="width:100%">
                                 <thead>
                                     <tr class="table-secondary" align=center>
                                         <th scope="col" style="width:30%">No.</th>
