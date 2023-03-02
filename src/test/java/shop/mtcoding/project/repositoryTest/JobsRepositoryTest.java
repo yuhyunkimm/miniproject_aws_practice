@@ -12,7 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsCheckBoxReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsUpdateReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsWriteReqDto;
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsMainRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsSuggestRespDto;
 import shop.mtcoding.project.model.JobsRepository;
 
 @MybatisTest
@@ -34,6 +36,32 @@ public class JobsRepositoryTest {
         j.setAddress(skill);
         // j.setAddress(position);
         List<JobsSearchRespDto> t = jobsRepository.findByCheckBox(j);
+        System.out.println("테스트 : "+ t.size());
+    }
+
+    @Test
+    @Transactional
+    public void findAlltoMain_test() throws Exception {
+        //given
+        Integer test = null ;
+
+        //when
+        List<JobsMainRespDto> t = jobsRepository.findAlltoMain(test);
+
+        //then
+        System.out.println("테스트 : "+ t.size());
+    }
+
+    @Test
+    @Transactional
+    public void findByJobsDetail_test() throws Exception {
+        //given
+        Integer test = null ;
+
+        //when
+        List<JobsMainRespDto> t = jobsRepository.findAlltoMain(test);
+
+        //then
         System.out.println("테스트 : "+ t.size());
     }
 
@@ -85,4 +113,16 @@ public class JobsRepositoryTest {
         // then
     
     }
+
+    @Test
+    @Transactional
+    public void findAllToSuggestReq_test() throws Exception {
+        // given
+        Integer test = 1;
+        // when
+        List<JobsSuggestRespDto> sList = jobsRepository.findAllToSuggestReq(test);
+
+        // then
+        sList.forEach((s)->{System.out.println("테스트 : "+ s.toString());});
+        }
 }

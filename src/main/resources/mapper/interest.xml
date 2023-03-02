@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="shop.mtcoding.project.model.InterestRepository">
-    <!-- <select id="findAll" resultType="shop.mtcoding.project.model.Interest">
+    <select id="findAll" resultType="shop.mtcoding.project.model.Interest">
         select * from interest_tb
     </select>
 
@@ -22,5 +22,5 @@
 
     <delete id="deleteById">
 
-    </delete> -->
+    </delete>
 </mapper>

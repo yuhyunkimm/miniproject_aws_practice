@@ -1,6 +1,7 @@
 package shop.mtcoding.project.dto.user;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +18,7 @@ public class UserResp {
         private String birth;
         private String tel;
         private String photo;
-        private String Address;
+        private String address;
         private Timestamp createdAt;
     }
 
@@ -30,7 +31,7 @@ public class UserResp {
         private String name;
         private String birth;
         private String tel;
-        private String Address;
+        private String address;
         private Timestamp createdAt;
     }
 
@@ -43,20 +44,8 @@ public class UserResp {
     @Getter
     @Setter
     public static class UserSkillAndInterestDto {
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
-        private String interestCt1;
-        private String interestCt2;
-        private String interestCt3;
-    }
-
-    @Getter
-    @Setter
-    public static class UserSkillRespDto {
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
+        private List<String> skillList;
+        private List<String> interestList;
     }
 
 }

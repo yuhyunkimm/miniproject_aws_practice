@@ -1,23 +1,90 @@
 .width-53 {
-    width: 53%;
-}
-.top-80{
-    margin-top: 80px;
+    /* width: 53%; */
+    width: 1050px;
 }
 
+.top-80 {
+    margin-top: 80px;
+}
+.view-up {
+    width: 50em;
+}
+
+
+header {
+    position: sticky;
+    top: 1em;
+    padding: 5px;
+    border-bottom: 1px solid #000;
+    background-color: white;
+    /* border: 1px solid rgb(0, 0, 0); */
+    z-index: 10;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    background-color: #F1F1F1;
+}
+
+.progress-container {
+    width: 100%;
+    height: 8px;
+    background: #CCCCCC;
+}
+
+.progress-container .progress-bar {
+    width: 0;
+    height: 8px;
+    background: #4CAF50;
+}
+.content_obj {
+    width: 100%;
+    height: 5000px;
+    background-color: #eeeeee;
+}
 .my-grid {
     /* display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 10px; */
 }
+
 a {
     color: #000;
     text-decoration: none;
 }
 
-#rButton {
-    position: fixed;
+.my-cursor:hover {
+    color: rgb(226, 226, 40);
 }
+
+.on-Clicked {
+    color: rgb(226, 226, 40);
+}
+
+.my-xl {
+    color: 000;
+}
+
+.my-cursor {
+    cursor: pointer;
+}
+
+.under-line {
+    border-bottom: 1px solid rgb(150, 150, 150);
+}
+
+.nav-pills>.nav-item>.active {
+    color: rgb(255, 255, 255);
+    background-color: rgb(77, 143, 77)
+}
+
+.display-none {
+    display: none;
+}
+
 .navbar {
     position: fixed;
     top: 0;
@@ -29,6 +96,47 @@ a {
     position: relative;
 }
 
-.ab{
+.ab {
     position: absolute;
+}
+.rButton {
+    position: fixed;
+}
+
+.width-l {
+    width: 77%;
+    position: absolute;
+}
+
+.width-r {
+    width: 23%;
+    position: absolute;
+}
+
+.view-right {
+    top: 5em;
+    right: 24em;
+    width: 270px;
+    height: 200px;
+    background-color: white;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.view-right2 {
+    top: 7em;
+    width:10em;
+    background-color: white;
+}
+
+.header {
+    position: fixed;
+    top: 0px;
+    padding: 5px;
+}
+
+.selected {
+    background-color: #c5f1c5;
+}
+.selected2 {
+    background-color: #c5c8f1;
 }

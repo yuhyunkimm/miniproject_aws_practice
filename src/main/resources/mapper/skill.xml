@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="shop.mtcoding.project.model.SkillRepository">
+    <!-- <select id="findAll" resultType="shop.mtcoding.project.model.Skill">
+        select * from required_skill_tb
+    </select> -->
+
+    <select id="findById" resultType="shop.mtcoding.project.model.UserSkill">
+        select * from user_skill_tb user_id = #{uDto.userId}
+    </select> 
+
+    <select id="findByUserSkill" resultType="shop.mtcoding.project.dto.skill.ResumeSkillresp$ResumeSkillRespDto">
+        select skill from resume_SKILL_TB 
+            where resume_id = #{resumeId}
+    </select>
+
+
+    <insert id="insertRequiredSkill">
+        insert into required_skill_tb (jobs_id, skill)
+            values 
+        <foreach collection="skillList" item="skill" separator=",">
+            (#{jobsId}, #{skill})
+        </foreach>
+    </insert >
+
+    <insert id="insertResumeSkill">
+        insert into resume_skill_tb (resume_id, skill)
+            values 
+        <foreach collection="skillList" item="skill" separator=",">
+            (#{resumeId}, #{skill})
+       </foreach>
+    </insert> 
+
+    <!-- <update id="updateRequiredSkillById">
+        update required_skill_tb set
+        <foreach collection="skillList" item="skill" separator=",">
+            skill =  #{skill} 
+       </foreach>
+        where required_skill_id = #{requiredSkillId}
+    </update>
+      
+    <update id="updateResumeSkillById">
+        <foreach collection="skillList" item="rDto" separator=";">
+            update resume_skill_tb set skill = #{rDto.skill}
+            where resume_skill_id = #{rDto.resumeSkillId}
+        </foreach>
+    </update> -->
+
+    <delete id="deleteByJobsId">
+        delete from required_skill_tb where jobs_id = #{jobsId} 
+    </delete>
+
+    <delete id="deleteByResumeId">
+        delete from RESUME_SKILL_tb where resume_id = #{resumeId}
+    </delete>
+</mapper>

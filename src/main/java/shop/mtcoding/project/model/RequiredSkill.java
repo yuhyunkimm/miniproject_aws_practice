@@ -1,5 +1,7 @@
 package shop.mtcoding.project.model;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +10,5 @@ import lombok.Setter;
 public class RequiredSkill {
     private Integer requiredSkillId;
     private Integer jobsId;
-    private String skillName1;
-    private String skillName2;
-    private String skillName3;
+    private List<String> skillList;
 }

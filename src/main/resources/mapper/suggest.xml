@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="shop.mtcoding.project.model.SuggestRepository">
-    <!-- <select id="findAll" resultType="shop.mtcoding.project.model.Suggest">
+    <select id="findAll" resultType="shop.mtcoding.project.model.Suggest">
         select * from suggest_tb
     </select>
 
@@ -13,7 +13,8 @@
     </select>
 
     <insert id="insert">
-
+      insert into suggest_tb ( resume_id, jobs_id, state, created_at ) 
+      values ( #{sDto.resumeId}, #{sDto.jobsId}, 1, now() )
     </insert>
 
     <update id="updateById">
@@ -22,5 +23,5 @@
 
     <delete id="deleteById">
 
-    </delete> -->
+    </delete>
 </mapper>

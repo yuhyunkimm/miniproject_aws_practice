@@ -1,58 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Blog</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://kit.fontawesome.com/32aa2b8683.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-    <link rel="stylesheet" href="/css/style.css">
+<%@ include file="../layout/header-simple.jsp" %>
     <style>
-        .width-53 {
-            width: 53%;
-        }
-
-        a {
-            color: #000;
-            text-decoration: none;
-        }
-
-        .view-fix {
-            position: fixed;
-        }
-
-        .view-up {
-            width: 64em;
-        }
-
-        .view-right2 {
-            top: 5em;
-            right: 24em;
-            width: 270px;
-            height: 200px;
-            background-color: white;
-        }
-
-
-
-        .width-l {
-            width: 77%;
-            position: absolute;
-        }
-
-        .width-r {
-            width: 23%;
-            position: absolute;
-
-        }
-
         .my-border {
             background-color: #f8f8f8;
             padding: 20px;
@@ -61,41 +9,12 @@
         .border {
             border: 1px solid rgb(0, 0, 0);
         }
-
-        .header {
-            position: fixed;
-            top: 0px;
-            padding: 5px;
-        }
     </style>
-</head>
-
-<body>
-
-    <nav class="navbar navbar-expand-sm bg-light navbar-light  ">
-        <div class="container-fluid width-53">
-            <div class="">
-                <a class="navbar-brand" href="/"><i class="fa-brands fa-github-square" style="font-size: 2em;"></i></a>
-            </div>
-            <div class="d-flex">
-                <div class="me-4">
-                </div>
-                <div class="my-auto me-5">
-                    <a href="/user/myhome">
-                        <i class="fa-regular fa-user"></i>
-                    </a>
-                </div>
-                <div class="my-auto pb-1">
-                    <a href="/comp/comphome"><span class="badge bg-success">기업홈</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
     <!-- 헤더 추가 요망 -->
     <div class="mx-auto width-53 top-80">
-        <div class="relative">
-            <div class="width-l">
+    <div class="container">  
+        <div class="row">
+            <div class="col-9">
                 <div class="mb-5">
                     <!-- 회사 정보  -->
                     <div class="d-flex justify-content-between">
@@ -103,8 +22,8 @@
                             <h4>회사정보</h4>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" 
-                            data-bs-target="#myModal">회사 정보 수정</button>
+                            <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal"
+                                data-bs-target="#myModal">회사 정보 수정</button>
                         </div>
                     </div>
                     <div class="row justify-content-between my-border ">
@@ -249,7 +168,7 @@
                     <!-- 공고 조건 / 공고 내용 -->
                     <div class="row my-3 my-border">
 
-                        <h5>필요 기술 ( 최대 3개 )</h5>
+                        <h5>필요 기술 </h5>
                         <div id="my-table-body2">
                             <table class="my-table table table-bordered" style="background-color: white;">
                                 <tbody>
@@ -355,23 +274,25 @@
                 </div>
             </div>
 
-            <div class="width-r" id="jobs-render">
-                <div class="view-fix d-grid view-right2 p-4" id="jobs-remove">
+            <div class="col-3" id="jobs-render">
+                <div class="rButton ms-5 view-right2" id="jobs-remove">
                     <!-- 뷰포트 -->
-                    <div class="align-self-end">
-                        <button type="button" class="btn btn-success w-100" onclick="">미리보기</button>
+                    <div class="row mb-2">
+                        <button type="button" class="btn btn-success " onclick="">미리보기</button>
                     </div>
-                    <div class="align-self-end">
-                        <button type="button" class="btn btn-success w-100"
+                    <div class="row mb-2">
+                        <button type="button" class="btn btn-success "
                             onclick="saveTemp(`${compSession.compId}`,`${jDto.jobsId}`)">임시저장</button>
                     </div>
-                    <div class="align-self-end">
-                        <button type="button" class="btn btn-success w-100"
+                    <div class="row mb-2">
+                        <button type="button" class="btn btn-success"
                             onclick="saveJobs(`${compSession.compId}`,`${jDto.jobsId}`)">공고등록</button>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+        
     </div>
     <div class="modal" id="myModal">
         <div class="modal-dialog">
@@ -386,10 +307,14 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                        <input id="update-compName" placeholder="회사명" class="form-control" value="${cDto.compName}" > <br>
-                        <input id="update-representativeName" placeholder="대표자명" class="form-control" value="${cDto.representativeName}"> <br>
-                        <input id="update-homepage" placeholder="홈페이지" class="form-control" value="${cDto.homepage}"><br>
-                        <button type="button" class="btn btn-success mt-2" style="float: right;" onclick="updateComp()"  data-bs-dismiss="modal">수정 완료</button>
+                        <input id="update-compName" placeholder="회사명" class="form-control" value="${cDto.compName}">
+                        <br>
+                        <input id="update-representativeName" placeholder="대표자명" class="form-control"
+                            value="${cDto.representativeName}"> <br>
+                        <input id="update-homepage" placeholder="홈페이지" class="form-control"
+                            value="${cDto.homepage}"><br>
+                        <button type="button" class="btn btn-success mt-2" style="float: right;" onclick="updateComp()"
+                            data-bs-dismiss="modal">수정 완료</button>
                     </form>
                 </div>
             </div>
@@ -401,23 +326,19 @@
             height: 400
         });
 
-        function updateComp(){
+        function updateComp() {
             $('#compName').text($('#update-compName').val());
             $('#representativeName').text($('#update-representativeName').val());
             $('#homepage').text($('#update-homepage').val());
         }
 
-        $('input:checkbox[name=skill]').click(function () {
-            let count = $('input:checkbox[name=skill]:checked').length;
-            if (count > 3) {
-                alert('기술은 3개까지 선택 가능')
-                $(this).prop('checked', false);
-            }
-        });
-
-        // function test(){
-
-        // }
+        // $('input:checkbox[name=skill]').click(function () {
+        //     let count = $('input:checkbox[name=skill]:checked').length;
+        //     if (count > 3) {
+        //         alert('기술은 3개까지 선택 가능')
+        //         $(this).prop('checked', false);
+        //     }
+        // });
 
         function getCheckedValues(name) {
             var checkedValues = [];
@@ -458,7 +379,7 @@
                 address: $("#address").val(),
                 endDate: $("#endDate").val(),
                 receipt: $("#receipt").val(),
-                skill: skillValues,
+                skillList: skillValues,
                 compId: id,
                 jobsId: jobs
             };
@@ -474,6 +395,7 @@
                     dataType: "json"
                 }).done((res) => {
                     jobsId = res.data;
+                    alert(res.msg);
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
                 });
@@ -489,6 +411,7 @@
                 }).done((res) => {
                     jobsId = res.data;
                     changeBtn();
+                    alert(res.msg);
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
                 });
@@ -502,15 +425,15 @@
 
         function renderBtn() {
             let el = `
-                <div class="view-fix d-grid view-right2 p-4" id="jobs-remove">
-                        <div class="align-self-end">
-                            <button type="button" class="btn btn-success w-100" onclick="test()" >미리보기</button>
+                    <div class="rButton ms-5 view-right2" id="jobs-remove">
+                        <div class="row mb-2">
+                            <button type="button" class="btn btn-success" onclick="test()" >미리보기</button>
                         </div>
-                        <div class="align-self-end">
-                            <button type="button" class="btn btn-success w-100" onclick="saveTemp(`+ compId + `,` + jobsId + `)">임시저장</button>
+                        <div class="row mb-2">
+                            <button type="button" class="btn btn-success" onclick="saveTemp(`+ compId + `,` + jobsId + `)">임시저장</button>
                         </div>
-                        <div class="align-self-end">
-                            <button type="button" class="btn btn-success w-100" onclick="saveJobs(`+ compId + `,` + jobsId + `)">공고등록</button>
+                        <div class="row mb-2">
+                            <button type="button" class="btn btn-success" onclick="saveJobs(`+ compId + `,` + jobsId + `)">공고등록</button>
                         </div>
                     </div>
         `;
@@ -534,7 +457,7 @@
                 address: $("#address").val(),
                 endDate: $("#endDate").val(),
                 receipt: $("#receipt").val(),
-                skill: skillValues,
+                skillList: skillValues,
                 compId: id,
                 jobsId: jobs
             };
@@ -550,8 +473,8 @@
                     dataType: "json"
                 }).done((res) => {
                     jobsId = res.data;
-                    alert('등록 완료 !');
-                    location.href="/comp/comphome";
+                    alert(res.msg);
+                    location.href = "/comp/comphome";
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
                 });
@@ -566,8 +489,8 @@
                     dataType: "json"
                 }).done((res) => {
                     jobsId = res.data;
-                    alert('등록 완료 !');
-                    location.href="/comp/comphome";
+                    alert(res.msg);
+                    location.href = "/comp/comphome";
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
                 });

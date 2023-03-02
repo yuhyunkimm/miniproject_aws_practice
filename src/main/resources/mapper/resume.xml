@@ -4,52 +4,47 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="shop.mtcoding.project.model.ResumeRepository">
-    
-    <select id="findAllWithUser" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeManageRespDto">
-        select r.resume_id, r.title, r.education, r.career, us.user_id, us.skill_name1, us.skill_name2, us.skill_name3
-        from resume_tb r
-        join user_skill_tb us
-        on r.user_id = us.user_id
-        join user_tb u
-        on r.user_id = u.user_id
-        where r.user_id = u.user_id
-    </select>
-
-    <select id="findAllWithUserById" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeManageRespDto">
-        select r.resume_id, r.title, r.education, r.career, us.user_id, us.skill_name1, us.skill_name2, us.skill_name3
-        from resume_tb r
-        join user_skill_tb us
-        on r.user_id = us.user_id
-        join user_tb u
-        on r.user_id = u.user_id
-        where r.user_id = u.user_id
-        and r.user_id = #{userId}
-    </select>
-   
-   
     <select id="findAll" resultType="shop.mtcoding.project.model.Resume">
         select * from resume_tb
     </select>
 
+    <select id="findByResumeId" resultType="shop.mtcoding.project.model.Resume">
+        select * from resume_tb where resume_id = #{resumeId}
+    </select>
+    
+    <!-- <select id="findAllByUserId" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeManageRespDto">
+        select resume_id, title, education, career,
+        from resume_tb
+    </select> -->
+
+    <select id="findAllWithUserById" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeManageRespDto">
+        select resume_id, title, education, career,
+        from resume_tb
+        where user_id = #{userId}
+    </select>
+
     <select id="findAllResumebyPublic" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeRecommendRespDto">
-      SELECT distinct r.resume_id, u.photo, u.name, r.title, u.birth, r.education, r.career, s.skill_name1, s.skill_name2, s.skill_name3, u.address  
-        FROM USER_TB u join USER_SKILL_TB s
-        on u.user_id = s.user_id
+        SELECT r.resume_id, u.photo, u.name, r.title, u.birth, r.education, r.career, u.address
+        FROM USER_TB u 
         join resume_tb r
         on u.user_id = r.user_id
-        join user_skill_tb
         where r.state = 1
     </select>
 
-     <select id="findById" resultType="shop.mtcoding.project.model.User">
-        select * from resume_tb id = #{rDto.id}
-    </select>
+    <select id="findDetailPublicResumebyById" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeDetailRespDto">
+        SELECT distinct r.resume_id, u.photo, u.name, r.title, u.birth, r.education, r.career, u.address, r.content, r.link,
+        ( select comp_scrap_id from comp_scrap_tb where resume_id = r.resume_id ) comp_scrap_id 
+          FROM USER_TB u 
+          join resume_tb r
+          on u.user_id = r.user_id
+          where r.state = 1
+          and r.resume_id = #{resumeId}
+      </select>
 
     <insert id="insert" useGeneratedKeys="true"  keyProperty="rDto.resumeId">
         insert into resume_tb ( user_id, title, content, education, career, link, state, created_at )
         values ( #{rDto.userId}, #{rDto.title}, #{rDto.content}, #{rDto.education}, #{rDto.career}, #{rDto.link}, #{rDto.state}, now())
     </insert>  
-
    
     <update id="updateById">
         update resume_tb set 
@@ -59,12 +54,11 @@
             career =  #{rDto.career},
             link = #{rDto.link}, 
             state = #{rDto.state}, 
-            created_at = #{rDto.createdAt}, 
-            where id = #{rDto.id}
+            created_at = #{rDto.createdAt}
+            where resume_id = #{rDto.resumeId}
     </update>
 
     <delete id="deleteById">
-        delete from resume_tb where id = #{rDto.id}
+        delete from resume_tb where id = #{rDto.userId}
     </delete>
-    
 </mapper>

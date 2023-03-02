@@ -1,4 +1,6 @@
-package shop.mtcoding.project.dto.requiredSkill;
+package shop.mtcoding.project.dto.skill;
+
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,8 +11,6 @@ public class RequiredSkillReq {
     @Setter
     public static class RequiredSkillWriteReqDto{
         private Integer jobsId;
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
+        private List<String> skillList;
     }
 }

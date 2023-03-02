@@ -1,9 +1,11 @@
 package shop.mtcoding.project.dto.jobs;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 public class JobsResp {
     
@@ -17,9 +19,7 @@ public class JobsResp {
         private String career;
         private String education;
         private String position;
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
+        // private List<String> skillList;
         private String address;
         private Integer userScrapId;
         private Timestamp endDate;
@@ -34,9 +34,7 @@ public class JobsResp {
         private String career;
         private String education;
         private String position;
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
+        // private List<String> skillList;
         private String address;
         private Integer userScrapId;
         private Timestamp endDate;
@@ -44,6 +42,7 @@ public class JobsResp {
 
     @Getter
     @Setter
+    @ToString
     public static class JobsDetailRespDto {
         private Integer jobsId;
         private String photo;
@@ -52,16 +51,13 @@ public class JobsResp {
         private String content;
         private String career;
         private String education;
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
+        // private List<String> skillList;
         private String position;
         private String address;
-        private String homePage;
+        private String homepage;
         private Timestamp endDate;
         private String representativeName;
         private Integer userScrapId;
-        private String tel;
     }
 
     @Getter
@@ -73,20 +69,17 @@ public class JobsResp {
         private String title;
         private String career;
         private String education;
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
+        // private List<String> skillList;
         private String position;
         private String address;
         private Timestamp endDate;
+        private Integer userScrapId;
     }
 
     @Getter
     @Setter
     public static class JobsRequiredSkill {
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
+        private List<String> skillList;
     }
 
     @Getter
@@ -98,20 +91,17 @@ public class JobsResp {
         private String representativeName;
         private String establishmentDate;
         private Integer employees;
-        private String homePage;
+        private String homepage;
         private String title;
         private String content;
         private String education;
         private String career;
         private String position;
-        private String skillName1;
-        private String skillName2;
-        private String skillName3;
+        // private List<String> skillList;
         private String address;
         private Timestamp endDate;
         private String receipt;
         private Integer userScrapId;
-        private String tel;
     }
 
     @Getter
@@ -121,6 +111,27 @@ public class JobsResp {
         private String representativeName;
         private String photo;
         private String homepage;
+    }
+
+    @Getter
+    @Setter
+    public static class JobsManageJobsRespDto{
+        private Integer num;
+        private Integer jobsId;
+        private String title;
+        private String position;
+        private String career;
+    }
+
+    @Getter
+    @Setter
+    @ToString
+    public static class JobsSuggestRespDto{
+        private Integer jobsId;
+        private String title;
+        private String position;
+        // private List<String> skillList;
+        private Timestamp endDate;
     }
 
 }

@@ -12,7 +12,7 @@ import shop.mtcoding.project.dto.jobs.JobsReq.JobsWriteReqDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.model.CompRepository;
 import shop.mtcoding.project.model.JobsRepository;
-import shop.mtcoding.project.model.RequiredSkillRepository;
+import shop.mtcoding.project.model.SkillRepository;
 
 @Transactional(readOnly = true)
 @Service
@@ -25,7 +25,7 @@ public class JobsService {
     private CompRepository compRepository;
 
     @Autowired
-    private RequiredSkillRepository requiredSkillRepository;
+    private SkillRepository skillRepository;
 
     public void 공고검색(JobsSearchReqDto jDto) {
     }
@@ -54,16 +54,10 @@ public class JobsService {
         } catch (Exception e) {
             throw new CustomApiException("서버에 일시적인 오류가 발생했습니다22.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        if ( !ObjectUtils.isEmpty(jDto.getSkill()) ){
-            if ( jDto.getSkill().size() == 1 ){
-                jDto.getSkill().add("");
-                jDto.getSkill().add("");
-            }
-            if ( jDto.getSkill().size() == 2 ){
-                jDto.getSkill().add("");
-            }
+        if ( !ObjectUtils.isEmpty(jDto.getSkillList()) ){
+
             try {
-                requiredSkillRepository.insert(jDto);
+                skillRepository.insertRequiredSkill(jDto.getSkillList(),jDto.getJobsId());
             } catch (Exception e) {
                 throw new CustomApiException("서버에 일시적인 오류가 발생했습니다33.", HttpStatus.INTERNAL_SERVER_ERROR);
             }
@@ -71,6 +65,7 @@ public class JobsService {
         return jobsId;
     }
 
+    @Transactional
     public Integer 공고수정(JobsUpdateReqDto jDto, Integer compId) {
         Integer jobsId = 0;
         if ( compId != jDto.getCompId()){
@@ -87,16 +82,17 @@ public class JobsService {
         } catch (Exception e) {
             throw new CustomApiException("서버에 일시적인 오류가 발생했습니다22.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        if ( !ObjectUtils.isEmpty(jDto.getSkill()) ){
-            if ( jDto.getSkill().size() == 1 ){
-                jDto.getSkill().add("");
-                jDto.getSkill().add("");
-            }
-            if ( jDto.getSkill().size() == 2 ){
-                jDto.getSkill().add("");
-            }
+
+        try {
+            skillRepository.deleteByJobsId(jDto.getJobsId());
+        } catch (Exception e) {
+            throw new CustomApiException("서버에 일시적인 오류가 발생했습니다22.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        if ( !ObjectUtils.isEmpty(jDto.getSkillList()) ){
             try {
-                requiredSkillRepository.updateById(jDto);
+                skillRepository.insertRequiredSkill(jDto.getSkillList(),jDto.getJobsId());
+                // skillRepository.updateRequiredSkillById(jDto.getSkillList());
             } catch (Exception e) {
                 throw new CustomApiException("서버에 일시적인 오류가 발생했습니다33.", HttpStatus.INTERNAL_SERVER_ERROR);
             }

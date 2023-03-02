@@ -4,14 +4,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.sql.Timestamp;
+
 import javax.servlet.http.HttpSession;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +29,24 @@ public class UserControllerTest {
     @Autowired
     private MockMvc mvc;
 
+    private MockHttpSession mockSession;
+
+    @BeforeEach
+    private void mockUserSession() {
+        User mockUser = new User(
+                1,
+                "ssar@nate.com",
+                "1234",
+                "ssar",
+                "2000-01-01",
+                "010-1234-1234",
+                "/images/default_profile.png",
+                "부산시 부산진구",
+                new Timestamp(System.currentTimeMillis()));
+        mockSession = new MockHttpSession();
+        mockSession.setAttribute("principal", mockUser);
+    }
+    
     @Test
     @Transactional
     public void join_test() throws Exception {
