@@ -23,11 +23,22 @@
             </div>
             <div class="d-flex">
                 <div class="me-4">
+                
                 </div>
                 <div class="my-auto me-5">
-                    <a href="/user/myhome">
-                        <i class="fa-regular fa-user"></i>
-                    </a>
+                <c:choose>
+                   <c:when test="${compSession != null}">
+                        <a href="/comp/comphome">
+                            <i class="fa-regular fa-user"></i>
+                        </a>
+                   </c:when>
+                
+                   <c:otherwise>
+                        <a href="/user/myhome">
+                            <i class="fa-regular fa-user"></i>
+                        </a>
+                   </c:otherwise>
+                </c:choose>
                 </div>
                 <div class="my-auto pb-1">
                     <a href="/comp/comphome"><span class="badge bg-success">기업홈</span>

@@ -14,9 +14,9 @@
 	<div id="callBackDiv">
 		<table>
 			<tr><td>도로명주소 전체(포멧)</td><td><input type="text"  style="width:500px;" id="roadFullAddr"  name="roadFullAddr" /></td></tr>
-			<tr><td>시도명        		</td><td><input type="text"  style="width:500px;" id="siNm"  name="siNm" /></td></tr>
+			<%-- <tr><td>시도명        		</td><td><input type="text"  style="width:500px;" id="siNm"  name="siNm" /></td></tr>
 			<tr><td>시군구명        	</td><td><input type="text"  style="width:500px;" id="sggNm"  name="sggNm" /></td></tr>
-			<tr><td>읍면동명        	</td><td><input type="text"  style="width:500px;" id="emdNm"  name="emdNm" /></td></tr>
+			<tr><td>읍면동명        	</td><td><input type="text"  style="width:500px;" id="emdNm"  name="emdNm" /></td></tr> --%>
 		</table>
 	</div>
 
@@ -28,9 +28,9 @@ function goPopup(){
 
 function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
 		document.form.roadFullAddr.value = roadFullAddr;
-		document.form.siNm.value = siNm;
-		document.form.sggNm.value = sggNm;
-		document.form.emdNm.value = emdNm;
+		// document.form.siNm.value = siNm;
+		// document.form.sggNm.value = sggNm;
+		// document.form.emdNm.value = emdNm;
 }
 
 </script>

@@ -51,9 +51,9 @@ public class ResumeController {
         }
         List<ResumeManageRespDto> rList = resumeRepository.findAllWithUserById(principal.getUserId());
         model.addAttribute("rDtos", rList);
-        rList.forEach((s) -> {
-            System.out.println("테스트 : " + s.toString());
-        });
+
+        // rList.forEach((s)->{System.out.println("테스트 : "+ s.toString());});
+
         return "resume/manageResume";
     }
 
@@ -96,7 +96,9 @@ public class ResumeController {
 
     @PutMapping("/user/resume/update")
     public ResponseEntity<?> saveTempResume(@RequestBody ResumeUpdateReqDto resumeWriteReqDto) {
-        System.out.println("테스트 : " + resumeWriteReqDto.toString());
+
+        // System.out.println("테스트 : "+ resumeWriteReqDto.toString());
+
         MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {

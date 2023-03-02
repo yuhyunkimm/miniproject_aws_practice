@@ -2,10 +2,12 @@ package shop.mtcoding.project.controllerTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.sql.Timestamp;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.servlet.http.HttpSession;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -20,6 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.transaction.annotation.Transactional;
 
+import shop.mtcoding.project.dto.user.UserReq.UserUpdateReqDto;
 import shop.mtcoding.project.model.User;
 
 @AutoConfigureMockMvc
@@ -30,6 +33,9 @@ public class UserControllerTest {
     private MockMvc mvc;
 
     private MockHttpSession mockSession;
+
+    @Autowired
+    private ObjectMapper om;
 
     @BeforeEach
     private void mockUserSession() {
@@ -46,7 +52,42 @@ public class UserControllerTest {
         mockSession = new MockHttpSession();
         mockSession.setAttribute("principal", mockUser);
     }
-    
+
+    @Test
+    @Transactional
+    public void update_test() throws Exception {
+        // given
+
+        UserUpdateReqDto userUpdateReqDto = new UserUpdateReqDto();
+        userUpdateReqDto.setUserId(1);
+        userUpdateReqDto.setName("dddd");
+        userUpdateReqDto.setPassword("1111");
+        userUpdateReqDto.setBirth("22222-1111");
+        userUpdateReqDto.setTel("010-1111");
+        userUpdateReqDto.setAddress("dfsfsdf");
+        String requestBody = om.writeValueAsString(userUpdateReqDto);
+
+        UserUpdateReqDto uDto = new UserUpdateReqDto();
+        uDto.setPassword("1234");
+        uDto.setName("ssar");
+        uDto.setBirth("2000-01-01");
+        uDto.setTel("010-1234-1234");
+        uDto.setAddress("부산시 부산진구");
+
+        // when
+        ResultActions resultActions = mvc.perform(
+                put("/user/update")
+                        .content(requestBody)
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .session(mockSession));
+        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+        System.out.println("테스트 : " + requestBody);
+
+        // then
+        resultActions.andExpect(status().isOk());
+        resultActions.andExpect(jsonPath("$.code").value(1));
+    }
+
     @Test
     @Transactional
     public void join_test() throws Exception {

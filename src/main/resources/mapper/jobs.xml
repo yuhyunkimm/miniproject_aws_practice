@@ -31,6 +31,7 @@
 
     <select id="findByIdtoManageJobs" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsManageJobsRespDto">
       select ROW_NUMBER() OVER(ORDER BY jobs_id desc)num, jobs_id, title, position, career from jobs_tb where comp_id = #{compId}
+      order by 1 asc
     </select>
 
     

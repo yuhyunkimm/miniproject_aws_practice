@@ -7,8 +7,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UserSkill {
-    private Integer userSkillId;
-    private Integer userId;
+public class ResumeSkill {
+    private Integer resumeSkillId;
+    private Integer resumeId;
     private List<String> skillList;
 }

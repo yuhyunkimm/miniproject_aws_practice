@@ -92,7 +92,13 @@ insert into user_scrap_tb (user_id, jobs_id, created_at) values (1, 3, now());
 insert into comp_scrap_tb (comp_id, resume_id, created_at) values (1, 1, now());
 insert into comp_scrap_tb (comp_id, resume_id, created_at) values (1, 3, now());
 
-insert into apply_tb (resume_id, jobs_id, state, created_at) values (1, 1, 1, now());
+insert into apply_tb (resume_id, jobs_id, state, created_at) values (1, 1, 0, now());
+insert into apply_tb (resume_id, jobs_id, state, created_at) values (2, 1, 0, now());
+insert into apply_tb (resume_id, jobs_id, state, created_at) values (3, 1, 0, now());
+insert into apply_tb (resume_id, jobs_id, state, created_at) values (1, 2, 0, now());
+insert into apply_tb (resume_id, jobs_id, state, created_at) values (4, 2, 0, now());
+insert into apply_tb (resume_id, jobs_id, state, created_at) values (2, 2, 0, now());
+insert into apply_tb (resume_id, jobs_id, state, created_at) values (5, 3, 0, now());
 
 insert into suggest_tb (jobs_id, resume_id, state, created_at) values (1, 1, 1, now());
 

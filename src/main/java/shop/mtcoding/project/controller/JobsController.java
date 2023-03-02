@@ -119,8 +119,8 @@ public class JobsController {
     @GetMapping("/jobs/{id}/update")
     public String updateJobs(@PathVariable Integer id, Model model) {
         MockSession.mockComp(session);
-        User principal = (User) session.getAttribute("principal");
-        JobsDetailRespDto jDto = jobsRepository.findByJobsDetail(id, principal.getUserId());
+        JobsDetailRespDto jDto = jobsRepository.findByJobsDetail(id, null);
+        System.out.println("테스트 : "+jDto.toString());
         model.addAttribute("cDto", jDto);
         return "jobs/updateJobsForm";
     }
