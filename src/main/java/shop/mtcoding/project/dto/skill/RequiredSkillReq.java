@@ -10,7 +10,7 @@ public class RequiredSkillReq {
     @Getter
     @Setter
     public static class RequiredSkillWriteReqDto{
-        private Integer jobsId;
+        // private Integer jobsId;
         private List<String> skillList;
     }
 }

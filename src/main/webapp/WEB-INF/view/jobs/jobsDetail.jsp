@@ -38,8 +38,8 @@
     </div>
     
     <div class="mx-auto width-53">
-        <div class="relative">
-            <div class="width-l my-border relative my-5">
+        <div class="row">
+            <div class="col-9 my-border relative my-5">
                 <header>
                     <div class="view-up d-flex py-0 my-0">
                         <div class="  my-auto me-3">
@@ -119,8 +119,8 @@
                 </div>
             </div>
 
-            <div class="width-r">
-                <div class="view-fix d-grid  view-right p-4">
+            <div class="col-3">
+                <div class="d-grid view-right p-4">
                     <!-- 뷰포트 -->
                     <div class="d-flex justify-content-between">
                         <div>
