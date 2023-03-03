@@ -39,4 +39,12 @@ public class CompReq {
         private String representativeName;
         private String businessNumber;
     }
+
+    @Getter
+    @Setter
+    public static class CompPasswordReqDto {
+        private Integer compId;
+        private String password;
+    }
+
 }

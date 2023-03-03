@@ -21,6 +21,7 @@ import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusRespDto;
 import shop.mtcoding.project.dto.common.ResponseDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompJoinReqDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompLoginReqDto;
+import shop.mtcoding.project.dto.comp.CompReq.CompPasswordReqDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompUpdateReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsManageJobsRespDto;
 import shop.mtcoding.project.dto.scrap.CompScrapResp.CompScrapResumeRespDto;
@@ -136,6 +137,17 @@ public class CompController {
         List<JobsManageJobsRespDto> jDtos = jobsrRepository.findByIdtoManageJobs(compSession.getCompId());
         model.addAttribute("jDtos", jDtos);
         return "comp/comphome";
+    }
+
+    @PostMapping("/comp/passwordCheck")
+    public @ResponseBody ResponseEntity<?> samePasswordCheck(@RequestBody CompPasswordReqDto compPasswordReqDto) {
+        Comp compPS = compRepository.findByCompidAndPassword(compPasswordReqDto.getCompId(),
+                compPasswordReqDto.getPassword());
+        if (compPS == null) {
+            throw new CustomApiException("비밀번호가 틀렸습니다.");
+        }
+        return new ResponseEntity<>(new ResponseDto<>(1, "인증에 성공하였습니다.",
+                null), HttpStatus.OK);
     }
 
     @PutMapping("/comp/update")

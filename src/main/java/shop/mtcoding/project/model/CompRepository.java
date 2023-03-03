@@ -30,4 +30,6 @@ public interface CompRepository {
     public int updateByCompId(
             @Param("compUpdateReqDto") CompUpdateReqDto compUpdateReqDto,
             @Param("compId") Integer compId);
+
+    public Comp findByCompidAndPassword(@Param("compId") Integer compId, @Param("password") String password);
 }
