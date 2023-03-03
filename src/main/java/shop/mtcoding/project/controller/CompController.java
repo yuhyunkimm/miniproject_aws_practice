@@ -146,8 +146,7 @@ public class CompController {
         if (compPS == null) {
             throw new CustomApiException("비밀번호가 틀렸습니다.");
         }
-        return new ResponseEntity<>(new ResponseDto<>(1, "인증에 성공하였습니다.",
-                null), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseDto<>(1, "인증에 성공하였습니다.", null), HttpStatus.OK);
     }
 
     @PutMapping("/comp/update")
