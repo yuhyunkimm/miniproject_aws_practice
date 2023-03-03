@@ -12,6 +12,10 @@
       SELECT comp_name, REPRESENTATIVE_NAME, photo, homepage FROM COMP_TB where comp_id = #{compId}
     </select>
 
+    <select id="findByCompId" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsWriteRespDto">
+      select * from comp_tb where comp_id = #{compId}
+    </select>
+
     <insert id="insert">
       insert into comp_tb ( email, password, comp_name, representative_name, business_number, created_at)
             values ( #{uDto.email}, #{uDto.password}, #{uDto.compName}, #{uDto.representativeName}, #{uDto.businessNumber}, now());
@@ -25,7 +29,6 @@
       select * from comp_tb where email = #{email} and password = #{password}
     </select>
 
-
     <update id="updateById">
       update comp_tb set comp_name = #{cDto.compName}, 
                          photo = #{cDto.photo}, 
@@ -37,4 +40,9 @@
     <delete id="deleteById">
 
     </delete>
+
+    <sql id="findByCompId">
+          
+    </sql>
+
 </mapper>

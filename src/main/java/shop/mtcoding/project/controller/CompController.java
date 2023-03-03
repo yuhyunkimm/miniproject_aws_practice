@@ -13,12 +13,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusRespDto;
 import shop.mtcoding.project.dto.common.ResponseDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompJoinReqDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompLoginReqDto;
+import shop.mtcoding.project.dto.comp.CompReq.CompUpdateReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsManageJobsRespDto;
 import shop.mtcoding.project.dto.scrap.CompScrapResp.CompScrapResumeRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
@@ -129,20 +132,43 @@ public class CompController {
     @GetMapping("/comp/comphome")
     public String compMyhome(Model model) {
         MockSession.mockComp(session);
-        Comp compSession = (Comp)session.getAttribute("compSession");
+        Comp compSession = (Comp) session.getAttribute("compSession");
         List<JobsManageJobsRespDto> jDtos = jobsrRepository.findByIdtoManageJobs(compSession.getCompId());
         model.addAttribute("jDtos", jDtos);
         return "comp/comphome";
     }
 
+    @PutMapping("/comp/update")
+    public ResponseEntity<?> updateComp(@RequestBody CompUpdateReqDto compUpdateReqDto) {
+        MockSession.mockComp(session);
+        Comp compSession = (Comp) session.getAttribute("compSession");
+        if (compSession == null) {
+            throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        }
+        if (compUpdateReqDto.getPassword() == null || compUpdateReqDto.getPassword().isEmpty()) {
+            throw new CustomApiException("비밀번호를 입력하세요");
+        }
+        if (compUpdateReqDto.getCompName() == null || compUpdateReqDto.getCompName().isEmpty()) {
+            throw new CustomApiException("회사이름을 입력하세요");
+        }
+        if (compUpdateReqDto.getRepresentativeName() == null || compUpdateReqDto.getRepresentativeName().isEmpty()) {
+            throw new CustomApiException("대표자명을 입력하세요");
+        }
+        if (compUpdateReqDto.getBusinessNumber() == null || compUpdateReqDto.getBusinessNumber().isEmpty()) {
+            throw new CustomApiException("사업자 번호을 입력하세요");
+        }
+        compService.회사정보수정(compUpdateReqDto, compSession.getCompId());
+        return new ResponseEntity<>(new ResponseDto<>(1, "수정완료", null), HttpStatus.OK);
+    }
+
     @GetMapping("/comp/update")
-    public String updateComp() {
+    public String updateForm() {
         return "comp/updateForm";
     }
 
     @GetMapping("/comp/apply")
     public String apply(Model model) {
-        Comp compSession = (Comp)session.getAttribute("compSession");
+        Comp compSession = (Comp) session.getAttribute("compSession");
         List<ApllyStatusRespDto> aList = applyRepository.findAllByCompIdtoApply(compSession.getCompId());
         model.addAttribute("aDtos", aList);
         return "comp/apply";
@@ -150,7 +176,7 @@ public class CompController {
 
     @GetMapping("/comp/jobs")
     public String manageJobs(Model model) {
-        Comp compSession = (Comp)session.getAttribute("compSession");
+        Comp compSession = (Comp) session.getAttribute("compSession");
         List<JobsManageJobsRespDto> jDtos = jobsrRepository.findByIdtoManageJobs(compSession.getCompId());
         model.addAttribute("jDtos", jDtos);
 
@@ -165,7 +191,7 @@ public class CompController {
 
     @GetMapping("/comp/resume/scrap")
     public String scrapResume(Model model) {
-        Comp compSession = (Comp)session.getAttribute("compSession");
+        Comp compSession = (Comp) session.getAttribute("compSession");
         List<CompScrapResumeRespDto> sList = scrapRepository.findAllScrapByCompId(compSession.getCompId());
         model.addAttribute("sDtos", sList);
         return "comp/scrap";
@@ -173,55 +199,58 @@ public class CompController {
 
     // @GetMapping("/comp/talent")
     // public String talent(Model model) {
-    //     // MockSession.mockComp(session);
+    // // MockSession.mockComp(session);
 
-    //     Comp principal = (Comp) session.getAttribute("compSession");
-    //     List<JobsRequiredSkill> rSkill = jobsrRepository.findByJobsRequiredSkill(principal.getCompId());
-    //     Set<String> set = new HashSet<>();
-    //     for (JobsRequiredSkill skills : rSkill) {
-    //         set.add(skills.getSkillName1());
-    //         set.add(skills.getSkillName2());
-    //         set.add(skills.getSkillName3());
-    //     }
-    //     model.addAttribute("compSkillDto", set);
-    //     List<ResumeRecommendRespDto> recommendResumeList = resumeRepository.findAllResumebyPublic();
-    //     List<ResumeRecommendRespDto> threeMatchDto = new ArrayList<>();
-    //     List<ResumeRecommendRespDto> twoMatchDto = new ArrayList<>();
-    //     List<ResumeRecommendRespDto> oneMatchDto = new ArrayList<>();
-    //     List<ResumeRecommendRespDto> recommendList = new ArrayList<>();
-    //     for (ResumeRecommendRespDto rcPS : recommendResumeList) {
-    //         if (set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2())
-    //                 && set.contains(rcPS.getSkillName3())) {
-    //             threeMatchDto.add(rcPS);
-    //             continue;
-    //         }
-    //         if ((set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2())
-    //                 && !set.contains(rcPS.getSkillName3())) ||
-    //                 (set.contains(rcPS.getSkillName1()) && !set.contains(rcPS.getSkillName2())
-    //                         && set.contains(rcPS.getSkillName3()))
-    //                 ||
-    //                 (!set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2())
-    //                         && set.contains(rcPS.getSkillName3()))) {
-    //             twoMatchDto.add(rcPS);
-    //             continue;
-    //         }
-    //         if ((set.contains(rcPS.getSkillName1()) && !set.contains(rcPS.getSkillName2())
-    //                 && !set.contains(rcPS.getSkillName3())) ||
-    //                 (!set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2())
-    //                         && !set.contains(rcPS.getSkillName3()))
-    //                 ||
-    //                 (!set.contains(rcPS.getSkillName1()) && !set.contains(rcPS.getSkillName2())
-    //                         && set.contains(rcPS.getSkillName3()))) {
-    //             oneMatchDto.add(rcPS);
-    //             continue;
-    //         }
-    //     }
-    //     recommendList.addAll(threeMatchDto);
-    //     recommendList.addAll(twoMatchDto);
-    //     recommendList.addAll(oneMatchDto);
-    //     model.addAttribute("rDtos", recommendList);
+    // Comp principal = (Comp) session.getAttribute("compSession");
+    // List<JobsRequiredSkill> rSkill =
+    // jobsrRepository.findByJobsRequiredSkill(principal.getCompId());
+    // Set<String> set = new HashSet<>();
+    // for (JobsRequiredSkill skills : rSkill) {
+    // set.add(skills.getSkillName1());
+    // set.add(skills.getSkillName2());
+    // set.add(skills.getSkillName3());
+    // }
+    // model.addAttribute("compSkillDto", set);
+    // List<ResumeRecommendRespDto> recommendResumeList =
+    // resumeRepository.findAllResumebyPublic();
+    // List<ResumeRecommendRespDto> threeMatchDto = new ArrayList<>();
+    // List<ResumeRecommendRespDto> twoMatchDto = new ArrayList<>();
+    // List<ResumeRecommendRespDto> oneMatchDto = new ArrayList<>();
+    // List<ResumeRecommendRespDto> recommendList = new ArrayList<>();
+    // for (ResumeRecommendRespDto rcPS : recommendResumeList) {
+    // if (set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2())
+    // && set.contains(rcPS.getSkillName3())) {
+    // threeMatchDto.add(rcPS);
+    // continue;
+    // }
+    // if ((set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2())
+    // && !set.contains(rcPS.getSkillName3())) ||
+    // (set.contains(rcPS.getSkillName1()) && !set.contains(rcPS.getSkillName2())
+    // && set.contains(rcPS.getSkillName3()))
+    // ||
+    // (!set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2())
+    // && set.contains(rcPS.getSkillName3()))) {
+    // twoMatchDto.add(rcPS);
+    // continue;
+    // }
+    // if ((set.contains(rcPS.getSkillName1()) &&
+    // !set.contains(rcPS.getSkillName2())
+    // && !set.contains(rcPS.getSkillName3())) ||
+    // (!set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2())
+    // && !set.contains(rcPS.getSkillName3()))
+    // ||
+    // (!set.contains(rcPS.getSkillName1()) && !set.contains(rcPS.getSkillName2())
+    // && set.contains(rcPS.getSkillName3()))) {
+    // oneMatchDto.add(rcPS);
+    // continue;
+    // }
+    // }
+    // recommendList.addAll(threeMatchDto);
+    // recommendList.addAll(twoMatchDto);
+    // recommendList.addAll(oneMatchDto);
+    // model.addAttribute("rDtos", recommendList);
 
-    //     return "comp/talent";
+    // return "comp/talent";
     // }
 
 }

@@ -29,4 +29,16 @@ public class CompReq {
         private String password;
         private String rememberEmail;
     }
+
+    @Getter
+    @Setter
+    public class CompUpdateReqDto {
+        private Integer compId;
+        private String email;
+        private String password;
+        private String compName;
+        private String representativeName;
+        private String businessNumber;
+        private Timestamp createdAt;
+    }
 }

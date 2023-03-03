@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.project.dto.comp.CompReq.CompJoinReqDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompLoginReqDto;
+import shop.mtcoding.project.dto.comp.CompReq.CompUpdateReqDto;
+import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.CompRepository;
@@ -37,5 +39,21 @@ public class CompService {
             throw new CustomException("이메일 혹은 패스워드가 잘못 입력 되었습니다.");
         }
         return principal;
+    }
+
+    @Transactional
+    public void 회사정보수정(CompUpdateReqDto compUpdateReqDto, Integer compId) {
+        if (compId != compUpdateReqDto.getCompId()) {
+            throw new CustomApiException("정상적인 접근이 아닙니다.", HttpStatus.FORBIDDEN);
+        }
+        Comp compPS = compRepository.findByCompId(compUpdateReqDto.getCompId());
+
+        if (compPS == null)
+            throw new CustomException("존재하지 않는 회원입니다.");
+        try {
+            compRepository.updateById(compUpdateReqDto);
+        } catch (Exception e) {
+            throw new CustomException("서버 에러가 발생 했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

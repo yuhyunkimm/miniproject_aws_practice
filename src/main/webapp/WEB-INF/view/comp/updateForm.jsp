@@ -26,7 +26,6 @@
             <div class="form-group mb-3" style="text-align: center;">
                 <h4>기업 회원정보 수정</h4>
             </div>
-            <form action="/" method="post">
 
                 <div class="form-group mb-2">
                     <input type="password" name="password" class="form-control" placeholder="Enter password"
@@ -57,7 +56,6 @@
                     <input id="button" class=" btn btn-primary" type="submit" value="수정완료" onclick="submitForm()">
                 </div>
 
-            </form>
         </div>
     </div>
     </div>

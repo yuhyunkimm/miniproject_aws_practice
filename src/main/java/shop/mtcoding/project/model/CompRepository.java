@@ -18,6 +18,8 @@ public interface CompRepository {
 
     public JobsWriteRespDto findById(Integer CompId);
 
+    public Comp findByCompId(Integer compId);
+
     public int insert(@Param("uDto") CompJoinReqDto uDto);
 
     public int updateById(@Param("cDto") JobsUpdateReqDto cDto);
