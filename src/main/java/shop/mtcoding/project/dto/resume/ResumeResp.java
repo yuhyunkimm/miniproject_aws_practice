@@ -57,6 +57,7 @@ public class ResumeResp {
 
     @Getter
     @Setter
+    @ToString
     public static class ResumeSaveRespDto {
         private Integer resumeId;
         private Integer userId;

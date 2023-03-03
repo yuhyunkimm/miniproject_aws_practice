@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserUpdateReqDto;
+import shop.mtcoding.project.dto.user.UserResp.UserDataRespDto;
 import shop.mtcoding.project.dto.user.UserResp.UserDeleteRespDto;
 import shop.mtcoding.project.dto.user.UserResp.UserSkillAndInterestDto;
 
@@ -21,6 +22,8 @@ public interface UserRepository {
     public User findByUserEmail(@Param("email") String email);
 
     public User findById(@Param("userId") Integer userId);
+
+    public UserDataRespDto findByUserId(@Param("userId") Integer userId);
 
     public UserSkillAndInterestDto findByUserSkillAndInterest(@Param("id") Integer id);
 
