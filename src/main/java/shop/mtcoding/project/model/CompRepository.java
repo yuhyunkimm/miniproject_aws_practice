@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsUpdateReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsWriteRespDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompJoinReqDto;
+import shop.mtcoding.project.dto.comp.CompReq.CompUpdateReqDto;
 
 @Mapper
 public interface CompRepository {
@@ -25,4 +26,6 @@ public interface CompRepository {
     public int updateById(@Param("cDto") JobsUpdateReqDto cDto);
 
     public int deleteById();
+
+    public int updateByCompId(CompUpdateReqDto compUpdateReqDto);
 }

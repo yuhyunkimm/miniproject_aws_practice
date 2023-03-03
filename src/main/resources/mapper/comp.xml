@@ -37,6 +37,15 @@
       where comp_id = #{cDto.compId}
     </update>
 
+    <update id="updateByCompId">
+      update comp_tb set
+              password = #{compUpdateReqDto.password}, 
+              compName = #{compUpdateReqDto.compName}, 
+              representativeName = #{compUpdateReqDto.representativeName}, 
+              businessNumber = #{compUpdateReqDto.businessNumber}
+        where comp_id = #{compUpdateReqDto.compId}
+    </update>
+
     <delete id="deleteById">
 
     </delete>

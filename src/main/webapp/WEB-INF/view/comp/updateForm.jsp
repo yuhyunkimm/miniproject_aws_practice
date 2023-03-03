@@ -20,49 +20,72 @@
             <title>기업 회원수정 페이지</title>
         </head>
 
-<body>
-    <div class="mx-auto width-53">
-        <div class="container border border-3 p-3 mt-5" style="width: 350px;">
-            <div class="form-group mb-3" style="text-align: center;">
-                <h4>기업 회원정보 수정</h4>
+        <body>
+            <div class="mx-auto width-53">
+                <div class="container border border-3 p-3 mt-5" style="width: 350px;">
+                    <div class="form-group mb-3" style="text-align: center;">
+                        <h4>기업 회원정보 수정</h4>
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <input type="password" name="password" class="form-control" placeholder="Enter password"
+                            id="password">
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <input type="password" class="form-control" placeholder="Enter passwordCheck"
+                            id="passwordCheck">
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <input type="text" name="compName" class="form-control" placeholder="Enter companyName"
+                            id="compName" value="${compUpdateReqDto.compName}">
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <input type="text" name="representativeName" class="form-control"
+                            placeholder="Enter representativeName" id="representativeName"
+                            value="${compUpdateReqDto.representativeName}">
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <input type="text" name="businessNumber" class="form-control" placeholder="Enter businessNumber"
+                            id="businessNumber" value="${compUpdateReqDto.businessNumber}">
+                    </div>
+
+
+                    <div class="d-grid gap-2 mb-2">
+                        <button onclick="updateComp(${compSession.compId})" class=" btn btn-primary">수정완료</button>
+                    </div>
+
+                </div>
             </div>
+            </div>
+            <script>
+                // 회원 수정 update 버튼
+                function updateComp(id) {
+                    let data = {
+                        compId: id,
+                        password: $("#password").val(),
+                        compName: $("#compName").val(),
+                        representativeName: $("#representativeName").val(),
+                        businessNumber: $("#businessNumber").val(),
+                    };
+                    $.ajax({
+                        type: "put",
+                        url: "/comp/update",
+                        data: JSON.stringify(data),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json"
+                    }).done((res) => {
+                        alert(res.msg);
+                        location.href = "/comp/comphome";
+                    }).fail((err) => {
+                        alert(err.responseJSON.msg);
+                    });
+                }
+            </script>
 
-                <div class="form-group mb-2">
-                    <input type="password" name="password" class="form-control" placeholder="Enter password"
-                        id="password">
-                </div>
+        </body>
 
-                <div class="form-group mb-2">
-                    <input type="password" class="form-control" placeholder="Enter passwordCheck" id="passwordCheck">
-                </div>
-
-                <div class="form-group mb-2">
-                    <input type="text" name="compName" class="form-control" placeholder="Enter companyName"
-                        id="compName">
-                </div>
-
-                <div class="form-group mb-2">
-                    <input type="text" name="representativeName" class="form-control" placeholder="Enter representativeName"
-                        id="representativeName">
-                </div>
-
-                <div class="form-group mb-4">
-                    <input type="text" name="businessNumber" class="form-control" placeholder="Enter businessNumber"
-                        id="businessNumber">
-                </div>
-                
-
-                <div class="d-grid gap-2 mb-2">
-                    <input id="button" class=" btn btn-primary" type="submit" value="수정완료" onclick="submitForm()">
-                </div>
-
-        </div>
-    </div>
-    </div>
-    <script>
-
-    </script>
-
-</body>
-
-</html>
+        </html>
