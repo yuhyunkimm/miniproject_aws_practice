@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusUserRespDto;
 import shop.mtcoding.project.dto.common.ResponseDto;
+import shop.mtcoding.project.dto.suggest.SuggestResp.SuggestToUserRespDto;
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserLoginReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserPasswordReqDto;
@@ -26,6 +27,7 @@ import shop.mtcoding.project.dto.user.UserReq.UserUpdateReqDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.ApplyRepository;
+import shop.mtcoding.project.model.SuggestRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.service.UserService;
@@ -45,6 +47,9 @@ public class UserController {
 
     @Autowired
     private ApplyRepository applyRepository;
+
+    @Autowired
+    private SuggestRepository suggestRepository;
 
     @PostMapping("/user/join")
     public String join(UserJoinReqDto userJoinReqDto) {
@@ -217,6 +222,8 @@ public class UserController {
         User principal = (User) session.getAttribute("principal");
         List<ApllyStatusUserRespDto> aDtos = applyRepository.findAllByUserIdtoApply(principal.getUserId());
         model.addAttribute("aDtos", aDtos);
+        List<SuggestToUserRespDto> sDtos = suggestRepository.findAllGetOfferByUserId(principal.getUserId());
+        model.addAttribute("sDtos", sDtos);
         return "user/offer";
     }
 

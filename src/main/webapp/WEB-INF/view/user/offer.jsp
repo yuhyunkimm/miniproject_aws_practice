@@ -8,7 +8,7 @@
                               <div class="mb-3">
                     <div class="fs-4">지원 및 제안</div>
                 </div>
-     <div class="card">
+                <div class="card">
                     <div class="card-body">
                         <div class="relative mb-3">
                             <div>
@@ -57,29 +57,28 @@
 
                     </table>
                             <table class="table" style="width:100%">
-                                <h6><b>제안 3 </b></h6>
+                                <h6><b>제안 ${sDtos.size()} </b></h6>
                                 <thead>
                                     <tr class="table-secondary" align=center>
                                         <th scope="col" style="width:10%">No.</th>
-                                        <th scope="col" style="width:25%">제안회사</th>
-                                        <th scope="col" style="width:30%">제안내용</th>
-                                        <th scope="col" style="width:25%">상태</th>
+                                        <th scope="col" style="width:15%">회사명</th>
+                                        <th scope="col" style="width:25%">공고명</th>
+                                        <th scope="col" style="width:25%">포지션</th>
+                                        <th scope="col" style="width:15%">유저이름 </th>
+                                        <th scope="col" style="width:10%">상태</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <c:forEach items="${sDtos}" varStatus="status" var="sDto"><tbody>
                                     <tr align=center>
-                                        <th scope="row">1</th>
-                                        <td>인프런</td>
-                                        <td>강사</td>
-                                        <td>답변가능</td>
-                                    </tr>
-                                    <tr align=center>
-                                        <th scope="row">2</th>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <th scope="row">${status.count}</th>
+                                        <td>${sDto.compName}</td>
+                                        <td><a href="/jobs/${sDto.jobsId}" onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;"> ${sDto.title}</a></td>
+                                        <td>${sDto.position}</td>
+                                        <td>${sDto.name}</td>
+                                        <td>${sDto.state == 0 ? '대기중' : aDto.state == 1 ? '수락' : '거절'}</td>
                                     </tr>
                                 </tbody>
+                                </c:forEach>
                             </table>
                         </div>
                     </div>
