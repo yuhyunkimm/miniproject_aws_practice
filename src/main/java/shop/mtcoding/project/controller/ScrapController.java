@@ -31,7 +31,7 @@ public class ScrapController {
 
     @PostMapping("/user/scrap/insert")
     public ResponseEntity<?> insertJobsScrap(@RequestBody UserInsertScrapReqDto sDto) {
-        MockSession.mockUser(session);
+        // MockSession.mockUser(session);
         if (sDto.getJobsId() == null) {
             throw new CustomApiException("공고 번호가 필요합니다.");
         }
@@ -42,7 +42,7 @@ public class ScrapController {
 
     @DeleteMapping("/user/scrap/{id}/delete")
     public ResponseEntity<?> deleteJobsScrap(@PathVariable Integer id) {
-        MockSession.mockUser(session);
+        // MockSession.mockUser(session);
         if (id == null) {
             throw new CustomApiException("스크랩 번호가 필요합니다.");
         }
@@ -53,7 +53,7 @@ public class ScrapController {
 
     @PostMapping("/comp/scrap/insert")
     public ResponseEntity<?> insertResumeScrap(@RequestBody CompInsertScrapReqDto sDto) {
-        MockSession.mockComp(session);
+        // MockSession.mockComp(session);
         if (sDto.getResumeId() == null) {
             throw new CustomApiException("이력서 번호가 필요합니다.");
         }
@@ -64,7 +64,7 @@ public class ScrapController {
 
     @DeleteMapping("/comp/scrap/{id}/delete")
     public ResponseEntity<?> deleteResumeScrap(@PathVariable Integer id) {
-        MockSession.mockComp(session);
+        // MockSession.mockComp(session);
         System.out.println("테스트 : "+ id);
         if (id == null) {
             throw new CustomApiException("스크랩 번호가 필요합니다.");

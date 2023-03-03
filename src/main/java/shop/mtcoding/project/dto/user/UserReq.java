@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 public class UserReq {
 
@@ -22,11 +23,11 @@ public class UserReq {
 
     @Getter
     @Setter
+    @ToString
     public static class UserLoginReqDto {
         private Integer userId;
         private String email;
         private String password;
-        private Timestamp createdAt;
         private String rememberEmail;
     }
 

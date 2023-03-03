@@ -12,7 +12,7 @@ values ('ssar4@nate.com', '1234', 'ssar4', '1994-10-23', '010-1234-1234', '/imag
 insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
 values ('kakao@nate.com', '1234', '카카오(주)', '홍은택', '120-81-47521', '/images/kakao.png', 'www.kakao.com',now());
 insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
-values ('naver@nate.com', '1234', '네이버(주)', '이해진', '451-23-15631', '/images/kakao.png', 'www.naver.com',now());
+values ('naver@nate.com', '1234', '다이소', '안현민', '451-23-15631', '/images/daiso1.png', 'www.naver.com',now());
 insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
 values ('samsung@nate.com', '1234', '삼성', '이재용', '111-22-33333', '/images/kakao.png', 'www.kakao.com',now());
 
@@ -54,9 +54,9 @@ insert into required_skill_tb ( jobs_id, skill) values (6, 'Spring');
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
 values ('백엔드 개발자 채용1' , '백엔드 개발자 채용하는 상세 내용1', '백엔드 개발자', '신입', '학력무관', '제주',  '2023-03-07', 1, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
-values ('백엔드 개발자 채용2' , '백엔드 개발자 채용하는 상세 내용2', '프로트엔드 개발자', '1년차 미만', '대졸', '서울', '2023-03-07', 1, '홈페이지 접수', now());
+values ('백엔드 개발자 채용2' , '백엔드 개발자 채용하는 상세 내용2', '프로트엔드 개발자', '1년차 미만', '대졸', '서울', '2023-03-07', 2, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
-values ('백엔드 개발자 채용3' , '백엔드 개발자 채용하는 상세 내용3', '백엔드 개발자', '1년차', '대학원', '서울', '2023-03-07', 1, '홈페이지 접수', now());
+values ('백엔드 개발자 채용3' , '백엔드 개발자 채용하는 상세 내용3', '백엔드 개발자', '1년차', '대학원 이상', '서울', '2023-03-07', 1, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
 values ('백엔드 개발자 채용4' , '백엔드 개발자 채용하는 상세 내용4', '서버 개발자', '3년차', '학력무관', '제주', '2023-03-07', 1, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)

@@ -112,6 +112,7 @@
                 </div>
             </div>
         </div>
+        </div>
         <script>
             function checkPS(uId){
                 passwordCheckBtn(uId);

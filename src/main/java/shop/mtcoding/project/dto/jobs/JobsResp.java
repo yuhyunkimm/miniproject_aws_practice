@@ -11,6 +11,7 @@ public class JobsResp {
     
     @Getter
     @Setter
+    @ToString
     public static class JobsMainRespDto {
         private Integer jobsId;
         private String compName;
@@ -19,9 +20,10 @@ public class JobsResp {
         private String career;
         private String education;
         private String position;
-        // private List<String> skillList;
+        private List<String> skillList;
         private String address;
         private Integer userScrapId;
+        private Long leftTime;
         private Timestamp endDate;
     }
     @Getter
@@ -51,11 +53,13 @@ public class JobsResp {
         private String content;
         private String career;
         private String education;
-        // private List<String> skillList;
+        private List<String> skillList;
         private String position;
         private String address;
         private String homepage;
         private Timestamp endDate;
+        private String formatEndDate;
+        private Long leftTime;
         private String representativeName;
         private Integer userScrapId;
     }

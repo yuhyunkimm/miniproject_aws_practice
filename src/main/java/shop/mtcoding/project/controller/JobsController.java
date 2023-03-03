@@ -1,5 +1,6 @@
 package shop.mtcoding.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -26,15 +27,16 @@ import shop.mtcoding.project.dto.jobs.JobsResp.JobsMainRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSuggestRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsWriteRespDto;
+import shop.mtcoding.project.dto.skill.RequiredSkillReq.RequiredSkillWriteReqDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.CompRepository;
 import shop.mtcoding.project.model.JobsRepository;
+import shop.mtcoding.project.model.SkillRepository;
 import shop.mtcoding.project.model.User;
-import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.service.JobsService;
-import shop.mtcoding.project.util.MockSession;
+import shop.mtcoding.project.util.DateUtil;
 
 @Controller
 public class JobsController {
@@ -46,6 +48,9 @@ public class JobsController {
     private CompRepository compRepository;
 
     @Autowired
+    private SkillRepository skillRepository;
+
+    @Autowired
     private JobsService jobsService;
 
     @Autowired
@@ -53,7 +58,7 @@ public class JobsController {
 
     @GetMapping("/request/jobs")
     public ResponseEntity<?> requestJobs() {
-        MockSession.mockComp(session);
+        // MockSession.mockComp(session);
         Comp compSession = (Comp) session.getAttribute("compSession");
         List<JobsSuggestRespDto> jDtos = jobsRepository.findAllToSuggestReq(compSession.getCompId());
         return new ResponseEntity<>(new ResponseDto<>(1, "공고 불러오기 완료", jDtos), HttpStatus.OK);
@@ -106,7 +111,7 @@ public class JobsController {
 
     @GetMapping("/jobs/write")
     public String writeJobs(Model model) {
-        MockSession.mockComp(session);
+        // MockSession.mockComp(session);
         Comp compSesseion = (Comp) session.getAttribute("compSession");
         JobsWriteRespDto cDto = compRepository.findById(compSesseion.getCompId());
         if (cDto == null) {
@@ -118,9 +123,16 @@ public class JobsController {
 
     @GetMapping("/jobs/{id}/update")
     public String updateJobs(@PathVariable Integer id, Model model) {
-        MockSession.mockComp(session);
+        // MockSession.mockComp(session);
         JobsDetailRespDto jDto = jobsRepository.findByJobsDetail(id, null);
-        System.out.println("테스트 : "+jDto.toString());
+            long dDay = DateUtil.dDay(jDto.getEndDate());
+            jDto.setLeftTime(dDay);
+            jDto.setFormatEndDate(DateUtil.format(jDto.getEndDate()));
+            List<String> insertList = new ArrayList<>();
+            for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto.getJobsId())) {
+                insertList.add(skill.getSkill());
+            jDto.setSkillList(insertList);
+        }
         model.addAttribute("cDto", jDto);
         return "jobs/updateJobsForm";
     }

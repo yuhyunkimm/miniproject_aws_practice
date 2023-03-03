@@ -30,11 +30,11 @@
                     </div>
                                         <div class="col-9  my-4 pe-5">
                         <div>
-                            <h6><b>지원 3 </b></h6>
+                            <h6><b>지원 ${aDtos.size()} </b></h6>
                             <table class="table" style="width:100%">
                                 <thead>
                                     <tr class="table-secondary" align=center>
-                                        <th scope="col" style="width:15%">이름/나이</th>
+                                        <th scope="col" style="width:15%">이름</th>
                                         <th scope="col" style="width:25%">이력서 제목</th>
                                         <th scope="col" style="width:25%">상태</th>
                                         <th scope="col" style="width:10%">상태</th>
@@ -45,7 +45,7 @@
                                 <c:forEach items="${aDtos}" varStatus="status" var="aDto">
                                     <tbody>
                                     <tr align=center>
-                                        <td>${aDto.name}${aDto.birth}</td>
+                                        <td>${aDto.name}</td>
                                         <td>${aDto.title}</td>
                                         <td>${aDto.position}</td>
                                         <td>${aDto.career}</td>
