@@ -17,12 +17,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusCompRespDto;
 import shop.mtcoding.project.dto.common.ResponseDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompJoinReqDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompLoginReqDto;
+import shop.mtcoding.project.dto.comp.CompReq.CompPasswordReqDto;
+import shop.mtcoding.project.dto.comp.CompReq.CompUpdateReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsManageJobsRespDto;
 
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeReadRespDto;
@@ -150,14 +154,53 @@ public class CompController {
         if ( compSession == null ){
             return "redirect:/comp/login";
         }
-
         List<JobsManageJobsRespDto> jDtos = jobsrRepository.findByIdtoManageJobs(compSession.getCompId());
         model.addAttribute("jDtos", jDtos);
         return "comp/comphome";
     }
 
+    @PostMapping("/comp/passwordCheck")
+    public @ResponseBody ResponseEntity<?> samePasswordCheck(@RequestBody CompPasswordReqDto compPasswordReqDto) {
+        Comp compPS = compRepository.findByCompidAndPassword(compPasswordReqDto.getCompId(),
+                compPasswordReqDto.getPassword());
+        if (compPS == null) {
+            throw new CustomApiException("비밀번호가 틀렸습니다.");
+        }
+        return new ResponseEntity<>(new ResponseDto<>(1, "인증에 성공하였습니다.", null), HttpStatus.OK);
+    }
+
+    @PutMapping("/comp/update")
+    public ResponseEntity<?> updateComp(@RequestBody CompUpdateReqDto compUpdateReqDto) {
+        MockSession.mockComp(session);
+        Comp compSession = (Comp) session.getAttribute("compSession");
+        if (compSession == null) {
+            throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        }
+        if (compUpdateReqDto.getPassword() == null || compUpdateReqDto.getPassword().isEmpty()) {
+            throw new CustomApiException("비밀번호를 입력하세요");
+        }
+        if (compUpdateReqDto.getCompName() == null || compUpdateReqDto.getCompName().isEmpty()) {
+            throw new CustomApiException("회사이름을 입력하세요");
+        }
+        if (compUpdateReqDto.getRepresentativeName() == null || compUpdateReqDto.getRepresentativeName().isEmpty()) {
+            throw new CustomApiException("대표자명을 입력하세요");
+        }
+        if (compUpdateReqDto.getBusinessNumber() == null || compUpdateReqDto.getBusinessNumber().isEmpty()) {
+            throw new CustomApiException("사업자 번호을 입력하세요");
+        }
+        compService.회사정보수정(compUpdateReqDto, compSession.getCompId());
+        return new ResponseEntity<>(new ResponseDto<>(1, "수정완료", null), HttpStatus.OK);
+    }
+
     @GetMapping("/comp/update")
-    public String updateComp() {
+    public String updateForm(Model model) {
+        MockSession.mockComp(session);
+        Comp compSession = (Comp) session.getAttribute("compSession");
+        if (compSession == null) {
+            throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        }
+        Comp compPS = compRepository.findByCompId(compSession.getCompId());
+        model.addAttribute("compUpdateReqDto", compPS);
         return "comp/updateForm";
     }
 
@@ -202,7 +245,6 @@ public class CompController {
         model.addAttribute("sDtos", sList);
         return "comp/scrap";
     }
-
 
     @GetMapping("/comp/talent")
     public String talent(Model model) {
@@ -253,7 +295,6 @@ public class CompController {
 
         return "comp/talent";
     }
-
 
 }
 

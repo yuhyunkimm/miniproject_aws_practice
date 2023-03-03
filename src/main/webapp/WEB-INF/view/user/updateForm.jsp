@@ -22,8 +22,10 @@
 
         <body>
             <div class="mx-auto width-53">
-                <div class="container border border-3 p-3 mt-5 " style="width: 350px;">
-                    <div style="text-align: center;">
+
+                <div class="container border border-3 p-3 mt-5" style="width: 350px;">
+                    <div class="form-group mb-3" style="text-align: center;">
+
                         <h4>개인 회원정보 수정</h4>
                     </div>
 
@@ -56,12 +58,11 @@
 
                         <form name="form" id="form" method="post">
                             <input class="btn btn-outline-primary mb-2" type="button" onClick="goPopup();"
-                                value="도로명주소 검색" />
+                                value="도로명주소 검색">
                             <div id="list"></div>
                             <div id="callBackDiv">
                                 <div class="form-group mb-4">
-                                    <input type="text" name="address" class="form-control" id="roadFullAddr"
-                                        placeholder="Enter address" readonly id="address" value="${uDto.address}">
+                                    <input type="text" name="address" class="form-control" placeholder="Enter address" readonly id="address" value="${uDto.address}">
                                 </div>
                             </div>
                         </form>

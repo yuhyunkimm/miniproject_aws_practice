@@ -99,7 +99,7 @@
                             <div class="mb-3">
                                 <label for="inputPassword" class="form-label">Password</label>
                                 <input type="password" class="form-control" id="inputPassword"
-                                    aria-describedby="passwordHelp" onkeypress="if(event.keyCode=='13'){event.preventDefault(); checkPS(${principal.userId});}">
+                                    aria-describedby="passwordHelp" onkeypress="if(event.keyCode=='13'){event.preventDefault(); checkPS(${compSession.compId});}">
                                 <div id="passwordHelp" class="form-text">현재 비밀번호를 입력해 주세요.</div>
                             </div>
                         </form>
@@ -107,15 +107,15 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary"
-                            onclick="passwordCheckBtn(${principal.userId})">Check</button>
+                            onclick="passwordCheckBtn(${compSession.compId})">Check</button>
                     </div>
                 </div>
             </div>
         </div>
         </div>
         <script>
-            function checkPS(uId){
-                passwordCheckBtn(uId);
+            function checkPS(cId){
+                passwordCheckBtn(cId);
             }
       
             const passwordInputEl = document.querySelector('#inputPassword')
@@ -125,21 +125,21 @@
                 passwordInputEl.focus()
             })
 
-            function passwordCheckBtn(uId) {
+            function passwordCheckBtn(cId) {
 
                 let data = {
-                    userId: uId,
+                    compId: cId,
                     password: $('#inputPassword').val()
                 }
 
                 $.ajax({
                     type: "post",
-                    url: "/user/passwordCheck",
+                    url: "/comp/passwordCheck",
                     data: JSON.stringify(data),
                     contentType: "application/json; charset=utf-8",
                     datatype: "json"
                 }).done((res) => {
-                    location.href = "/user/update";
+                    location.href = "/comp/update";
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
                 });
