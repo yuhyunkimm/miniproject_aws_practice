@@ -46,18 +46,13 @@ public class CompService {
         if (compId != compUpdateReqDto.getCompId()) {
             throw new CustomApiException("정상적인 접근이 아닙니다.", HttpStatus.FORBIDDEN);
         }
-        System.out.println("테스트 : 111111");
         Comp compPS = compRepository.findByCompId(compUpdateReqDto.getCompId());
-        System.out.println("테스트 : 22222");
         if (compPS == null)
             throw new CustomException("존재하지 않는 회원입니다.");
-        System.out.println("테스트 : 333333");
         try {
             compRepository.updateByCompId(compUpdateReqDto, compId);
-            System.out.println("테스트 : 444444");
         } catch (Exception e) {
             throw new CustomException("서버 에러가 발생 했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        System.out.println("테스트 : 5555");
     }
 }

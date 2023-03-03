@@ -23,7 +23,8 @@
                             <h6 class="card-subtitle mb-1 text-muted"><a href="/comp/apply">지원자 현황</a></h6><br>
                             <h6 class="card-subtitle mb-1 text-muted"><a href="/comp/resume/scrap">이력서 스크랩</a></h6>
                             <hr>
-                            <h6 class="card-subtitle mb-1 text-muted"><a href="/comp/update">정보수정</a></h6><br>
+                            <h6 class="card-subtitle mb-1 text-muted"><a href="/user/update" data-bs-toggle="modal" 
+                            data-bs-target="#modal">정보수정</a></h6><br>
                             <h6 class="card-subtitle mb-1 text-muted"><a href="/logout">로그아웃</a></h6>
                         </div>
                     </div>
