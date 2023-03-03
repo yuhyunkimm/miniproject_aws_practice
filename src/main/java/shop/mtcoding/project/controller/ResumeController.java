@@ -23,17 +23,27 @@ import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeDetailRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeManageRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeSaveRespDto;
+
+import shop.mtcoding.project.dto.skill.RequiredSkillReq.RequiredSkillWriteReqDto;
 import shop.mtcoding.project.dto.skill.ResumeSkillResp.ResumeSkillRespDto;
+import shop.mtcoding.project.dto.user.UserResp.UserDataRespDto;
+
+import shop.mtcoding.project.dto.skill.ResumeSkillResp.ResumeSkillRespDto;
+
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.SkillRepository;
 import shop.mtcoding.project.model.User;
+import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.service.ResumeService;
 import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class ResumeController {
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private ResumeService resumeService;
@@ -54,8 +64,16 @@ public class ResumeController {
         if (principal == null) {
             throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
-        List<ResumeManageRespDto> rList = resumeRepository.findAllWithUserById(principal.getUserId());
-        model.addAttribute("rDtos", rList);
+        List<ResumeManageRespDto> rLists = resumeRepository.findAllWithUserById(principal.getUserId());
+        for (ResumeManageRespDto rList : rLists) {
+            List<String> insertList = new ArrayList<>();
+            for (ResumeSkillRespDto skill : skillRepository.findByResumeSkill(rList.getResumeId())) {
+                insertList.add(skill.getSkill());
+                rList.setSkillList(insertList);
+            }
+        }
+
+        model.addAttribute("rDtos", rLists);
 
         // rList.forEach((s)->{System.out.println("테스트 : "+ s.toString());});
 
@@ -132,7 +150,13 @@ public class ResumeController {
 
     @GetMapping("/user/resume/write")
     public String writeResumeForm(Model model) {
-        // MockSession.mockUser(session);
+        MockSession.mockUser(session);
+        User principal = (User) session.getAttribute("principal");
+        if (principal == null) {
+            throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        }
+        UserDataRespDto userPS = userRepository.findByUserId(principal.getUserId());
+        model.addAttribute("rDto", userPS);
         return "resume/writeResumeForm";
     }
 
@@ -143,8 +167,15 @@ public class ResumeController {
         if (principal == null) {
             throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
+
         ResumeSaveRespDto rDto = resumeRepository.findById(id);
+        List<String> insertList = new ArrayList<>();
+        for (ResumeSkillRespDto skill : skillRepository.findByResumeSkill(rDto.getResumeId())) {
+            insertList.add(skill.getSkill());
+            rDto.setSkillList(insertList);
+        }
         model.addAttribute("rDto", rDto);
+
         return "resume/updateResumeForm";
     }
 
@@ -153,10 +184,12 @@ public class ResumeController {
     public String resumeDetail(@PathVariable Integer id, Model model) {
         ResumeDetailRespDto rDto = resumeRepository.findDetailPublicResumebyById(id);
         List<String> insertList = new ArrayList<>();
-            for (ResumeSkillRespDto skill : skillRepository.findByResumeSkill(rDto.getResumeId())) {
-                insertList.add(skill.getSkill());
-                rDto.setSkillList(insertList);
-            }
+        for (ResumeSkillRespDto skill : skillRepository.findByResumeSkill(rDto.getResumeId())) {
+            insertList.add(skill.getSkill());
+            rDto.setSkillList(insertList);
+        }
+
+
         model.addAttribute("rDto", rDto);
         return "/resume/resumeDetail";
     }

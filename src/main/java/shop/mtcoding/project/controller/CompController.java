@@ -1,6 +1,7 @@
 package shop.mtcoding.project.controller;
 
 import java.util.ArrayList;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,23 +24,35 @@ import shop.mtcoding.project.dto.common.ResponseDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompJoinReqDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompLoginReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsManageJobsRespDto;
+
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeReadRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsRequiredSkill;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeRecommendRespDto;
+
 import shop.mtcoding.project.dto.scrap.CompScrapResp.CompScrapResumeRespDto;
+import shop.mtcoding.project.dto.skill.ResumeSkillResp.ResumeSkillRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.ApplyRepository;
 import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.CompRepository;
 import shop.mtcoding.project.model.JobsRepository;
+import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.ScrapRepository;
+import shop.mtcoding.project.model.SkillRepository;
 import shop.mtcoding.project.service.CompService;
 
 @Controller
 public class CompController {
 
     @Autowired
+    private SkillRepository skillRepository;
+
+    @Autowired
     private HttpSession session;
+
+    @Autowired
+    private ResumeRepository resumeRepository;
 
     @Autowired
     private JobsRepository jobsrRepository;
@@ -137,6 +150,7 @@ public class CompController {
         if ( compSession == null ){
             return "redirect:/comp/login";
         }
+
         List<JobsManageJobsRespDto> jDtos = jobsrRepository.findByIdtoManageJobs(compSession.getCompId());
         model.addAttribute("jDtos", jDtos);
         return "comp/comphome";
@@ -157,7 +171,7 @@ public class CompController {
 
     @GetMapping("/comp/jobs")
     public String manageJobs(Model model) {
-        Comp compSession = (Comp)session.getAttribute("compSession");
+        Comp compSession = (Comp) session.getAttribute("compSession");
         List<JobsManageJobsRespDto> jDtos = jobsrRepository.findByIdtoManageJobs(compSession.getCompId());
         model.addAttribute("jDtos", jDtos);
 
@@ -166,22 +180,33 @@ public class CompController {
 
     // 공개이력서 열람
     @GetMapping("/comp/resume/read")
-    public String readResume() {
+    public String readResume(Model model) {
+        List<ResumeReadRespDto> rLists = resumeRepository.findAllResumebyState();
+        for (ResumeReadRespDto rList : rLists) {
+            System.out.println("테스트 : " + rList.toString());
+            List<String> insertList = new ArrayList<>();
+            for (ResumeSkillRespDto skill : skillRepository.findByResumeSkill(rList.getResumeId())) {
+                insertList.add(skill.getSkill());
+                rList.setSkillList(insertList);
+            }
+        }
+
+        model.addAttribute("rDtos", rLists);
         return "comp/readResume";
     }
 
     @GetMapping("/comp/resume/scrap")
     public String scrapResume(Model model) {
-        Comp compSession = (Comp)session.getAttribute("compSession");
+        Comp compSession = (Comp) session.getAttribute("compSession");
         List<CompScrapResumeRespDto> sList = scrapRepository.findAllScrapByCompId(compSession.getCompId());
         model.addAttribute("sDtos", sList);
         return "comp/scrap";
     }
 
+
     @GetMapping("/comp/talent")
     public String talent(Model model) {
         // MockSession.mockComp(session);
-
         // Comp principal = (Comp) session.getAttribute("compSession");
         // List<JobsRequiredSkill> rSkill = jobsrRepository.findByJobsRequiredSkill(principal.getCompId());
         // Set<String> set = new HashSet<>();
@@ -228,6 +253,7 @@ public class CompController {
 
         return "comp/talent";
     }
+
 
 }
 

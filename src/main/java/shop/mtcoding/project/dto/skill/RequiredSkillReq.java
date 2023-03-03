@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 public class RequiredSkillReq {
-    
+
     @Getter
     @Setter
     @ToString

@@ -8,7 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 public class JobsResp {
-    
+
     @Getter
     @Setter
     @ToString
@@ -26,6 +26,7 @@ public class JobsResp {
         private Long leftTime;
         private Timestamp endDate;
     }
+
     @Getter
     @Setter
     public static class JobsSearchRespDto {
@@ -110,7 +111,7 @@ public class JobsResp {
 
     @Getter
     @Setter
-    public static class JobsWriteRespDto{
+    public static class JobsWriteRespDto {
         private String compName;
         private String representativeName;
         private String photo;
@@ -119,7 +120,7 @@ public class JobsResp {
 
     @Getter
     @Setter
-    public static class JobsManageJobsRespDto{
+    public static class JobsManageJobsRespDto {
         private Integer num;
         private Integer jobsId;
         private String title;
@@ -130,7 +131,7 @@ public class JobsResp {
     @Getter
     @Setter
     @ToString
-    public static class JobsSuggestRespDto{
+    public static class JobsSuggestRespDto {
         private Integer jobsId;
         private String title;
         private String position;
