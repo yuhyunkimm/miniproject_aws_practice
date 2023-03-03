@@ -38,11 +38,11 @@
     </update>
 
     <update id="updateByCompId">
-      update comp_tb set
+          update comp_tb set
               password = #{compUpdateReqDto.password}, 
-              compName = #{compUpdateReqDto.compName}, 
-              representativeName = #{compUpdateReqDto.representativeName}, 
-              businessNumber = #{compUpdateReqDto.businessNumber}
+              comp_name = #{compUpdateReqDto.compName}, 
+              representative_name = #{compUpdateReqDto.representativeName}, 
+              business_number = #{compUpdateReqDto.businessNumber}
         where comp_id = #{compUpdateReqDto.compId}
     </update>
 

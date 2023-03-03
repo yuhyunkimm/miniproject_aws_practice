@@ -56,12 +56,11 @@
 
                         <form name="form" id="form" method="post">
                             <input class="btn btn-outline-primary mb-2" type="button" onClick="goPopup();"
-                                value="도로명주소 검색" />
+                                value="도로명주소 검색">
                             <div id="list"></div>
                             <div id="callBackDiv">
                                 <div class="form-group mb-4">
-                                    <input type="text" name="address" class="form-control" id="roadFullAddr"
-                                        placeholder="Enter address" readonly id="address" value="${uDto.address}">
+                                    <input type="text" name="address" class="form-control" placeholder="Enter address" readonly id="address" value="${uDto.address}">
                                 </div>
                             </div>
                         </form>

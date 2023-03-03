@@ -32,13 +32,11 @@ public class CompReq {
 
     @Getter
     @Setter
-    public class CompUpdateReqDto {
+    public static class CompUpdateReqDto {
         private Integer compId;
-        private String email;
         private String password;
         private String compName;
         private String representativeName;
         private String businessNumber;
-        private Timestamp createdAt;
     }
 }

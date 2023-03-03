@@ -27,5 +27,7 @@ public interface CompRepository {
 
     public int deleteById();
 
-    public int updateByCompId(CompUpdateReqDto compUpdateReqDto);
+    public int updateByCompId(
+            @Param("compUpdateReqDto") CompUpdateReqDto compUpdateReqDto,
+            @Param("compId") Integer compId);
 }
