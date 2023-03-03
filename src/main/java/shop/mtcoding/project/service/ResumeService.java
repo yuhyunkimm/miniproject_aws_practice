@@ -100,4 +100,22 @@ public class ResumeService {
         }
     }
 
+    @Transactional
+    public void 이력서삭제(Integer resumeId, Integer userId) {
+        Resume resumePS = resumeRepository.findByResumeId(resumeId);
+        if (resumePS == null) {
+            throw new CustomApiException("없는 게시글을 삭제할 수 없습니다");
+        }
+        if (resumePS.getUserId() != userId) {
+            throw new CustomApiException("해당 게시글을 삭제할 권한이 없습니다", HttpStatus.FORBIDDEN);
+        }
+
+        try {
+            resumeRepository.deleteById(resumeId);
+        } catch (Exception e) {
+            throw new CustomApiException("서버에 일시적인 문제가 생겼습니다", HttpStatus.INTERNAL_SERVER_ERROR);
+            // 로그를 남겨야 함 (DB or File)
+        }
+    }
+
 }
