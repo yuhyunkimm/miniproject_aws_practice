@@ -148,4 +148,21 @@ public class ResumeControllerTest {
         resultActions.andExpect(status().isCreated());
     }
 
+    @Test
+    @Transactional
+    public void deleteResume_test() throws Exception {
+        // given
+        int id = 1;
+
+        // when
+        ResultActions resultActions = mvc.perform(
+                delete("/resume/" + id).session(mockSession));
+        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+        System.out.println("delete_test : " + responseBody);
+
+        // then
+        resultActions.andExpect(status().isOk());
+        resultActions.andExpect(jsonPath("$.code").value(1));
+    }
+
 }
