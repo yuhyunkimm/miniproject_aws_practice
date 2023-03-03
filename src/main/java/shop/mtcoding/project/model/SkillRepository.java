@@ -18,24 +18,22 @@ public interface SkillRepository {
 
     public List<ResumeSkillRespDto> findByResumeSkill(Integer resumeId);
 
-        public List<RequiredSkillWriteReqDto> findByJobsSkill(Integer jobsId);
+    public int insertRequiredSkill(
+        @Param("skillList") List<String> skillList,
+        @Param("jobsId") Integer jobsId);
 
-        public int insertRequiredSkill(
-                        @Param("skillList") List<String> skillList,
-                        @Param("jobsId") Integer jobsId);
+    public int insertResumeSkill(
+        @Param("skillList") List<String> skillList,
+        @Param("resumeId") Integer resumeId);
 
-        public int insertResumeSkill(
-                        @Param("skillList") List<String> skillList,
-                        @Param("resumeId") Integer resumeId);
+    public int updateRequiredSkillById(
+        @Param("skillList") List<String> skillList);
 
-        public int updateRequiredSkillById(
-                        @Param("skillList") List<String> skillList);
+    public int updateResumeSkillById(
+        @Param("skillList") List<String> skillList);
 
-        public int updateResumeSkillById(
-                        @Param("skillList") List<String> skillList);
+    public int deleteByResumeId(Integer resumeId);
 
-        public int deleteByResumeId(Integer resumeId);
-
-        public int deleteByJobsId(Integer jobsId);
+    public int deleteByJobsId(Integer jobsId);
 
 }
