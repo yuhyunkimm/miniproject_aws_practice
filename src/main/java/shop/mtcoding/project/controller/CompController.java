@@ -1,10 +1,7 @@
 package shop.mtcoding.project.controller;
 
 import java.util.ArrayList;
-
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -28,11 +25,7 @@ import shop.mtcoding.project.dto.comp.CompReq.CompLoginReqDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompPasswordReqDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompUpdateReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsManageJobsRespDto;
-
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeReadRespDto;
-import shop.mtcoding.project.dto.jobs.JobsResp.JobsRequiredSkill;
-import shop.mtcoding.project.dto.resume.ResumeResp.ResumeRecommendRespDto;
-
 import shop.mtcoding.project.dto.scrap.CompScrapResp.CompScrapResumeRespDto;
 import shop.mtcoding.project.dto.skill.ResumeSkillResp.ResumeSkillRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
@@ -45,6 +38,7 @@ import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.ScrapRepository;
 import shop.mtcoding.project.model.SkillRepository;
 import shop.mtcoding.project.service.CompService;
+import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class CompController {

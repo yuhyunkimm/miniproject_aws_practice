@@ -7,14 +7,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
 import java.sql.Timestamp;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.junit.jupiter.api.BeforeEach;
-
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -26,13 +25,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import shop.mtcoding.project.dto.comp.CompReq.CompUpdateReqDto;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import shop.mtcoding.project.dto.comp.CompReq.CompUpdateReqDto;
 import shop.mtcoding.project.dto.resume.ResumeResp;
-
 import shop.mtcoding.project.model.Comp;
 
 @AutoConfigureMockMvc
@@ -46,9 +42,6 @@ public class CompControllerTest {
     private MockMvc mvc;
 
     private MockHttpSession mockSession;
-
-    @Autowired
-    private ObjectMapper om;
 
     @BeforeEach
     private void mockUserSession() {
@@ -92,7 +85,7 @@ public class CompControllerTest {
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .session(mockSession));
         String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-        System.out.println("테스트 : " + requestBody);
+        System.out.println("테스트 : " + responseBody);
 
         // then
         resultActions.andExpect(status().isOk());

@@ -15,7 +15,6 @@ import shop.mtcoding.project.dto.jobs.JobsResp.JobsMainRespDto;
 import shop.mtcoding.project.dto.skill.RequiredSkillReq.RequiredSkillWriteReqDto;
 import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.SkillRepository;
-import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.util.DateUtil;
 
@@ -53,7 +52,7 @@ public class MainController {
     @GetMapping("/")
     public String main(Model model) {
         // MockSession.mockUser(session);
-        User principal = (User) session.getAttribute("principal");
+        // User principal = (User) session.getAttribute("principal");
         // if (principal != null) {
         //     // 유저 아이디로 이력서 존재 확인 -> 이력서 아이디중에서 랜덤으로 ?
         //     // 이력서 아이디로 해당 이력서의 스킬리스트를 꺼낸다

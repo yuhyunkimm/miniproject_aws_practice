@@ -23,13 +23,8 @@ import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeDetailRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeManageRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeSaveRespDto;
-
-import shop.mtcoding.project.dto.skill.RequiredSkillReq.RequiredSkillWriteReqDto;
 import shop.mtcoding.project.dto.skill.ResumeSkillResp.ResumeSkillRespDto;
 import shop.mtcoding.project.dto.user.UserResp.UserDataRespDto;
-
-import shop.mtcoding.project.dto.skill.ResumeSkillResp.ResumeSkillRespDto;
-
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.ResumeRepository;
