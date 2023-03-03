@@ -162,7 +162,14 @@ public class CompController {
     }
 
     @GetMapping("/comp/update")
-    public String updateForm() {
+    public String updateForm(Model model) {
+        MockSession.mockComp(session);
+        Comp compSession = (Comp) session.getAttribute("compSession");
+        if (compSession == null) {
+            throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        }
+        Comp compPS = compRepository.findByCompId(compSession.getCompId());
+        model.addAttribute("compUpdateReqDto", compPS);
         return "comp/updateForm";
     }
 
