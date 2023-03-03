@@ -1,6 +1,10 @@
 package shop.mtcoding.project.controller;
 
+import java.util.ArrayList;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -17,29 +21,42 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusRespDto;
+import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusCompRespDto;
 import shop.mtcoding.project.dto.common.ResponseDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompJoinReqDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompLoginReqDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompPasswordReqDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompUpdateReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsManageJobsRespDto;
+
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeReadRespDto;
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsRequiredSkill;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeRecommendRespDto;
+
 import shop.mtcoding.project.dto.scrap.CompScrapResp.CompScrapResumeRespDto;
+import shop.mtcoding.project.dto.skill.ResumeSkillResp.ResumeSkillRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.ApplyRepository;
 import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.CompRepository;
 import shop.mtcoding.project.model.JobsRepository;
+import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.ScrapRepository;
+import shop.mtcoding.project.model.SkillRepository;
 import shop.mtcoding.project.service.CompService;
-import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class CompController {
 
     @Autowired
+    private SkillRepository skillRepository;
+
+    @Autowired
     private HttpSession session;
+
+    @Autowired
+    private ResumeRepository resumeRepository;
 
     @Autowired
     private JobsRepository jobsrRepository;
@@ -132,8 +149,11 @@ public class CompController {
 
     @GetMapping("/comp/comphome")
     public String compMyhome(Model model) {
-        MockSession.mockComp(session);
-        Comp compSession = (Comp) session.getAttribute("compSession");
+        // MockSession.mockComp(session);
+        Comp compSession = (Comp)session.getAttribute("compSession");
+        if ( compSession == null ){
+            return "redirect:/comp/login";
+        }
         List<JobsManageJobsRespDto> jDtos = jobsrRepository.findByIdtoManageJobs(compSession.getCompId());
         model.addAttribute("jDtos", jDtos);
         return "comp/comphome";
@@ -186,8 +206,8 @@ public class CompController {
 
     @GetMapping("/comp/apply")
     public String apply(Model model) {
-        Comp compSession = (Comp) session.getAttribute("compSession");
-        List<ApllyStatusRespDto> aList = applyRepository.findAllByCompIdtoApply(compSession.getCompId());
+        Comp compSession = (Comp)session.getAttribute("compSession");
+        List<ApllyStatusCompRespDto> aList = applyRepository.findAllByCompIdtoApply(compSession.getCompId());
         model.addAttribute("aDtos", aList);
         return "comp/apply";
     }
@@ -203,7 +223,18 @@ public class CompController {
 
     // 공개이력서 열람
     @GetMapping("/comp/resume/read")
-    public String readResume() {
+    public String readResume(Model model) {
+        List<ResumeReadRespDto> rLists = resumeRepository.findAllResumebyState();
+        for (ResumeReadRespDto rList : rLists) {
+            System.out.println("테스트 : " + rList.toString());
+            List<String> insertList = new ArrayList<>();
+            for (ResumeSkillRespDto skill : skillRepository.findByResumeSkill(rList.getResumeId())) {
+                insertList.add(skill.getSkill());
+                rList.setSkillList(insertList);
+            }
+        }
+
+        model.addAttribute("rDtos", rLists);
         return "comp/readResume";
     }
 
@@ -215,61 +246,55 @@ public class CompController {
         return "comp/scrap";
     }
 
-    // @GetMapping("/comp/talent")
-    // public String talent(Model model) {
-    // // MockSession.mockComp(session);
+    @GetMapping("/comp/talent")
+    public String talent(Model model) {
+        // MockSession.mockComp(session);
+        // Comp principal = (Comp) session.getAttribute("compSession");
+        // List<JobsRequiredSkill> rSkill = jobsrRepository.findByJobsRequiredSkill(principal.getCompId());
+        // Set<String> set = new HashSet<>();
+        // for (JobsRequiredSkill skills : rSkill) {
+            
+        // }
+        // model.addAttribute("compSkillDto", set);
+        // List<ResumeRecommendRespDto> recommendResumeList = resumeRepository.findAllResumebyPublic();
+        // List<ResumeRecommendRespDto> threeMatchDto = new ArrayList<>();
+        // List<ResumeRecommendRespDto> twoMatchDto = new ArrayList<>();
+        // List<ResumeRecommendRespDto> oneMatchDto = new ArrayList<>();
+        // List<ResumeRecommendRespDto> recommendList = new ArrayList<>();
+        // for (ResumeRecommendRespDto rcPS : recommendResumeList) {
+        //     if (set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2())
+        //             && set.contains(rcPS.getSkillName3())) {
+        //         threeMatchDto.add(rcPS);
+        //         continue;
+        //     }
+        //     if ((set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2())
+        //             && !set.contains(rcPS.getSkillName3())) ||
+        //             (set.contains(rcPS.getSkillName1()) && !set.contains(rcPS.getSkillName2())
+        //                     && set.contains(rcPS.getSkillName3()))
+        //             ||
+        //             (!set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2())
+        //                     && set.contains(rcPS.getSkillName3()))) {
+        //         twoMatchDto.add(rcPS);
+        //         continue;
+        //     }
+        //     if ((set.contains(rcPS.getSkillName1()) && !set.contains(rcPS.getSkillName2())
+        //             && !set.contains(rcPS.getSkillName3())) ||
+        //             (!set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2())
+        //                     && !set.contains(rcPS.getSkillName3()))
+        //             ||
+        //             (!set.contains(rcPS.getSkillName1()) && !set.contains(rcPS.getSkillName2())
+        //                     && set.contains(rcPS.getSkillName3()))) {
+        //         oneMatchDto.add(rcPS);
+        //         continue;
+        //     }
+        // }
+        // recommendList.addAll(threeMatchDto);
+        // recommendList.addAll(twoMatchDto);
+        // recommendList.addAll(oneMatchDto);
+        // model.addAttribute("rDtos", recommendList);
 
-    // Comp principal = (Comp) session.getAttribute("compSession");
-    // List<JobsRequiredSkill> rSkill =
-    // jobsrRepository.findByJobsRequiredSkill(principal.getCompId());
-    // Set<String> set = new HashSet<>();
-    // for (JobsRequiredSkill skills : rSkill) {
-    // set.add(skills.getSkillName1());
-    // set.add(skills.getSkillName2());
-    // set.add(skills.getSkillName3());
-    // }
-    // model.addAttribute("compSkillDto", set);
-    // List<ResumeRecommendRespDto> recommendResumeList =
-    // resumeRepository.findAllResumebyPublic();
-    // List<ResumeRecommendRespDto> threeMatchDto = new ArrayList<>();
-    // List<ResumeRecommendRespDto> twoMatchDto = new ArrayList<>();
-    // List<ResumeRecommendRespDto> oneMatchDto = new ArrayList<>();
-    // List<ResumeRecommendRespDto> recommendList = new ArrayList<>();
-    // for (ResumeRecommendRespDto rcPS : recommendResumeList) {
-    // if (set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2())
-    // && set.contains(rcPS.getSkillName3())) {
-    // threeMatchDto.add(rcPS);
-    // continue;
-    // }
-    // if ((set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2())
-    // && !set.contains(rcPS.getSkillName3())) ||
-    // (set.contains(rcPS.getSkillName1()) && !set.contains(rcPS.getSkillName2())
-    // && set.contains(rcPS.getSkillName3()))
-    // ||
-    // (!set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2())
-    // && set.contains(rcPS.getSkillName3()))) {
-    // twoMatchDto.add(rcPS);
-    // continue;
-    // }
-    // if ((set.contains(rcPS.getSkillName1()) &&
-    // !set.contains(rcPS.getSkillName2())
-    // && !set.contains(rcPS.getSkillName3())) ||
-    // (!set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2())
-    // && !set.contains(rcPS.getSkillName3()))
-    // ||
-    // (!set.contains(rcPS.getSkillName1()) && !set.contains(rcPS.getSkillName2())
-    // && set.contains(rcPS.getSkillName3()))) {
-    // oneMatchDto.add(rcPS);
-    // continue;
-    // }
-    // }
-    // recommendList.addAll(threeMatchDto);
-    // recommendList.addAll(twoMatchDto);
-    // recommendList.addAll(oneMatchDto);
-    // model.addAttribute("rDtos", recommendList);
-
-    // return "comp/talent";
-    // }
+        return "comp/talent";
+    }
 
 }
 

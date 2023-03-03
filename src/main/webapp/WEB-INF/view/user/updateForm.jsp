@@ -22,8 +22,10 @@
 
         <body>
             <div class="mx-auto width-53">
+
                 <div class="container border border-3 p-3 mt-5" style="width: 350px;">
                     <div class="form-group mb-3" style="text-align: center;">
+
                         <h4>개인 회원정보 수정</h4>
                     </div>
 

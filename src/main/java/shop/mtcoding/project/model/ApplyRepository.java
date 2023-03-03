@@ -6,7 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import shop.mtcoding.project.dto.apply.ApplyReq.ApplyReqDto;
-import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusRespDto;
+import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusCompRespDto;
+import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusUserRespDto;
 
 @Mapper
 public interface ApplyRepository {
@@ -14,7 +15,9 @@ public interface ApplyRepository {
 
     public void findById( );
 
-    public List<ApllyStatusRespDto> findAllByCompIdtoApply(Integer compId);
+    public List<ApllyStatusCompRespDto> findAllByCompIdtoApply(Integer compId);
+
+    public List<ApllyStatusUserRespDto> findAllByUserIdtoApply(Integer userId);
 
     public int insert(
         @Param("aDto")  ApplyReqDto aDto

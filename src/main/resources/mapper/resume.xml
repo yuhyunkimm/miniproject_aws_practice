@@ -12,8 +12,19 @@
         select * from resume_tb where resume_id = #{resumeId}
     </select>
 
-        <select id="findById" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeSaveRespDto">
-        select * from resume_tb where resume_id = #{resumeId}
+
+    <select id="findUpdateById" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeUpdateRespDto">
+        select r.RESUME_ID, r.USER_ID, r.TITLE, r.CONTENT, r.EDUCATION, r.CAREER, r.LINK, r.STATE, r.CREATED_AT, u.photo, u.name, u.tel, u.email, u.address, u.birth from resume_tb r 
+            join user_tb u
+            on r.user_id= u.user_id
+            where r.resume_id = #{resumeId}
+    </select>
+
+    <select id="findById" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeSaveRespDto">
+        select r.RESUME_ID, r.USER_ID, r.TITLE, r.CONTENT, r.EDUCATION, r.CAREER, r.LINK, r.STATE, r.CREATED_AT, u.photo, u.name, u.tel, u.email, u.address, u.birth from resume_tb r 
+            join user_tb u
+            on r.user_id= u.user_id
+            where r.resume_id = #{resumeId}
     </select>
     
     <!-- <select id="findAllByUserId" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeManageRespDto">
@@ -27,6 +38,15 @@
         join user_tb u
         on r.user_id = u.user_id
         where r.user_id = #{userId}
+    </select>
+
+    <select id="findAllResumebyState" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeReadRespDto">
+        SELECT  r.resume_id, ROW_NUMBER()OVER(partition by u.user_id order by u.user_id ) num , 
+            u.user_id, u.photo, u.name, u.address,r.title, r.career, r.state
+            FROM RESUME_TB r
+            join user_tb u
+            on r.user_id = u.user_id
+            where r.state = 1
     </select>
 
     <select id="findAllResumebyPublic" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeRecommendRespDto">
@@ -65,6 +85,9 @@
     </update>
 
     <delete id="deleteById">
-        delete from resume_tb where id = #{rDto.userId}
+        delete from resume_tb where resume_id = #{resumeId}
     </delete>
+
+
+
 </mapper>

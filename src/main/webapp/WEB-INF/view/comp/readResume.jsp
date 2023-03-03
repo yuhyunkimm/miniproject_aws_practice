@@ -316,98 +316,48 @@
             <div class="under-line my-3"></div>
 
             <div class="row row-cols-1 row-cols-md-2">
+                <c:forEach items="${rDtos}" var="rDto">
+                    <div class="col mb-3">
 
-                <div class="col mb-3">
-                    <a href="/resume/1">
-                        <div class="card">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src="..." class="img-fluid rounded-start" alt="...">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">이름</h5>
-                                        <h6 class="card-title">제목</h6>
-                                        <div class="row">
-                                            <div style="float: left;">
-                                                <h6 class="card-subtitle mb-2">경력</h6>
-                                            </div>
-                                            <div style="float: left;">
-                                                <h6 class="card-subtitle mb-2">지역</h6>
-                                            </div>
-                                            <div style="float: left;">
-                                                <h6 class="card-subtitle mb-2">보유기술</h6>
+                        <a href="/resume/${rDto.resumeId}">
+                            <div class="card">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="${rDto.photo}" class="img-fluid rounded-start"
+                                            style="width: 100%; height: 186px;" alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${rDto.name}</h5>
+                                            <h6 class="card-title">${rDto.title}</h6>
+                                            <div class="row">
+                                                <div style="float: left;">
+                                                    <h6 class="card-subtitle mb-2">${rDto.career}</h6>
+                                                </div>
+                                                <div style="float: left;">
+                                                    <h6 class="card-subtitle mb-2">${rDto.address}</h6>
+                                                </div>
+                                                <div style="float: left; d-flex">
+                                                    <c:forEach items="${rDto.skillList}" var="skill">
+                                                        <span class="badge bg-secondary">${skill}</span>
+
+                                                    </c:forEach>
+                                                    <%-- ${rDto.skillList} --%>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
 
-                <div class="col mb-3">
-                    <a href="#">
-                        <div class="card">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src="..." class="img-fluid rounded-start" alt="...">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">이름</h5>
-                                        <h6 class="card-title">제목</h6>
-                                        <div class="row">
-                                            <div style="float: left;">
-                                                <h6 class="card-subtitle mb-2">경력</h6>
-                                            </div>
-                                            <div style="float: left;">
-                                                <h6 class="card-subtitle mb-2">지역</h6>
-                                            </div>
-                                            <div style="float: left;">
-                                                <h6 class="card-subtitle mb-2">보유기술</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col mb-3">
-                    <a href="#">
-                        <div class="card">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src="..." class="img-fluid rounded-start" alt="...">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">이름</h5>
-                                        <h6 class="card-title">제목</h6>
-                                        <div class="row">
-                                            <div style="float: left;">
-                                                <h6 class="card-subtitle mb-2">경력</h6>
-                                            </div>
-                                            <div style="float: left;">
-                                                <h6 class="card-subtitle mb-2">지역</h6>
-                                            </div>
-                                            <div style="float: left;">
-                                                <h6 class="card-subtitle mb-2">보유기술</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-
+                </c:forEach>
 
 
             </div>
+
+
 
 
         </div>
@@ -452,7 +402,7 @@
                 }
             }
 
-// sd
+            // sd
 
             function getCheckedValues(name) {
                 var checkedValues = [];

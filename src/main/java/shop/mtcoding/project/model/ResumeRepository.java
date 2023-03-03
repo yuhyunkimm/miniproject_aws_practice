@@ -9,14 +9,18 @@ import shop.mtcoding.project.dto.resume.ResumeReq.ResumeUpdateReqDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeDetailRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeManageRespDto;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeReadRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeRecommendRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeSaveRespDto;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeUpdateRespDto;
 
 @Mapper
 public interface ResumeRepository {
         public void findAll();
 
         public ResumeSaveRespDto findById(Integer resumeId);
+
+        public ResumeUpdateRespDto findUpdateById(Integer resumeId);
 
         public Resume findByResumeId(Integer resumeId);
 
@@ -25,13 +29,16 @@ public interface ResumeRepository {
         public List<ResumeManageRespDto> findAllWithUserById(Integer userId);
 
         public List<ResumeRecommendRespDto> findAllResumebyPublic();
+
+        public List<ResumeReadRespDto> findAllResumebyState();
+
         public ResumeDetailRespDto findDetailPublicResumebyById(Integer resumeId);
 
         public int insert(
-                @Param("rDto") ResumeWriteReqDto rDto);
+                        @Param("rDto") ResumeWriteReqDto rDto);
 
         public int updateById(
-                @Param("rDto") ResumeUpdateReqDto rDto);
+                        @Param("rDto") ResumeUpdateReqDto rDto);
 
-        public int deleteById();
+        public int deleteById(Integer resumeId);
 }

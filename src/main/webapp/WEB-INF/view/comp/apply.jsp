@@ -26,69 +26,43 @@
                             data-bs-target="#modal">정보수정</a></h6><br>
                                         <h6 class="card-subtitle mb-1 text-muted"><a href="/logout">로그아웃</a></h6>
                                     </div>
-                            </div>
-                        </div>
-                    </div>
-                                        <div class="col-9  my-4 pe-5">
-                        <div>
-                            <h6><b>지원 3 </b></h6>
-                            <table class="table" style="width:100%">
-                                <thead>
-                                    <tr class="table-secondary" align=center>
-                                        <th scope="col" style="width:15%">이름/나이</th>
-                                        <th scope="col" style="width:25%">이력서 제목</th>
-                                        <th scope="col" style="width:25%">상태</th>
-                                        <th scope="col" style="width:10%">상태</th>
-                                        <th scope="col" style="width:10%">상태</th>
-                                        <th scope="col" style="width:15%">상태</th>
-                                    </tr>
-                                </thead>
-                                <c:forEach items="${aDtos}" varStatus="status" var="aDto">
-                                    <tbody>
-                                    <tr align=center>
-                                        <td>${aDto.name}${aDto.birth}</td>
-                                        <td>${aDto.title}</td>
-                                        <td>${aDto.position}</td>
-                                        <td>${aDto.career}</td>
-                                        <td>${aDto.education}</td>
-                                        <td><button type="button" class="btn btn-success btn-sm" 
-                                        onclick="window.open('/resume/${aDto.resumeId}', '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">상세보기</button></td>
-                                    </tr>
-                                    </tbody>
-                                </c:forEach>
-                            </table>
-                            <br />
-                            <table class="table" style="width:100%">
-                                <h6><b>제안 3 </b></h6>
-                                <thead>
-                                    <tr class="table-secondary" align=center>
-                                        <th scope="col" style="width:10%">No.</th>
-                                        <th scope="col" style="width:25%">제안회사</th>
-                                        <th scope="col" style="width:30%">제안내용</th>
-                                        <th scope="col" style="width:25%">상태</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr align=center>
-                                        <th scope="row">1</th>
-                                        <td>인프런</td>
-                                        <td>강사</td>
-                                        <td>답변가능</td>
-                                    </tr>
-                                    <tr align=center>
-                                        <th scope="row">2</th>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+
                     </div>
                 </div>
             </div>
+            <div class="col-9  my-4 pe-5">
+                <div>
+                    <h6><b>지원 ${aDtos.size()} </b></h6>
+                    <table class="table" style="width:100%">
+                        <thead>
+                            <tr class="table-secondary" align=center>
+                                <th scope="col" style="width:15%">이름</th>
+                                <th scope="col" style="width:25%">이력서 제목</th>
+                                <th scope="col" style="width:25%">포지션</th>
+                                <th scope="col" style="width:10%">경력</th>
+                                <th scope="col" style="width:10%">학력</th>
+                                <th scope="col" style="width:15%">상세보기</th>
+                            </tr>
+                        </thead>
+                        <c:forEach items="${aDtos}" varStatus="status" var="aDto">
+                            <tbody>
+                                <tr align=center>
+                                    <td>${aDto.name}</td>
+                                    <td>${aDto.title}</td>
+                                    <td>${aDto.position}</td>
+                                    <td>${aDto.career}</td>
+                                    <td>${aDto.education}</td>
+                                    <td><button type="button" class="btn btn-success btn-sm"
+                                            onclick="window.open('/resume/${aDto.resumeId}', '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">상세보기</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </c:forEach>
+                    </table>
+                </div>
+            </div>
         </div>
+
         </div>
 <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -148,3 +122,4 @@
     }
 </script>
         <%@ include file="../layout/footer.jsp" %>
+
