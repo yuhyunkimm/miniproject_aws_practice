@@ -132,7 +132,6 @@
                     password: $('#inputPassword').val()
                 }
 
-
                 $.ajax({
                     type: "post",
                     url: "/user/passwordCheck",
