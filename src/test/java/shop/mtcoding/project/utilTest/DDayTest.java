@@ -12,7 +12,8 @@ public class DDayTest {
     @Test
     public void dDay_test() throws Exception {
         // LocalDate fromDate = LocalDate.of(2020, 8, 21);
-        LocalDate fromDate = LocalDate.now();
+        // LocalDate fromDate = LocalDate.now();
+        LocalDate fromDate = LocalDate.of(2023, 3, 2);
         LocalDate toDate = LocalDate.of(2023, 3, 4);
 
         // ChronoUnit.DAYS.between

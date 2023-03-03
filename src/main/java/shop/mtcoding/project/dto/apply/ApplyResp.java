@@ -7,7 +7,7 @@ public class ApplyResp {
     
     @Getter
     @Setter
-    public static class ApllyStatusRespDto{
+    public static class ApllyStatusCompRespDto{
         private Integer applyId;
         private Integer resumeId;
         private Integer jobsId;
@@ -19,4 +19,19 @@ public class ApplyResp {
         private String birth;
         // private List<String> skillList;
     }
+
+    @Getter
+    @Setter
+    public static class ApllyStatusUserRespDto{
+        private Integer applyId;
+        private Integer resumeId;
+        private Integer jobsId;
+        private Integer state;
+        private String jobsTitle;
+        private String resumeTitle;
+        private String position;
+        // private List<String> skillList;
+    }
+
+
 }

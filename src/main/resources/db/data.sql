@@ -100,6 +100,8 @@ insert into apply_tb (resume_id, jobs_id, state, created_at) values (4, 2, 0, no
 insert into apply_tb (resume_id, jobs_id, state, created_at) values (2, 2, 0, now());
 insert into apply_tb (resume_id, jobs_id, state, created_at) values (5, 3, 0, now());
 
-insert into suggest_tb (jobs_id, resume_id, state, created_at) values (1, 1, 1, now());
+insert into suggest_tb (jobs_id, resume_id, state, created_at) values (1, 1, 0, now());
+insert into suggest_tb (jobs_id, resume_id, state, created_at) values (2, 3, 0, now());
+insert into suggest_tb (jobs_id, resume_id, state, created_at) values (3, 4, 0, now());
 
 commit;

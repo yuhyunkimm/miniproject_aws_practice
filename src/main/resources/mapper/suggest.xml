@@ -8,6 +8,17 @@
         select * from suggest_tb
     </select>
 
+    <select id="findAllGetOfferByUserId" resultType="shop.mtcoding.project.dto.suggest.SuggestResp$SuggestToUserRespDto">
+      select s.suggest_id, j.jobs_id, r.resume_id, c.comp_name, j.title, j.position, s.state, u.name from suggest_tb s join jobs_tb j
+        on s.jobs_id = j.jobs_id join comp_tb c
+        on j.comp_id = c.comp_id join resume_tb r
+        on r.resume_id = s.resume_id join user_tb u
+        on u.user_id = r.user_id
+        where u.user_id = #{userId}
+    </select>
+
+
+
     <select id="findById" resultType="shop.mtcoding.project.model.User">
 
     </select>
