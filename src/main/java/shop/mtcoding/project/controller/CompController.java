@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusRespDto;
+import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusCompRespDto;
 import shop.mtcoding.project.dto.common.ResponseDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompJoinReqDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompLoginReqDto;
@@ -150,7 +150,7 @@ public class CompController {
     @GetMapping("/comp/apply")
     public String apply(Model model) {
         Comp compSession = (Comp)session.getAttribute("compSession");
-        List<ApllyStatusRespDto> aList = applyRepository.findAllByCompIdtoApply(compSession.getCompId());
+        List<ApllyStatusCompRespDto> aList = applyRepository.findAllByCompIdtoApply(compSession.getCompId());
         model.addAttribute("aDtos", aList);
         return "comp/apply";
     }

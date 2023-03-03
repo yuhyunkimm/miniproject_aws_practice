@@ -1,5 +1,7 @@
 package shop.mtcoding.project.controller;
 
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,22 +12,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusUserRespDto;
 import shop.mtcoding.project.dto.common.ResponseDto;
-import shop.mtcoding.project.dto.scrap.UserScrapReq.UserInsertScrapReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserLoginReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserPasswordReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserUpdateReqDto;
-import shop.mtcoding.project.dto.user.UserResp.UserDataRespDto;
-import shop.mtcoding.project.dto.user.UserResp.UserUpdateRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
+import shop.mtcoding.project.model.ApplyRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.service.UserService;
@@ -42,6 +42,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ApplyRepository applyRepository;
 
     @PostMapping("/user/join")
     public String join(UserJoinReqDto userJoinReqDto) {
@@ -210,7 +213,10 @@ public class UserController {
     }
 
     @GetMapping("/user/offer")
-    public String offer() {
+    public String offer(Model model) {
+        User principal = (User) session.getAttribute("principal");
+        List<ApllyStatusUserRespDto> aDtos = applyRepository.findAllByUserIdtoApply(principal.getUserId());
+        model.addAttribute("aDtos", aDtos);
         return "user/offer";
     }
 
