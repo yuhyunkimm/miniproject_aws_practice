@@ -112,6 +112,7 @@
                 </div>
             </div>
         </div>
+        </div>
         <script>
             function checkPS(uId){
                 passwordCheckBtn(uId);
@@ -130,7 +131,6 @@
                     userId: uId,
                     password: $('#inputPassword').val()
                 }
-
 
                 $.ajax({
                     type: "post",

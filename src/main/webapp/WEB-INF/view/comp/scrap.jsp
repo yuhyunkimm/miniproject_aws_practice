@@ -50,7 +50,7 @@
                         </div>
                         <div style="float: right;" pt-2>
                             <button type="button" class="btn btn-success btn-sm"
-                                onclick="location.href='/resume/${sDto.resumeId}'">상세보기</button>
+                                onclick="window.open('/resume/${sDto.resumeId}', '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">상세보기</button>
                         </div>
                     </div>
                 </div>

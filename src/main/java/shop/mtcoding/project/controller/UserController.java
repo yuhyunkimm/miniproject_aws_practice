@@ -1,5 +1,7 @@
 package shop.mtcoding.project.controller;
 
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,21 +12,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusUserRespDto;
 import shop.mtcoding.project.dto.common.ResponseDto;
+import shop.mtcoding.project.dto.suggest.SuggestResp.SuggestToUserRespDto;
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserLoginReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserPasswordReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserUpdateReqDto;
-import shop.mtcoding.project.dto.user.UserResp.UserDataRespDto;
-import shop.mtcoding.project.dto.user.UserResp.UserUpdateRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
+import shop.mtcoding.project.model.ApplyRepository;
+import shop.mtcoding.project.model.SuggestRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.service.UserService;
@@ -41,6 +44,12 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ApplyRepository applyRepository;
+
+    @Autowired
+    private SuggestRepository suggestRepository;
 
     @PostMapping("/user/join")
     public String join(UserJoinReqDto userJoinReqDto) {
@@ -85,6 +94,36 @@ public class UserController {
 
     @PostMapping("/user/login")
     public String login(UserLoginReqDto userloginReqDto, HttpServletResponse httpServletResponse) {
+        System.out.println("테스트 : "+ userloginReqDto.toString());
+        if (userloginReqDto.getEmail() == null || userloginReqDto.getEmail().isEmpty()) {
+            throw new CustomException("email을 작성해주세요");
+        }
+        if (userloginReqDto.getPassword() == null || userloginReqDto.getPassword().isEmpty()) {
+            throw new CustomException("password 작성해주세요");
+        }
+        User principal = userService.로그인(userloginReqDto);
+        if (principal == null) {
+            return "redirect:/loginForm";
+        } else {
+            if (userloginReqDto.getRememberEmail() == null) {
+                userloginReqDto.setRememberEmail("");
+            }
+            if (userloginReqDto.getRememberEmail().equals("on")) {
+                Cookie cookie = new Cookie("rememberEmail", userloginReqDto.getEmail());
+                httpServletResponse.addCookie(cookie);
+            } else {
+                Cookie cookie = new Cookie("remember", "");
+                cookie.setMaxAge(0);
+                httpServletResponse.addCookie(cookie);
+            }
+            session.setAttribute("principal", principal);
+            return "redirect:/";
+        }
+    }
+
+    @PostMapping("/user/login2")
+    public String login2(@RequestBody UserLoginReqDto userloginReqDto, HttpServletResponse httpServletResponse) {
+        System.out.println("테스트 : "+ userloginReqDto.toString());
         if (userloginReqDto.getEmail() == null || userloginReqDto.getEmail().isEmpty()) {
             throw new CustomException("email을 작성해주세요");
         }
@@ -130,7 +169,7 @@ public class UserController {
 
     @PutMapping("/user/update")
     public ResponseEntity<?> updateUser(@RequestBody UserUpdateReqDto userUpdateReqDto) {
-        MockSession.mockUser(session);
+        // MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
@@ -156,13 +195,20 @@ public class UserController {
     }
 
     @GetMapping("/user/update")
-    public String updateForm() {
+    public String updateForm(Model model) {
+        MockSession.mockUser(session);
+        User principal = (User) session.getAttribute("principal");
+        if (principal == null) {
+            throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        }
+        User userPS = userRepository.findById(principal.getUserId());
+        model.addAttribute("uDto", userPS);
         return "user/updateForm";
     }
 
     @GetMapping("/user/myhome")
     public String myhome() {
-        MockSession.mockUser(session);
+        // MockSession.mockUser(session);
         return "user/myhome";
     }
 
@@ -172,7 +218,12 @@ public class UserController {
     }
 
     @GetMapping("/user/offer")
-    public String offer() {
+    public String offer(Model model) {
+        User principal = (User) session.getAttribute("principal");
+        List<ApllyStatusUserRespDto> aDtos = applyRepository.findAllByUserIdtoApply(principal.getUserId());
+        model.addAttribute("aDtos", aDtos);
+        List<SuggestToUserRespDto> sDtos = suggestRepository.findAllGetOfferByUserId(principal.getUserId());
+        model.addAttribute("sDtos", sDtos);
         return "user/offer";
     }
 

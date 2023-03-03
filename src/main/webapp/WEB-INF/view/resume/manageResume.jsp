@@ -2,22 +2,20 @@
     <%@ include file="../layout/header.jsp" %>
         <div class="mx-auto width-53 top-80">
 
-            <div class="container my-5 py-5">
 
+    <div class="mx-auto width-53 top-80">
+            <div class="container my-5 py-5">   
                 <div class="row">
-                    <!-- <h2> 이력서 관리</h2> -->
                     <div class="col-3 px-5" style="text-align: center;">
-                                 <div class="mb-3">
-                    <div class="fs-4">이력서 관리</div>
+                              <div class="mb-3">
+                    <div class="fs-4">지원 및 제안</div>
                 </div>
-                        <div class="card">
-
+     <div class="card">
                     <div class="card-body">
                         <div class="relative mb-3">
                             <div>
                                 <img src="/images/default_profile.png" class="rounded" alt="Cinque Terre"
                                     style="max-width: 80px;">
-
                             </div>
                         </div>
                         <div>

@@ -22,7 +22,7 @@
             top: 5em;
             right: 24em;
             width: 270px;
-            height: 200px;
+            height: 140px;
             background-color: white;
         }
 
@@ -120,20 +120,11 @@
                             </div>
                             <div class="col-4">
                                 <select class="form-select" aria-label="Default select example" id="education"
-                                    name="education" value="${cDto.education}">
-                                    <option value="학력무관">학력무관</option>
-                                    <option value="대졸">대졸</option>
-                                    <option value="대학원 이상">대학원 이상</option>
+                                    name="education" >
+                                    <option value="학력무관" ${cDto.education=='학력무관' ? 'selected="selected"' : '' }>학력무관
+                                    <option value="대졸" ${cDto.education=='대졸' ? 'selected="selected"' : '' }>대졸
+                                    <option value="대학원 이상" ${cDto.education=='대학원 이상' ? 'selected="selected"' : '' }>대학원 이상
                                 </select>
-                                <input type="text" value="${cDto.career}">
-
-                                <!-- <select>
-                                    <option value="value1" ${selectedValue == 'value1' ? 'selected' : ''}>Value 1</option>
-                                    <option value="value2" ${selectedValue == 'value2' ? 'selected' : ''}>Value 2</option>
-                                    <option value="value3" ${selectedValue == 'value3' ? 'selected' : ''}>Value 3</option>
-                                  </select> -->
-
-
                             </div>
                         </div>
                         <div class="d-flex my-2">
@@ -142,17 +133,17 @@
                             </div>
                             <div class="col-4">
                                 <select class="form-select" aria-label="Default select example" id="career"
-                                    name="career" value="${cDto.career}">
-                                    <option value="신입">신입</option>
-                                    <option value="1년차 미만">1년차 미만</option>
-                                    <option value="1년차">1년차</option>
-                                    <option value="2년차">2년차</option>
-                                    <option value="3년차">3년차</option>
-                                    <option value="4년차">4년차</option>
-                                    <option value="5년차">5년차</option>
-                                    <option value="6년차">6년차</option>
-                                    <option value="7년차">7년차</option>
-                                    <option value="8년차 이상">8년차 이상</option>
+                                    name="career" >
+                                    <option value="신입" ${cDto.career=='신입' ? 'selected="selected"' : '' }>신입
+                                    <option value="1년차 미만" ${cDto.career=='1년차 미만' ? 'selected="selected"' : '' }>1년차 미만
+                                    <option value="1년차" ${cDto.career=='1년차' ? 'selected="selected"' : '' }>1년차
+                                    <option value="2년차" ${cDto.career=='2년차' ? 'selected="selected"' : '' }>2년차
+                                    <option value="3년차" ${cDto.career=='3년차' ? 'selected="selected"' : '' }>3년차
+                                    <option value="4년차" ${cDto.career=='4년차' ? 'selected="selected"' : '' }>4년차
+                                    <option value="5년차" ${cDto.career=='5년차' ? 'selected="selected"' : '' }>5년차
+                                    <option value="6년차" ${cDto.career=='6년차' ? 'selected="selected"' : '' }>6년차
+                                    <option value="7년차" ${cDto.career=='7년차' ? 'selected="selected"' : '' }>7년차
+                                    <option value="8년차 이상" ${cDto.career=='8년차 이상' ? 'selected="selected"' : '' }>8년차 이상
                                 </select>
                             </div>
                         </div>
@@ -163,15 +154,15 @@
                             <div class="col-4">
                                 <select class="form-select" aria-label="Default select example" id="position"
                                     name="position">
-                                    <option value="서버 개발자">서버 개발자</option>
-                                    <option value="백엔드 개발자">백엔드 개발자</option>
-                                    <option value="프론트엔드 개발자">프론트엔드 개발자</option>
-                                    <option value="안드로이드 개발자">안드로이드 개발자</option>
-                                    <option value="IOS 개발자">IOS 개발자</option>
-                                    <option value="풀스택 개발자">풀스택 개발자</option>
-                                    <option value="빅데이터 엔지니어">빅데이터 엔지니어</option>
-                                    <option value="임베디드 개발자">임베디드 개발자</option>
-                                    <option value="devops 개발자">devops 개발자</option>
+                                     <option value="서버 개발자" ${cDto.position=='서버 개발자' ? 'selected="selected"' : '' }>서버 개발자
+                                     <option value="백엔드 개발자" ${cDto.position=='백엔드 개발자' ? 'selected="selected"' : '' }>백엔드 개발자
+                                     <option value="프론트엔드 개발자" ${cDto.position=='프론트엔드 개발자' ? 'selected="selected"' : '' }>프론트엔드 개발자
+                                     <option value="안드로이드 개발자" ${cDto.position=='안드로이드 개발자' ? 'selected="selected"' : '' }>안드로이드 개발자
+                                     <option value="IOS 개발자" ${cDto.position=='IOS 개발자' ? 'selected="selected"' : '' }>IOS 개발자
+                                     <option value="풀스택 개발자" ${cDto.position=='풀스택 개발자' ? 'selected="selected"' : '' }>풀스택 개발자
+                                     <option value="빅데이터 엔지니어" ${cDto.position=='빅데이터 엔지니어' ? 'selected="selected"' : '' }>빅데이터 엔지니어
+                                     <option value="임베디드 개발자" ${cDto.position=='임베디드 개발자' ? 'selected="selected"' : '' }>임베디드 개발자
+                                     <option value="devops 개발자" ${cDto.position=='devops 개발자' ? 'selected="selected"' : '' }>devops 개발자
                                 </select>
                             </div>
                         </div>
@@ -182,16 +173,16 @@
                             <div class="col-4">
                                 <select class="form-select" aria-label="Default select example" id="address"
                                     name="address">
-                                    <option value="서울">서울</option>
-                                    <option value="경기도">경기도</option>
-                                    <option value="인천">인천</option>
-                                    <option value="부산">부산</option>
-                                    <option value="대구">대구</option>
-                                    <option value="대전">대전</option>
-                                    <option value="광주">광주</option>
-                                    <option value="제주">제주</option>
-                                    <option value="지역">지역</option>
-                                    <option value="지역 2">지역 2</option>
+                                    <option value="서울" ${cDto.address=='서울' ? 'selected="selected"' : '' }>서울
+                                    <option value="경기도" ${cDto.address=='경기도' ? 'selected="selected"' : '' }>경기도
+                                    <option value="인천" ${cDto.address=='인천' ? 'selected="selected"' : '' }>인천
+                                    <option value="부산" ${cDto.address=='부산' ? 'selected="selected"' : '' }>부산
+                                    <option value="대구" ${cDto.address=='대구' ? 'selected="selected"' : '' }>대구
+                                    <option value="대전" ${cDto.address=='대전' ? 'selected="selected"' : '' }>대전
+                                    <option value="광주" ${cDto.address=='광주' ? 'selected="selected"' : '' }>광주
+                                    <option value="제주" ${cDto.address=='제주' ? 'selected="selected"' : '' }>제주
+                                    <option value="지역" ${cDto.address=='지역' ? 'selected="selected"' : '' }>지역
+                                    <option value="지역 2" ${cDto.address=='지역 2' ? 'selected="selected"' : '' }>지역 2
                                 </select>
                             </div>
                         </div>
@@ -200,7 +191,8 @@
                                 <h5>마감일</h5>
                             </div>
                             <div class="col-4">
-                                <input type="date" class="form-control" id="endDate" name="endDate">
+                            
+                                <input type="date" class="form-control" id="endDate" name="endDate" value="${cDto.formatEndDate}">
                             </div>
                         </div>
                         <div class="d-flex my-2">
@@ -210,26 +202,36 @@
                             <div class="col-4">
                                 <select class="form-select" aria-label="Default select example" id="receipt"
                                     name="receipt">
-                                    <option value="홈페이지 접수">홈페이지 접수</option>
-                                    <option value="공고 접수">공고 접수</option>
+                                    <option value="홈페이지 접수" ${cDto.address=='홈페이지 접수' ? 'selected="selected"' : '' }>홈페이지 접수
+                                    <option value="공고 접수" ${cDto.address=='공고 접수' ? 'selected="selected"' : '' }>공고 접수
                                 </select>
                             </div>
                         </div>
                     </div>
 
                     <!-- 공고 조건 / 공고 내용 -->
-                    <div class="row my-3 my-border">
+                    <div class="row my-3 my-border" onlo>
 
-                        <h5>필요 기술 ( 최대 3개 )</h5>
+                        <h5>필요 기술 </h5>
+                               <%-- <c:forEach items="${cDto.skillList}" var="skill" begin="0" end="3">
+                                ${skill}
+                                </c:forEach></h4> --%>
                         <div id="my-table-body2">
                             <table class="my-table table table-bordered" style="background-color: white;">
+                            
                                 <tbody>
                                     <tr>
                                         <td>
                                             <div class="form-check text-center">
                                                 <label class="form-check-label">
+                                                
+                                                
                                                     <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="Java">Java
+                                                        value="Java" 
+                                                        <c:forEach items="${cDto.skillList}" var="skill">
+                                                        ${skill=='Java' ? 'checked="checked"' : '' }
+                                                        </c:forEach>
+                                                        >Java                                                
                                                 </label>
                                             </div>
                                         </td>
@@ -237,8 +239,11 @@
                                             <div class="form-check text-center">
                                                 <label class="form-check-label">
                                                     <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="JavaScript">
-                                                    JavaScript
+                                                        value="JavaScript" 
+                                                        <c:forEach items="${cDto.skillList}" var="skill">
+                                                        ${skill=='JavaScript' ? 'checked="checked"' : '' }
+                                                        </c:forEach>
+                                                        >JavaScript
                                                 </label>
                                             </div>
                                         </td>
@@ -246,7 +251,11 @@
                                             <div class="form-check text-center">
                                                 <label class="form-check-label">
                                                     <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="Spring"> Spring
+                                                        value="Spring"
+                                                        <c:forEach items="${cDto.skillList}" var="skill">
+                                                        ${skill=='Spring' ? 'checked="checked"' : '' }
+                                                        </c:forEach>
+                                                        > Spring
                                                 </label>
                                             </div>
                                         </td>
@@ -254,7 +263,11 @@
                                             <div class="form-check text-center">
                                                 <label class="form-check-label">
                                                     <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="HTML"> HTML
+                                                        value="HTML"
+                                                        <c:forEach items="${cDto.skillList}" var="skill">
+                                                        ${skill=='HTML' ? 'checked="checked"' : '' }
+                                                        </c:forEach>
+                                                        > HTML
                                                 </label>
                                             </div>
                                         </td>
@@ -262,7 +275,11 @@
                                             <div class="form-check text-center">
                                                 <label class="form-check-label">
                                                     <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="jQuery"> jQuery
+                                                        value="jQuery"
+                                                        <c:forEach items="${cDto.skillList}" var="skill">
+                                                        ${skill=='jQuery' ? 'checked="checked"' : '' }
+                                                        </c:forEach>
+                                                        > jQuery
                                                 </label>
                                             </div>
                                         </td>
@@ -272,7 +289,11 @@
                                             <div class="form-check text-center">
                                                 <label class="form-check-label">
                                                     <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="JSP"> JSP
+                                                        value="JSP"
+                                                        <c:forEach items="${cDto.skillList}" var="skill">
+                                                        ${skill=='JSP' ? 'checked="checked"' : '' }
+                                                        </c:forEach>
+                                                        > JSP
                                                 </label>
                                             </div>
                                         </td>
@@ -280,7 +301,11 @@
                                             <div class="form-check text-center">
                                                 <label class="form-check-label">
                                                     <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="Vue.js"> Vue.js
+                                                        value="Vue.js"
+                                                        <c:forEach items="${cDto.skillList}" var="skill">
+                                                        ${skill=='Vue.js' ? 'checked="checked"' : '' }
+                                                        </c:forEach>
+                                                        > Vue.js
                                                 </label>
                                             </div>
                                         </td>
@@ -288,7 +313,11 @@
                                             <div class="form-check text-center">
                                                 <label class="form-check-label">
                                                     <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="Oracle"> Oracle
+                                                        value="Oracle"
+                                                        <c:forEach items="${cDto.skillList}" var="skill">
+                                                        ${skill=='Oracle' ? 'checked="checked"' : '' }
+                                                        </c:forEach>
+                                                        > Oracle
                                                 </label>
                                             </div>
                                         </td>
@@ -296,7 +325,11 @@
                                             <div class="form-check text-center">
                                                 <label class="form-check-label">
                                                     <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="MySQL"> MySQL
+                                                        value="MySQL"
+                                                        <c:forEach items="${cDto.skillList}" var="skill">
+                                                        ${skill=='MySQL' ? 'checked="checked"' : '' }
+                                                        </c:forEach>
+                                                        > MySQL
                                                 </label>
                                             </div>
                                         </td>
@@ -304,12 +337,18 @@
                                             <div class="form-check text-center">
                                                 <label class="form-check-label">
                                                     <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="React"> React
+                                                        value="React"
+                                                        <c:forEach items="${cDto.skillList}" var="skill">
+                                                        ${skill=='React' ? 'checked="checked"' : '' }
+                                                        </c:forEach>
+                                                        > React
                                                 </label>
                                             </div>
                                         </td>
                                     </tr>
                                 </tbody>
+                                <%-- ${skill} --%>
+                                
                             </table>
                         </div>
                     </div>
@@ -329,9 +368,9 @@
             <div class="width-r" id="jobs-render">
                 <div class="view-fix d-grid view-right2 p-4" id="jobs-remove">
                     <!-- 뷰포트 -->
-                    <div class="align-self-end">
+                    <%-- <div class="align-self-end">
                         <button type="button" class="btn btn-success w-100" onclick="">미리보기</button>
-                    </div>
+                    </div> --%>
                     <div class="align-self-end">
                         <button type="button" class="btn btn-success w-100"
                             onclick="saveTemp(`${compSession.compId}`,`${cDto.jobsId}`)">임시저장</button>
@@ -352,7 +391,8 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h4 class="modal-title">회사 정보 수정</h4>
+                    <h4 class="modal-title">회사 정보 수정
+
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
@@ -378,13 +418,13 @@
             $('#homepage').text($('#update-homepage').val());
         }
 
-        $('input:checkbox[name=skill]').click(function () {
-            let count = $('input:checkbox[name=skill]:checked').length;
-            if (count > 3) {
-                alert('기술은 3개까지 선택 가능')
-                $(this).prop('checked', false);
-            }
-        });
+        // $('input:checkbox[name=skill]').click(function () {
+        //     let count = $('input:checkbox[name=skill]:checked').length;
+        //     if (count > 3) {
+        //         alert('기술은 3개까지 선택 가능')
+        //         $(this).prop('checked', false);
+        //     }
+        // });
 
         // function test(){
 
@@ -410,6 +450,10 @@
             })
         });
 
+        window.onload=function(){
+            skillValues = getCheckedValues("skill");
+        }
+
         let jobsId;
         let compId;
         function saveTemp(id, jobs) {
@@ -429,7 +473,7 @@
                 address: $("#address").val(),
                 endDate: $("#endDate").val(),
                 receipt: $("#receipt").val(),
-                skill: skillValues,
+                skillList: skillValues,
                 compId: id,
                 jobsId: jobs
             };
@@ -445,6 +489,7 @@
                     dataType: "json"
                 }).done((res) => {
                     jobsId = res.data;
+                    alert(res.msg);
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
                 });
@@ -460,6 +505,7 @@
                 }).done((res) => {
                     jobsId = res.data;
                     changeBtn();
+                    alert(res.msg);
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
                 });
@@ -505,7 +551,7 @@
                 address: $("#address").val(),
                 endDate: $("#endDate").val(),
                 receipt: $("#receipt").val(),
-                skill: skillValues,
+                skillList: skillValues,
                 compId: id,
                 jobsId: jobs
             };
@@ -521,7 +567,7 @@
                     dataType: "json"
                 }).done((res) => {
                     jobsId = res.data;
-                    alert('등록 완료 !');
+                    alert(res.msg);
                     location.href="/comp/comphome";
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
@@ -537,7 +583,7 @@
                     dataType: "json"
                 }).done((res) => {
                     jobsId = res.data;
-                    alert('등록 완료 !');
+                    alert(res.msg);
                     location.href="/comp/comphome";
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
