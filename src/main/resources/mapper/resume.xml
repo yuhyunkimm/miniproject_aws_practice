@@ -41,12 +41,11 @@
     </select>
 
     <select id="findAllResumebyState" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeReadRespDto">
-        SELECT u.photo, u.name, r.career, u.address, rs.skill, r.state, u.user_id, r.resume_id
+        SELECT  r.resume_id, ROW_NUMBER()OVER(partition by u.user_id order by u.user_id ) num , 
+            u.user_id, u.photo, u.name, u.address,r.title, r.career, r.state
             FROM RESUME_TB r
             join user_tb u
             on r.user_id = u.user_id
-            join resume_skill_tb rs
-            on r.resume_id = rs.resume_id
             where r.state = 1
     </select>
 

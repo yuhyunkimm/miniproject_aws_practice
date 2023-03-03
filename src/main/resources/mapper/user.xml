@@ -13,7 +13,14 @@
     </select>
 
     <select id="findByUserId" resultType="shop.mtcoding.project.dto.user.UserResp$UserDataRespDto">
-        select name,birth, tel, photo, address from user_tb where user_id = #{userId}
+        select name,
+               birth,
+               tel,
+               photo,
+               address,
+               email
+          from user_tb 
+          where user_id = #{userId}
     </select>
 
 

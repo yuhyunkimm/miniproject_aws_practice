@@ -106,6 +106,7 @@ public class ResumeResp {
         private Integer userId;
         private String photo;
         private String name;
+        private String title;
         private String address;
         private String career;
         private Integer state;

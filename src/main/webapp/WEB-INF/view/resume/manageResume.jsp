@@ -50,11 +50,16 @@
                                                     <h6 class="card-subtitle mb-2 text-muted">${rDto.career}</h6>
                                                 </div>
                                                 <div class="m-2" style="float: left;">
-                                                    <h6 class="card-subtitle mb-2 text-muted">${rDto.skillList}</h6>
-                                                </div>
-                                                <div class="m-2" style="float: left;">
                                                     <h6 class="card-subtitle mb-2 text-muted">${rDto.address}</h6>
                                                 </div>
+                                                <div style="float: left; d-flex">
+                                                    <c:forEach items="${rDto.skillList}" var="skill">
+                                                        <span class="badge bg-secondary">${skill}</span>
+
+                                                    </c:forEach>
+                                                </div>
+
+
                                                 <div style="float: right;" pt-2>
                                                     <button type="button" class="btn btn-success btn-sm"
                                                         onclick="location.href=`/user/resume/`+${rDto.resumeId}+`/update`">이력서

@@ -35,25 +35,20 @@
                       </div>
                     </div>
                     <div class="col-7 pt-3">
-                      <div class="mb-2" id="compName">
+                      <div class="mb-2">
                         ${rDto.name}
-                        <input type="hidden" id="compName1" value="${rDto.name}">
                       </div>
-                      <div class="mb-2" id="compName">
+                      <div class="mb-2">
                         ${rDto.tel}
-                        <input type="hidden" id="compName1" value="${rDto.tel}">
                       </div>
-                      <div class="mb-2" id="compName">
+                      <div class="mb-2">
                         ${rDto.email}
-                        <input type="hidden" id="compName1" value="${rDto.email}">
                       </div>
-                      <div class="mb-2" id="representativeName">
+                      <div class="mb-2">
                         ${rDto.address}
-                        <input type="hidden" id="representativeName1" value="${rDto.address}">
                       </div>
-                      <div class="mb-2" id="homepage">
+                      <div class="mb-2">
                         ${rDto.birth}
-                        <input type="hidden" id="homepage1" value="${rDto.birth}">
                       </div>
                     </div>
                   </div>
