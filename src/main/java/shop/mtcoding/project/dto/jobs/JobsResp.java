@@ -53,11 +53,13 @@ public class JobsResp {
         private String content;
         private String career;
         private String education;
-        // private List<String> skillList;
+        private List<String> skillList;
         private String position;
         private String address;
         private String homepage;
         private Timestamp endDate;
+        private String formatEndDate;
+        private Long leftTime;
         private String representativeName;
         private Integer userScrapId;
     }

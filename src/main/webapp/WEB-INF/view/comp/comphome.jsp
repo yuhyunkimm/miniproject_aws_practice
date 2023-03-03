@@ -48,7 +48,8 @@
                                         <td colspan=2>${jDto.title}</td>
                                         <td>${jDto.position}</td>
                                         <td><button type="button" class="btn btn-success btn-sm" 
-                                        onclick="window.open('/jobs/${jDto.jobsId}', '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">상세보기</button></td>
+                                        onclick="location.href='/jobs/${jDto.jobsId}'">상세보기</button>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </c:forEach>

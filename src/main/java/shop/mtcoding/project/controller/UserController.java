@@ -85,6 +85,36 @@ public class UserController {
 
     @PostMapping("/user/login")
     public String login(UserLoginReqDto userloginReqDto, HttpServletResponse httpServletResponse) {
+        System.out.println("테스트 : "+ userloginReqDto.toString());
+        if (userloginReqDto.getEmail() == null || userloginReqDto.getEmail().isEmpty()) {
+            throw new CustomException("email을 작성해주세요");
+        }
+        if (userloginReqDto.getPassword() == null || userloginReqDto.getPassword().isEmpty()) {
+            throw new CustomException("password 작성해주세요");
+        }
+        User principal = userService.로그인(userloginReqDto);
+        if (principal == null) {
+            return "redirect:/loginForm";
+        } else {
+            if (userloginReqDto.getRememberEmail() == null) {
+                userloginReqDto.setRememberEmail("");
+            }
+            if (userloginReqDto.getRememberEmail().equals("on")) {
+                Cookie cookie = new Cookie("rememberEmail", userloginReqDto.getEmail());
+                httpServletResponse.addCookie(cookie);
+            } else {
+                Cookie cookie = new Cookie("remember", "");
+                cookie.setMaxAge(0);
+                httpServletResponse.addCookie(cookie);
+            }
+            session.setAttribute("principal", principal);
+            return "redirect:/";
+        }
+    }
+
+    @PostMapping("/user/login2")
+    public String login2(@RequestBody UserLoginReqDto userloginReqDto, HttpServletResponse httpServletResponse) {
+        System.out.println("테스트 : "+ userloginReqDto.toString());
         if (userloginReqDto.getEmail() == null || userloginReqDto.getEmail().isEmpty()) {
             throw new CustomException("email을 작성해주세요");
         }

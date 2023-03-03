@@ -1,5 +1,6 @@
 package shop.mtcoding.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.project.dto.common.ResponseDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeUpdateReqDto;
@@ -23,9 +23,11 @@ import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeDetailRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeManageRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeSaveRespDto;
+import shop.mtcoding.project.dto.skill.ResumeSkillResp.ResumeSkillRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.ResumeRepository;
+import shop.mtcoding.project.model.SkillRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.service.ResumeService;
 import shop.mtcoding.project.util.MockSession;
@@ -38,6 +40,9 @@ public class ResumeController {
 
     @Autowired
     private ResumeRepository resumeRepository;
+
+    @Autowired
+    private SkillRepository skillRepository;
 
     @Autowired
     private HttpSession session;
@@ -147,6 +152,11 @@ public class ResumeController {
     @GetMapping("/resume/{id}")
     public String resumeDetail(@PathVariable Integer id, Model model) {
         ResumeDetailRespDto rDto = resumeRepository.findDetailPublicResumebyById(id);
+        List<String> insertList = new ArrayList<>();
+            for (ResumeSkillRespDto skill : skillRepository.findByResumeSkill(rDto.getResumeId())) {
+                insertList.add(skill.getSkill());
+                rDto.setSkillList(insertList);
+            }
         model.addAttribute("rDto", rDto);
         return "/resume/resumeDetail";
     }

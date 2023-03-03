@@ -1,4 +1,4 @@
-package shop.mtcoding.project;
+package shop.mtcoding.project.utilTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -22,188 +22,288 @@
             padding-top: 0;
             margin-top: 0;
         }
-    
+
         .selected {
             background-color: #c5f1c5;
         }
+        /* .login-model{
+            height: 25em;
+        } */
     </style>
 </head>
 
 <body>
-    <div >
-    <div class="header">
-        <div class="progress-container">
-            <div class="progress-bar progress-bar-striped progress-bar-animated"></div>
-        </div>
-    </div>
-    
-    <div class="mx-auto width-53">
-    <div class="container">
-        <div class="row">
-            <div class="col-9 my-border my-5">
-                <header>
-                    <div class="view-up d-flex py-0 my-0">
-                        <div class="  my-auto me-3">
-                            <img src="${jDto.photo}" alt="" srcset="" style="height: 5em;">
-                        </div>
-                        <div class=" fs-5  my-auto me-5">
-                            ${jDto.compName}
-                        </div>
-                        <div class=" fs-4  my-auto">
-                            ${jDto.title}
-                        </div>
-                    </div>
-                </header>
-                <div class="">
-                    <!-- 상세 공고 위치 -->
-                    <div class="my-4">
-                        <div class="row mb-3">
-                            <!-- 회사정보 -->
-                            <div class="col-3">
-                                <div class="">
-                                    <span class="me-5">
-                                        경력
-                                    </span>
-                                    <span class="me-5">
-                                        학력
-                                    </span>
-                                    <span class="me-5">
-                                        개발직무
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="">
-                                    <span>
-                                        ${jDto.career}
-                                    </span>
-                                    <span>
-                                        ${jDto.education}
-                                    </span>
-                                    <span>
-                                        ${jDto.position}
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div>필요기술</div>
-                                <div>근무지역</div>
-                            </div>
-                            <div class="col-4">
-                                <div>
-                                    <%-- ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3} --%>
-                                </div>
-                                <div>
-                                    ${jDto.address}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="relative">
-                            ${jDto.content}
-                            <img class="w-100"
-                                src="https://www.saraminimage.co.kr/recruit/bbs_recruit7/35_bm_img_230217.png">
-                        </div>
-                        <div class="fs-4 mt-5">
-                            접수방법
-                        </div>
-
-                        <div class="border row">
-                            <!-- 남은 날짜 -->
-                            <div class="col-4">
-                                <span class="fs-1">d-day 계산.. ${jDto.endDate}</span>
-                            </div>
-                            <div class="col-8">
-                                홈페이지 지원 ${jDto.homepage}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div>
+        <div class="header">
+            <div class="progress-container">
+                <div class="progress-bar progress-bar-striped progress-bar-animated"></div>
             </div>
+        </div>
 
-            <div class="col-3">
-                <div class="rButton d-grid view-right p-4">
-                    <!-- 뷰포트 -->
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            ${jDto.compName}
-                        </div>
-                        <c:choose>
-                            <c:when test="${principal != null}">
-                                <div id="scrap-${jDto.jobsId}-render">
-                                    <div id="scrap-${jDto.jobsId}-remove">
-                                        <c:choose>
-                                            <c:when test="${jDto.userScrapId > 0}">
-                                                <i id="scrap-${jDto.jobsId}"
-                                                    class="fa-solid on-Clicked fa-star my-cursor"
-                                                    onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
-                                            </c:when>
-
-                                            <c:otherwise>
-                                                <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star my-cursor"
-                                                    onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
-                                            </c:otherwise>
-                                        </c:choose>
+        <div class="mx-auto width-53">
+            <div class="container">
+                <div class="row">
+                    <div class="col-9 my-border my-5">
+                        <header>
+                            <div class="view-up d-flex py-0 my-0">
+                                <div class="  my-auto me-3">
+                                    <img src="${jDto.photo}" alt="" srcset="" style="height: 5em;">
+                                </div>
+                                <div class=" fs-5  my-auto me-5">
+                                    ${jDto.compName}
+                                </div>
+                                <div class=" fs-4  my-auto">
+                                    ${jDto.title}
+                                </div>
+                            </div>
+                        </header>
+                        <div class="">
+                            <!-- 상세 공고 위치 -->
+                            <div class="my-4">
+                                <div class="row mb-3">
+                                    <!-- 회사정보 -->
+                                    <div class="col-3">
+                                        <div class="">
+                                            <span class="me-5">
+                                                경력
+                                            </span>
+                                            <span class="me-5">
+                                                학력
+                                            </span>
+                                            <span class="me-5">
+                                                개발직무
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="">
+                                            <span>
+                                                ${jDto.career}
+                                            </span>
+                                            <span>
+                                                ${jDto.education}
+                                            </span>
+                                            <span>
+                                                ${jDto.position}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div>필요기술</div>
+                                        <div>근무지역</div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div>
+                                            <%-- ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3} --%>
+                                        </div>
+                                        <div>
+                                            ${jDto.address}
+                                        </div>
                                     </div>
                                 </div>
-                            </c:when>
-
-                            <c:otherwise>
-                                <div>
-                                    <a href="/user/login">
-                                        <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star"></i>
-                                    </a>
+                                <div class="relative">
+                                    ${jDto.content}
+                                    <img class="w-100"
+                                        src="https://www.saraminimage.co.kr/recruit/bbs_recruit7/35_bm_img_230217.png">
                                 </div>
-                            </c:otherwise>
-                        </c:choose>
+                                <div class="fs-4 mt-5">
+                                    접수방법
+                                </div>
+
+                                <div class="border row">
+                                    <!-- 남은 날짜 -->
+                                    <div class="col-4">
+                                        <span class="fs-1">d-day 계산.. ${jDto.endDate}</span>
+                                    </div>
+                                    <div class="col-8">
+                                        홈페이지 지원 ${jDto.homepage}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="my-1 fs-5">
-                        ${jDto.title}
+
+                    <div class="col-3">
+                        <div class="rButton d-grid view-right p-4">
+                            <!-- 뷰포트 -->
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    ${jDto.compName}
+                                </div>
+                                <c:choose>
+                                    <c:when test="${principal != null}">
+                                        <div id="scrap-${jDto.jobsId}-render">
+                                            <div id="scrap-${jDto.jobsId}-remove">
+                                                <c:choose>
+                                                    <c:when test="${jDto.userScrapId > 0}">
+                                                        <i id="scrap-${jDto.jobsId}"
+                                                            class="fa-solid on-Clicked fa-star my-cursor"
+                                                            onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
+                                                    </c:when>
+
+                                                    <c:otherwise>
+                                                        <i id="scrap-${jDto.jobsId}"
+                                                            class="fa-regular fa-star my-cursor"
+                                                            onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </div>
+                                        </div>
+                                    </c:when>
+
+                                    <c:otherwise>
+                                        <div>
+                                            <a href="/user/login">
+                                                <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star"></i>
+                                            </a>
+                                        </div>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                            <div class="my-1 fs-5">
+                                ${jDto.title}
+                            </div>
+                            <div class="align-self-end" id="apply-render">
+                                <div id="apply-btn">
+                                    <c:choose>
+
+                                        <c:when test="${compSession == null}">
+                                            <button type="button" class="btn btn-success w-100" <c:choose>
+                                                <c:when test="${principal == null}">
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#loginModal">지원하기
+                                                </c:when>
+
+                                                <c:otherwise>
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#myModal"
+                                                    onclick="requestResume()">지원하기
+                                                </c:otherwise>
+                                    </c:choose>
+
+                                    </button>
+                                    </c:when>
+
+                                    <c:otherwise>
+                                        <button type="button" class="btn btn-danger w-100"
+                                            onclick="location.href='/jobs/${jDto.jobsId}/update'">수정하기</button>
+                                    </c:otherwise>
+                                    </c:choose>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="align-self-end" id="apply-render">
-                        <div id="apply-btn">
-                            <c:choose>
-                               <c:when test="${compSession == null}">
-                               <button type="button" class="btn btn-success w-100" data-bs-toggle="modal"
-                                data-bs-target="#myModal" onclick="requestResume()">지원하기</button>
-                               </c:when>
-                            
-                               <c:otherwise>
-                               <button type="button" class="btn btn-secondary w-100">지원하기</button>
-                               </c:otherwise>
-                            </c:choose>
-                            
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <!-- modal-sm modal-lg modal-xl 모달 사이즈 -->
+                <!-- modal-dialog-centered 화면 가운데 -->
+                <!-- modal-dialog-scrollable 스크롤 기능 -->
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">이력서 선택</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="render-resume">
+
+                        </div>
+                        <button type="button" class="btn btn-success mt-2" style="float: right;"
+                            onclick="apply(`${jDto.jobsId}`,`${principal.userId}`)" data-bs-dismiss="modal">지원
+                            하기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal" id="loginModal">
+            <div class="modal-dialog">
+                <!-- modal-sm modal-lg modal-xl 모달 사이즈 -->
+                <!-- modal-dialog-centered 화면 가운데 -->
+                <!-- modal-dialog-scrollable 스크롤 기능 -->
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body login-model">
+                        <div>
+                                <div class="container all-form border-3 mx-auto my-auto">
+                                    <div class="card-header d-flex justify-content-around my-4">
+                                        <div class="fs-4">
+                                           로그인
+                                        </div>
+                                    </div>
+                
+                                    <form >
+                                        <div class="d-flex form-group mb-2">
+                                            <input type="email" name="email" class="form-control" placeholder="Enter email" id="email"
+                                                value="${cookie.rememberEmail.value}">
+                                        </div>
+                
+                                        <div class="form-group mb-2">
+                                            <input type="password" name="password" class="form-control" placeholder="Enter password"
+                                                id="password">
+                                        </div>
+                
+                                        <div class="box mb-2">
+                                            <span class="input-wrap mb-2">
+                                                <input type="checkbox" id="rememberEmail" name="rememberEmail">
+                                                이메일을 기억 하시겠습니까?
+                                            </span>
+                                        </div>
+                
+                                        <!-- <div class="d-flex justify-content">
+                                            <div>
+                                                <a href="/" class="emailSearch" id="emailSearch">이메일 찾기</a>
+                                            </div>
+                                            <div>
+                                                <a href="/" class="pwSearch" id="pwSearch">비밀번호 찾기</a>
+                                            </div>
+                                        </div> -->
+                
+                                        <div class="d-grid gap-2 mb-2">
+                                                <button class="btn btn-primary" type="button" 
+                                                onclick="submitLogin()">로그인 </button>
+                                        </div>
+                
+                                        <hr>
+                                        <div class="d-flex justify-content-around ">
+                                            <div>
+                                                <a href="/" class="emailSearch" id="emailSearch">이용 약관</a>
+                                            </div>
+                                            <div>
+                                                <a href="/" class="pwSearch" id="pwSearch">개인정보 처리방법</a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-        
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <!-- modal-sm modal-lg modal-xl 모달 사이즈 -->
-            <!-- modal-dialog-centered 화면 가운데 -->
-            <!-- modal-dialog-scrollable 스크롤 기능 -->
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h4 class="modal-title">이력서 선택</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="render-resume">
 
 
-                    </div>
-                    <button type="button" class="btn btn-success mt-2" style="float: right;"
-                        onclick="apply(`${jDto.jobsId}`,`${principal.userId}`)" data-bs-dismiss="modal">지원 하기</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
-</div>
     <script>
         let resumeId1;
         let jobsId;
@@ -279,6 +379,29 @@
         window.onscroll = function () {
             progressBar()
         };
+
+        function submitLogin(){
+            let data = {
+                email: $('#email').val(),
+                password: $('#password').val(),
+                rememberEmail: $('#rememberEmail').val()
+            }
+
+            $.ajax({
+                type: "post",
+                url: "/user/login2",
+                data: JSON.stringify(data),
+                headers:{
+                    "content-type":"application/json; charset=utf-8"
+                },
+                dataType:"json"
+            }).done((res) => {
+                
+            }).fail((err) => {
+            
+            });
+        }
+
         function progressBar() {
             var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -346,13 +469,13 @@
                                         <h6 class="card-subtitle mb-2 text-muted">`+ rDto.career + `</h6>
                                     </div>
                                     <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle mb-2 text-muted">`+  + `</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">`+ + `</h6>
                                     </div>
                                     <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle mb-2 text-muted">`+  + `</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">`+ + `</h6>
                                     </div>
                                     <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle mb-2 text-muted">`+  + `</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">`+ + `</h6>
                                     </div>
                                 </div>
                             </div>
