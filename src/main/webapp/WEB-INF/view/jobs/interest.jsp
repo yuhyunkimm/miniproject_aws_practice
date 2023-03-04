@@ -2,13 +2,13 @@
 <%@ include file="../layout/header.jsp" %>
 <div class="mx-auto width-53 top-80">
     <div class="d-flex">
-        <c:forEach items="${uDto} " var="Dto">
+        <c:forEach items="${sDto} " var="Dto">
             <div class="me-3"> ${Dto} </div>
         </c:forEach>
         에 매칭되는 공고 리스트 입니다.
     </div>
     <div class="d-flex flex-wrap my-3 info-card">
-        <c:forEach items="${fourMatchDto}" var="jDto">
+        <%-- <c:forEach items="${fourMatchDto}" var="jDto">
             <div class="col-4 px-2 py-2 remove-card">
                 <a href="/jobs/${jDto.jobsId}"
                     onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
@@ -25,7 +25,7 @@
                                 ${jDto.title}
                             </div>
                             <div>
-                                <%-- ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3} --%>
+                                스킬리스트
                             </div>
                             <div>
                                 ${jDto.career} ${jDto.education} ${jDto.address}
@@ -87,7 +87,7 @@
                                 ${jDto.title}
                             </div>
                             <div>
-                                <%-- ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3} --%>
+                                스킬리스트
                             </div>
                             <div>
                                 ${jDto.career} ${jDto.education} ${jDto.address}
@@ -149,7 +149,7 @@
                                 ${jDto.title}
                             </div>
                             <div>
-                                <%-- ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3} --%>
+                                스킬리스트
                             </div>
                             <div>
                                 ${jDto.career} ${jDto.education} ${jDto.address}
@@ -211,7 +211,7 @@
                                 ${jDto.title}
                             </div>
                             <div>
-                                <%-- ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3} --%>
+                               스킬리스트
                             </div>
                             <div>
                                 ${jDto.career} ${jDto.education} ${jDto.address}
@@ -256,7 +256,7 @@
                     </div>
                
             </div>
-        </c:forEach>
+        </c:forEach> --%>
     </div>
 </div>
 <script>

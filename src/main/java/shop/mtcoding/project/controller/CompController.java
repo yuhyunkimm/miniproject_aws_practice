@@ -250,12 +250,7 @@ public class CompController {
             
         // }
         // model.addAttribute("compSkillDto", set);
-        // List<ResumeRecommendRespDto> recommendResumeList = resumeRepository.findAllResumebyPublic();
-        // List<ResumeRecommendRespDto> threeMatchDto = new ArrayList<>();
-        // List<ResumeRecommendRespDto> twoMatchDto = new ArrayList<>();
-        // List<ResumeRecommendRespDto> oneMatchDto = new ArrayList<>();
-        // List<ResumeRecommendRespDto> recommendList = new ArrayList<>();
-        // for (ResumeRecommendRespDto rcPS : recommendResumeList) {
+
         //     if (set.contains(rcPS.getSkillName1()) && set.contains(rcPS.getSkillName2())
         //             && set.contains(rcPS.getSkillName3())) {
         //         threeMatchDto.add(rcPS);

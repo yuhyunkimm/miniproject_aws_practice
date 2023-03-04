@@ -8,9 +8,9 @@ import org.apache.ibatis.annotations.Param;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeUpdateReqDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeDetailRespDto;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeIdRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeManageRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeReadRespDto;
-import shop.mtcoding.project.dto.resume.ResumeResp.ResumeRecommendRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeSaveRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeUpdateRespDto;
 
@@ -20,15 +20,13 @@ public interface ResumeRepository {
 
         public ResumeSaveRespDto findById(Integer resumeId);
 
+        public List<ResumeIdRespDto> findResumeIdByUserId(Integer userId);
+
         public ResumeUpdateRespDto findUpdateById(Integer resumeId);
 
         public Resume findByResumeId(Integer resumeId);
 
-        public List<ResumeManageRespDto> findAllByUserId();
-
-        public List<ResumeManageRespDto> findAllWithUserById(Integer userId);
-
-        public List<ResumeRecommendRespDto> findAllResumebyPublic();
+        public List<ResumeManageRespDto> findAllByUserId(Integer userId);
 
         public List<ResumeReadRespDto> findAllResumebyState();
 

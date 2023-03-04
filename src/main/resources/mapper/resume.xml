@@ -7,11 +7,13 @@
     <select id="findAll" resultType="shop.mtcoding.project.model.Resume">
         select * from resume_tb
     </select>
-
     <select id="findByResumeId" resultType="shop.mtcoding.project.model.Resume">
         select * from resume_tb where resume_id = #{resumeId}
     </select>
 
+    <select id="findResumeIdByUserId" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeIdRespDto">
+        select resume_id from resume_tb where user_id = #{userId}
+    </select>
 
     <select id="findUpdateById" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeUpdateRespDto">
         select r.RESUME_ID, r.USER_ID, r.TITLE, r.CONTENT, r.EDUCATION, r.CAREER, r.LINK, r.STATE, r.CREATED_AT, u.photo, u.name, u.tel, u.email, u.address, u.birth from resume_tb r 
@@ -27,12 +29,7 @@
             where r.resume_id = #{resumeId}
     </select>
     
-    <!-- <select id="findAllByUserId" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeManageRespDto">
-        select resume_id, title, education, career,
-        from resume_tb
-    </select> -->
-
-    <select id="findAllWithUserById" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeManageRespDto">
+    <select id="findAllByUserId" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeManageRespDto">
         select r.resume_id, r.title, r.education, r.career, u.address
         from resume_tb r
         join user_tb u
@@ -42,20 +39,13 @@
 
     <select id="findAllResumebyState" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeReadRespDto">
         SELECT  r.resume_id, ROW_NUMBER()OVER(partition by u.user_id order by u.user_id ) num , 
-            u.user_id, u.photo, u.name, u.address,r.title, r.career, r.state
+            u.user_id, u.photo, u.name, u.birth, r.education, u.address,r.title, r.career, r.state
             FROM RESUME_TB r
             join user_tb u
             on r.user_id = u.user_id
             where r.state = 1
     </select>
 
-    <select id="findAllResumebyPublic" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeRecommendRespDto">
-        SELECT r.resume_id, u.photo, u.name, r.title, u.birth, r.education, r.career, u.address
-        FROM USER_TB u 
-        join resume_tb r
-        on u.user_id = r.user_id
-        where r.state = 1
-    </select>
 
     <select id="findDetailPublicResumebyById" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeDetailRespDto">
         SELECT distinct r.resume_id, u.photo, u.name, r.title, u.birth, r.education, r.career, u.address, r.content, r.link,
@@ -87,7 +77,4 @@
     <delete id="deleteById">
         delete from resume_tb where resume_id = #{resumeId}
     </delete>
-
-
-
 </mapper>

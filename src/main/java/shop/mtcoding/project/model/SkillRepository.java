@@ -12,7 +12,7 @@ import shop.mtcoding.project.dto.skill.ResumeSkillResp.ResumeSkillRespDto;
 public interface SkillRepository {
     public void findAll();
 
-    public List<ResumeSkill> findByResumeId(Integer resumeId);
+    // public List<ResumeSkill> findByResumeId(Integer resumeId);
 
     public List<RequiredSkillWriteReqDto> findByJobsSkill(Integer jobsId);
 

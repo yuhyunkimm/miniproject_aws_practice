@@ -11,17 +11,8 @@ public class ResumeResp {
 
     @Getter
     @Setter
-    @ToString
-    public static class ResumeRecommendRespDto {
+    public static class ResumeIdRespDto{
         private Integer resumeId;
-        private String photo;
-        private String name;
-        private String title;
-        private String birth;
-        private String education;
-        private String career;
-        private List<String> skillList;
-        private String address;
     }
 
     @Getter

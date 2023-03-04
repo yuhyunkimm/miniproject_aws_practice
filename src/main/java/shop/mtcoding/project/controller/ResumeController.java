@@ -71,7 +71,7 @@ public class ResumeController {
         if (principal == null) {
             throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
-        List<ResumeManageRespDto> rLists = resumeRepository.findAllWithUserById(principal.getUserId());
+        List<ResumeManageRespDto> rLists = resumeRepository.findAllByUserId(principal.getUserId());
         for (ResumeManageRespDto rList : rLists) {
             List<String> insertList = new ArrayList<>();
             for (ResumeSkillRespDto skill : skillRepository.findByResumeSkill(rList.getResumeId())) {
@@ -91,7 +91,7 @@ public class ResumeController {
     public ResponseEntity<?> requestResume(Model model) {
         // MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
-        List<ResumeManageRespDto> rDtos = resumeRepository.findAllWithUserById(principal.getUserId());
+        List<ResumeManageRespDto> rDtos = resumeRepository.findAllByUserId(principal.getUserId());
         return new ResponseEntity<>(new ResponseDto<>(1, "이력서 불러오기 성공", rDtos), HttpStatus.OK);
     }
 

@@ -13,16 +13,10 @@
     </select>
 
     <select id="findByUserId" resultType="shop.mtcoding.project.dto.user.UserResp$UserDataRespDto">
-        select name,
-               birth,
-               tel,
-               photo,
-               address,
-               email
+        select user_id, name, birth, tel, photo, address, email
           from user_tb 
           where user_id = #{userId}
     </select>
-
 
     <select id="findByUserEmail" resultType="shop.mtcoding.project.model.User">
         select * from user_tb where email = #{email}
@@ -34,15 +28,6 @@
 
     <select id="findByUseridAndPassword" resultType="shop.mtcoding.project.model.User">
         select * from user_tb where user_id = #{userId} and password = #{password}
-    </select>
-
-    <select id="findByUserSkillAndInterest" resultType="shop.mtcoding.project.dto.user.UserResp$UserSkillAndInterestDto">
-        SELECT s.skill_name1, s.skill_name2, s.skill_name3, i.interest_ct1, i.interest_ct2, i.interest_ct3 
-            FROM USER_TB u 
-            JOIN interest_tb i ON u.user_id = i.user_id
-            JOIN user_skill_tb s ON u.user_id = s.user_id
-            WHERE u.user_id = #{id}
-
     </select>
 
     <insert id="insert">
@@ -65,4 +50,3 @@
     </delete>
 </mapper>
    
-

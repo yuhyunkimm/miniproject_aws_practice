@@ -1,7 +1,9 @@
 package shop.mtcoding.project.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,25 +20,31 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import shop.mtcoding.project.dto.common.ResponseDto;
+import shop.mtcoding.project.dto.comp.CompResp.CompWriteJobsRespDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsCheckBoxReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsSearchReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsUpdateReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsWriteReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsDetailRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsMainRespDto;
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsMatchRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSuggestRespDto;
-import shop.mtcoding.project.dto.jobs.JobsResp.JobsWriteRespDto;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeIdRespDto;
 import shop.mtcoding.project.dto.skill.RequiredSkillReq.RequiredSkillWriteReqDto;
+import shop.mtcoding.project.dto.skill.ResumeSkillResp.ResumeSkillRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.CompRepository;
 import shop.mtcoding.project.model.JobsRepository;
+import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.SkillRepository;
 import shop.mtcoding.project.model.User;
+import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.service.JobsService;
 import shop.mtcoding.project.util.DateUtil;
+import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class JobsController {
@@ -49,7 +57,13 @@ public class JobsController {
 
     @Autowired
     private SkillRepository skillRepository;
+    
+    @Autowired
+    private UserRepository userRepository;
 
+    @Autowired
+    private ResumeRepository resumeRepository;
+    
     @Autowired
     private JobsService jobsService;
 
@@ -113,7 +127,7 @@ public class JobsController {
     public String writeJobs(Model model) {
         // MockSession.mockComp(session);
         Comp compSesseion = (Comp) session.getAttribute("compSession");
-        JobsWriteRespDto cDto = compRepository.findById(compSesseion.getCompId());
+        CompWriteJobsRespDto cDto = compRepository.findByIdToJobs(compSesseion.getCompId());
         if (cDto == null) {
             throw new CustomException("회사정보가 없습니다.");
         }
@@ -159,80 +173,64 @@ public class JobsController {
         return new ResponseEntity<>(new ResponseDto<>(1, "검색 성공", jDtos.size()), HttpStatus.OK);
     }
 
-    // @GetMapping("/jobs/interest")
-    // public String interest(Model model) {
-    //     MockSession.mockUser(session);
-    //     User principal = (User) session.getAttribute("principal");
-    //     UserSkillAndInterestDto usi = userRepository.findByUserSkillAndInterest(principal.getUserId());
-    //     List<String> insertList = Arrays.asList(usi.getSkillName1(), usi.getSkillName2(), usi.getSkillName3(),
-    //             usi.getInterestCt1(), usi.getInterestCt2(), usi.getInterestCt3());
-    //     Set<String> set = new HashSet<>(insertList);
-    //     List<String> matchingList = new ArrayList<>(set);
-    //     model.addAttribute("uDto", matchingList);
+    @GetMapping("/jobs/interest")
+    public String interest(Model model) {
+        MockSession.mockUser(session);
+        User principal = (User) session.getAttribute("principal");
 
-    //     List<JobsSkillRespDto> jsList = jobsRepository.findAllByJobsAndSkill(principal.getUserId());
-    //     List<JobsSkillRespDto> fourMatchDto = new ArrayList<>();
-    //     List<JobsSkillRespDto> threeMatchDto = new ArrayList<>();
-    //     List<JobsSkillRespDto> twoMatchDto = new ArrayList<>();
-    //     List<JobsSkillRespDto> oneMatchDto = new ArrayList<>();
-    //     for (JobsSkillRespDto jsPS : jsList) {
-    //         if (set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
-    //                 && set.contains(jsPS.getSkillName3()) && set.contains(jsPS.getPosition())) {
-    //             fourMatchDto.add(jsPS);
-    //             continue;
-    //         }
-    //         if ((set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
-    //                 && !set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition()) ||
-    //                 (set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
-    //                         && set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition())
-    //                 ||
-    //                 (!set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
-    //                         && set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition())
-    //                 ||
-    //                 (set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
-    //                         && set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition())) {
-    //             threeMatchDto.add(jsPS);
-    //             continue;
-    //         }
-    //         if ((set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
-    //                 && !set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition()) ||
-    //                 (set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
-    //                         && set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition())
-    //                 ||
-    //                 (set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
-    //                         && !set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition())
-    //                 ||
-    //                 (!set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
-    //                         && set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition())
-    //                 ||
-    //                 (!set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
-    //                         && !set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition())
-    //                 ||
-    //                 (!set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
-    //                         && set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition())) {
-    //             twoMatchDto.add(jsPS);
-    //             continue;
-    //         }
-    //         if ((set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
-    //                 && !set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition()) ||
-    //                 (!set.contains(jsPS.getSkillName1()) && set.contains(jsPS.getSkillName2())
-    //                         && !set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition())
-    //                 ||
-    //                 (!set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
-    //                         && set.contains(jsPS.getSkillName3())) && !set.contains(jsPS.getPosition())
-    //                 ||
-    //                 (!set.contains(jsPS.getSkillName1()) && !set.contains(jsPS.getSkillName2())
-    //                         && !set.contains(jsPS.getSkillName3())) && set.contains(jsPS.getPosition())) {
-    //             oneMatchDto.add(jsPS);
-    //             continue;
-    //         }
-    //     }
-    //     model.addAttribute("fourMatchDto", fourMatchDto);
-    //     model.addAttribute("threeMatchDto", threeMatchDto);
-    //     model.addAttribute("twoMatchDto", twoMatchDto);
-    //     model.addAttribute("oneMatchDto", oneMatchDto);
-    //     return "jobs/interest";
-    // }
+        Set<String> set = new HashSet<>();
+        List<ResumeIdRespDto> resumeIdList = resumeRepository.findResumeIdByUserId(principal.getUserId());
+        for (ResumeIdRespDto resumeId : resumeIdList) {
+            List<ResumeSkillRespDto> rSkillList = skillRepository.findByResumeSkill(resumeId.getResumeId());
+            for (ResumeSkillRespDto skill : rSkillList) {
+                set.add(skill.getSkill());
+            }
+        }
+        model.addAttribute("sDto", set);
+
+        List<JobsMatchRespDto> fiveMatchList = new ArrayList<>();
+        List<JobsMatchRespDto> fourMatchList = new ArrayList<>();
+        List<JobsMatchRespDto> threeMatchList = new ArrayList<>();
+        List<JobsMatchRespDto> twoMatchList = new ArrayList<>();
+        List<JobsMatchRespDto> oneMatchList = new ArrayList<>();
+
+        List<JobsMatchRespDto> jDtos = jobsRepository.findMatchJobsByUserId(principal.getUserId());
+        for (JobsMatchRespDto jDto : jDtos) {
+            long dDay = DateUtil.dDay(jDto.getEndDate());
+            jDto.setLeftTime(dDay);
+
+            int count = 0;
+            List<String> insertList = new ArrayList<>();
+            for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto.getJobsId())) {
+                insertList.add(skill.getSkill());
+                if ( set.contains(skill.getSkill())){
+                    count ++ ;
+                }
+            }
+            jDto.setSkillList(insertList);
+            if ( count >= 5 ){
+                fiveMatchList.add(jDto);
+            }else if ( count >= 4 ){
+                fourMatchList.add(jDto);
+            }else if ( count >= 3 ){
+                threeMatchList.add(jDto);
+            }else if ( count >= 2 ){
+                twoMatchList.add(jDto);
+            }else if ( count >= 1 ){
+                oneMatchList.add(jDto);
+            }
+            count = 0;
+        }        
+        List<JobsMatchRespDto> resultList = new ArrayList<>();
+        resultList.addAll(fiveMatchList);
+        resultList.addAll(fourMatchList);
+        resultList.addAll(threeMatchList);
+        resultList.addAll(twoMatchList);
+        resultList.addAll(oneMatchList);
+        model.addAttribute("jDtos", resultList);
+        return "jobs/interest";
+    }
+    
 
     @PostMapping("/jobs/write")
     public ResponseEntity<?> writeJobs(@RequestBody JobsWriteReqDto jDto) {
