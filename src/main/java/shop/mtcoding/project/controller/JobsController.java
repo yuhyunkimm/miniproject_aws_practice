@@ -45,7 +45,6 @@ import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.service.JobsService;
 import shop.mtcoding.project.util.DateUtil;
-import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class JobsController {
@@ -73,7 +72,6 @@ public class JobsController {
 
     @GetMapping("/request/jobs")
     public ResponseEntity<?> requestJobs() {
-        // MockSession.mockComp(session);
         Comp compSession = (Comp) session.getAttribute("compSession");
         List<JobsSuggestRespDto> jDtos = jobsRepository.findAllToSuggestReq(compSession.getCompId());
         return new ResponseEntity<>(new ResponseDto<>(1, "공고 불러오기 완료", jDtos), HttpStatus.OK);
@@ -126,7 +124,6 @@ public class JobsController {
 
     @GetMapping("/jobs/write")
     public String writeJobs(Model model) {
-        // MockSession.mockComp(session);
         Comp compSesseion = (Comp) session.getAttribute("compSession");
         CompWriteJobsRespDto cDto = compRepository.findByIdToJobs(compSesseion.getCompId());
         if (cDto == null) {
@@ -138,7 +135,6 @@ public class JobsController {
 
     @GetMapping("/jobs/{id}/update")
     public String updateJobs(@PathVariable Integer id, Model model) {
-        // MockSession.mockComp(session);
         JobsDetailRespDto jDto = jobsRepository.findByJobsDetail(id, null);
             long dDay = DateUtil.dDay(jDto.getEndDate());
             jDto.setLeftTime(dDay);
@@ -176,9 +172,10 @@ public class JobsController {
 
     @GetMapping("/jobs/interest")
     public String interest(Model model) {
-        MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
-
+        if( principal == null){
+            return "redirect:/user/login";
+        }
         Set<String> set = new HashSet<>();
         List<ResumeIdRespDto> resumeIdList = resumeRepository.findResumeIdByUserId(principal.getUserId());
         for (ResumeIdRespDto resumeId : resumeIdList) {

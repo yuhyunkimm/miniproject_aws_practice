@@ -11,6 +11,11 @@ public class JobsResp {
 
     @Getter
     @Setter
+    public static class JobsIdRespDto{
+        private Integer jobsId;
+    }
+    @Getter
+    @Setter
     @ToString
     public static class JobsMainRespDto {
         private Integer jobsId;

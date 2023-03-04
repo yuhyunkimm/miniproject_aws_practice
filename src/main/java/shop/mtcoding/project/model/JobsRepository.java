@@ -9,6 +9,7 @@ import shop.mtcoding.project.dto.jobs.JobsReq.JobsCheckBoxReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsUpdateReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsWriteReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsDetailRespDto;
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsIdRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsMainRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsManageJobsRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsMatchRespDto;
@@ -26,7 +27,8 @@ public interface JobsRepository {
 
     public List<JobsSuggestRespDto> findAllToSuggestReq(Integer compId);
 
-    
+    public List<JobsIdRespDto> findJobsIdByCompId(Integer CompId);
+
     public int insert(
         @Param("jDto") JobsWriteReqDto jDto
     );

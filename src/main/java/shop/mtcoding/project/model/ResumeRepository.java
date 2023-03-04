@@ -10,6 +10,7 @@ import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeDetailRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeIdRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeManageRespDto;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeMatchRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeReadRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeSaveRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeUpdateRespDto;
@@ -21,6 +22,8 @@ public interface ResumeRepository {
         public ResumeSaveRespDto findById(Integer resumeId);
 
         public List<ResumeIdRespDto> findResumeIdByUserId(Integer userId);
+        
+        public List<ResumeMatchRespDto> findMatchResumeByCompId(Integer compId);
 
         public ResumeUpdateRespDto findUpdateById(Integer resumeId);
 

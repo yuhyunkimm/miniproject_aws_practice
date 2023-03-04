@@ -46,6 +46,18 @@
             where r.state = 1
     </select>
 
+    <select id="findMatchResumeByCompId" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeMatchRespDto">
+        select r.resume_id, u.name, u.photo, r.title, r.education, r.career, u.address, r.state from resume_tb r join user_tb u
+            on r.user_id = u.user_id
+            where resume_id in
+            ( select resume_id from resume_skill_tb
+            where skill in
+            ( select skill from required_skill_tb r join jobs_tb j
+            on r.jobs_id = j.jobs_id
+            where j.comp_id = #{compId} ) 
+            )
+            and r.state = 1
+    </select>
 
     <select id="findDetailPublicResumebyById" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeDetailRespDto">
         SELECT distinct r.resume_id, u.photo, u.name, r.title, u.birth, r.education, r.career, u.address, r.content, r.link,
