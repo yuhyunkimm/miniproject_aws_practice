@@ -37,9 +37,6 @@ import shop.mtcoding.project.model.User;
 public class ResumeControllerTest {
 
     @Autowired
-    private ResumeRepository resumeRepository;
-
-    @Autowired
     private ObjectMapper om;
 
     @Autowired

@@ -107,6 +107,7 @@ public class CompControllerTest {
     }
 
     @Test
+    @Transactional
     public void login_test() throws Exception {
         // given
         String requestBody = "email=kakao@nate.com&password=1234";

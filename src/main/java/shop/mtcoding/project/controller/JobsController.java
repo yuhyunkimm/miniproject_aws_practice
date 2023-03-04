@@ -44,7 +44,6 @@ import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.SkillRepository;
 import shop.mtcoding.project.model.User;
-import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.service.JobsService;
 import shop.mtcoding.project.util.DateUtil;
 
@@ -60,9 +59,6 @@ public class JobsController {
     @Autowired
     private SkillRepository skillRepository;
     
-    @Autowired
-    private UserRepository userRepository;
-
     @Autowired
     private ResumeRepository resumeRepository;
 
