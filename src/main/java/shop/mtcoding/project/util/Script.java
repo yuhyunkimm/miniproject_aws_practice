@@ -10,6 +10,14 @@ public class Script {
         return  sb.toString();
     }
 
+    public static String reload(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("<script>");
+        sb.append("location.reload();");
+        sb.append("</script>");
+        return  sb.toString();
+    }
+
     public static String href(String url) {
         StringBuilder sb = new StringBuilder();
         sb.append("<script>");

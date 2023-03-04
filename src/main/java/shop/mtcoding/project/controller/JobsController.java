@@ -114,9 +114,25 @@ public class JobsController {
         User principal = (User) session.getAttribute("principal");
         if (principal != null) {
             JobsDetailRespDto jDto = jobsRepository.findByJobsDetail(id, principal.getUserId());
+            long dDay = DateUtil.dDay(jDto.getEndDate());
+            jDto.setLeftTime(dDay);
+            jDto.setFormatEndDate(DateUtil.format(jDto.getEndDate()));
+            List<String> insertList = new ArrayList<>();
+            for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto.getJobsId())) {
+                insertList.add(skill.getSkill());
+            }
+            jDto.setSkillList(insertList);
             model.addAttribute("jDto", jDto);
         } else {
             JobsDetailRespDto jDto = jobsRepository.findByJobsDetail(id, null);
+            long dDay = DateUtil.dDay(jDto.getEndDate());
+            jDto.setLeftTime(dDay);
+            jDto.setFormatEndDate(DateUtil.format(jDto.getEndDate()));
+            List<String> insertList = new ArrayList<>();
+            for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto.getJobsId())) {
+                insertList.add(skill.getSkill());
+            }
+            jDto.setSkillList(insertList);
             model.addAttribute("jDto", jDto);
         }
         return "jobs/jobsDetail";

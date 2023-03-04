@@ -1,7 +1,6 @@
 package shop.mtcoding.project.controllerTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -30,7 +29,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
 import shop.mtcoding.project.dto.resume.ResumeResp;
-import shop.mtcoding.project.model.Resume;
 import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.User;
 
