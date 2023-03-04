@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import shop.mtcoding.project.dto.apply.ApplyResp.ApplyUserStatusDetailRespDto;
 import shop.mtcoding.project.dto.common.ResponseDto;
 import shop.mtcoding.project.dto.comp.CompResp.CompWriteJobsRespDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsCheckBoxReqDto;
@@ -36,6 +37,7 @@ import shop.mtcoding.project.dto.skill.ResumeSkillResp.ResumeSkillByUserRespDto;
 import shop.mtcoding.project.dto.skill.ResumeSkillResp.ResumeSkillRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
+import shop.mtcoding.project.model.ApplyRepository;
 import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.CompRepository;
 import shop.mtcoding.project.model.JobsRepository;
@@ -63,6 +65,9 @@ public class JobsController {
 
     @Autowired
     private ResumeRepository resumeRepository;
+
+    @Autowired
+    private ApplyRepository applyRepository;
     
     @Autowired
     private JobsService jobsService;
@@ -114,9 +119,33 @@ public class JobsController {
         User principal = (User) session.getAttribute("principal");
         if (principal != null) {
             JobsDetailRespDto jDto = jobsRepository.findByJobsDetail(id, principal.getUserId());
+            Integer state ;
+            try {
+                ApplyUserStatusDetailRespDto aDto = applyRepository.findApplyStateByUserIdAndJobsId(principal.getUserId(), id);
+                state = aDto.getState();
+            } catch (Exception e) {
+                state = null ;
+            }
+            jDto.setState(state);
+            long dDay = DateUtil.dDay(jDto.getEndDate());
+            jDto.setLeftTime(dDay);
+            jDto.setFormatEndDate(DateUtil.format(jDto.getEndDate()));
+            List<String> insertList = new ArrayList<>();
+            for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto.getJobsId())) {
+                insertList.add(skill.getSkill());
+            }
+            jDto.setSkillList(insertList);
             model.addAttribute("jDto", jDto);
         } else {
             JobsDetailRespDto jDto = jobsRepository.findByJobsDetail(id, null);
+            long dDay = DateUtil.dDay(jDto.getEndDate());
+            jDto.setLeftTime(dDay);
+            jDto.setFormatEndDate(DateUtil.format(jDto.getEndDate()));
+            List<String> insertList = new ArrayList<>();
+            for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto.getJobsId())) {
+                insertList.add(skill.getSkill());
+            }
+            jDto.setSkillList(insertList);
             model.addAttribute("jDto", jDto);
         }
         return "jobs/jobsDetail";

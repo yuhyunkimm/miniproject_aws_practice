@@ -225,7 +225,7 @@ public class CompController {
     public String readResume(Model model) {
         List<ResumeReadRespDto> rLists = resumeRepository.findAllResumebyState();
         for (ResumeReadRespDto rList : rLists) {
-            System.out.println("테스트 : " + rList.toString());
+            // System.out.println("테스트 : " + rList.toString());
             List<String> insertList = new ArrayList<>();
             for (ResumeSkillRespDto skill : skillRepository.findByResumeSkill(rList.getResumeId())) {
                 insertList.add(skill.getSkill());

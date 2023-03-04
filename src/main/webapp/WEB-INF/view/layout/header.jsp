@@ -19,12 +19,11 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm bg-light navbar-light header-fixed ">
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
         <div class="container-fluid width-53">
             <div class="">
                 <a class="navbar-brand" href="/"><i class="fa-brands fa-github-square" style="font-size: 2em;"></i></a>
             </div>
-
             <c:choose>
                 <c:when test="${compSession == null}">
                     <div class="collapse navbar-collapse ms-5" id="collapsibleNavbar">
@@ -57,13 +56,8 @@
                             </li>
                         </ul>
                     </div>
-
                 </c:otherwise>
             </c:choose>
-
-
-
-
 
             <div class="d-flex">
                 <c:choose>
@@ -114,11 +108,9 @@
                             <a href="/comp/comphome"><span class="badge bg-success">기업서비스</span>
                             </a>
                         </div>
-
                     </c:when>
 
                     <c:otherwise>
-
                         <div class="me-3">
                             <div class="input-group me-3">
                                 <div class="form-outline me-4">
@@ -145,12 +137,3 @@
             </div>
         </div>
     </nav>
-
-
-
-
-
-
-
-
-

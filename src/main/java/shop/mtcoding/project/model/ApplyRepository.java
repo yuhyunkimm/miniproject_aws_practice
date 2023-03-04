@@ -8,12 +8,18 @@ import org.apache.ibatis.annotations.Param;
 import shop.mtcoding.project.dto.apply.ApplyReq.ApplyReqDto;
 import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusCompRespDto;
 import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusUserRespDto;
+import shop.mtcoding.project.dto.apply.ApplyResp.ApplyUserStatusDetailRespDto;
 
 @Mapper
 public interface ApplyRepository {
     public void findAll();
 
     public void findById( );
+
+    public ApplyUserStatusDetailRespDto findApplyStateByUserIdAndJobsId(
+        @Param("userId") Integer userId,
+        @Param("jobsId") Integer jobsId
+    );
 
     public List<ApllyStatusCompRespDto> findAllByCompIdtoApply(Integer compId);
 

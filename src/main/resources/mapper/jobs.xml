@@ -103,7 +103,7 @@
       select j.jobs_id, c.photo, c.comp_name,
         j.title, j.content,
         j.career, j.education, j.position,
-        j.address,
+        j.address, j.receipt,
         c.homepage, c.representative_name, j.end_date,
         <if test="userId != null">
           ifnull(( select user_scrap_id from user_scrap_tb where user_id = #{userId} and jobs_id = j.jobs_id ),null) user_scrap_id

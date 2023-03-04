@@ -95,12 +95,15 @@ public class JobsResp {
         private String content;
         private String career;
         private String education;
+        private String receipt;
         private List<String> skillList;
         private String position;
         private String address;
         private String homepage;
         private Timestamp endDate;
+        private String formatEntDate;
         private String formatEndDate;
+        private Integer state;
         private Long leftTime;
         private String representativeName;
         private Integer userScrapId;

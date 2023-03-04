@@ -18,13 +18,25 @@
                         <div>
                             <h6 class="card-subtitle text-muted">${principal.name}</h6>
                             <hr>
-                            <h6 class="card-subtitle mb-1 text-muted"><a href="/user/resume">이력서</a></h6><br>
-                            <h6 class="card-subtitle mb-1 text-muted"><a href="/user/offer">지원 / 제안</a></h6><br>
-                            <h6 class="card-subtitle mb-1 text-muted"><a href="/user/scrap">스크랩</a></h6>
-                            <hr>
-                            <h6 class="card-subtitle mb-1 text-muted"><a href="/user/update" data-bs-toggle="modal" 
-                            data-bs-target="#modal">정보수정</a></h6><br>
-                            <h6 class="card-subtitle mb-1 text-muted"><a href="/logout">로그아웃</a></h6>
+                            <ul class="nav flex-column nav-pills">
+                                <li class="nav-item">
+                                  <a class="nav-link a p-1 mb-1" aria-current="page" href="/user/resume">이력서</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link a p-1 mb-1" href="/user/offer">지원 / 제안</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link a p-1 active" href="/user/scrap">스크랩</a>
+                                </li>
+                                <hr>
+                                <li class="nav-item">
+                                    <a class="nav-link a p-1 mb-1"  href="/user/update" data-bs-toggle="modal" 
+                                    data-bs-target="#modal">정보수정</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link a p-1" href="/logout">로그아웃</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
