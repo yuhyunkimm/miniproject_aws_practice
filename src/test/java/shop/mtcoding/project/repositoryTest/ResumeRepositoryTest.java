@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeDetailRespDto;
-import shop.mtcoding.project.dto.resume.ResumeResp.ResumeRecommendRespDto;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeReadRespDto;
 import shop.mtcoding.project.model.ResumeRepository;
 
 @MybatisTest
@@ -38,11 +38,11 @@ public class ResumeRepositoryTest {
     }
 
     @Test
-    public void findAllResumebyPublic_test() throws Exception {
+    public void findAllResumebyState_test() throws Exception {
         // given
         
         // when
-        List<ResumeRecommendRespDto> rList = resumeRepository.findAllResumebyPublic();
+        List<ResumeReadRespDto> rList = resumeRepository.findAllResumebyState();
 
         // then
         rList.forEach((s)->{System.out.println("테스트 : "+ s.toString());});

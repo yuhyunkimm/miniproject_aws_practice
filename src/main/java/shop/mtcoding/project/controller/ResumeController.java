@@ -34,7 +34,6 @@ import shop.mtcoding.project.model.SkillRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.service.ResumeService;
-import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class ResumeController {
@@ -66,12 +65,11 @@ public class ResumeController {
 
     @GetMapping("/user/resume") // 이력서관리
     public String manageResume(Model model) {
-        MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
-        List<ResumeManageRespDto> rLists = resumeRepository.findAllWithUserById(principal.getUserId());
+        List<ResumeManageRespDto> rLists = resumeRepository.findAllByUserId(principal.getUserId());
         for (ResumeManageRespDto rList : rLists) {
             List<String> insertList = new ArrayList<>();
             for (ResumeSkillRespDto skill : skillRepository.findByResumeSkill(rList.getResumeId())) {
@@ -89,15 +87,13 @@ public class ResumeController {
 
     @GetMapping("/user/request/resume") // 공고에 지원할 이력서 불러오기
     public ResponseEntity<?> requestResume(Model model) {
-        // MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
-        List<ResumeManageRespDto> rDtos = resumeRepository.findAllWithUserById(principal.getUserId());
+        List<ResumeManageRespDto> rDtos = resumeRepository.findAllByUserId(principal.getUserId());
         return new ResponseEntity<>(new ResponseDto<>(1, "이력서 불러오기 성공", rDtos), HttpStatus.OK);
     }
 
     @PostMapping("/user/resume/write")
     public ResponseEntity<?> writeResume(@RequestBody ResumeWriteReqDto resumeWriteReqDto) {
-        // MockSession.mockUser(session);
         // System.out.println("테스트 : "+ resumeWriteReqDto.toString());
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
@@ -129,7 +125,6 @@ public class ResumeController {
 
         // System.out.println("테스트 : "+ resumeWriteReqDto.toString());
 
-        // MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
@@ -157,7 +152,6 @@ public class ResumeController {
 
     @GetMapping("/user/resume/write")
     public String writeResumeForm(Model model) {
-        MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
@@ -169,7 +163,6 @@ public class ResumeController {
 
     @GetMapping("/user/resume/{id}/update")
     public String updateResumeForm(@PathVariable Integer id, Model model) {
-        // MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);

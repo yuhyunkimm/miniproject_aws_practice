@@ -31,7 +31,6 @@ import shop.mtcoding.project.model.SuggestRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.service.UserService;
-import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class UserController {
@@ -116,6 +115,7 @@ public class UserController {
                 cookie.setMaxAge(0);
                 httpServletResponse.addCookie(cookie);
             }
+            session.setAttribute("compSession", null);
             session.setAttribute("principal", principal);
             return "redirect:/";
         }
@@ -169,7 +169,6 @@ public class UserController {
 
     @PutMapping("/user/update")
     public ResponseEntity<?> updateUser(@RequestBody UserUpdateReqDto userUpdateReqDto) {
-        // MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
@@ -196,7 +195,6 @@ public class UserController {
 
     @GetMapping("/user/update")
     public String updateForm(Model model) {
-        MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
@@ -208,7 +206,10 @@ public class UserController {
 
     @GetMapping("/user/myhome")
     public String myhome() {
-        // MockSession.mockUser(session);
+        User principal = (User) session.getAttribute("principal");
+        if (principal == null) {
+            return "redirect:/user/login";
+        }
         return "user/myhome";
     }
 

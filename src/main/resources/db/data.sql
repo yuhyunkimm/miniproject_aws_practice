@@ -25,7 +25,9 @@ insert into resume_skill_tb (resume_id, skill) values (2, 'JavaScript');
 insert into resume_skill_tb (resume_id, skill) values (2, 'HTML/CSS');
 insert into resume_skill_tb (resume_id, skill) values (2, 'JavaScript');
 insert into resume_skill_tb (resume_id, skill) values (2, 'Spring');
+insert into resume_skill_tb (resume_id, skill) values (2, 'Oracle');
 insert into resume_skill_tb (resume_id, skill) values (3, 'Spring');
+insert into resume_skill_tb (resume_id, skill) values (3, 'React');
 
 insert into required_skill_tb ( jobs_id, skill) values (1, 'Spring');
 insert into required_skill_tb ( jobs_id, skill) values (1, 'JavaScript');

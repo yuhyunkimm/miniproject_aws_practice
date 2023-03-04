@@ -11,8 +11,49 @@ public class JobsResp {
 
     @Getter
     @Setter
+    public static class JobsIdRespDto{
+        private Integer jobsId;
+    }
+    @Getter
+    @Setter
     @ToString
     public static class JobsMainRespDto {
+        private Integer jobsId;
+        private String compName;
+        private String photo;
+        private String title;
+        private String career;
+        private String education;
+        private String position;
+        private List<String> skillList;
+        private String address;
+        private Integer userScrapId;
+        private Long leftTime;
+        private Timestamp endDate;
+    }
+
+    @Getter
+    @Setter
+    @ToString
+    public static class JobsMainRecommendRespDto {
+        private Integer jobsId;
+        private String compName;
+        private String photo;
+        private String title;
+        private String career;
+        private String education;
+        private String position;
+        private List<String> skillList;
+        private String address;
+        private Integer userScrapId;
+        private Long leftTime;
+        private Timestamp endDate;
+    }
+
+    @Getter
+    @Setter
+    @ToString
+    public static class JobsMatchRespDto {
         private Integer jobsId;
         private String compName;
         private String photo;
@@ -67,24 +108,8 @@ public class JobsResp {
 
     @Getter
     @Setter
-    public static class JobsSkillRespDto {
-        private Integer jobsId;
-        private String photo;
-        private String compName;
-        private String title;
-        private String career;
-        private String education;
-        // private List<String> skillList;
-        private String position;
-        private String address;
-        private Timestamp endDate;
-        private Integer userScrapId;
-    }
-
-    @Getter
-    @Setter
     public static class JobsRequiredSkill {
-        private List<String> skillList;
+        private String skill;
     }
 
     @Getter
@@ -102,20 +127,11 @@ public class JobsResp {
         private String education;
         private String career;
         private String position;
-        // private List<String> skillList;
+        private List<String> skillList;
         private String address;
         private Timestamp endDate;
         private String receipt;
         private Integer userScrapId;
-    }
-
-    @Getter
-    @Setter
-    public static class JobsWriteRespDto {
-        private String compName;
-        private String representativeName;
-        private String photo;
-        private String homepage;
     }
 
     @Getter

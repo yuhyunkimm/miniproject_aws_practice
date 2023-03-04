@@ -5,17 +5,11 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-public class ResumeSkillResp {
+public class RequiredSkillResp {
     
     @Getter
     @Setter
-    public static class ResumeSkillRespDto {
-        private String skill;
-    }
-
-    @Getter
-    @Setter
-    public static class ResumeSkillByUserRespDto {
+    public static class RequiredSkillByCompRespDto {
         private List<String> skillList;
     }
 }

@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import shop.mtcoding.project.dto.jobs.JobsReq.JobsUpdateReqDto;
-import shop.mtcoding.project.dto.jobs.JobsResp.JobsWriteRespDto;
+
 import shop.mtcoding.project.dto.comp.CompReq.CompJoinReqDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompUpdateReqDto;
+import shop.mtcoding.project.dto.comp.CompResp.CompWriteJobsRespDto;
+import shop.mtcoding.project.dto.jobs.JobsReq.JobsUpdateReqDto;
 
 @Mapper
 public interface CompRepository {
@@ -17,7 +18,7 @@ public interface CompRepository {
 
     public Comp findByEmailAndPassword(@Param("email") String email, @Param("password") String password);
 
-    public JobsWriteRespDto findById(Integer CompId);
+    public CompWriteJobsRespDto findByIdToJobs(Integer CompId);
 
     public Comp findByCompId(Integer compId);
 
