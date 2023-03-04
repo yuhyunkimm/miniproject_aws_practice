@@ -103,7 +103,8 @@ public class SuggestController {
                                 .session(mockSession));
         
         System.out.println("테스트 : "+ rs.andReturn().getResponse().getStatus()); 
-        
+        System.out.println("테스트 : "+ rs.andReturn().getResponse().getContentAsString()); 
+       
     
     
         // then

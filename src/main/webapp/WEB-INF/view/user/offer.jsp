@@ -43,7 +43,7 @@
                     </div>
                     <div class="col-9 my-4 pe-5">
                 <div>
-                    <h6><b>지원  <div class="btn btn-dark px-2 py-0">${aDtos.size()}</div></b></h6>
+                    <h6><b>지원  <div class="badge bg-secondary p-2 " style="font-weight: 700;">${aDtos.size()}</div></b></h6>
                     <table class="table" style="width:100%">
                         <thead>
                             <tr class="table-secondary" align=center>
@@ -61,22 +61,24 @@
                                     <td><a href="/jobs/${aDto.jobsId}" onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;"> ${aDto.jobsTitle}</a></td>
                                     <td><a href="/resume/${aDto.resumeId}" onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;"> ${aDto.resumeTitle}</a></td>
                                     <td>${aDto.position}</td>
-                                    <td>${aDto.state == 0 ? '대기중' : aDto.state == 1 ? '합격' : '불합격'}</td>
+                                    <td>
+                                        <div class="badge bg-secondary p-2">${aDto.state == 0 ? '대기중' : aDto.state == 1 ? '합격' : '불합격'}</div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </c:forEach>
 
                     </table>
                             <table class="table" style="width:100%">
-                                <h6><b>제안 <div class="btn btn-dark px-2 py-0">${sDtos.size()}</div> </b></h6>
+                                <h6><b>제안 <div class="badge bg-secondary p-2 " style="font-weight: 700;">${sDtos.size()}</div> </b></h6>
                                 <thead>
                                     <tr class="table-secondary " align=center>
                                         <th scope="col" style="width:10%">No.</th>
                                         <th scope="col" style="width:15%">회사명</th>
                                         <th scope="col" style="width:25%">공고명</th>
-                                        <th scope="col" style="width:22%">포지션</th>
-                                        <th scope="col" style="width:15%">상태 </th>
-                                        <th scope="col" style="width:13%">응답</th>
+                                        <th scope="col" style="width:20%">포지션</th>
+                                        <th scope="col" style="width:12%">상태 </th>
+                                        <th scope="col" style="width:18%">응답</th>
                                     </tr>
                                 </thead>
                                 <c:forEach items="${sDtos}" varStatus="status" var="sDto"><tbody>
@@ -86,18 +88,41 @@
                                         <td><a href="/jobs/${sDto.jobsId}" onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;"> ${sDto.title}</a></td>
                                         <td>${sDto.position}</td>
                                         <td>
-                                            <button type="button" class="btn btn-secondary py-0">${sDto.state == 0 ? '대기중' : aDto.state == 1 ? '수락' : '거절'}</button>
+                                            <div id="state-${sDto.suggestId}">
+                                                <div id="state-btn-${sDto.suggestId}">
+                                                <c:if test="${sDto.state == 0}" >
+                                                <div class="badge bg-secondary p-2">대기중</div>
+                                                </c:if>
+                                                <c:if test="${sDto.state == 1}" >
+                                                <div class="badge bg-success p-2">수락</div>
+                                                </c:if>
+                                                <c:if test="${sDto.state == -1}" >
+                                                <div class="badge bg-danger p-2">거절</div>
+                                                </c:if>
+                                                </div>
+                                            </div>
                                         </td>
                                         <td>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn btn-primary dropdown-toggle py-0" data-bs-toggle="dropdown">
-                                                  답변하기
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                  <li><a class="dropdown-item" onclick="accept(`${principal.userId}`,`${sDto.suggestId}`)">수락</a></li>
-                                                  <li><a class="dropdown-item" onclick="deny()">거절</a></li>
-                                                </ul>
-                                              </div>
+                                            <div id="response-${sDto.suggestId}">
+                                                <div class="dropdown" id="response-dropdown-${sDto.suggestId}">
+                                                    <c:choose>
+                                                       <c:when test="${sDto.state == 0 }">
+                                                            <button type="button" class="btn btn-primary dropdown-toggle py-0" data-bs-toggle="dropdown">
+                                                                답변하기
+                                                            </button>
+                                                       </c:when>
+                                                    
+                                                       <c:otherwise>
+                                                        <div class="badge bg-secondary p-2">답변완료</div>
+                                                       </c:otherwise>
+                                                    </c:choose>
+
+                                                    <ul class="dropdown-menu">
+                                                      <li><a class="dropdown-item" onclick="accept(`${principal.userId}`,`${sDto.suggestId}`)">수락</a></li>
+                                                      <li><a class="dropdown-item" onclick="deny(`${principal.userId}`,`${sDto.suggestId}`)">거절</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -137,6 +162,7 @@
             function checkPS(uId){
                 passwordCheckBtn(uId);
             }
+
             function accept(id,sId){
                 let data = {
                     userId: id,
@@ -152,17 +178,59 @@
                     },
                     dataType:"json"
                 }).done((res) => {
-                    renderbtn();
+                    renderbtn(res.data, sId);
                 }).fail((err) => {
                 
                 });
             }
 
-            function renderbtn(){
+       
+            function deny(id,sId){
+                let data = {
+                    userId: id,
+                    suggestId: sId,
+                    state: -1
+                }
+                $.ajax({
+                    type: "put",
+                    url: "/suggest/update",
+                    data: JSON.stringify(data),
+                    headers:{
+                        "content-type":"application/json; charset=utf-8"
+                    },
+                    dataType:"json"
+                }).done((res) => {
+                    renderbtn(res.data, sId);
+                }).fail((err) => {
                 
+                });
             }
-            function deny(){
 
+            function renderbtn(num, suggestId){
+                if(num === 1){
+                    $('#state-btn-'+suggestId).remove();
+                    $('#response-dropdown-'+suggestId).remove();
+                    let el1 = `
+                    <div id="state-btn" class="badge bg-success p-2">수락</div>
+                    `;
+                    let el2 = `
+                    <div class="badge bg-secondary p-2">답변완료</div>
+                    `;
+                    $('#state-'+suggestId).append(el1);
+                    $('#response-'+suggestId).append(el2);
+                }
+                if(num === -1){
+                    $('#state-btn-'+suggestId).remove();
+                    $('#response-dropdown-'+suggestId).remove();
+                    let el1 = `
+                    <div id="state-btn" class="badge bg-danger p-2">거절</div>
+                    `;
+                    let el2 = `
+                    <div class="badge bg-secondary p-2">답변완료</div>
+                    `;
+                    $('#state-'+suggestId).append(el1);
+                    $('#response-'+suggestId).append(el2);
+                }
             }
       
             const passwordInputEl = document.querySelector('#inputPassword')

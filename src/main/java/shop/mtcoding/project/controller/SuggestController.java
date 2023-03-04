@@ -56,13 +56,21 @@ public class SuggestController {
         if( ObjectUtils.isEmpty(sDto.getState())){
             throw new CustomApiException("상태정보가 필요합니다.");
         }
+        if( !(sDto.getState() == 1 || sDto.getState() == -1)){
+            throw new CustomApiException("상태정보가 다릅니다.");
+        }
         User principal = (User)session.getAttribute("principal");
+        Integer result = 0;
         if( sDto.getState() == 1){
             suggestService.제안수락(sDto, principal.getUserId());
+            System.out.println("테스트 : 수락함");
+            result = 1;
         }
         if( sDto.getState() == -1){
             suggestService.제안거절(sDto, principal.getUserId());
+            System.out.println("테스트 : 거절함ㄴ");
+            result = -1;
         }
-        return new ResponseEntity<>(new ResponseDto<>(1, "제안을 답변했습니다.", null), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseDto<>(1, "제안을 답변했습니다.", result), HttpStatus.OK);
     }
 }

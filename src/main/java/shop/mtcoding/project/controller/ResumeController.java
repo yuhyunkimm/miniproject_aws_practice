@@ -54,7 +54,7 @@ public class ResumeController {
     private HttpSession session;
 
     @DeleteMapping("/resume/{id}")
-    public @ResponseBody ResponseEntity<?> deleteResume(@PathVariable int id) {
+    public ResponseEntity<?> deleteResume(@PathVariable int id) {
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);

@@ -49,7 +49,7 @@ public class SuggestService {
     }
 
     @Transactional
-    public void 제안수락(SuggestUpdateReqDto sDto, Integer userId) {
+    public Integer 제안수락(SuggestUpdateReqDto sDto, Integer userId) {
         if (userId != sDto.getUserId()){
             throw new CustomApiException("수정 권한이 없습니다." , HttpStatus.FORBIDDEN);
         }
@@ -62,10 +62,11 @@ public class SuggestService {
         } catch (Exception e) {
             throw new CustomApiException("서버에 일시적인 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return 1;
     }
 
     @Transactional
-    public void 제안거절(SuggestUpdateReqDto sDto, Integer userId) {
+    public Integer 제안거절(SuggestUpdateReqDto sDto, Integer userId) {
         if (userId != sDto.getUserId()){
             throw new CustomApiException("수정 권한이 없습니다." , HttpStatus.FORBIDDEN);
         }
@@ -78,5 +79,6 @@ public class SuggestService {
         } catch (Exception e) {
             throw new CustomApiException("서버에 일시적인 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return -1;
     }
 }
