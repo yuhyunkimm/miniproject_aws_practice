@@ -206,6 +206,10 @@ public class UserController {
 
     @GetMapping("/user/myhome")
     public String myhome() {
+        User principal = (User) session.getAttribute("principal");
+        if (principal == null) {
+            return "redirect:/user/login";
+        }
         return "user/myhome";
     }
 

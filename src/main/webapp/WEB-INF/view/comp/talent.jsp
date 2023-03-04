@@ -11,7 +11,7 @@
     <div class="d-flex flex-wrap my-3 info-card">
         <c:forEach items="${rDtos}" var="rDto">
             <div class="col-6 px-2 py-2 remove-card">
-                <a href="/jobs/${rDto.resumeId}">
+                <a href="/resume/${rDto.resumeId}">
                     <div class="card">
                         <div>
                             <img src='${rDto.photo}' alt="" srcset="">

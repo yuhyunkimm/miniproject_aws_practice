@@ -35,6 +35,24 @@ public class JobsResp {
     @Getter
     @Setter
     @ToString
+    public static class JobsMainRecommendRespDto {
+        private Integer jobsId;
+        private String compName;
+        private String photo;
+        private String title;
+        private String career;
+        private String education;
+        private String position;
+        private List<String> skillList;
+        private String address;
+        private Integer userScrapId;
+        private Long leftTime;
+        private Timestamp endDate;
+    }
+
+    @Getter
+    @Setter
+    @ToString
     public static class JobsMatchRespDto {
         private Integer jobsId;
         private String compName;

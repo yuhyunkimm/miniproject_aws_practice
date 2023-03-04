@@ -89,7 +89,6 @@
                             <a href="/user/myhome"><span class="badge bg-success">개인서비스</span>
                             </a>
                         </div>
-
                     </c:when>
 
 

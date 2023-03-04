@@ -10,10 +10,10 @@ import shop.mtcoding.project.dto.jobs.JobsReq.JobsUpdateReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsWriteReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsDetailRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsIdRespDto;
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsMainRecommendRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsMainRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsManageJobsRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsMatchRespDto;
-import shop.mtcoding.project.dto.jobs.JobsResp.JobsRequiredSkill;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSuggestRespDto;
 
@@ -37,9 +37,8 @@ public interface JobsRepository {
     );
     public int deleteById(
     );
-    public List<JobsRequiredSkill> findByJobsRequiredSkill(
-        @Param("jobsId") Integer jobsId
-    ); 
+    public List<JobsMainRecommendRespDto> findAlltoMainRecommend(Integer userId);
+
     public List<JobsMainRespDto> findAlltoMain(Integer userId);
 
     public List<JobsSearchRespDto> findBySearch(
