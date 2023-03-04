@@ -73,6 +73,8 @@
 
                                                         <div class="col-3">
                                                             <div class="row">
+                                                                <input type="hidden" value="${rDto.resumeId}" name=""
+                                                                    id="resumeId">
                                                                 <div style="float: right;">
                                                                     <button type="button"
                                                                         class="btn btn-secondary btn-sm mb-2"
@@ -145,26 +147,41 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="modal fade" id="dModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">이력서 삭제</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">해당 이력서를 삭제하시겠습니까?</div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" onclick="deleteResume(${rDto.resumeId})"
-                            class="btn btn-primary">삭제하기</button>
+            <div class="modal fade" id="dModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">이력서 삭제</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">해당 이력서를 삭제하시겠습니까?</div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" onclick="deleteResume(${rDto.resumeId})"
+                                class="btn btn-primary">삭제하기</button>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
+
         <script>
+
+            function deleteResume(id) {
+                $.ajax({
+                    type: "delete",
+                    url: "/resume/" + $('#resumeId').val(),
+                    dataType: "json"
+                }).done((res) => { // 20X 일때
+                    alert(res.msg);
+                    location.href = "/user/resume";
+                }).fail((err) => { // 40X, 50X 일때
+                    alert(err.responseJSON.msg);
+                });
+            }
 
             function deleteBtn(event, resumeId) {
                 event.stopPropagation();
