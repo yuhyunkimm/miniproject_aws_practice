@@ -43,8 +43,8 @@
                                             <a href="/resume/${rDto.resumeId}"
                                                 onclick="window.open(this.href, '_blank', 'width=1200,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                                 <div class="card-body">
-                                                    <div class="row">
 
+                                                    <div class="row">
                                                         <div class="col-9 mt-2">
                                                             <h5 class="card-title" style="text-align: left;">
                                                                 ${rDto.title}
@@ -77,7 +77,8 @@
                                                                     <button type="button"
                                                                         class="btn btn-secondary btn-sm mb-2"
                                                                         data-bs-toggle="modal" data-bs-target="#dModal"
-                                                                        style="float: right;" onclick="">이력서
+                                                                        style="float: right;"
+                                                                        onclick="event.preventDefault();deleteBtn(event, ${rDto.resumeId});">이력서
                                                                         삭제</button>
                                                                 </div>
                                                                 <div style="float: right;">
@@ -88,8 +89,8 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                     </div>
+
                                                 </div>
                                             </a>
 
@@ -164,6 +165,12 @@
         </div>
 
         <script>
+
+            function deleteBtn(event, resumeId) {
+                event.stopPropagation();
+
+            }
+
             function checkPS(uId) {
                 passwordCheckBtn(uId);
             }
