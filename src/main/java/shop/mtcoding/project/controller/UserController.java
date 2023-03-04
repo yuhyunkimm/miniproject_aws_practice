@@ -93,7 +93,6 @@ public class UserController {
 
     @PostMapping("/user/login")
     public String login(UserLoginReqDto userloginReqDto, HttpServletResponse httpServletResponse) {
-        System.out.println("테스트 : "+ userloginReqDto.toString());
         if (userloginReqDto.getEmail() == null || userloginReqDto.getEmail().isEmpty()) {
             throw new CustomException("email을 작성해주세요");
         }

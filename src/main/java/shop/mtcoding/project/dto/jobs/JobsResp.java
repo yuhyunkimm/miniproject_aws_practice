@@ -103,6 +103,7 @@ public class JobsResp {
         private Timestamp endDate;
         private String formatEntDate;
         private String formatEndDate;
+        private Integer state;
         private Long leftTime;
         private String representativeName;
         private Integer userScrapId;

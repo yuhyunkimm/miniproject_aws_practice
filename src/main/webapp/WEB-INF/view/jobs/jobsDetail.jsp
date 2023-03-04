@@ -186,25 +186,30 @@
                                 <div id="apply-btn">
                                     <c:choose>
                                         <c:when test="${compSession == null}">
-                                            <button type="button" class="btn btn-success w-100" 
                                             <c:choose>
                                                 <c:when test="${principal == null}">
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#loginModal">지원하기
+                                                    <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#loginModal">지원하기</button>
                                                 </c:when>
 
                                                 <c:otherwise>
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#myModal"
-                                                    onclick="requestResume()">지원하기
+                                                    <c:if test="${jDto.state == null}" >
+                                                        <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#myModal" onclick="requestResume()">지원하기</button>
+                                                    </c:if>
+                                                    <c:if test="${jDto.state == 0}" >
+                                                        <button type="button" class="btn btn-secondary w-100">지원완료</button>
+                                                    </c:if>
+                                                    <c:if test="${jDto.state == 1}" >
+                                                        <button type="button" class="btn btn-secondary w-100">합격</button>
+                                                    </c:if>
+                                                    <c:if test="${jDto.state == -1}" >
+                                                        <button type="button" class="btn btn-secondary w-100">불합격</button>
+                                                    </c:if>
                                                 </c:otherwise>
                                             </c:choose>
-                                            </button>
                                         </c:when>
 
                                         <c:otherwise>
-                                            <button type="button" class="btn btn-danger w-100"
-                                            onclick="location.href='/jobs/${jDto.jobsId}/update'">수정하기</button>
+                                            <button type="button" class="btn btn-danger w-100" onclick="location.href='/jobs/${jDto.jobsId}/update'">수정하기</button>
                                         </c:otherwise>
                                     </c:choose>
 
