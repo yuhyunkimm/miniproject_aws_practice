@@ -2,13 +2,13 @@
 <%@ include file="../layout/header.jsp" %>
 <div class="mx-auto width-53 top-80">
     <div class="d-flex">
-        <c:forEach items="${sDto} " var="Dto">
-            <div class="me-3"> ${Dto} </div>
+        <c:forEach items="${sDto.skillList}" var="skill">
+            <span class="badge bg-secondary me-2">${skill}</span>
         </c:forEach>
         에 매칭되는 공고 리스트 입니다.
     </div>
     <div class="d-flex flex-wrap my-3 info-card">
-        <%-- <c:forEach items="${fourMatchDto}" var="jDto">
+        <c:forEach items="${jDtos}" var="jDto">
             <div class="col-4 px-2 py-2 remove-card">
                 <a href="/jobs/${jDto.jobsId}"
                     onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
@@ -16,7 +16,6 @@
                         <div>
                             <img src='${jDto.photo}' alt="" srcset="">
                         </div>
-                        
                         <div class="card-body">
                             <div>
                                 444${jDto.compName}
@@ -25,7 +24,9 @@
                                 ${jDto.title}
                             </div>
                             <div>
-                                스킬리스트
+                                <c:forEach items="${jDto.skillList}" var="skill">
+                                    <span class="badge bg-secondary me-2">${skill}</span>
+                                </c:forEach>
                             </div>
                             <div>
                                 ${jDto.career} ${jDto.education} ${jDto.address}
@@ -62,7 +63,7 @@
                                     </c:otherwise>
                                 </c:choose>
                                 <div>
-
+                                    D-${jDto.leftTime}
                                 </div>
 
                             </div>
@@ -71,7 +72,7 @@
                 
             </div>
         </c:forEach>
-        <c:forEach items="${threeMatchDto}" var="jDto">
+        <%-- <c:forEach items="${threeMatchDto}" var="jDto">
             <div class="col-4 px-2 py-2 remove-card">
                 <a href="/jobs/${jDto.jobsId}"
                     onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">

@@ -32,6 +32,7 @@ import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSuggestRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeIdRespDto;
 import shop.mtcoding.project.dto.skill.RequiredSkillReq.RequiredSkillWriteReqDto;
+import shop.mtcoding.project.dto.skill.ResumeSkillResp.ResumeSkillByUserRespDto;
 import shop.mtcoding.project.dto.skill.ResumeSkillResp.ResumeSkillRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
@@ -186,7 +187,12 @@ public class JobsController {
                 set.add(skill.getSkill());
             }
         }
-        model.addAttribute("sDto", set);
+
+        ResumeSkillByUserRespDto rSkillList = new ResumeSkillByUserRespDto();
+        List<String> skillList = new ArrayList<>(set);
+        rSkillList.setSkillList(skillList);
+
+        model.addAttribute("sDto", rSkillList);
 
         List<JobsMatchRespDto> fiveMatchList = new ArrayList<>();
         List<JobsMatchRespDto> fourMatchList = new ArrayList<>();
