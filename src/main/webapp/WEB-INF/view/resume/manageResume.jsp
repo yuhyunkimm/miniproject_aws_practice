@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ include file="../layout/header.jsp" %>
         <div class="mx-auto width-53 top-80">
-
-
             <div class="mx-auto width-53 top-80">
                 <div class="container my-5 py-5">
                     <div class="row">
                         <div class="col-3 px-5" style="text-align: center;">
                             <div class="mb-3">
-                                <div class="fs-4">지원 및 제안</div>
+                                <div class="fs-4">이력서 관리</div>
                             </div>
                             <div class="card">
                                 <div class="card-body">
@@ -21,15 +19,25 @@
                                     <div>
                                         <h6 class="card-subtitle text-muted">${principal.name}</h6>
                                         <hr>
-                                        <h6 class="card-subtitle mb-1 text-muted"><a href="/user/resume">이력서</a></h6>
-                                        <br>
-                                        <h6 class="card-subtitle mb-1 text-muted"><a href="/user/offer">지원 / 제안</a></h6>
-                                        <br>
-                                        <h6 class="card-subtitle mb-1 text-muted"><a href="/user/scrap">스크랩</a></h6>
-                                        <hr>
-                                        <h6 class="card-subtitle mb-1 text-muted"><a href="/user/update"
-                                                data-bs-toggle="modal" data-bs-target="#modal">정보수정</a></h6><br>
-                                        <h6 class="card-subtitle mb-1 text-muted"><a href="/logout">로그아웃</a></h6>
+                            <ul class="nav flex-column nav-pills">
+                                <li class="nav-item">
+                                  <a class="nav-link a p-1 mb-1 active" aria-current="page" href="/user/resume">이력서</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link a p-1 mb-1" href="/user/offer">지원 / 제안</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link a p-1" href="/user/scrap">스크랩</a>
+                                </li>
+                                <hr>
+                                <li class="nav-item">
+                                    <a class="nav-link a p-1 mb-1"  href="/user/update" data-bs-toggle="modal" 
+                                    data-bs-target="#modal">정보수정</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link a p-1" href="/logout">로그아웃</a>
+                                </li>
+                            </ul>
                                     </div>
                                 </div>
                             </div>
@@ -43,7 +51,6 @@
                                             <a href="/resume/${rDto.resumeId}"
                                                 onclick="window.open(this.href, '_blank', 'width=1200,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                                 <div class="card-body">
-
                                                     <div class="row">
                                                         <div class="col-9 mt-2">
                                                             <h5 class="card-title" style="text-align: left;">
@@ -66,7 +73,6 @@
                                                             <div style="float: left; d-flex">
                                                                 <c:forEach items="${rDto.skillList}" var="skill">
                                                                     <span class="badge bg-secondary">${skill}</span>
-
                                                                 </c:forEach>
                                                             </div>
                                                         </div>

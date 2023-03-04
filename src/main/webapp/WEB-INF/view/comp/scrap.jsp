@@ -18,13 +18,25 @@
                             <div>
                                 <h6 class="card-subtitle text-muted">${compSession.compName}</h6>
                                 <hr>
-                                <h6 class="card-subtitle mb-1 text-muted"><a href="/comp/jobs">공고등록/수정</a></h6><br>
-                                <h6 class="card-subtitle mb-1 text-muted"><a href="/comp/apply">지원자 현황</a></h6><br>
-                                <h6 class="card-subtitle mb-1 text-muted"><a href="/comp/resume/scrap">이력서 스크랩</a></h6>
-                                <hr>
-                                <h6 class="card-subtitle mb-1 text-muted"><a href="/comp/update" data-bs-toggle="modal" 
-                            data-bs-target="#modal">정보수정</a></h6><br>
-                                <h6 class="card-subtitle mb-1 text-muted"><a href="/logout">로그아웃</a></h6>
+                                <ul class="nav flex-column nav-pills">
+                                    <li class="nav-item">
+                                      <a class="nav-link a p-1 mb-1" aria-current="page" href="/comp/jobs">공고등록 / 수정</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a class="nav-link a p-1 mb-1" href="/comp/apply">지원자 현황</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a class="nav-link a p-1 active" href="/comp/resume/scrap">이력서 스크랩</a>
+                                    </li>
+                                    <hr>
+                                    <li class="nav-item">
+                                        <a class="nav-link a p-1 mb-1"  href="/comp/update" data-bs-toggle="modal" 
+                                        data-bs-target="#modal">정보수정</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link a p-1" href="/logout">로그아웃</a>
+                                    </li>
+                                </ul>
                             </div>
                     </div>
                 </div>

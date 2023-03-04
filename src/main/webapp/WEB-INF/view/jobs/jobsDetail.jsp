@@ -26,6 +26,7 @@
         .selected {
             background-color: #c5f1c5;
         }
+
         /* .login-model{
             height: 25em;
         } */
@@ -62,43 +63,47 @@
                             <div class="my-4">
                                 <div class="row mb-3">
                                     <!-- 회사정보 -->
-                                    <div class="col-3">
+                                    <div class="col-2">
                                         <div class="">
-                                            <span class="me-5">
+                                            <div class="me-5">
                                                 경력
-                                            </span>
-                                            <span class="me-5">
+                                            </div>
+                                            <div class="me-5">
                                                 학력
-                                            </span>
-                                            <span class="me-5">
-                                                개발직무
-                                            </span>
+                                            </div>
+
                                         </div>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-4">
                                         <div class="">
-                                            <span>
+                                            <div>
                                                 ${jDto.career}
-                                            </span>
-                                            <span>
+                                            </div>
+                                            <div>
                                                 ${jDto.education}
-                                            </span>
-                                            <span>
-                                                ${jDto.position}
-                                            </span>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-2">
-                                        <div>필요기술</div>
                                         <div>근무지역</div>
+                                        <div>포지션</div>
                                     </div>
                                     <div class="col-4">
                                         <div>
-                                            <%-- ${jDto.skillName1} ${jDto.skillName2} ${jDto.skillName3} --%>
+                                            <div>
+                                                ${jDto.position}
+                                            </div>
                                         </div>
                                         <div>
                                             ${jDto.address}
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <div>필요기술 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <c:forEach items="${jDto.skillList}" var="skill">
+                                            <span class="badge bg-primary me-2">${skill}</span>
+                                        </c:forEach>
                                     </div>
                                 </div>
                                 <div class="relative">
@@ -106,17 +111,31 @@
                                     <img class="w-100"
                                         src="https://www.saraminimage.co.kr/recruit/bbs_recruit7/35_bm_img_230217.png">
                                 </div>
-                                <div class="fs-4 mt-5">
-                                    접수방법
+                                <div class=" mt-5 mb-2">
+                                    마감일 / 접수방법
                                 </div>
 
-                                <div class="border row">
+                                <div class="border row ">
                                     <!-- 남은 날짜 -->
-                                    <div class="col-4">
-                                        <span class="fs-1">d-day 계산.. ${jDto.endDate}</span>
+                                    <div class="col-4 p-3">
+                                        <div class="fs-5 mb-2">남은 기간 : ${jDto.leftTime}일</div>
+                                        <div>마감일 : ${jDto.formatEndDate}</div>
                                     </div>
-                                    <div class="col-8">
-                                        홈페이지 지원 ${jDto.homepage}
+                                    <div class="col-8" style="background-color: rgb(235, 235, 235);">
+                                        <c:choose>
+                                            <c:when test="${jDto.receipt == '홈페이지 접수'}">
+                                                <div class="p-3">
+                                                    ${jDto.receipt}
+                                                    <a href="${jDto.homepage}">${jDto.homepage}</a>
+                                                </div>
+                                            </c:when>
+
+                                            <c:otherwise>
+                                                <div class="p-3">
+                                                    ${jDto.receipt}
+                                                </div>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </div>
                                 </div>
                             </div>
@@ -166,28 +185,32 @@
                             <div class="align-self-end" id="apply-render">
                                 <div id="apply-btn">
                                     <c:choose>
-
                                         <c:when test="${compSession == null}">
-                                            <button type="button" class="btn btn-success w-100" <c:choose>
+                                            <c:choose>
                                                 <c:when test="${principal == null}">
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#loginModal">지원하기
+                                                    <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#loginModal">지원하기</button>
                                                 </c:when>
 
                                                 <c:otherwise>
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#myModal"
-                                                    onclick="requestResume()">지원하기
+                                                    <c:if test="${jDto.state == null}" >
+                                                        <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#myModal" onclick="requestResume()">지원하기</button>
+                                                    </c:if>
+                                                    <c:if test="${jDto.state == 0}" >
+                                                        <button type="button" class="btn btn-secondary w-100">지원완료</button>
+                                                    </c:if>
+                                                    <c:if test="${jDto.state == 1}" >
+                                                        <button type="button" class="btn btn-secondary w-100">합격</button>
+                                                    </c:if>
+                                                    <c:if test="${jDto.state == -1}" >
+                                                        <button type="button" class="btn btn-secondary w-100">불합격</button>
+                                                    </c:if>
                                                 </c:otherwise>
-                                    </c:choose>
+                                            </c:choose>
+                                        </c:when>
 
-                                    </button>
-                                    </c:when>
-
-                                    <c:otherwise>
-                                        <button type="button" class="btn btn-danger w-100"
-                                            onclick="location.href='/jobs/${jDto.jobsId}/update'">수정하기</button>
-                                    </c:otherwise>
+                                        <c:otherwise>
+                                            <button type="button" class="btn btn-danger w-100" onclick="location.href='/jobs/${jDto.jobsId}/update'">수정하기</button>
+                                        </c:otherwise>
                                     </c:choose>
 
                                 </div>
@@ -197,16 +220,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
-
 
         <div class="modal" id="myModal">
             <div class="modal-dialog">
@@ -233,43 +246,44 @@
 
 
         <div class="modal" id="loginModal">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
                 <!-- modal-sm modal-lg modal-xl 모달 사이즈 -->
                 <!-- modal-dialog-centered 화면 가운데 -->
                 <!-- modal-dialog-scrollable 스크롤 기능 -->
                 <div class="modal-content">
 
-                    <div class="modal-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
                     <div class="modal-body login-model">
                         <div>
-                                <div class="container all-form border-3 mx-auto my-auto">
-                                    <div class="card-header d-flex justify-content-around my-4">
-                                        <div class="fs-4">
-                                           로그인
-                                        </div>
+                            <div class="container all-form border-3 mx-auto my-auto">
+                                <div class="card-header d-flex justify-content-between my-4">
+                                    <div>
+
                                     </div>
-                
-                                    <form >
-                                        <div class="d-flex form-group mb-2">
-                                            <input type="email" name="email" class="form-control" placeholder="Enter email" id="email"
-                                                value="${cookie.rememberEmail.value}">
-                                        </div>
-                
-                                        <div class="form-group mb-2">
-                                            <input type="password" name="password" class="form-control" placeholder="Enter password"
-                                                id="password">
-                                        </div>
-                
-                                        <div class="box mb-2">
-                                            <span class="input-wrap mb-2">
-                                                <input type="checkbox" id="rememberEmail" name="rememberEmail">
-                                                이메일을 기억 하시겠습니까?
-                                            </span>
-                                        </div>
-                
-                                        <!-- <div class="d-flex justify-content">
+                                    <div class="fs-4">
+                                        로그인
+                                    </div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+                                <form>
+                                    <div class="d-flex form-group mb-2">
+                                        <input type="email" name="email" class="form-control" placeholder="Enter email"
+                                            id="email" value="${cookie.rememberEmail.value}">
+                                    </div>
+
+                                    <div class="form-group mb-2">
+                                        <input type="password" name="password" class="form-control"
+                                            placeholder="Enter password" id="password">
+                                    </div>
+
+                                    <div class="box mb-2">
+                                        <span class="input-wrap mb-2">
+                                            <input type="checkbox" id="rememberEmail" name="rememberEmail">
+                                            이메일을 기억 하시겠습니까?
+                                        </span>
+                                    </div>
+
+                                    <!-- <div class="d-flex justify-content">
                                             <div>
                                                 <a href="/" class="emailSearch" id="emailSearch">이메일 찾기</a>
                                             </div>
@@ -277,23 +291,24 @@
                                                 <a href="/" class="pwSearch" id="pwSearch">비밀번호 찾기</a>
                                             </div>
                                         </div> -->
-                
-                                        <div class="d-grid gap-2 mb-2">
-                                                <button class="btn btn-primary" type="button" 
-                                                onclick="submitLogin()">로그인 </button>
+
+                                    <div class="d-grid gap-2 mb-2">
+                                        <button class="btn btn-primary" type="button" onclick="submitLogin(`${jDto.jobsId}`)">로그인
+                                        </button>
+                                        <div> <a href="/user/join">회원가입</a> </div>
+                                    </div>
+
+                                    <hr>
+                                    <div class="d-flex justify-content-around ">
+                                        <div>
+                                            <a href="/" class="emailSearch" id="emailSearch">이용 약관</a>
                                         </div>
-                
-                                        <hr>
-                                        <div class="d-flex justify-content-around ">
-                                            <div>
-                                                <a href="/" class="emailSearch" id="emailSearch">이용 약관</a>
-                                            </div>
-                                            <div>
-                                                <a href="/" class="pwSearch" id="pwSearch">개인정보 처리방법</a>
-                                            </div>
+                                        <div>
+                                            <a href="/" class="pwSearch" id="pwSearch">개인정보 처리방법</a>
                                         </div>
-                                    </form>
-                                </div>
+                                    </div>
+                                </form>
+                            </div>
 
                         </div>
                     </div>
@@ -380,7 +395,8 @@
             progressBar()
         };
 
-        function submitLogin(){
+        function submitLogin(jId) {
+            console.log('eef');
             let data = {
                 email: $('#email').val(),
                 password: $('#password').val(),
@@ -391,14 +407,14 @@
                 type: "post",
                 url: "/user/login2",
                 data: JSON.stringify(data),
-                headers:{
-                    "content-type":"application/json; charset=utf-8"
+                headers: {
+                    "content-type": "application/json; charset=utf-8"
                 },
-                dataType:"json"
+                dataType: "json"
             }).done((res) => {
-                
+                location.reload();
             }).fail((err) => {
-            
+                alert(err.responseJSON.msg);
             });
         }
 

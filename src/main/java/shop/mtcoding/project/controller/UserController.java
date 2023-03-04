@@ -31,7 +31,6 @@ import shop.mtcoding.project.model.SuggestRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.service.UserService;
-import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class UserController {
@@ -94,7 +93,6 @@ public class UserController {
 
     @PostMapping("/user/login")
     public String login(UserLoginReqDto userloginReqDto, HttpServletResponse httpServletResponse) {
-        System.out.println("테스트 : "+ userloginReqDto.toString());
         if (userloginReqDto.getEmail() == null || userloginReqDto.getEmail().isEmpty()) {
             throw new CustomException("email을 작성해주세요");
         }
@@ -116,24 +114,22 @@ public class UserController {
                 cookie.setMaxAge(0);
                 httpServletResponse.addCookie(cookie);
             }
+            session.setAttribute("compSession", null);
             session.setAttribute("principal", principal);
             return "redirect:/";
         }
     }
 
     @PostMapping("/user/login2")
-    public String login2(@RequestBody UserLoginReqDto userloginReqDto, HttpServletResponse httpServletResponse) {
-        System.out.println("테스트 : "+ userloginReqDto.toString());
+    public ResponseEntity<?> login2(@RequestBody UserLoginReqDto userloginReqDto, HttpServletResponse httpServletResponse) {
         if (userloginReqDto.getEmail() == null || userloginReqDto.getEmail().isEmpty()) {
-            throw new CustomException("email을 작성해주세요");
+            throw new CustomApiException("email을 작성해주세요");
         }
         if (userloginReqDto.getPassword() == null || userloginReqDto.getPassword().isEmpty()) {
-            throw new CustomException("password 작성해주세요");
+            throw new CustomApiException("password 작성해주세요");
         }
-        User principal = userService.로그인(userloginReqDto);
-        if (principal == null) {
-            return "redirect:/loginForm";
-        } else {
+        User principal = userService.ajax로그인(userloginReqDto);
+        if (principal != null) {
             if (userloginReqDto.getRememberEmail() == null) {
                 userloginReqDto.setRememberEmail("");
             }
@@ -146,8 +142,8 @@ public class UserController {
                 httpServletResponse.addCookie(cookie);
             }
             session.setAttribute("principal", principal);
-            return "redirect:/";
         }
+        return new ResponseEntity<>(new ResponseDto<>(1, "로그인 성공", null), HttpStatus.OK);
     }
 
     @GetMapping("/user/login")
@@ -169,7 +165,6 @@ public class UserController {
 
     @PutMapping("/user/update")
     public ResponseEntity<?> updateUser(@RequestBody UserUpdateReqDto userUpdateReqDto) {
-        // MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
@@ -196,7 +191,6 @@ public class UserController {
 
     @GetMapping("/user/update")
     public String updateForm(Model model) {
-        MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
@@ -208,7 +202,10 @@ public class UserController {
 
     @GetMapping("/user/myhome")
     public String myhome() {
-        // MockSession.mockUser(session);
+        User principal = (User) session.getAttribute("principal");
+        if (principal == null) {
+            return "redirect:/user/login";
+        }
         return "user/myhome";
     }
 

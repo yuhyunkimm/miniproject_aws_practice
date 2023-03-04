@@ -41,6 +41,16 @@ public class UserService {
         return principal;
     }
 
+    @Transactional(readOnly = true)
+    public User ajax로그인(UserLoginReqDto userloginReqDto) {
+        User principal = userRepository.findByEmailAndPassword(userloginReqDto.getEmail(),
+                userloginReqDto.getPassword());
+        if (principal == null) {
+            throw new CustomApiException("이메일 혹은 패스워드가 잘못 입력 되었습니다.");
+        }
+        return principal;
+    }
+
     @Transactional
     public void 개인정보수정(UserUpdateReqDto userUpdateReqDto, Integer userId) {
         if (userId != userUpdateReqDto.getUserId()) {

@@ -4,7 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class ApplyResp {
-    
+    @Getter
+    @Setter
+    public static class ApplyUserStatusDetailRespDto{
+        private Integer state;
+    }
     @Getter
     @Setter
     public static class ApllyStatusCompRespDto{

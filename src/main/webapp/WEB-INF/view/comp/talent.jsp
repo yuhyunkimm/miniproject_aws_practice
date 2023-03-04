@@ -3,31 +3,30 @@
 
 <div class="mx-auto width-53 top-80">
    <div class="d-flex">
-        <c:forEach items="${compSkillDto} " var="Dto">
-            <div class="me-3"> ${Dto} </div>
+        <c:forEach items="${sDto.skillList}" var="skill">
+            <span class="badge bg-secondary me-2">${skill}</span>
         </c:forEach>
         기술을 가진 인재를 추천합니다. 
     </div>
     <div class="d-flex flex-wrap my-3 info-card">
         <c:forEach items="${rDtos}" var="rDto">
             <div class="col-6 px-2 py-2 remove-card">
-                <a href="/jobs/${rDto.resumeId}">
+                <a href="/resume/${rDto.resumeId}">
                     <div class="card">
                         <div>
                             <img src='${rDto.photo}' alt="" srcset="">
                         </div>
                         <div class="card-body">
                             <div>
-                                444${rDto.name}
+                                ${rDto.name}
                             </div>
                             <div class="fs-5">
                                 ${rDto.title}
                             </div>
                             <div>
-                                ${rDto.birth}
-                            </div>
-                            <div>
-                                ${rDto.skillName1} ${rDto.skillName2} ${rDto.skillName3}
+                                <c:forEach items="${rDto.skillList}" var="skill">
+                                    <span class="badge bg-secondary me-2">${skill}</span>
+                                </c:forEach>
                             </div>
                             <div>
                                 ${rDto.career} ${rDto.education} ${rDto.address}

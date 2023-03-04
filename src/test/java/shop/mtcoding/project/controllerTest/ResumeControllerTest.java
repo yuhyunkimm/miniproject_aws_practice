@@ -1,7 +1,6 @@
 package shop.mtcoding.project.controllerTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -29,8 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
-import shop.mtcoding.project.dto.resume.ResumeResp;
-import shop.mtcoding.project.model.Resume;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeManageRespDto;
 import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.User;
 
@@ -71,17 +69,17 @@ public class ResumeControllerTest {
         // given
 
         // when
-        ResultActions resultActions = mvc.perform(
-                get("/user/resume"));
+        ResultActions resultActions = mvc.perform(get("/user/resume").session(mockSession));
+
         Map<String, Object> map = resultActions.andReturn().getModelAndView().getModel();
-        List<ResumeResp.ResumeManageRespDto> rDtos = (List<ResumeResp.ResumeManageRespDto>) map.get("rDtos");
+        List<ResumeManageRespDto> rDtos = (List<ResumeManageRespDto>) map.get("rDtos");
         String model = om.writeValueAsString(rDtos);
         System.out.println("main_test : " + model);
 
         // then
         resultActions.andExpect(status().isOk());
         // assertThat(rDtos.size()).isEqualTo(1);
-        assertThat(rDtos.get(0).getTitle()).isEqualTo("벡엔드 이력서");
+        assertThat(rDtos.get(0).getTitle()).isEqualTo("백엔드 이력서");
         assertThat(rDtos.get(0).getEducation()).isEqualTo("고졸");
         assertThat(rDtos.get(0).getCareer()).isEqualTo("신입");
 
@@ -93,7 +91,7 @@ public class ResumeControllerTest {
         // given
         ResumeWriteReqDto resumeWriteReqDto = new ResumeWriteReqDto();
         resumeWriteReqDto.setUserId(1);
-        resumeWriteReqDto.setTitle("벡엔드 이력서");
+        resumeWriteReqDto.setTitle("백엔드 이력서");
         resumeWriteReqDto.setContent("백엔드 이력서의 내용입니다.");
         resumeWriteReqDto.setEducation("고졸");
         resumeWriteReqDto.setCareer("신입");
@@ -124,7 +122,7 @@ public class ResumeControllerTest {
         // given
         ResumeWriteReqDto resumeWriteReqDto = new ResumeWriteReqDto();
         resumeWriteReqDto.setResumeId(1);
-        resumeWriteReqDto.setTitle("벡엔드 이력서");
+        resumeWriteReqDto.setTitle("백엔드 이력서");
         resumeWriteReqDto.setContent("백엔드 이력서의 내용입니다.");
         resumeWriteReqDto.setEducation("고졸");
         resumeWriteReqDto.setCareer("신입");

@@ -8,6 +8,12 @@
         select * from apply_tb
     </select>
 
+    <select id="findApplyStateByUserIdAndJobsId" resultType="shop.mtcoding.project.dto.apply.ApplyResp$ApplyUserStatusDetailRespDto">
+      SELECT ifnull(a.state,null) state FROM APPLY_TB a join resume_tb r
+        on a.resume_id = r.resume_id
+        where r.user_id = #{userId} and a.jobs_id = #{jobsId}
+    </select>
+
     <select id="findAllByCompIdtoApply" resultType="shop.mtcoding.project.dto.apply.ApplyResp$ApllyStatusCompRespDto">
       select a.apply_id, a.resume_id, a.jobs_id, r.title, j.position, r.career, r.education, u.name, u.birth from apply_tb a join jobs_tb j 
         on a.jobs_id = j.jobs_id join resume_tb r
@@ -25,7 +31,7 @@
 
     <insert id="insert">
       insert into apply_tb ( resume_id, jobs_id, state, created_at ) 
-        values ( #{aDto.resumeId}, #{aDto.jobsId}, 1, now() )
+        values ( #{aDto.resumeId}, #{aDto.jobsId}, 0, now() )
     </insert>
 
     <update id="updateById">

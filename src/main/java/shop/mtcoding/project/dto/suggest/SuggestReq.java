@@ -15,4 +15,12 @@ public class SuggestReq {
         private Integer compId;
         private Integer compScrapId;
     }
+
+    @Getter
+    @Setter
+    public static class SuggestUpdateReqDto{
+        private Integer suggestId;
+        private Integer userId;
+        private Integer state;
+    }
 }
