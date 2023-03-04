@@ -1,6 +1,7 @@
 package shop.mtcoding.project.controllerTest;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
 import java.sql.Timestamp;
 
@@ -14,11 +15,14 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.project.dto.suggest.SuggestReq.SuggestReqDto;
+import shop.mtcoding.project.dto.suggest.SuggestReq.SuggestUpdateReqDto;
 import shop.mtcoding.project.model.Comp;
+import shop.mtcoding.project.model.User;
 
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
@@ -32,8 +36,7 @@ public class SuggestController {
 
     private MockHttpSession mockSession;
 
-    @BeforeEach
-    private void mockUserSession() {
+    private void mockCompSession() {
         Comp mockcomp = new Comp(
             1,
             "kakao@kakao.com",
@@ -48,9 +51,26 @@ public class SuggestController {
         mockSession.setAttribute("compSession", mockcomp);
     }
 
+    private void mockUserSession() {
+        User mockUser = new User(
+                1,
+                "ssar@nate.com",
+                "1234",
+                "ssar",
+                "2000-01-01",
+                "010-1234-1234",
+                "/images/default_profile.png",
+                "부산시 부산진구",
+                new Timestamp(System.currentTimeMillis()));
+        mockSession = new MockHttpSession();
+        mockSession.setAttribute("principal", mockUser);
+    }
+
     @Test
+    @Transactional
     public void suggestJobs_test() throws Exception {
         // given
+        mockCompSession();
         SuggestReqDto sDto = new SuggestReqDto();
         sDto.setJobsId(1);
         sDto.setResumeId(1);
@@ -63,6 +83,30 @@ public class SuggestController {
     
         // then
         System.out.println("테스트 : "+ rs.andReturn().getResponse().getContentAsString()); 
+    }
+
+    @Test
+    @Transactional
+    public void updateSuggest_test() throws Exception {
+        // given
+        mockUserSession();
+        SuggestUpdateReqDto sDto = new SuggestUpdateReqDto();
+        sDto.setState(1);
+        sDto.setSuggestId(1);
+        sDto.setUserId(1);
+        String requestBody = om.writeValueAsString(sDto);
+    
+        // when
+        ResultActions rs = mvc.perform(put("/suggest/update")
+                                .content(requestBody)
+                                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                                .session(mockSession));
+        
+        System.out.println("테스트 : "+ rs.andReturn().getResponse().getStatus()); 
+        
+    
+    
+        // then
     
     }
 }

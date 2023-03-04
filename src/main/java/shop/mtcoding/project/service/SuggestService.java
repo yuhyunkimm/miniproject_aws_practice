@@ -58,9 +58,9 @@ public class SuggestService {
             throw new CustomApiException("존재하지 않는 제안입니다.");
         }
         try {
-            // suggestRepository
+            suggestRepository.updateBySuggestId(sDto);
         } catch (Exception e) {
-            // TODO: handle exception
+            throw new CustomApiException("서버에 일시적인 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -74,10 +74,9 @@ public class SuggestService {
             throw new CustomApiException("존재하지 않는 제안입니다.");
         }
         try {
-            
+            suggestRepository.updateBySuggestId(sDto);
         } catch (Exception e) {
-            // TODO: handle exception
+            throw new CustomApiException("서버에 일시적인 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
 }

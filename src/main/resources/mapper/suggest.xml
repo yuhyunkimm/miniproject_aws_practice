@@ -26,8 +26,9 @@
       values ( #{sDto.resumeId}, #{sDto.jobsId}, 0, now() )
     </insert>
 
-    <update id="updateById">
-
+    <update id="updateBySuggestId">
+      update suggest_tb set state = #{sDto.state} 
+      where suggest_id = #{sDto.suggestId}
     </update>
 
     <delete id="deleteById">
