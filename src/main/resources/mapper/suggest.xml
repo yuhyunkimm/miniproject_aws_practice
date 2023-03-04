@@ -8,6 +8,10 @@
         select * from suggest_tb
     </select>
 
+    <select id="findById" resultType="shop.mtcoding.project.model.Suggest">
+      select * from suggest_tb where suggest_id = #{suggestId}
+    </select>
+
     <select id="findAllGetOfferByUserId" resultType="shop.mtcoding.project.dto.suggest.SuggestResp$SuggestToUserRespDto">
       select s.suggest_id, j.jobs_id, r.resume_id, c.comp_name, j.title, j.position, s.state, u.name from suggest_tb s join jobs_tb j
         on s.jobs_id = j.jobs_id join comp_tb c
@@ -17,15 +21,9 @@
         where u.user_id = #{userId}
     </select>
 
-
-
-    <select id="findById" resultType="shop.mtcoding.project.model.User">
-
-    </select>
-
     <insert id="insert">
       insert into suggest_tb ( resume_id, jobs_id, state, created_at ) 
-      values ( #{sDto.resumeId}, #{sDto.jobsId}, 1, now() )
+      values ( #{sDto.resumeId}, #{sDto.jobsId}, 0, now() )
     </insert>
 
     <update id="updateById">

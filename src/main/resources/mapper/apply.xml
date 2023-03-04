@@ -31,7 +31,7 @@
 
     <insert id="insert">
       insert into apply_tb ( resume_id, jobs_id, state, created_at ) 
-        values ( #{aDto.resumeId}, #{aDto.jobsId}, 1, now() )
+        values ( #{aDto.resumeId}, #{aDto.jobsId}, 0, now() )
     </insert>
 
     <update id="updateById">

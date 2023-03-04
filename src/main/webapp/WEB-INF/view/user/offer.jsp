@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ include file="../layout/header.jsp" %>
-
         <div class="mx-auto width-53 top-80">
-            <div class="container my-5 py-5">   
+            <div class="container my-5 py-5">
                 <div class="row">
                     <div class="col-3 px-5" style="text-align: center;">
-                              <div class="mb-3">
+                        <div class="mb-3">
                     <div class="fs-4">지원 및 제안</div>
                 </div>
                 <div class="card">
@@ -19,20 +18,32 @@
                         <div>
                             <h6 class="card-subtitle text-muted">${principal.name}</h6>
                             <hr>
-                            <h6 class="card-subtitle mb-1 text-muted"><a href="/user/resume">이력서</a></h6><br>
-                            <h6 class="card-subtitle mb-1 text-muted"><a href="/user/offer">지원 / 제안</a></h6><br>
-                            <h6 class="card-subtitle mb-1 text-muted"><a href="/user/scrap">스크랩</a></h6>
-                            <hr>
-                            <h6 class="card-subtitle mb-1 text-muted"><a href="/user/update" data-bs-toggle="modal" 
-                            data-bs-target="#modal">정보수정</a></h6><br>
-                            <h6 class="card-subtitle mb-1 text-muted"><a href="/logout">로그아웃</a></h6>
+                            <ul class="nav flex-column nav-pills">
+                                <li class="nav-item">
+                                  <a class="nav-link a p-1 mb-1" aria-current="page" href="/user/resume">이력서</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link a p-1 mb-1 active" href="/user/offer">지원 / 제안</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link a p-1" href="/user/scrap">스크랩</a>
+                                </li>
+                                <hr>
+                                <li class="nav-item">
+                                    <a class="nav-link a p-1 mb-1"  href="/user/update" data-bs-toggle="modal" 
+                                    data-bs-target="#modal">정보수정</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link a p-1" href="/logout">로그아웃</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
                     </div>
                     <div class="col-9 my-4 pe-5">
                 <div>
-                    <h6><b>지원 ${aDtos.size()} </b></h6>
+                    <h6><b>지원  <div class="btn btn-dark px-2 py-0">${aDtos.size()}</div></b></h6>
                     <table class="table" style="width:100%">
                         <thead>
                             <tr class="table-secondary" align=center>
@@ -57,15 +68,15 @@
 
                     </table>
                             <table class="table" style="width:100%">
-                                <h6><b>제안 ${sDtos.size()} </b></h6>
+                                <h6><b>제안 <div class="btn btn-dark px-2 py-0">${sDtos.size()}</div> </b></h6>
                                 <thead>
-                                    <tr class="table-secondary" align=center>
+                                    <tr class="table-secondary " align=center>
                                         <th scope="col" style="width:10%">No.</th>
                                         <th scope="col" style="width:15%">회사명</th>
                                         <th scope="col" style="width:25%">공고명</th>
-                                        <th scope="col" style="width:25%">포지션</th>
-                                        <th scope="col" style="width:15%">유저이름 </th>
-                                        <th scope="col" style="width:10%">상태</th>
+                                        <th scope="col" style="width:22%">포지션</th>
+                                        <th scope="col" style="width:15%">상태 </th>
+                                        <th scope="col" style="width:13%">응답</th>
                                     </tr>
                                 </thead>
                                 <c:forEach items="${sDtos}" varStatus="status" var="sDto"><tbody>
@@ -74,8 +85,20 @@
                                         <td>${sDto.compName}</td>
                                         <td><a href="/jobs/${sDto.jobsId}" onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;"> ${sDto.title}</a></td>
                                         <td>${sDto.position}</td>
-                                        <td>${sDto.name}</td>
-                                        <td>${sDto.state == 0 ? '대기중' : aDto.state == 1 ? '수락' : '거절'}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-secondary py-0">${sDto.state == 0 ? '대기중' : aDto.state == 1 ? '수락' : '거절'}</button>
+                                        </td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button type="button" class="btn btn-primary dropdown-toggle py-0" data-bs-toggle="dropdown">
+                                                  답변하기
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                  <li><a class="dropdown-item" onclick="accept(`${principal.userId}`,`${sDto.suggestId}`)">수락</a></li>
+                                                  <li><a class="dropdown-item" onclick="deny()">거절</a></li>
+                                                </ul>
+                                              </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                                 </c:forEach>
@@ -114,6 +137,28 @@
             function checkPS(uId){
                 passwordCheckBtn(uId);
             }
+            function accept(id,sId){
+                let data = {
+                    userId: id,
+                    suggestId: sId
+                }
+                $.ajax({
+                    type: "put",
+                    url: "/suggest/update",
+                    data: JSON.stringify(data),
+                    headers:{
+                        "content-type":"application/json; charset=utf-8"
+                    },
+                    dataType:"json"
+                }).done((res) => {
+                
+                }).fail((err) => {
+                
+                });
+            }
+            function deny(){
+
+            }
       
             const passwordInputEl = document.querySelector('#inputPassword')
             const modalEl = document.querySelector('#modal')
@@ -123,12 +168,10 @@
             })
 
             function passwordCheckBtn(uId) {
-
                 let data = {
                     userId: uId,
                     password: $('#inputPassword').val()
                 }
-
                 $.ajax({
                     type: "post",
                     url: "/user/passwordCheck",
@@ -142,5 +185,4 @@
                 });
             }
         </script>
-
         <%@ include file="../layout/footer.jsp" %>

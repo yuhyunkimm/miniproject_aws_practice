@@ -1,6 +1,5 @@
 .width-53 {
-    /* width: 53%; */
-    width: 1020px;
+    width: 1050px;
 }
 
 .top-80 {
@@ -52,6 +51,10 @@ header {
 }
 
 a {
+    color: #000;
+    text-decoration: none;
+}
+.a {
     color: #000;
     text-decoration: none;
 }

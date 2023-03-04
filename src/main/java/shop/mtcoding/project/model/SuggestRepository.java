@@ -11,7 +11,7 @@ import shop.mtcoding.project.dto.suggest.SuggestResp.SuggestToUserRespDto;
 @Mapper
 public interface SuggestRepository {
     public void findAll();
-    public void findById();
+    public Suggest findById(Integer suggestId);
 
     public List<SuggestToUserRespDto> findAllGetOfferByUserId(Integer userId);
     
