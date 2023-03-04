@@ -78,6 +78,23 @@ public class JobsController {
         return new ResponseEntity<>(new ResponseDto<>(1, "공고 불러오기 완료", jDtos), HttpStatus.OK);
     }
 
+    @GetMapping("/jobs/info/search")
+    public String searchJobs(String keyword, Model model){
+        if(ObjectUtils.isEmpty(keyword)){
+            keyword = "!@!%aalfj3lkav;lk34";
+            throw new CustomException("검색어가 없습니다.");
+        }
+        User principal = (User) session.getAttribute("principal");
+        Integer num = null;
+        if( principal != null ){
+            num = principal.getUserId();
+        }
+        List<JobsSearchRespDto> sDtos = jobsRepository.findBySearch(keyword, num);
+
+        model.addAttribute("jDtos", sDtos);
+        return "redirect:/jobs/info";
+    }
+
     @GetMapping("/jobs/info")
     public String info(JobsSearchReqDto jDto, Model model) throws Exception {
         if (jDto.getAddress() == null || jDto.getAddress().isEmpty()) {

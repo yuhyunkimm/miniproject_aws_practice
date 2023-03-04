@@ -70,6 +70,7 @@ public class JobsResp {
 
     @Getter
     @Setter
+    @ToString
     public static class JobsSearchRespDto {
         private Integer jobsId;
         private String compName;
@@ -78,9 +79,10 @@ public class JobsResp {
         private String career;
         private String education;
         private String position;
-        // private List<String> skillList;
+        private List<String> skillList;
         private String address;
         private Integer userScrapId;
+        private Long leftTime;
         private Timestamp endDate;
     }
 

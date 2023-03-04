@@ -25,6 +25,21 @@ public class JobsRepositoryTest {
 
     @Test
     @Transactional
+    public void findBySearch_test() throws Exception {
+        // given
+        String keyword = "서울";
+    
+        // when
+        List<JobsSearchRespDto> sDtos = jobsRepository.findBySearch(keyword, null);
+        
+        // then
+        System.out.println("테스트 : "+ sDtos.size());
+        sDtos.forEach(System.out::print);
+    
+    }
+
+    @Test
+    @Transactional
     public void findByCheckBox_test() throws Exception {
         JobsCheckBoxReqDto j = new JobsCheckBoxReqDto();
         j.setCareer("");
