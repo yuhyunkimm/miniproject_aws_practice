@@ -162,6 +162,5 @@ public class JobsRepositoryTest {
         if (jobsPS == null ){
             System.out.println("테스트 : 삭제성공");
         }
-    
     }
 }

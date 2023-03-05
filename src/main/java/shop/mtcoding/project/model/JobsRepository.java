@@ -36,6 +36,7 @@ public interface JobsRepository {
         @Param("jDto") JobsUpdateReqDto jDto
     );
     public int deleteById(Integer jobsId);
+    
     public List<JobsMainRecommendRespDto> findAlltoMainRecommend(Integer userId);
 
     public List<JobsMainRespDto> findAlltoMain(Integer userId);

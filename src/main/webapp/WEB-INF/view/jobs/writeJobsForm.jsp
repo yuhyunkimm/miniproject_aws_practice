@@ -277,9 +277,9 @@
             <div class="col-3" id="jobs-render">
                 <div class="rButton ms-5 view-right2" id="jobs-remove">
                     <!-- 뷰포트 -->
-                    <div class="row mb-2">
+                    <%-- <div class="row mb-2">
                         <button type="button" class="btn btn-success " onclick="">미리보기</button>
-                    </div>
+                    </div> --%>
                     <div class="row mb-2">
                         <button type="button" class="btn btn-success "
                             onclick="saveTemp(`${compSession.compId}`,`${jDto.jobsId}`)">임시저장</button>
@@ -474,7 +474,7 @@
                 }).done((res) => {
                     jobsId = res.data;
                     alert(res.msg);
-                    location.href = "/comp/comphome";
+                    location.href = "/comp/jobs";
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
                 });
@@ -490,7 +490,7 @@
                 }).done((res) => {
                     jobsId = res.data;
                     alert(res.msg);
-                    location.href = "/comp/comphome";
+                    location.href = "/comp/jobs";
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
                 });

@@ -161,25 +161,25 @@
                             <h5 class="modal-title" id="exampleModalLabel">이력서 삭제</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">해당 이력서를 삭제하시겠습니까?</div>
+                        <div class="modal-body ">해당 이력서를 삭제하시겠습니까?</div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" onclick="deleteResume(${rDto.resumeId})"
+                            <button type="button" onclick="deleteResume()"
                                 class="btn btn-primary">삭제하기</button>
                         </div>
                     </div>
                 </div>
             </div>
-
+    
         </div>
 
 
         <script>
 
-            function deleteResume(id) {
+            function deleteResume() {
                 $.ajax({
                     type: "delete",
-                    url: "/resume/" + id +"/delete",
+                    url: "/resume/" + $('#resumeId').val() +"/delete",
                     dataType: "json"
                 }).done((res) => { // 20X 일때
                     alert(res.msg);
