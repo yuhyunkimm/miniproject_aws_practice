@@ -1,6 +1,7 @@
 package shop.mtcoding.project.repositoryTest;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,18 +26,39 @@ public class JobsRepositoryTest {
 
     @Test
     @Transactional
+    public void findBySearch_test() throws Exception {
+        // given
+        String keyword = "서울";
+    
+        // when
+        List<JobsSearchRespDto> sDtos = jobsRepository.findBySearch(keyword, null);
+        
+        // then
+        System.out.println("테스트 : "+ sDtos.size());
+        sDtos.forEach(System.out::print);
+    
+    }
+
+    @Test
+    @Transactional
     public void findByCheckBox_test() throws Exception {
+        // given
         JobsCheckBoxReqDto j = new JobsCheckBoxReqDto();
         j.setCareer("");
-        List<String> skill = Arrays.asList("React");
+        List<String> insertList = new ArrayList<>();
+        insertList.add("인천");
+        insertList.add("제주");
+        j.setAddress(insertList);
         // List<String> position = Arrays.asList("서울");
 
-        System.out.println("테스트 : "+skill);
-        // System.out.println("테스트 : "+position);
-        j.setAddress(skill);
-        // j.setAddress(position);
-        List<JobsSearchRespDto> t = jobsRepository.findByCheckBox(j);
-        System.out.println("테스트 : "+ t.size());
+        // when
+        List<JobsSearchRespDto> jDtos = jobsRepository.findByCheckBox(j);
+        for (JobsSearchRespDto jDto : jDtos) {
+            System.out.println("테스트 : "+ jDto.toString());
+            }
+        System.out.println("테스트 : "+ jDtos.size());
+
+        //then
     }
 
     @Test

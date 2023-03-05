@@ -52,26 +52,27 @@
     </select>
   
     <select id="findBySearch" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsSearchRespDto">
-        select j.jobs_id, ( select comp_name from comp_tb where comp_id = j.comp_id) compName, 
-        ( select photo from comp_tb where comp_id = j.comp_id ) photo,
-        title, career, education, position, address, end_date, r.skill
+      select j.jobs_id, c.comp_name, c.photo,        
+      title, career, education, position, address, end_date
         <if test="userId != null">
           ifnull(( select user_scrap_id from user_scrap_tb where user_id = #{userId} and jobs_id = j.jobs_id ),null) user_scrap_id
         </if>
-        from jobs_tb j join required_skill_tb r
-        on j.jobs_id = r.jobs_id
-        where title regexp #{keyword} and
-        career regexp #{keyword} and
-        education regexp #{keyword} and
-        position regexp #{keyword} and
-        address regexp #{keyword} and
-        skill regexp  #{keyword}
+        from jobs_tb j join comp_tb c 
+        on j.comp_id = c.comp_id
+        where title regexp #{keyword} or
+        c.comp_name regexp #{keyword} or
+        career regexp #{keyword} or
+        education regexp #{keyword} or
+        position regexp #{keyword} or
+        address regexp #{keyword} 
     </select>
 
     <select id="findByCheckBox" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsSearchRespDto">
       select j.jobs_id, ( select comp_name from comp_tb where comp_id = j.comp_id) compName, 
         ( select photo from comp_tb where comp_id = j.comp_id ) photo,
-        title, career, education, position, address, end_date, r.skill
+        title, career, education, position, address, end_date
+        from jobs_tb j
+          where j.jobs_id  in ( select j.jobs_id
         from jobs_tb j join required_skill_tb r
         on j.jobs_id = r.jobs_id
         where 
@@ -96,7 +97,8 @@
           </foreach>
           and
         </if>
-        career regexp #{jDto.career}
+        career regexp #{jDto.career} 
+        )
     </select>
 
     <select id="findByJobsDetail" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsDetailRespDto">

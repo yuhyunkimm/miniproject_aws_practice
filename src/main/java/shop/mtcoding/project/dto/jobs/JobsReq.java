@@ -16,6 +16,7 @@ public class JobsReq {
         private List<String> skill;
         private List<String> position;
         private String career;
+        private String keyword;
     }
 
     @Getter
