@@ -214,7 +214,7 @@
                     <div id="state-btn" class="badge bg-success p-2">수락</div>
                     `;
                     let el2 = `
-                    <div class="badge bg-secondary p-2">답변완료</div>
+                    <div class="badge bg-secondary p-2">수락</div>
                     `;
                     $('#state-'+suggestId).append(el1);
                     $('#response-'+suggestId).append(el2);
@@ -226,7 +226,7 @@
                     <div id="state-btn" class="badge bg-danger p-2">거절</div>
                     `;
                     let el2 = `
-                    <div class="badge bg-secondary p-2">답변완료</div>
+                    <div class="badge bg-secondary p-2">거절</div>
                     `;
                     $('#state-'+suggestId).append(el1);
                     $('#response-'+suggestId).append(el2);

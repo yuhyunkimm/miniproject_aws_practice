@@ -12,4 +12,13 @@ public class ApplyReq {
         private Integer jobsId;
         private Integer userId;
     }
+
+    @Getter
+    @Setter
+    public static class ApplyUpdateReqDto{
+        private Integer applyId;
+        private Integer userId;
+        private Integer state;
+    }
+    
 }

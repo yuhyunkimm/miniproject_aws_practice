@@ -143,6 +143,76 @@
         passwordCheckBtn(cId);
     }
 
+    function accept(id,aId){
+                let data = {
+                    userId: id,
+                    applyId: aId,
+                    state: 1
+                }
+                $.ajax({
+                    type: "put",
+                    url: "/apply/update",
+                    data: JSON.stringify(data),
+                    headers:{
+                        "content-type":"application/json; charset=utf-8"
+                    },
+                    dataType:"json"
+                }).done((res) => {
+                    renderbtn(res.data, aId);
+                }).fail((err) => {
+                
+                });
+            }
+
+       
+            function deny(id,aId){
+                let data = {
+                    userId: id,
+                    applyId: aId,
+                    state: -1
+                }
+                $.ajax({
+                    type: "put",
+                    url: "/apply/update",
+                    data: JSON.stringify(data),
+                    headers:{
+                        "content-type":"application/json; charset=utf-8"
+                    },
+                    dataType:"json"
+                }).done((res) => {
+                    renderbtn(res.data, aId);
+                }).fail((err) => {
+                
+                });
+            }
+
+            function renderbtn(num, applyId){
+                if(num === 1){
+                    $('#state-btn-'+applyId).remove();
+                    $('#response-dropdown-'+applyId).remove();
+                    let el1 = `
+                    <div id="state-btn" class="badge bg-success p-2">합격</div>
+                    `;
+                    let el2 = `
+                    <div class="badge bg-secondary p-2">합격</div>
+                    `;
+                    $('#state-'+applyId).append(el1);
+                    $('#response-'+applyId).append(el2);
+                }
+                if(num === -1){
+                    $('#state-btn-'+applyId).remove();
+                    $('#response-dropdown-'+applyId).remove();
+                    let el1 = `
+                    <div id="state-btn" class="badge bg-danger p-2">불합격</div>
+                    `;
+                    let el2 = `
+                    <div class="badge bg-secondary p-2">불합격</div>
+                    `;
+                    $('#state-'+applyId).append(el1);
+                    $('#response-'+applyId).append(el2);
+                }
+            }
+
     const passwordInputEl = document.querySelector('#inputPassword')
     const modalEl = document.querySelector('#modal')
 
