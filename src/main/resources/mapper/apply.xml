@@ -37,7 +37,7 @@
         values ( #{aDto.resumeId}, #{aDto.jobsId}, 0, now() )
     </insert>
 
-    <update id="updateById">
+    <update id="updateByApplyId">
       update apply_tb set state = #{aDto.state}
       where apply_id = #{aDto.applyId}
     </update>
