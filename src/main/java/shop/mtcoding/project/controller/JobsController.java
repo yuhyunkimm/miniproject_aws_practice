@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -405,6 +406,13 @@ public class JobsController {
 
         Integer jobdId = jobsService.공고수정(jDto, compSession.getCompId());
         return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료", jobdId), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/jobs/{id}/delete")
+    public ResponseEntity<?> deleteJobs(@PathVariable Integer id){
+        Comp compSession = (Comp)session.getAttribute("compSession");
+        jobsService.공고삭제(id, compSession.getCompId());
+        return new ResponseEntity<>(new ResponseDto<>(1, "공고 삭제 성공", null), HttpStatus.OK);
     }
 }
 // ⬜ 채용정보 "/jobs/info"

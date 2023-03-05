@@ -52,7 +52,7 @@ public class ResumeController {
     @Autowired
     private HttpSession session;
 
-    @DeleteMapping("/resume/{id}")
+    @DeleteMapping("/resume/{id}/delete")
     public ResponseEntity<?> deleteResume(@PathVariable int id) {
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {

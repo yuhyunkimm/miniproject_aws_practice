@@ -160,7 +160,7 @@
     </update>
 
     <delete id="deleteById">
-        delete from resume_tb where resume_id = #{resumeId}
+        delete from jobs_tb where jobs_id = #{jobsId}
    </delete>
    
 </mapper>

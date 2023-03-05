@@ -179,7 +179,7 @@
             function deleteResume(id) {
                 $.ajax({
                     type: "delete",
-                    url: "/resume/" + $('#resumeId').val(),
+                    url: "/resume/" + id +"/delete",
                     dataType: "json"
                 }).done((res) => { // 20X 일때
                     alert(res.msg);
@@ -191,7 +191,6 @@
 
             function deleteBtn(event, resumeId) {
                 event.stopPropagation();
-
             }
 
             function checkPS(uId) {
