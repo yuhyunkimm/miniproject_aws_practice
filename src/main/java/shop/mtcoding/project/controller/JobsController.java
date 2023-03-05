@@ -132,16 +132,12 @@ public class JobsController {
     //     return "jobs/info";
     // }
 
-    // 나중에 get으로 바꿔보자
     @GetMapping("/jobs/info/search")
     public ResponseEntity<?> searchCheckbox(JobsCheckBoxReqDto jobsDto, Model model) {
-        System.out.println("테스트 : "+ jobsDto);
-
         if (jobsDto.getCareer() == null || jobsDto.getCareer().isEmpty()) {
             jobsDto.setCareer("");
         }
         List<JobsSearchRespDto> jDtos = jobsRepository.findByCheckBox(jobsDto);
-        System.out.println("테스트 : "+ jDtos.size());
         for (JobsSearchRespDto jDto : jDtos) {
             long dDay = DateUtil.dDay(jDto.getEndDate());
             jDto.setLeftTime(dDay);
@@ -150,9 +146,7 @@ public class JobsController {
                 insertList.add(skill.getSkill());
             }
             jDto.setSkillList(insertList);
-            // System.out.println("테스트 : "+ jDto.toString());
         }
-        // model.addAttribute("jDtos", jDtos);
         return new ResponseEntity<>(new ResponseDto<>(1, "검색 성공", jDtos), HttpStatus.OK);
     }
 
@@ -173,9 +167,27 @@ public class JobsController {
         User principal = (User) session.getAttribute("principal");
         if (principal != null) {
             List<JobsMainRespDto> jDtos = jobsRepository.findAlltoMain(principal.getUserId());
+            for (JobsMainRespDto jDto1 : jDtos) {
+                long dDay = DateUtil.dDay(jDto1.getEndDate());
+                jDto1.setLeftTime(dDay);
+                List<String> insertList = new ArrayList<>();
+                for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto1.getJobsId())) {
+                    insertList.add(skill.getSkill());
+                }
+                jDto1.setSkillList(insertList);
+            }
             model.addAttribute("jDtos", jDtos);
         } else {
             List<JobsMainRespDto> jDtos = jobsRepository.findAlltoMain(null);
+            for (JobsMainRespDto jDto2 : jDtos) {
+                long dDay = DateUtil.dDay(jDto2.getEndDate());
+                jDto2.setLeftTime(dDay);
+                List<String> insertList = new ArrayList<>();
+                for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto2.getJobsId())) {
+                    insertList.add(skill.getSkill());
+                }
+                jDto2.setSkillList(insertList);
+            }
             model.addAttribute("jDtos", jDtos);
         }
 

@@ -725,8 +725,8 @@
                                 `+ jDto.title + `
                             </div>
                             <div>
-                                <c:forEach items="${jDto.skillList}" var="skill">
-                                    <span class="badge bg-primary me-2">${skill}</span>
+                                <c:forEach items="`+jDto.skillList+`" var="skill">
+                                    <span class="badge bg-primary">${skill}</span><span>이거 왜 붙어 나옴.. 수정필요</span>
                                 </c:forEach>
                             </div>
                             <div>
@@ -738,7 +738,7 @@
                                     <input type="hidden" id="endDate-`+ jDto.jobsId + `" value="` + jDto.endDate + `">
                                 </div>
                                 <div>
-
+                                    D-`+jDto.leftTime+`
                                 </div>
 
                             </div>
@@ -747,7 +747,6 @@
                 </a>
             </div>
             `;
-
             $('.info-card').append(el);
         });
     }
