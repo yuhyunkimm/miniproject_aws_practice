@@ -135,8 +135,7 @@ public class JobsController {
     // 나중에 get으로 바꿔보자
     @GetMapping("/jobs/info/search")
     public ResponseEntity<?> searchCheckbox(JobsCheckBoxReqDto jobsDto, Model model) {
-        // System.out.println("테스트 : "+ jobsDto);
-        System.out.println("테스트 : "+ jobsDto.getAddress());
+        System.out.println("테스트 : "+ jobsDto);
 
         if (jobsDto.getCareer() == null || jobsDto.getCareer().isEmpty()) {
             jobsDto.setCareer("");

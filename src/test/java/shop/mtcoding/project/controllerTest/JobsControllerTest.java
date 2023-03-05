@@ -57,7 +57,7 @@ public class JobsControllerTest {
     @Test
     public void searchCheckbox_test() throws Exception {
         // given
-        String keyword = "address=서울,경기도";
+        String keyword = "address=서울,경기도,제주&career=신입";
         
         // when
         ResultActions rs = mvc.perform(get("/jobs/info/search?"+keyword));

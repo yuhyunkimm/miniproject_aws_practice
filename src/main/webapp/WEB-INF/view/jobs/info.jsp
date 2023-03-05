@@ -686,29 +686,21 @@
     // }
 
     function searchInfo() {
-        let data = {
-            address: addressValues,
-            skill: skillValues,
-            position: positionValues,
-            career: careerValue
+        let arr1 = addressValues;
+        let address = 'address='+arr1.join(',');
+        let arr2 = skillValues;
+        let skill = 'skill='+arr2.join(',');
+        let arr3 = positionValues;
+        let position = 'position='+arr3.join(',');
+        if( careerValue === undefined ) {
+            careerValue = '';
         }
-        keyword = JSON.stringify(data);
-            // address= addressValues;
-            // skill= skillValues;
-            // position= positionValues;
-            // career=careerValue;
-        // $('.selectBox-remove').remove();
         $('.remove-card').remove();
         $.ajax({
             type: "get",
-            // url: "/jobs/info/search?address="+address+"&skill="+skill+"&position="+position+"&career="+career,
-            url: "/jobs/info/search?"+keyword,
-            headers: {
-                "content-type": "application/json; charset=utf-8"
-            },
+            url: "/jobs/info/search?"+address+"&"+skill+"&"+position+"&career="+careerValue,
             dataType: "json"
         }).done((res) => {
-            console.log(res.data);
             renderInfo(res.data);
             $('#result').text('검색결과');
         }).fail((err) => {
