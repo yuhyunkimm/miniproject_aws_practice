@@ -7,7 +7,7 @@
                 <button class="nav-link active tap-btn" id="btn1" onclick="openTab(event, 'tab1')">지역별</button>
             </li>
             <li class="nav-item mx-2">
-                <button class="nav-link tap-btn" " id=" btn2" onclick="openTab(event, 'tab2')">기술별</button>
+                <button class="nav-link tap-btn" " id="btn2" onclick="openTab(event, 'tab2')">기술별</button>
             </li>
             <li class="nav-item mx-2">
                 <button class="nav-link tap-btn" id="btn3" onclick="openTab(event, 'tab3')">직무별</button>
@@ -354,9 +354,8 @@
 
         </div>
         <div class="col-4 d-flex justify-content-end">
-            <button type="button" class="btn btn-primary mb-2 my-auto" onclick="resetCheckboxes()">초기화</button>
-            <button type="button" class="btn btn-primary mx-3 mb-2 my-auto" onclick="searchInfo()"
-                id="search-info-btn">검색하기</button>
+            <button type="button" class="btn btn-primary mb-2 my-auto" onclick="resetCheckboxes()" >초기화</button>
+            <button type="button" class="btn btn-primary mx-3 mb-2 my-auto" onclick="searchInfo()" id="search-info-btn">검색하기</button>
         </div>
     </div>
 
@@ -403,7 +402,7 @@
                                             <i id="scrap-${jDto.jobsId}" class="fa-solid on-Clicked fa-star my-cursor"
                                                 onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
                                         </c:when>
-
+        
                                         <c:otherwise>
                                             <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star my-cursor"
                                                 onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
@@ -412,7 +411,7 @@
                                 </div>
                             </div>
                         </c:when>
-
+        
                         <c:otherwise>
                             <div>
                                 <a href="/user/login">
@@ -426,11 +425,10 @@
                     </div>
                 </div>
             </div>
+            </div>
+            </div>
+        </c:forEach>
     </div>
-
-</div>
-</c:forEach>
-</div>
 </div>
 <script>
     let jobsId;
@@ -446,7 +444,7 @@
             userScrapId = userScrap;
             $.ajax({
                 type: "delete",
-                url: "/user/scrap/" + userScrapId + "/delete",
+                url: "/user/scrap/"+userScrapId+"/delete",
                 dataType: "json"
             }).done((res) => {
                 userScrapId = res.data;
@@ -478,29 +476,29 @@
     }
 
     function changeScrap() {
-        $('#scrap-' + jobsId + '-remove').remove();
+        $('#scrap-'+ jobsId +'-remove').remove();
         renderScrap();
     }
-
-    function renderScrap() {
+    
+    function renderScrap(){
         let el;
 
-        if (userScrapId > 0) {
+        if ( userScrapId > 0 ){
             el = `
-            <div id="scrap-`+ jobsId + `-remove">
-                <i id="scrap-`+ jobsId + `" class="fa-solid on-Clicked fa-star my-cursor"
-                                        onclick="scrap(`+ jobsId + `,` + userId + `,` + userScrapId + `)"></i>
+            <div id="scrap-`+ jobsId+`-remove">
+                <i id="scrap-`+ jobsId  +`" class="fa-solid on-Clicked fa-star my-cursor"
+                                        onclick="scrap(`+ jobsId +`,`+ userId +`,`+ userScrapId +`)"></i>
                                     </div>
             `;
-        } if (userScrapId === 0) {
+        }if (userScrapId === 0){
             el = `
-            <div id="scrap-`+ jobsId + `-remove">
-                <i id="scrap-`+ jobsId + `" class="fa-regular fa-star my-cursor"
-                                        onclick="scrap(`+ jobsId + `,` + userId + `,` + userScrapId + `)"></i>
+            <div id="scrap-`+  jobsId +`-remove">
+                <i id="scrap-`+  jobsId  +`" class="fa-regular fa-star my-cursor"
+                                        onclick="scrap(`+ jobsId +`,`+ userId +`,`+ userScrapId +`)"></i>
                                     </div>
             `;
         }
-        $('#scrap-' + jobsId + '-render').append(el);
+        $('#scrap-'+ jobsId +'-render').append(el);
     }
 
     document.getElementById("btn1").addEventListener("click", function () {
@@ -659,8 +657,8 @@
 
     const radios = document.querySelectorAll('input[type="radio"]');
     function resetCheckboxes() {
-        radios.forEach((radio) => {
-            radio.checked = false;
+        radios.forEach((radio)=>{
+            radio.checked=false;
         })
         checkboxes.forEach(function (checkbox) {
             checkbox.checked = false;
@@ -694,20 +692,27 @@
             position: positionValues,
             career: careerValue
         }
+        keyword = JSON.stringify(data);
+            // address= addressValues;
+            // skill= skillValues;
+            // position= positionValues;
+            // career=careerValue;
         // $('.selectBox-remove').remove();
         $('.remove-card').remove();
         $.ajax({
-            type: "post",
-            url: "/jobs/info/search",
-            data: JSON.stringify(data),
+            type: "get",
+            // url: "/jobs/info/search?address="+address+"&skill="+skill+"&position="+position+"&career="+career,
+            url: "/jobs/info/search?"+keyword,
             headers: {
                 "content-type": "application/json; charset=utf-8"
             },
             dataType: "json"
         }).done((res) => {
+            console.log(res.data);
             renderInfo(res.data);
             $('#result').text('검색결과');
         }).fail((err) => {
+            // console.log(err.responseJSON.msg);
         });
     }
 

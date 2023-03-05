@@ -63,12 +63,10 @@ public class SuggestController {
         Integer result = 0;
         if( sDto.getState() == 1){
             suggestService.제안수락(sDto, principal.getUserId());
-            System.out.println("테스트 : 수락함");
             result = 1;
         }
         if( sDto.getState() == -1){
             suggestService.제안거절(sDto, principal.getUserId());
-            System.out.println("테스트 : 거절함ㄴ");
             result = -1;
         }
         return new ResponseEntity<>(new ResponseDto<>(1, "제안을 답변했습니다.", result), HttpStatus.OK);

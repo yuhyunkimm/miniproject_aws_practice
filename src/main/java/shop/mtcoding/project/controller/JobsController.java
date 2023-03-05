@@ -78,7 +78,7 @@ public class JobsController {
         return new ResponseEntity<>(new ResponseDto<>(1, "공고 불러오기 완료", jDtos), HttpStatus.OK);
     }
 
-    @GetMapping("/jobs/info/search")
+    @GetMapping("/jobs/search")
     public String searchJobs(String keyword, Model model){
         if(ObjectUtils.isEmpty(keyword)){
             keyword = "검색어를 입력해 주세요 !!!";
@@ -105,6 +105,58 @@ public class JobsController {
         return "jobs/info";
     }
 
+    // @GetMapping("/jobs/info/search")
+    // public String searchCheckbox(String keyword, Model model){
+    //     if(ObjectUtils.isEmpty(keyword)){
+    //         keyword = "검색어를 입력해 주세요 !!!";
+    //         throw new CustomException("검색어가 없습니다.");
+    //     }
+    //     User principal = (User) session.getAttribute("principal");
+    //     Integer num = null;
+    //     if( principal != null ){
+    //         num = principal.getUserId();
+    //     }
+    //     List<JobsSearchRespDto> jDtos = jobsRepository.findBySearch(keyword, num);
+    //     for (JobsSearchRespDto jDto : jDtos) {
+    //         long dDay = DateUtil.dDay(jDto.getEndDate());
+    //         jDto.setLeftTime(dDay);
+    //         List<String> insertList = new ArrayList<>();
+    //         for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto.getJobsId())) {
+    //             insertList.add(skill.getSkill());
+    //         }
+    //         jDto.setSkillList(insertList);
+    //     }
+
+    //     model.addAttribute("jDtos", jDtos);
+    //     model.addAttribute("keyword", keyword);
+    //     return "jobs/info";
+    // }
+
+    // 나중에 get으로 바꿔보자
+    @GetMapping("/jobs/info/search")
+    public ResponseEntity<?> searchCheckbox(JobsCheckBoxReqDto jobsDto, Model model) {
+        // System.out.println("테스트 : "+ jobsDto);
+        System.out.println("테스트 : "+ jobsDto.getAddress());
+
+        if (jobsDto.getCareer() == null || jobsDto.getCareer().isEmpty()) {
+            jobsDto.setCareer("");
+        }
+        List<JobsSearchRespDto> jDtos = jobsRepository.findByCheckBox(jobsDto);
+        System.out.println("테스트 : "+ jDtos.size());
+        for (JobsSearchRespDto jDto : jDtos) {
+            long dDay = DateUtil.dDay(jDto.getEndDate());
+            jDto.setLeftTime(dDay);
+            List<String> insertList = new ArrayList<>();
+            for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto.getJobsId())) {
+                insertList.add(skill.getSkill());
+            }
+            jDto.setSkillList(insertList);
+            // System.out.println("테스트 : "+ jDto.toString());
+        }
+        // model.addAttribute("jDtos", jDtos);
+        return new ResponseEntity<>(new ResponseDto<>(1, "검색 성공", jDtos), HttpStatus.OK);
+    }
+
     @GetMapping("/jobs/info")
     public String info(JobsSearchReqDto jDto, Model model) throws Exception {
         if (jDto.getAddress() == null || jDto.getAddress().isEmpty()) {
@@ -119,12 +171,6 @@ public class JobsController {
         if (jDto.getSkill() == null || jDto.getSkill().isEmpty()) {
             jDto.setSkill("");
         }
-
-
-
-
-
-        // 여기 수정 해야함 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         User principal = (User) session.getAttribute("principal");
         if (principal != null) {
             List<JobsMainRespDto> jDtos = jobsRepository.findAlltoMain(principal.getUserId());
@@ -200,21 +246,8 @@ public class JobsController {
         return "jobs/updateJobsForm";
     }
 
-    // 나중에 get으로 바꿔보자
-    @PostMapping("/jobs/info/search")
-    public ResponseEntity<?> searchJobs(@RequestBody JobsCheckBoxReqDto jDto, Model model) {
-        // System.out.println("테스트 : "+ jDto.toString());
-        if (jDto.getCareer() == null || jDto.getCareer().isEmpty()) {
-            jDto.setCareer("");
-        }
-        List<JobsSearchRespDto> jDtos = jobsRepository.findByCheckBox(jDto);
-        model.addAttribute("jDtos", jDtos);
-        return new ResponseEntity<>(new ResponseDto<>(1, "검색 성공", jDtos), HttpStatus.OK);
-    }
-
     @PostMapping("/jobs/info/list")
     public ResponseEntity<?> searchJobsSize(@RequestBody JobsCheckBoxReqDto jDto, Model model) {
-        System.out.println("테스트 : "+ jDto.toString());
         if (jDto.getCareer() == null || jDto.getCareer().isEmpty()) {
             jDto.setCareer("");
         }

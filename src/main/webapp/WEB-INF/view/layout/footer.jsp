@@ -42,7 +42,7 @@
     }
     function searchEvt() {
         const keyword = $('#search-header').val();
-        location.href = "/jobs/info/search?keyword=" + keyword;
+        location.href = "/jobs/search?keyword=" + keyword;
     }
 </script>
 </body>
