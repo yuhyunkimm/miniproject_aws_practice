@@ -104,146 +104,16 @@
                                         <div id="my-table-body2">
                                             <table class="my-table table table-bordered"
                                                 style="background-color: white;">
-                                                <%-- <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="form-check text-center">
-                                                                <label class="form-check-label">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        name="skillList" value="Java" <c:forEach
-                                                                        items="${rDto.skillList}" var="skill" disabled>
-                                                                    ${skill=='Java' ? 'checked="checked"' : '' }
-                                                                    </c:forEach>
-                                                                    > Java
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-check text-center">
-                                                                <label class="form-check-label">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        name="skillList" value="JavaScript" <c:forEach
-                                                                        items="${rDto.skillList}" var="skill" disabled>
-                                                                    ${skill=='JavaScript' ? 'checked="checked"' : '' }
-                                                                    </c:forEach>
-                                                                    > JavaScript
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-check text-center">
-                                                                <label class="form-check-label">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        name="skillList" value="Spring" 
-                                                                        <c:forEach
-                                                                        items="${rDto.skillList}" var="skill" disabled>
-                                                                    ${skill=='Spring' ? 'checked="checked"' : '' }
-                                                                    </c:forEach>
-                                                                    > Spring
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-check text-center">
-                                                                <label class="form-check-label">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        name="skillList" value="HTML" <c:forEach
-                                                                        items="${rDto.skillList}" var="skill" disabled>
-                                                                    ${skill=='HTML' ? 'checked="checked"' : '' }
-                                                                    </c:forEach>
-                                                                    > HTML
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-check text-center">
-                                                                <label class="form-check-label">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        name="skillList" value="jQuery" <c:forEach
-                                                                        items="${rDto.skillList}" var="skill"  disabled>
-                                                                    ${skill=='jQuery' ? 'checked="checked"' : '' }
-                                                                    </c:forEach>
-                                                                   > jQuery
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="form-check text-center">
-                                                                <label class="form-check-label">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        name="skillList" value="JSP" <c:forEach
-                                                                        items="${rDto.skillList}" var="skill" disabled>
-                                                                    ${skill=='JSP' ? 'checked="checked"' : '' }
-                                                                    </c:forEach>
-                                                                    > JSP
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-check text-center">
-                                                                <label class="form-check-label">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        name="skillList" value="Vue.js" <c:forEach
-                                                                        items="${rDto.skillList}" var="skill" disabled>
-                                                                    ${skill=='Vue.js' ? 'checked="checked"' : '' }
-                                                                    </c:forEach>
-                                                                    > Vue.js
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-check text-center">
-                                                                <label class="form-check-label">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        name="skillList" value="Oracle" <c:forEach
-                                                                        items="${rDto.skillList}" var="skill" disabled>
-                                                                    ${skill=='Oracle' ? 'checked="checked"' : '' }
-                                                                    </c:forEach>
-                                                                    > Oracle
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-check text-center">
-                                                                <label class="form-check-label">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        name="skillList" value="MySQL" <c:forEach
-                                                                        items="${rDto.skillList}" var="skill" disabled>
-                                                                    ${skill=='MySQL' ? 'checked="checked"' : '' }
-                                                                    </c:forEach>
-                                                                    > MySQL
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-check text-center">
-                                                                <label class="form-check-label">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        name="skillList" value="React" <c:forEach
-                                                                        items="${rDto.skillList}" var="skill" disabled>
-                                                                    ${skill=='React' ? 'checked="checked"' : '' }
-                                                                    </c:forEach>
-                                                                     >React
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody> --%>
                                                 <div style="float: left; d-flex">
                                                     <c:forEach items="${rDto.skillList}" var="skill">
                                                         <span class="badge bg-secondary">${skill}</span>
-
                                                     </c:forEach>
-                                                    <%-- ${rDto.skillList} --%>
                                                 </div>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
 
                             <div class="card border-light mb-3">
                                 <div class="card-header">자기소개서</div>
@@ -265,9 +135,7 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
 
                     <div class="col-3">
@@ -299,8 +167,21 @@
                             </div>
                             <div class="row p-1" id="suggest-render">
                                 <div id="suggest-btn">
-                                    <button type="button" class="btn btn-success w-100" data-bs-toggle="modal"
+                                    <c:choose>
+                                       <c:when test="${rDto.state == 0}">
+                                       <button type="button" class="btn btn-secondary w-100">제안완료</button>
+                                       </c:when>
+                                       <c:when test="${rDto.state == 1}">
+                                       <button type="button" class="btn btn-secondary w-100">제안성공</button>
+                                       </c:when>
+                                       <c:when test="${rDto.state == -1}">
+                                       <button type="button" class="btn btn-secondary w-100">제안거절</button>
+                                       </c:when>
+                                       <c:when test="${rDto.state == null }">
+                                       <button type="button" class="btn btn-success w-100" data-bs-toggle="modal"
                                         data-bs-target="#myModal" onclick="requestJobs()">제안하기</button>
+                                       </c:when>
+                                    </c:choose>
                                 </div>
                             </div>
                             </c:when>
@@ -310,9 +191,6 @@
                     </div>
                     </c:otherwise>
                     </c:choose>
-
-
-
                 </div>
         </div>
     </div>
@@ -332,7 +210,6 @@
                 </div>
                 <div class="modal-body">
                     <div id="render-jobs">
-
 
                     </div>
                     <button type="button" class="btn btn-success mt-2" style="float: right;"
@@ -440,7 +317,7 @@
             }).done((res) => {
                 alert(res.msg);
                 $('#suggest-btn').remove();
-                location.href = "/comp/apply";
+                // location.href = "/comp/apply";
                 renderBtnSuccess();
             }).fail((err) => {
                 alert(err.responseJSON.msg);

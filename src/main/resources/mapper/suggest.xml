@@ -7,11 +7,16 @@
     <select id="findAll" resultType="shop.mtcoding.project.model.Suggest">
         select * from suggest_tb
     </select>
-
     <select id="findById" resultType="shop.mtcoding.project.model.Suggest">
       select * from suggest_tb where suggest_id = #{suggestId}
     </select>
-
+    <select id="findByCompIdAndResumeId" resultType="shop.mtcoding.project.dto.suggest.SuggestResp$SuggestToCompRespDto">
+      select suggest_id, state from suggest_tb s join jobs_tb j
+        on s.jobs_id = j.jobs_id
+        where j.comp_id = #{compId}
+        and s.resume_id = #{resumeId}
+    </select>
+    
     <select id="findAllGetOfferByUserId" resultType="shop.mtcoding.project.dto.suggest.SuggestResp$SuggestToUserRespDto">
       select s.suggest_id, j.jobs_id, r.resume_id, c.comp_name, j.title, j.position, s.state, u.name from suggest_tb s join jobs_tb j
         on s.jobs_id = j.jobs_id join comp_tb c

@@ -31,6 +31,7 @@ public class ResumeResp {
         private String address;
         private String content;
         private String link;
+        private Integer state;
     }
 
     @Getter
