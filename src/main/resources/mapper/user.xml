@@ -45,6 +45,18 @@
             where user_id = #{uDto.userId}
     </update>
 
+    <update id="updatePhotoById">
+        update user_tb set 
+            password =  #{uDto.password}, 
+            name = #{uDto.name}, 
+            birth = #{uDto.birth},
+            tel =  #{uDto.tel},
+            photo =  #{uDto.photo},
+            address = #{uDto.address}
+            where user_id = #{uDto.userId}
+    </update>
+
+
     <delete id="deleteById">
         delete from user_tb where id = #{uDto.userId}
     </delete>

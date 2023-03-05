@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
+import shop.mtcoding.project.dto.user.UserReq.UserUpdatePhotoReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserUpdateReqDto;
 import shop.mtcoding.project.dto.user.UserResp.UserDataRespDto;
 import shop.mtcoding.project.dto.user.UserResp.UserDeleteRespDto;
@@ -27,6 +28,8 @@ public interface UserRepository {
     public int insert(@Param("uDto") UserJoinReqDto uDto);
 
     public int updateById(@Param("uDto") UserUpdateReqDto uDto);
+
+    public int updatePhotoById(@Param("uDto") UserUpdatePhotoReqDto uDto);
 
     public int deleteById(@Param("uDto") UserDeleteRespDto uDto);
 

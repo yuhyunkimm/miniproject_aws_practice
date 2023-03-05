@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusUserRespDto;
 import shop.mtcoding.project.dto.common.ResponseDto;
@@ -231,7 +232,21 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/user/profileUpdate")
+    @PostMapping("/user/profileUpdate")
+    public String profileUpdate(MultipartFile photo) {
+        User principal = (User) session.getAttribute("principal");
+        if (principal == null) {
+            return "redirect:/user/login";
+        }
+        if (photo.isEmpty()) {
+            throw new CustomException("사진이 전송되지 않았습니다");
+        }
+        User userPS = userService.프로필사진수정(photo, principal.getUserId());
+        session.setAttribute("principal", userPS);
+        return "user/myhome";
+    }
+
+    @GetMapping("/user/profileUpdateForm")
     public String profileUpdateForm(Model model) {
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {

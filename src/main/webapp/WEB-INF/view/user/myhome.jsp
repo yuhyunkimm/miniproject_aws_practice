@@ -11,7 +11,7 @@
                             <div class="card-body">
                                 <div class="relative mb-3">
                                     <div>
-                                        <a href="/user/profileUpdate"
+                                        <a href="/user/profileUpdateForm"
                                             onclick="window.open(this.href, '_blank', 'width=1000,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                             <img src="/images/default_profile.png" class="rounded" alt="Cinque Terre"
                                                 style="max-width: 80px;">

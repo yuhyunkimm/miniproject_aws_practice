@@ -4,14 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserLoginReqDto;
+import shop.mtcoding.project.dto.user.UserReq.UserUpdatePhotoReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserUpdateReqDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
+import shop.mtcoding.project.util.UserPathUtil;
 
 @Service
 public class UserService {
@@ -64,5 +67,17 @@ public class UserService {
         } catch (Exception e) {
             throw new CustomException("서버 에러가 발생 했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @Transactional
+    public User 프로필사진수정(MultipartFile photo, Integer pricipalId, UserUpdatePhotoReqDto updatePhotoReqDto) {
+
+        String uuidImageName = UserPathUtil.writeImageFile(photo);
+
+        User userPS = userRepository.findById(pricipalId);
+        userPS.setPhoto(uuidImageName);
+
+        userRepository.updatePhotoById(updatePhotoReqDto);
+        return userPS;
     }
 }
