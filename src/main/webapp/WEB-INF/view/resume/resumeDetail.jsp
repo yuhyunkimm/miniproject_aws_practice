@@ -167,21 +167,35 @@
                             </div>
                             <div class="row p-1" id="suggest-render">
                                 <div id="suggest-btn">
-                                    <c:choose>
-                                       <c:when test="${rDto.state == 0}">
+                                <c:choose>
+                                   <c:when test="${rDto.applyState == null}">
+                                        <c:choose>
+                                       <c:when test="${rDto.suggestState == 0}">
                                        <button type="button" class="btn btn-secondary w-100">제안완료</button>
                                        </c:when>
-                                       <c:when test="${rDto.state == 1}">
+                                       <c:when test="${rDto.suggestState == 1}">
                                        <button type="button" class="btn btn-secondary w-100">제안성공</button>
                                        </c:when>
-                                       <c:when test="${rDto.state == -1}">
+                                       <c:when test="${rDto.suggestState == -1}">
                                        <button type="button" class="btn btn-secondary w-100">제안거절</button>
                                        </c:when>
-                                       <c:when test="${rDto.state == null }">
+                                       <c:when test="${rDto.suggestState == null }">
                                        <button type="button" class="btn btn-success w-100" data-bs-toggle="modal"
                                         data-bs-target="#myModal" onclick="requestJobs()">제안하기</button>
                                        </c:when>
                                     </c:choose>
+                                   </c:when>
+                                
+                                   <c:otherwise>
+                                    <div class="mb-2">
+                                        <button type="button" class="btn btn-success w-100">합격</button>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-danger w-100">불합격</button>
+                                    </div>
+                                   </c:otherwise>
+                                </c:choose>
+                                    
                                 </div>
                             </div>
                             </c:when>

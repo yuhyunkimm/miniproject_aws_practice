@@ -38,5 +38,11 @@ public class ApplyResp {
         // private List<String> skillList;
     }
 
+    @Getter
+    @Setter
+    public static class ApplytoCompRespDto{
+        private Integer applyId;
+        private Integer state;
+    }
 
 }

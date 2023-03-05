@@ -11,11 +11,19 @@
       select * from apply_tb where apply_id = #{applyId}
   </select>
 
+  <select id="findByCompIdAndApplyId" resultType="shop.mtcoding.project.dto.apply.ApplyResp$ApplytoCompRespDto">
+    select apply_id, state from apply_tb a join jobs_tb j
+      on a.jobs_id = j.jobs_id 
+      where apply_id = #{applyId}
+      and comp_id = #{compId}
+  </select>
+
     <select id="findApplyStateByUserIdAndJobsId" resultType="shop.mtcoding.project.dto.apply.ApplyResp$ApplyUserStatusDetailRespDto">
       SELECT ifnull(a.state,null) state FROM APPLY_TB a join resume_tb r
         on a.resume_id = r.resume_id
         where r.user_id = #{userId} and a.jobs_id = #{jobsId}
     </select>
+
 
     <select id="findAllByCompIdtoApply" resultType="shop.mtcoding.project.dto.apply.ApplyResp$ApllyStatusCompRespDto">
       select a.apply_id, a.resume_id, a.jobs_id, a.state, r.title, j.position, r.career, r.education, u.name, u.birth from apply_tb a join jobs_tb j 

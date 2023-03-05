@@ -63,7 +63,7 @@
                                     <td>${aDto.name}</td>
                                     <td>
                                         <button type="button" class="btn btn-success btn-sm"
-                                         onclick="window.open('/resume/${aDto.resumeId}', '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">이력서</button>
+                                         onclick="window.open('/resume/apply/${aDto.applyId}', '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">이력서</button>
                                     </td>
                                     <td><a href="/jobs/${aDto.jobsId}">${aDto.title}</a> </td>
                                     <td>${aDto.career}</td>

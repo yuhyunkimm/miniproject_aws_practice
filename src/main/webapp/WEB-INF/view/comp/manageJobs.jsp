@@ -60,7 +60,7 @@
                             <div class="col-3">
                                 <div style="float: right;">
                                     <button type="button" style="width: 7em;" class="btn btn-secondary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#dModal"
-                                        style="float: right;" onclick="event.preventDefault();deleteBtn(event, `${jDto.jobsId}`);">이력서
+                                        style="float: right;" onclick="event.preventDefault();deleteBtn(event, `${jDto.jobsId}`);">공고
                                         삭제</button>
                                 </div>
                                 <div style="float: right;">

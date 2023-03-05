@@ -25,10 +25,11 @@ import shop.mtcoding.project.dto.resume.ResumeResp.ResumeDetailRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeManageRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeSaveRespDto;
 import shop.mtcoding.project.dto.skill.ResumeSkillResp.ResumeSkillRespDto;
-import shop.mtcoding.project.dto.suggest.SuggestResp.SuggestToCompRespDto;
 import shop.mtcoding.project.dto.user.UserResp.UserDataRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
+import shop.mtcoding.project.model.Apply;
+import shop.mtcoding.project.model.ApplyRepository;
 import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.SkillRepository;
@@ -54,6 +55,9 @@ public class ResumeController {
 
     @Autowired
     private SuggestRepository SuggestRepository;
+
+    @Autowired
+    private ApplyRepository applyRepository;
 
     @Autowired
     private HttpSession session;
@@ -189,11 +193,41 @@ public class ResumeController {
             insertList.add(skill.getSkill());
             rDto.setSkillList(insertList);
         }
-        // rDto.setState(0);
-        Comp compSession = (Comp)session.getAttribute("compSession");
-        if ( compSession != null){
+        Comp compSession = (Comp) session.getAttribute("compSession");
+        if (compSession != null) {
             try {
-                rDto.setState(SuggestRepository.findByCompIdAndResumeId(compSession.getCompId(), id).getState());
+                rDto.setSuggestState(SuggestRepository.findByCompIdAndResumeId(compSession.getCompId(), id).getState());
+            } catch (Exception e) {
+            }
+        }
+        model.addAttribute("rDto", rDto);
+        return "/resume/resumeDetail";
+    }
+
+    @GetMapping("/resume/apply/{id}")
+    public String applyResumeDetail(@PathVariable Integer id, Model model) {
+        if (id == null) {
+            throw new CustomException("지원한 아이디가 필요합니다.");
+        }
+        Apply applyPS = applyRepository.findByApplyId(id);
+        if (applyPS == null) {
+            throw new CustomException("지원 결과 데이터가 없습니다.");
+        }
+        ResumeDetailRespDto rDto = resumeRepository.findDetailPublicResumebyById(applyPS.getResumeId());
+        List<String> insertList = new ArrayList<>();
+        for (ResumeSkillRespDto skill : skillRepository.findByResumeSkill(rDto.getResumeId())) {
+            insertList.add(skill.getSkill());
+            rDto.setSkillList(insertList);
+        }
+        Comp compSession = (Comp) session.getAttribute("compSession");
+        if (compSession != null) {
+            try {
+                rDto.setSuggestState(SuggestRepository
+                        .findByCompIdAndResumeId(compSession.getCompId(), applyPS.getResumeId()).getState());
+            } catch (Exception e) {
+            }
+            try {
+                rDto.setApplyState(applyRepository.findByCompIdAndApplyId(compSession.getCompId(), id).getState());                 ;
             } catch (Exception e) {
             }
         }

@@ -10,6 +10,7 @@ import shop.mtcoding.project.dto.apply.ApplyReq.ApplyUpdateReqDto;
 import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusCompRespDto;
 import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusUserRespDto;
 import shop.mtcoding.project.dto.apply.ApplyResp.ApplyUserStatusDetailRespDto;
+import shop.mtcoding.project.dto.apply.ApplyResp.ApplytoCompRespDto;
 
 @Mapper
 public interface ApplyRepository {
@@ -26,6 +27,11 @@ public interface ApplyRepository {
 
     public List<ApllyStatusUserRespDto> findAllByUserIdtoApply(Integer userId);
 
+    public ApplytoCompRespDto findByCompIdAndApplyId(
+        @Param("compId") Integer compId,
+        @Param("applyId") Integer applyId
+    );
+
     public int insert(
         @Param("aDto")  ApplyReqDto aDto
     );
@@ -35,4 +41,6 @@ public interface ApplyRepository {
     public int deleteById(
 
     );
+
+
 }
