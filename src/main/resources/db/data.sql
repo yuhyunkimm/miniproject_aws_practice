@@ -60,11 +60,11 @@ values ('백엔드 개발자 채용2' , '백엔드 개발자 채용하는 상세
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
 values ('백엔드 개발자 채용3' , '백엔드 개발자 채용하는 상세 내용3', '백엔드 개발자', '1년차', '대학원 이상', '서울', '2023-03-07', 1, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
-values ('백엔드 개발자 채용4' , '백엔드 개발자 채용하는 상세 내용4', '서버 개발자', '3년차', '학력무관', '제주', '2023-03-07', 1, '홈페이지 접수', now());
+values ('백엔드 개발자 채용4' , '백엔드 개발자 채용하는 상세 내용4', '서버 개발자', '3년차', '학력무관', '제주', '2023-03-07', 2, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
-values ('백엔드 개발자 채용5' , '백엔드 개발자 채용하는 상세 내용5', '안드로이드 개발자', '신입', '학력무관', '제주', '2023-03-07', 1, '홈페이지 접수', now());
+values ('백엔드 개발자 채용5' , '백엔드 개발자 채용하는 상세 내용5', '안드로이드 개발자', '신입', '학력무관', '제주', '2023-03-07', 3, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address,  end_date, comp_id, receipt, created_at)
-values ('백엔드 개발자 채용6' , '백엔드 개발자 채용하는 상세 내용6', '안드로이드 개발자', '1년차', '학력무관', '제주', '2023-03-07', 1, '홈페이지 접수', now());
+values ('백엔드 개발자 채용6' , '백엔드 개발자 채용하는 상세 내용6', '안드로이드 개발자', '1년차', '학력무관', '제주', '2023-03-07', 4, '홈페이지 접수', now());
 
 
 insert into interest_tb (user_id, interest_ct) values(1, '백엔드 개발자');
@@ -103,8 +103,6 @@ insert into apply_tb (resume_id, jobs_id, state, created_at) values (3, 2, 0, no
 
 insert into suggest_tb (jobs_id, resume_id, state, created_at) values (1, 1, 0, now());
 insert into suggest_tb (jobs_id, resume_id, state, created_at) values (2, 3, 0, now());
-insert into suggest_tb (jobs_id, resume_id, state, created_at) values (3, 2, 0, now());
-insert into suggest_tb (jobs_id, resume_id, state, created_at) values (4, 1, 0, now());
 insert into suggest_tb (jobs_id, resume_id, state, created_at) values (5, 3, 0, now());
 
 commit;

@@ -2,7 +2,6 @@ package shop.mtcoding.project.repositoryTest;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -16,6 +15,7 @@ import shop.mtcoding.project.dto.jobs.JobsReq.JobsWriteReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsMainRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSuggestRespDto;
+import shop.mtcoding.project.model.Jobs;
 import shop.mtcoding.project.model.JobsRepository;
 
 @MybatisTest
@@ -147,4 +147,20 @@ public class JobsRepositoryTest {
         // then
         sList.forEach((s)->{System.out.println("테스트 : "+ s.toString());});
         }
+    
+    @Test
+    @Transactional
+    public void deleteById_test() throws Exception {
+        // given
+        Integer id = 1;
+    
+        // when
+        jobsRepository.deleteById(id);
+    
+        // then
+        Jobs jobsPS = jobsRepository.findById(id);
+        if (jobsPS == null ){
+            System.out.println("테스트 : 삭제성공");
+        }
+    }
 }

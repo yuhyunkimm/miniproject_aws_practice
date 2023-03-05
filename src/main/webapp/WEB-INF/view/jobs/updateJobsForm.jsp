@@ -1,63 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="../layout/header-simple.jsp" %>
-    <style>
-        .width-53 {
-            width: 53%;
-        }
+<style> 
+    .my-border {
+        background-color: #f8f8f8;
+        padding: 20px;
+    }
 
-        a {
-            color: #000;
-            text-decoration: none;
-        }
-
-        .view-fix {
-            position: fixed;
-        }
-
-        .view-up {
-            width: 64em;
-        }
-
-        .view-right2 {
-            top: 5em;
-            right: 24em;
-            width: 270px;
-            height: 140px;
-            background-color: white;
-        }
-
-
-
-        .width-l {
-            width: 77%;
-            position: absolute;
-        }
-
-        .width-r {
-            width: 23%;
-            position: absolute;
-
-        }
-
-        .my-border {
-            background-color: #f8f8f8;
-            padding: 20px;
-        }
-
-        .border {
-            border: 1px solid rgb(0, 0, 0);
-        }
-
-        .header {
-            position: fixed;
-            top: 0px;
-            padding: 5px;
-        }
-    </style>
-    <!-- 헤더 추가 요망 -->
-    <div class="mx-auto width-53 top-80">
-        <div class="relative">
-            <div class="width-l">
+    .border {
+        border: 1px solid rgb(0, 0, 0);
+    }
+</style>
+<!-- 헤더 추가 요망 -->
+<div class="mx-auto width-53 top-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-9">
                 <div class="mb-5">
                     <!-- 회사 정보  -->
                     <div class="d-flex justify-content-between">
@@ -65,8 +22,8 @@
                             <h4>회사정보</h4>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" 
-                            data-bs-target="#myModal">회사 정보 수정</button>
+                            <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal"
+                                data-bs-target="#myModal">회사 정보 수정</button>
                         </div>
                     </div>
                     <div class="row justify-content-between my-border ">
@@ -120,10 +77,11 @@
                             </div>
                             <div class="col-4">
                                 <select class="form-select" aria-label="Default select example" id="education"
-                                    name="education" >
+                                    name="education">
                                     <option value="학력무관" ${cDto.education=='학력무관' ? 'selected="selected"' : '' }>학력무관
                                     <option value="대졸" ${cDto.education=='대졸' ? 'selected="selected"' : '' }>대졸
-                                    <option value="대학원 이상" ${cDto.education=='대학원 이상' ? 'selected="selected"' : '' }>대학원 이상
+                                    <option value="대학원 이상" ${cDto.education=='대학원 이상' ? 'selected="selected"' : '' }>대학원
+                                        이상
                                 </select>
                             </div>
                         </div>
@@ -133,7 +91,7 @@
                             </div>
                             <div class="col-4">
                                 <select class="form-select" aria-label="Default select example" id="career"
-                                    name="career" >
+                                    name="career">
                                     <option value="신입" ${cDto.career=='신입' ? 'selected="selected"' : '' }>신입
                                     <option value="1년차 미만" ${cDto.career=='1년차 미만' ? 'selected="selected"' : '' }>1년차 미만
                                     <option value="1년차" ${cDto.career=='1년차' ? 'selected="selected"' : '' }>1년차
@@ -154,15 +112,24 @@
                             <div class="col-4">
                                 <select class="form-select" aria-label="Default select example" id="position"
                                     name="position">
-                                     <option value="서버 개발자" ${cDto.position=='서버 개발자' ? 'selected="selected"' : '' }>서버 개발자
-                                     <option value="백엔드 개발자" ${cDto.position=='백엔드 개발자' ? 'selected="selected"' : '' }>백엔드 개발자
-                                     <option value="프론트엔드 개발자" ${cDto.position=='프론트엔드 개발자' ? 'selected="selected"' : '' }>프론트엔드 개발자
-                                     <option value="안드로이드 개발자" ${cDto.position=='안드로이드 개발자' ? 'selected="selected"' : '' }>안드로이드 개발자
-                                     <option value="IOS 개발자" ${cDto.position=='IOS 개발자' ? 'selected="selected"' : '' }>IOS 개발자
-                                     <option value="풀스택 개발자" ${cDto.position=='풀스택 개발자' ? 'selected="selected"' : '' }>풀스택 개발자
-                                     <option value="빅데이터 엔지니어" ${cDto.position=='빅데이터 엔지니어' ? 'selected="selected"' : '' }>빅데이터 엔지니어
-                                     <option value="임베디드 개발자" ${cDto.position=='임베디드 개발자' ? 'selected="selected"' : '' }>임베디드 개발자
-                                     <option value="devops 개발자" ${cDto.position=='devops 개발자' ? 'selected="selected"' : '' }>devops 개발자
+                                    <option value="서버 개발자" ${cDto.position=='서버 개발자' ? 'selected="selected"' : '' }>서버
+                                        개발자
+                                    <option value="백엔드 개발자" ${cDto.position=='백엔드 개발자' ? 'selected="selected"' : '' }>
+                                        백엔드 개발자
+                                    <option value="프론트엔드 개발자" ${cDto.position=='프론트엔드 개발자' ? 'selected="selected"' : ''
+                                        }>프론트엔드 개발자
+                                    <option value="안드로이드 개발자" ${cDto.position=='안드로이드 개발자' ? 'selected="selected"' : ''
+                                        }>안드로이드 개발자
+                                    <option value="IOS 개발자" ${cDto.position=='IOS 개발자' ? 'selected="selected"' : '' }>
+                                        IOS 개발자
+                                    <option value="풀스택 개발자" ${cDto.position=='풀스택 개발자' ? 'selected="selected"' : '' }>
+                                        풀스택 개발자
+                                    <option value="빅데이터 엔지니어" ${cDto.position=='빅데이터 엔지니어' ? 'selected="selected"' : ''
+                                        }>빅데이터 엔지니어
+                                    <option value="임베디드 개발자" ${cDto.position=='임베디드 개발자' ? 'selected="selected"' : '' }>
+                                        임베디드 개발자
+                                    <option value="devops 개발자" ${cDto.position=='devops 개발자' ? 'selected="selected"'
+                                        : '' }>devops 개발자
                                 </select>
                             </div>
                         </div>
@@ -191,8 +158,9 @@
                                 <h5>마감일</h5>
                             </div>
                             <div class="col-4">
-                            
-                                <input type="date" class="form-control" id="endDate" name="endDate" value="${cDto.formatEndDate}">
+
+                                <input type="date" class="form-control" id="endDate" name="endDate"
+                                    value="${cDto.formatEndDate}">
                             </div>
                         </div>
                         <div class="d-flex my-2">
@@ -202,7 +170,8 @@
                             <div class="col-4">
                                 <select class="form-select" aria-label="Default select example" id="receipt"
                                     name="receipt">
-                                    <option value="홈페이지 접수" ${cDto.address=='홈페이지 접수' ? 'selected="selected"' : '' }>홈페이지 접수
+                                    <option value="홈페이지 접수" ${cDto.address=='홈페이지 접수' ? 'selected="selected"' : '' }>
+                                        홈페이지 접수
                                     <option value="공고 접수" ${cDto.address=='공고 접수' ? 'selected="selected"' : '' }>공고 접수
                                 </select>
                             </div>
@@ -213,144 +182,145 @@
                     <div class="row my-3 my-border" onlo>
 
                         <h5>필요 기술 </h5>
-                               <%-- <c:forEach items="${cDto.skillList}" var="skill" begin="0" end="3">
-                                ${skill}
-                                </c:forEach></h4> --%>
-                        <div id="my-table-body2">
-                            <table class="my-table table table-bordered" style="background-color: white;">
-                            
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check text-center">
-                                                <label class="form-check-label">
-                                                
-                                                
-                                                    <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="Java" 
-                                                        <c:forEach items="${cDto.skillList}" var="skill">
+                        <%-- <c:forEach items="${cDto.skillList}" var="skill" begin="0" end="3">
+                            ${skill}
+                            </c:forEach>
+                            </h4> --%>
+                            <div id="my-table-body2">
+                                <table class="my-table table table-bordered" style="background-color: white;">
+
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check text-center">
+                                                    <label class="form-check-label">
+
+
+                                                        <input class="form-check-input" type="checkbox" name="skill"
+                                                            value="Java" <c:forEach items="${cDto.skillList}"
+                                                            var="skill">
                                                         ${skill=='Java' ? 'checked="checked"' : '' }
                                                         </c:forEach>
-                                                        >Java                                                
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check text-center">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="JavaScript" 
-                                                        <c:forEach items="${cDto.skillList}" var="skill">
+                                                        >Java
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-check text-center">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" name="skill"
+                                                            value="JavaScript" <c:forEach items="${cDto.skillList}"
+                                                            var="skill">
                                                         ${skill=='JavaScript' ? 'checked="checked"' : '' }
                                                         </c:forEach>
                                                         >JavaScript
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check text-center">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="Spring"
-                                                        <c:forEach items="${cDto.skillList}" var="skill">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-check text-center">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" name="skill"
+                                                            value="Spring" <c:forEach items="${cDto.skillList}"
+                                                            var="skill">
                                                         ${skill=='Spring' ? 'checked="checked"' : '' }
                                                         </c:forEach>
                                                         > Spring
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check text-center">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="HTML"
-                                                        <c:forEach items="${cDto.skillList}" var="skill">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-check text-center">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" name="skill"
+                                                            value="HTML" <c:forEach items="${cDto.skillList}"
+                                                            var="skill">
                                                         ${skill=='HTML' ? 'checked="checked"' : '' }
                                                         </c:forEach>
                                                         > HTML
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check text-center">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="jQuery"
-                                                        <c:forEach items="${cDto.skillList}" var="skill">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-check text-center">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" name="skill"
+                                                            value="jQuery" <c:forEach items="${cDto.skillList}"
+                                                            var="skill">
                                                         ${skill=='jQuery' ? 'checked="checked"' : '' }
                                                         </c:forEach>
                                                         > jQuery
-                                                </label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check text-center">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="JSP"
-                                                        <c:forEach items="${cDto.skillList}" var="skill">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check text-center">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" name="skill"
+                                                            value="JSP" <c:forEach items="${cDto.skillList}"
+                                                            var="skill">
                                                         ${skill=='JSP' ? 'checked="checked"' : '' }
                                                         </c:forEach>
                                                         > JSP
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check text-center">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="Vue.js"
-                                                        <c:forEach items="${cDto.skillList}" var="skill">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-check text-center">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" name="skill"
+                                                            value="Vue.js" <c:forEach items="${cDto.skillList}"
+                                                            var="skill">
                                                         ${skill=='Vue.js' ? 'checked="checked"' : '' }
                                                         </c:forEach>
                                                         > Vue.js
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check text-center">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="Oracle"
-                                                        <c:forEach items="${cDto.skillList}" var="skill">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-check text-center">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" name="skill"
+                                                            value="Oracle" <c:forEach items="${cDto.skillList}"
+                                                            var="skill">
                                                         ${skill=='Oracle' ? 'checked="checked"' : '' }
                                                         </c:forEach>
                                                         > Oracle
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check text-center">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="MySQL"
-                                                        <c:forEach items="${cDto.skillList}" var="skill">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-check text-center">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" name="skill"
+                                                            value="MySQL" <c:forEach items="${cDto.skillList}"
+                                                            var="skill">
                                                         ${skill=='MySQL' ? 'checked="checked"' : '' }
                                                         </c:forEach>
                                                         > MySQL
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-check text-center">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="React"
-                                                        <c:forEach items="${cDto.skillList}" var="skill">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-check text-center">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" name="skill"
+                                                            value="React" <c:forEach items="${cDto.skillList}"
+                                                            var="skill">
                                                         ${skill=='React' ? 'checked="checked"' : '' }
                                                         </c:forEach>
                                                         > React
-                                                </label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <%-- ${skill} --%>
-                                
-                            </table>
-                        </div>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <%-- ${skill} --%>
+
+                                </table>
+                            </div>
                     </div>
 
                     <div class="row my-3 my-border">
@@ -365,233 +335,237 @@
                 </div>
             </div>
 
-            <div class="width-r" id="jobs-render">
-                <div class="view-fix d-grid view-right2 p-4" id="jobs-remove">
+            <div class="col-3" id="jobs-render">
+                <div class="rButton ms-5 view-right2" id="jobs-remove">
                     <!-- 뷰포트 -->
-                    <%-- <div class="align-self-end">
-                        <button type="button" class="btn btn-success w-100" onclick="">미리보기</button>
-                    </div> --%>
-                    <div class="align-self-end">
-                        <button type="button" class="btn btn-success w-100"
-                            onclick="saveTemp(`${compSession.compId}`,`${cDto.jobsId}`)">임시저장</button>
-                    </div>
-                    <div class="align-self-end">
-                        <button type="button" class="btn btn-success w-100"
-                            onclick="saveJobs(`${compSession.compId}`,`${cDto.jobsId}`)">공고등록</button>
-                    </div>
+                    <%-- <div class="row mb-2">
+                            <button type="button" class="btn btn-success w-100" onclick="">미리보기</button>
+                         </div> --%>
+                <div class="row mb-2">
+                    <button type="button" class="btn btn-success w-100"
+                        onclick="saveTemp(`${compSession.compId}`,`${cDto.jobsId}`)">임시저장</button>
+                </div>
+                <div class="row mb-2">
+                    <button type="button" class="btn btn-success w-100"
+                        onclick="saveJobs(`${compSession.compId}`,`${cDto.jobsId}`)">공고등록</button>
                 </div>
             </div>
-        </div>
+            </div>
+       
     </div>
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <!-- modal-sm modal-lg modal-xl 모달 사이즈 -->
-            <!-- modal-dialog-centered 화면 가운데 -->
-            <!-- modal-dialog-scrollable 스크롤 기능 -->
-            <div class="modal-content">
+</div>
+</div>
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <!-- modal-sm modal-lg modal-xl 모달 사이즈 -->
+        <!-- modal-dialog-centered 화면 가운데 -->
+        <!-- modal-dialog-scrollable 스크롤 기능 -->
+        <div class="modal-content">
 
-                <div class="modal-header">
-                    <h4 class="modal-title">회사 정보 수정
+            <div class="modal-header">
+                <h4 class="modal-title">회사 정보 수정
 
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <input id="update-compName" placeholder="회사명" class="form-control" value="${cDto.compName}" > <br>
-                        <input id="update-representativeName" placeholder="대표자명" class="form-control" value="${cDto.representativeName}"> <br>
-                        <input id="update-homepage" placeholder="홈페이지" class="form-control" value="${cDto.homepage}"><br>
-                        <button type="button" class="btn btn-success mt-2" style="float: right;" onclick="updateComp()"  data-bs-dismiss="modal">수정 완료</button>
-                    </form>
-                </div>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input id="update-compName" placeholder="회사명" class="form-control" value="${cDto.compName}"> <br>
+                    <input id="update-representativeName" placeholder="대표자명" class="form-control"
+                        value="${cDto.representativeName}"> <br>
+                    <input id="update-homepage" placeholder="홈페이지" class="form-control" value="${cDto.homepage}"><br>
+                    <button type="button" class="btn btn-success mt-2" style="float: right;" onclick="updateComp()"
+                        data-bs-dismiss="modal">수정 완료</button>
+                </form>
             </div>
         </div>
     </div>
-    <script>
-        $('.summernote').summernote({
-            tabsize: 2,
-            height: 400
-        });
+</div>
+<script>
+    $('.summernote').summernote({
+        tabsize: 2,
+        height: 400
+    });
 
-        function updateComp(){
-            $('#compName').text($('#update-compName').val());
-            $('#representativeName').text($('#update-representativeName').val());
-            $('#homepage').text($('#update-homepage').val());
-        }
+    function updateComp() {
+        $('#compName').text($('#update-compName').val());
+        $('#representativeName').text($('#update-representativeName').val());
+        $('#homepage').text($('#update-homepage').val());
+    }
 
-        // $('input:checkbox[name=skill]').click(function () {
-        //     let count = $('input:checkbox[name=skill]:checked').length;
-        //     if (count > 3) {
-        //         alert('기술은 3개까지 선택 가능')
-        //         $(this).prop('checked', false);
-        //     }
-        // });
+    // $('input:checkbox[name=skill]').click(function () {
+    //     let count = $('input:checkbox[name=skill]:checked').length;
+    //     if (count > 3) {
+    //         alert('기술은 3개까지 선택 가능')
+    //         $(this).prop('checked', false);
+    //     }
+    // });
 
-        // function test(){
+    // function test(){
 
-        // }
+    // }
 
-        function getCheckedValues(name) {
-            var checkedValues = [];
-            var checkboxes = document.getElementsByName(name);
-            for (var i = 0; i < checkboxes.length; i++) {
-                if (checkboxes[i].checked) {
-                    checkedValues.push(checkboxes[i].value);
-                }
+    function getCheckedValues(name) {
+        var checkedValues = [];
+        var checkboxes = document.getElementsByName(name);
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                checkedValues.push(checkboxes[i].value);
             }
-            return checkedValues;
+        }
+        return checkedValues;
+    };
+
+    let skillValues;
+
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('click', function () {
+            skillValues = getCheckedValues("skill");
+        })
+    });
+
+    window.onload = function () {
+        skillValues = getCheckedValues("skill");
+    }
+
+    let jobsId;
+    let compId;
+    function saveTemp(id, jobs) {
+        resumeId = jobs;
+        compId = id;
+
+        let data = {
+            photo: $("#photo").attr('src'),
+            compName: $('#update-compName').val(),
+            representativeName: $('#update-representativeName').val(),
+            homepage: $('#update-homepage').val(),
+            title: $("#title").val(),
+            content: $("#content").val(),
+            education: $("#education").val(),
+            career: $("#career").val(),
+            position: $("#position").val(),
+            address: $("#address").val(),
+            endDate: $("#endDate").val(),
+            receipt: $("#receipt").val(),
+            skillList: skillValues,
+            compId: id,
+            jobsId: jobs
         };
 
-        let skillValues;
-
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        checkboxes.forEach(function (checkbox) {
-            checkbox.addEventListener('click', function () {
-                skillValues = getCheckedValues("skill");
-            })
-        });
-
-        window.onload=function(){
-            skillValues = getCheckedValues("skill");
+        if (resumeId > 0) {
+            $.ajax({
+                type: "put",
+                url: "/jobs/update",
+                data: JSON.stringify(data),
+                headers: {
+                    "content-type": "application/json; charset=utf-8"
+                },
+                dataType: "json"
+            }).done((res) => {
+                jobsId = res.data;
+                alert(res.msg);
+            }).fail((err) => {
+                alert(err.responseJSON.msg);
+            });
+        } else {
+            $.ajax({
+                type: "post",
+                url: "/jobs/write",
+                data: JSON.stringify(data),
+                headers: {
+                    "content-type": "application/json; charset=utf-8"
+                },
+                dataType: "json"
+            }).done((res) => {
+                jobsId = res.data;
+                changeBtn();
+                alert(res.msg);
+            }).fail((err) => {
+                alert(err.responseJSON.msg);
+            });
         }
+    }
 
-        let jobsId;
-        let compId;
-        function saveTemp(id, jobs) {
-            resumeId = jobs;
-            compId = id;
+    function changeBtn() {
+        $('#jobs-remove').remove();
+        renderBtn();
+    }
 
-            let data = {
-                photo: $("#photo").attr('src'),
-                compName: $('#update-compName').val(),
-                representativeName: $('#update-representativeName').val(),
-                homepage: $('#update-homepage').val(),
-                title: $("#title").val(),
-                content: $("#content").val(),
-                education: $("#education").val(),
-                career: $("#career").val(),
-                position: $("#position").val(),
-                address: $("#address").val(),
-                endDate: $("#endDate").val(),
-                receipt: $("#receipt").val(),
-                skillList: skillValues,
-                compId: id,
-                jobsId: jobs
-            };
-
-            if (resumeId > 0) {
-                $.ajax({
-                    type: "put",
-                    url: "/jobs/update",
-                    data: JSON.stringify(data),
-                    headers: {
-                        "content-type": "application/json; charset=utf-8"
-                    },
-                    dataType: "json"
-                }).done((res) => {
-                    jobsId = res.data;
-                    alert(res.msg);
-                }).fail((err) => {
-                    alert(err.responseJSON.msg);
-                });
-            } else {
-                $.ajax({
-                    type: "post",
-                    url: "/jobs/write",
-                    data: JSON.stringify(data),
-                    headers: {
-                        "content-type": "application/json; charset=utf-8"
-                    },
-                    dataType: "json"
-                }).done((res) => {
-                    jobsId = res.data;
-                    changeBtn();
-                    alert(res.msg);
-                }).fail((err) => {
-                    alert(err.responseJSON.msg);
-                });
-            }
-        }
-
-        function changeBtn() {
-            $('#jobs-remove').remove();
-            renderBtn();
-        }
-
-        function renderBtn() {
-            let el = `
-                <div class="view-fix d-grid view-right2 p-4" id="jobs-remove">
-                        <div class="align-self-end">
-                            <button type="button" class="btn btn-success w-100" onclick="test()" >미리보기</button>
+    function renderBtn() {
+        let el = `
+                    <div class="view-fix d-grid view-right2 p-4" id="jobs-remove">
+                            <div class="align-self-end">
+                                <button type="button" class="btn btn-success w-100" onclick="test()" >미리보기</button>
+                            </div>
+                            <div class="align-self-end">
+                                <button type="button" class="btn btn-success w-100" onclick="saveTemp(`+ compId + `,` + jobsId + `)">임시저장</button>
+                            </div>
+                            <div class="align-self-end">
+                                <button type="button" class="btn btn-success w-100" onclick="saveJobs(`+ compId + `,` + jobsId + `)">공고등록</button>
+                            </div>
                         </div>
-                        <div class="align-self-end">
-                            <button type="button" class="btn btn-success w-100" onclick="saveTemp(`+ compId + `,` + jobsId + `)">임시저장</button>
-                        </div>
-                        <div class="align-self-end">
-                            <button type="button" class="btn btn-success w-100" onclick="saveJobs(`+ compId + `,` + jobsId + `)">공고등록</button>
-                        </div>
-                    </div>
-        `;
-            $('#jobs-render').append(el);
+            `;
+        $('#jobs-render').append(el);
+    }
+
+    function saveJobs(id, jobs) {
+        jobsId = jobs;
+        compId = id;
+
+        let data = {
+            photo: $("#photo").attr('src'),
+            compName: $('#update-compName').val(),
+            representativeName: $('#update-representativeName').val(),
+            homepage: $('#update-homepage').val(),
+            title: $("#title").val(),
+            content: $("#content").val(),
+            education: $("#education").val(),
+            career: $("#career").val(),
+            position: $("#position").val(),
+            address: $("#address").val(),
+            endDate: $("#endDate").val(),
+            receipt: $("#receipt").val(),
+            skillList: skillValues,
+            compId: id,
+            jobsId: jobs
+        };
+
+        if (jobsId > 0) {
+            $.ajax({
+                type: "put",
+                url: "/jobs/update",
+                data: JSON.stringify(data),
+                headers: {
+                    "content-type": "application/json; charset=utf-8"
+                },
+                dataType: "json"
+            }).done((res) => {
+                jobsId = res.data;
+                alert(res.msg);
+                location.href = "/comp/jobs";
+            }).fail((err) => {
+                alert(err.responseJSON.msg);
+            });
+        } else {
+            $.ajax({
+                type: "post",
+                url: "/jobs/write",
+                data: JSON.stringify(data),
+                headers: {
+                    "content-type": "application/json; charset=utf-8"
+                },
+                dataType: "json"
+            }).done((res) => {
+                jobsId = res.data;
+                alert(res.msg);
+                location.href = "/comp/jobs";
+            }).fail((err) => {
+                alert(err.responseJSON.msg);
+            });
         }
+    }
 
-        function saveJobs(id, jobs) {
-            jobsId = jobs;
-            compId = id;
-
-            let data = {
-                photo: $("#photo").attr('src'),
-                compName: $('#update-compName').val(),
-                representativeName: $('#update-representativeName').val(),
-                homepage: $('#update-homepage').val(),
-                title: $("#title").val(),
-                content: $("#content").val(),
-                education: $("#education").val(),
-                career: $("#career").val(),
-                position: $("#position").val(),
-                address: $("#address").val(),
-                endDate: $("#endDate").val(),
-                receipt: $("#receipt").val(),
-                skillList: skillValues,
-                compId: id,
-                jobsId: jobs
-            };
-
-            if (jobsId > 0) {
-                $.ajax({
-                    type: "put",
-                    url: "/jobs/update",
-                    data: JSON.stringify(data),
-                    headers: {
-                        "content-type": "application/json; charset=utf-8"
-                    },
-                    dataType: "json"
-                }).done((res) => {
-                    jobsId = res.data;
-                    alert(res.msg);
-                    location.href="/comp/comphome";
-                }).fail((err) => {
-                    alert(err.responseJSON.msg);
-                });
-            } else {
-                $.ajax({
-                    type: "post",
-                    url: "/jobs/write",
-                    data: JSON.stringify(data),
-                    headers: {
-                        "content-type": "application/json; charset=utf-8"
-                    },
-                    dataType: "json"
-                }).done((res) => {
-                    jobsId = res.data;
-                    alert(res.msg);
-                    location.href="/comp/comphome";
-                }).fail((err) => {
-                    alert(err.responseJSON.msg);
-                });
-            }
-        }
-
-    </script>
+</script>
 </body>
 
 </html>

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import shop.mtcoding.project.dto.apply.ApplyResp.ApplytoCompRespDto;
 import shop.mtcoding.project.dto.common.ResponseDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeUpdateReqDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
@@ -28,8 +29,12 @@ import shop.mtcoding.project.dto.skill.ResumeSkillResp.ResumeSkillRespDto;
 import shop.mtcoding.project.dto.user.UserResp.UserDataRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
+import shop.mtcoding.project.model.Apply;
+import shop.mtcoding.project.model.ApplyRepository;
+import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.SkillRepository;
+import shop.mtcoding.project.model.SuggestRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.service.ResumeService;
@@ -50,9 +55,15 @@ public class ResumeController {
     private SkillRepository skillRepository;
 
     @Autowired
+    private SuggestRepository SuggestRepository;
+
+    @Autowired
+    private ApplyRepository applyRepository;
+
+    @Autowired
     private HttpSession session;
 
-    @DeleteMapping("/resume/{id}")
+    @DeleteMapping("/resume/{id}/delete")
     public ResponseEntity<?> deleteResume(@PathVariable int id) {
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
@@ -76,11 +87,8 @@ public class ResumeController {
                 rList.setSkillList(insertList);
             }
         }
-
         model.addAttribute("rDtos", rLists);
-
         // rList.forEach((s)->{System.out.println("테스트 : "+ s.toString());});
-
         return "resume/manageResume";
     }
 
@@ -178,7 +186,6 @@ public class ResumeController {
         return "resume/updateResumeForm";
     }
 
-    // 공개 이력서
     @GetMapping("/resume/{id}")
     public String resumeDetail(@PathVariable Integer id, Model model) {
         ResumeDetailRespDto rDto = resumeRepository.findDetailPublicResumebyById(id);
@@ -187,7 +194,46 @@ public class ResumeController {
             insertList.add(skill.getSkill());
             rDto.setSkillList(insertList);
         }
+        Comp compSession = (Comp) session.getAttribute("compSession");
+        if (compSession != null) {
+            try {
+                rDto.setSuggestState(SuggestRepository.findByCompIdAndResumeId(compSession.getCompId(), id).getState());
+            } catch (Exception e) {
+            }
+        }
+        model.addAttribute("rDto", rDto);
+        return "/resume/resumeDetail";
+    }
 
+    @GetMapping("/resume/apply/{id}")
+    public String applyResumeDetail(@PathVariable Integer id, Model model) {
+        if (id == null) {
+            throw new CustomException("지원한 아이디가 필요합니다.");
+        }
+        Apply applyPS = applyRepository.findByApplyId(id);
+        if (applyPS == null) {
+            throw new CustomException("지원 결과 데이터가 없습니다.");
+        }
+        ResumeDetailRespDto rDto = resumeRepository.findDetailPublicResumebyById(applyPS.getResumeId());
+        List<String> insertList = new ArrayList<>();
+        for (ResumeSkillRespDto skill : skillRepository.findByResumeSkill(rDto.getResumeId())) {
+            insertList.add(skill.getSkill());
+            rDto.setSkillList(insertList);
+        }
+        Comp compSession = (Comp) session.getAttribute("compSession");
+        if (compSession != null) {
+            try {
+                rDto.setSuggestState(SuggestRepository
+                        .findByCompIdAndResumeId(compSession.getCompId(), applyPS.getResumeId()).getState());
+            } catch (Exception e) {
+            }
+            try {
+                ApplytoCompRespDto aDto = applyRepository.findByCompIdAndApplyId(compSession.getCompId(), id);
+                rDto.setApplyState(aDto.getState());   
+                rDto.setApplyId(aDto.getApplyId());
+            } catch (Exception e) {
+            }
+        }
         model.addAttribute("rDto", rDto);
         return "/resume/resumeDetail";
     }

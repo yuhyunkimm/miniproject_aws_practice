@@ -46,18 +46,29 @@
                 <div>
                     <c:forEach items="${jDtos}" var="jDto">
                     <div class="card mb-4">
-                        <div class="card-body">
-                            <h5 class="card-title" style="text-align: left;">${jDto.title}</h5>
+                        <div class="card-body row">
+                            <div class="col-9">
+                                <h5 class="card-title" style="text-align: left;"> <a href="/jobs/${jDto.jobsId}">${jDto.title}</a></h5>
                             <div class="m-2" style="float: left;">
                                 <h6 class="card-subtitle mb-2 text-muted">${jDto.position}</h6>
                             </div>
                             <div class="m-2" style="float: left;">
                                 <h6 class="card-subtitle mb-2 text-muted">${jDto.career}</h6>
                             </div>
-                            <div style="float: right;" pt-2>
-                                <button type="button" class="btn btn-success btn-sm"
-                                    onclick="location.href=`/jobs/`+${jDto.jobsId}+`/update`">공고 수정</button>
+                            <input type="hidden" value="${jDto.jobsId}" id="jobsId" >
                             </div>
+                            <div class="col-3">
+                                <div style="float: right;">
+                                    <button type="button" style="width: 7em;" class="btn btn-secondary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#dModal"
+                                        style="float: right;" onclick="event.preventDefault();deleteBtn(event, `${jDto.jobsId}`);">공고
+                                        삭제</button>
+                                </div>
+                                <div style="float: right;">
+                                    <button type="button"  style="width: 7em;" class="btn btn-success btn-sm" onclick="location.href=`/jobs/`+`${jDto.jobsId}`+`/update`">공고
+                                        수정</button>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                 </c:forEach>
@@ -80,7 +91,7 @@
                     <div class="mb-3">
                         <label for="inputPassword" class="form-label">Password</label>
                         <input type="password" class="form-control" id="inputPassword" aria-describedby="passwordHelp"
-                            onkeypress="if(event.keyCode=='13'){event.preventDefault(); checkPS(${compSession.compId});}">
+                            onkeypress="if(event.keyCode=='13'){event.preventDefault(); checkPS(`${compSession.compId}`);}">
                         <div id="passwordHelp" class="form-text">현재 비밀번호를 입력해 주세요.</div>
                     </div>
                 </form>
@@ -88,7 +99,23 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary"
-                    onclick="passwordCheckBtn(${compSession.compId})">Check</button>
+                    onclick="passwordCheckBtn(`${compSession.compId}`)">Check</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="dModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">공고 삭제</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">해당 공고를 삭제하시겠습니까?</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" onclick="deleteJobs()"
+                    class="btn btn-primary">삭제하기</button>
             </div>
         </div>
     </div>
@@ -106,7 +133,6 @@
     })
 
     function passwordCheckBtn(cId) {
-
         let data = {
             compId: cId,
             password: $('#inputPassword').val()
@@ -121,6 +147,19 @@
         }).done((res) => {
             location.href = "/comp/update";
         }).fail((err) => {
+            alert(err.responseJSON.msg);
+        });
+    }
+
+    function deleteJobs() {
+        $.ajax({
+            type: "delete",
+            url: "/jobs/" + $('#jobsId').val() + "/delete",
+            dataType: "json"
+        }).done((res) => { // 20X 일때
+            alert(res.msg);
+            location.href = "/comp/jobs";
+        }).fail((err) => { // 40X, 50X 일때
             alert(err.responseJSON.msg);
         });
     }

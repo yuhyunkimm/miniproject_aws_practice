@@ -21,6 +21,7 @@ public class ApplyResp {
         private String education;
         private String name;
         private String birth;
+        private Integer state;
         // private List<String> skillList;
     }
 
@@ -37,5 +38,11 @@ public class ApplyResp {
         // private List<String> skillList;
     }
 
+    @Getter
+    @Setter
+    public static class ApplytoCompRespDto{
+        private Integer applyId;
+        private Integer state;
+    }
 
 }

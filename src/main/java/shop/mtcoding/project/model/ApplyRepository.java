@@ -6,15 +6,17 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import shop.mtcoding.project.dto.apply.ApplyReq.ApplyReqDto;
+import shop.mtcoding.project.dto.apply.ApplyReq.ApplyUpdateReqDto;
 import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusCompRespDto;
 import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusUserRespDto;
 import shop.mtcoding.project.dto.apply.ApplyResp.ApplyUserStatusDetailRespDto;
+import shop.mtcoding.project.dto.apply.ApplyResp.ApplytoCompRespDto;
 
 @Mapper
 public interface ApplyRepository {
     public void findAll();
 
-    public void findById( );
+    public Apply findByApplyId(Integer applyId);
 
     public ApplyUserStatusDetailRespDto findApplyStateByUserIdAndJobsId(
         @Param("userId") Integer userId,
@@ -25,13 +27,20 @@ public interface ApplyRepository {
 
     public List<ApllyStatusUserRespDto> findAllByUserIdtoApply(Integer userId);
 
+    public ApplytoCompRespDto findByCompIdAndApplyId(
+        @Param("compId") Integer compId,
+        @Param("applyId") Integer applyId
+    );
+
     public int insert(
         @Param("aDto")  ApplyReqDto aDto
     );
-    public int updateById(
-
+    public int updateByApplyId(
+        @Param("aDto")  ApplyUpdateReqDto aDto
     );
     public int deleteById(
 
     );
+
+
 }

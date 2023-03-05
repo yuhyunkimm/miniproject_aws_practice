@@ -11,6 +11,7 @@ import shop.mtcoding.project.dto.jobs.JobsReq.JobsUpdateReqDto;
 import shop.mtcoding.project.dto.jobs.JobsReq.JobsWriteReqDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.model.CompRepository;
+import shop.mtcoding.project.model.Jobs;
 import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.SkillRepository;
 
@@ -26,6 +27,7 @@ public class JobsService {
 
     @Autowired
     private SkillRepository skillRepository;
+
 
     public void 공고검색(JobsSearchReqDto jDto) {
     }
@@ -98,6 +100,22 @@ public class JobsService {
             }
         }
         return jobsId;
+    }
+
+    @Transactional
+    public void 공고삭제(Integer id, Integer compId) {
+        Jobs jobsPS = jobsRepository.findById(id);
+        if ( jobsPS == null ){
+            throw new CustomApiException("해당 공고가 존재 하지 않습니다.");
+        }
+        if ( jobsPS.getCompId() != compId){
+            throw new CustomApiException("공고 삭제 권한이 없습니다.", HttpStatus.FORBIDDEN);
+        }
+        try {
+            jobsRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new CustomApiException("서버에 일시적인 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     
 }
