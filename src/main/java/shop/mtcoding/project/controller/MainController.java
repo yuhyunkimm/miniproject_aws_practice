@@ -18,6 +18,7 @@ import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.SkillRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.util.DateUtil;
+import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class MainController {
@@ -48,6 +49,10 @@ public class MainController {
 
     @GetMapping("/")
     public String main(Model model) {
+        // 임시 세션 
+        MockSession.mockUser(session);
+        session.setAttribute("compSession", null);      
+          
         User principal = (User) session.getAttribute("principal");
         if (principal != null) {
             List<JobsMainRecommendRespDto> rDtos = jobsRepository.findAlltoMainRecommend(principal.getUserId());

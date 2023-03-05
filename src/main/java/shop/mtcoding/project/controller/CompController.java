@@ -44,6 +44,7 @@ import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.ScrapRepository;
 import shop.mtcoding.project.model.SkillRepository;
 import shop.mtcoding.project.service.CompService;
+import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class CompController {
@@ -149,6 +150,10 @@ public class CompController {
 
     @GetMapping("/comp/comphome")
     public String compMyhome(Model model) {
+        // 임시 세션 
+        MockSession.mockComp(session);
+        session.setAttribute("principal", null);        
+        
         Comp compSession = (Comp)session.getAttribute("compSession");
         if ( compSession == null ){
             return "redirect:/comp/login";

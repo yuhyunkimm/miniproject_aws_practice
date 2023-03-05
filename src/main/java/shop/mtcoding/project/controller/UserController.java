@@ -31,6 +31,7 @@ import shop.mtcoding.project.model.SuggestRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.service.UserService;
+import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class UserController {
@@ -202,6 +203,10 @@ public class UserController {
 
     @GetMapping("/user/myhome")
     public String myhome() {
+        // 임시 세션 
+        MockSession.mockUser(session);
+        session.setAttribute("compSession", null);
+
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             return "redirect:/user/login";

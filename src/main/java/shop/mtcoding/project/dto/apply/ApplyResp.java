@@ -21,6 +21,7 @@ public class ApplyResp {
         private String education;
         private String name;
         private String birth;
+        private Integer state;
         // private List<String> skillList;
     }
 

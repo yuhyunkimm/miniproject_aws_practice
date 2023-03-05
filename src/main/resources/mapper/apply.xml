@@ -15,7 +15,7 @@
     </select>
 
     <select id="findAllByCompIdtoApply" resultType="shop.mtcoding.project.dto.apply.ApplyResp$ApllyStatusCompRespDto">
-      select a.apply_id, a.resume_id, a.jobs_id, r.title, j.position, r.career, r.education, u.name, u.birth from apply_tb a join jobs_tb j 
+      select a.apply_id, a.resume_id, a.jobs_id, a.state, r.title, j.position, r.career, r.education, u.name, u.birth from apply_tb a join jobs_tb j 
         on a.jobs_id = j.jobs_id join resume_tb r
         on a.resume_id = r.resume_id join user_tb u
         on u.user_id = r.user_id
