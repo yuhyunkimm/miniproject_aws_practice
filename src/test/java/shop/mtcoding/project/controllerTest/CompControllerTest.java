@@ -44,7 +44,7 @@ public class CompControllerTest {
     private MockHttpSession mockSession;
 
     @BeforeEach
-    private void mockUserSession() {
+    private void mockCompSession() {
         Comp mockcomp = new Comp(
                 1,
                 "kakao@kakao.com",

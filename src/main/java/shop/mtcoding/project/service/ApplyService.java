@@ -49,8 +49,8 @@ public class ApplyService {
     }
 
     @Transactional
-    public Integer 합격(ApplyUpdateReqDto aDto, Integer userId) {
-        if (userId != aDto.getUserId()){
+    public Integer 합격(ApplyUpdateReqDto aDto, Integer compId) {
+        if (compId != aDto.getCompId()){
             throw new CustomApiException("수정 권한이 없습니다." , HttpStatus.FORBIDDEN);
         }
         Apply applyPS = applyRepository.findByApplyId(aDto.getApplyId());
@@ -66,8 +66,8 @@ public class ApplyService {
     }
 
     @Transactional
-    public Integer 불합격(ApplyUpdateReqDto aDto, Integer userId) {
-        if (userId != aDto.getUserId()){
+    public Integer 불합격(ApplyUpdateReqDto aDto, Integer compId) {
+        if (compId != aDto.getCompId()){
             throw new CustomApiException("수정 권한이 없습니다." , HttpStatus.FORBIDDEN);
         }
         Apply applyPS = applyRepository.findByApplyId(aDto.getApplyId());

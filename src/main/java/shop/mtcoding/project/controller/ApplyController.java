@@ -15,6 +15,7 @@ import shop.mtcoding.project.dto.apply.ApplyReq.ApplyReqDto;
 import shop.mtcoding.project.dto.apply.ApplyReq.ApplyUpdateReqDto;
 import shop.mtcoding.project.dto.common.ResponseDto;
 import shop.mtcoding.project.exception.CustomApiException;
+import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.service.ApplyService;
 
@@ -45,9 +46,9 @@ public class ApplyController {
     }
 
     @PutMapping("/apply/update")
-    public ResponseEntity<?> updateSuggest(@RequestBody ApplyUpdateReqDto aDto) {
-        if (ObjectUtils.isEmpty(aDto.getUserId())) {
-            throw new CustomApiException("유저아이디가 필요합니다.");
+    public ResponseEntity<?> updateApply(@RequestBody ApplyUpdateReqDto aDto) {
+        if (ObjectUtils.isEmpty(aDto.getCompId())) {
+            throw new CustomApiException("기업아이디가 필요합니다.");
         }
         if (ObjectUtils.isEmpty(aDto.getApplyId())) {
             throw new CustomApiException("지원아이디가 필요합니다.");
@@ -58,14 +59,14 @@ public class ApplyController {
         if (!(aDto.getState() == 1 || aDto.getState() == -1)) {
             throw new CustomApiException("상태정보가 다릅니다.");
         }
-        User principal = (User) session.getAttribute("principal");
+        Comp compSession = (Comp) session.getAttribute("compSession");
         Integer result = 0;
         if (aDto.getState() == 1) {
-            applyService.합격(aDto, principal.getUserId());
+            applyService.합격(aDto, compSession.getCompId());
             result = 1;
         }
         if (aDto.getState() == -1) {
-            applyService.불합격(aDto, principal.getUserId());
+            applyService.불합격(aDto, compSession.getCompId());
             result = -1;
         }
         return new ResponseEntity<>(new ResponseDto<>(1, "지원자에게 답변했습니다.", result), HttpStatus.OK);

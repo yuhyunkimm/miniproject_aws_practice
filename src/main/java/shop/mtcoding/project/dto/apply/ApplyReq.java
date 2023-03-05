@@ -17,7 +17,7 @@ public class ApplyReq {
     @Setter
     public static class ApplyUpdateReqDto{
         private Integer applyId;
-        private Integer userId;
+        private Integer compId;
         private Integer state;
     }
     

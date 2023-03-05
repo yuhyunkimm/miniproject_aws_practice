@@ -49,11 +49,11 @@
                             <tr class="table-secondary" align=center>
                                 <th scope="col" style="width:10%">No.</th>
                                 <th scope="col" style="width:10%">이름</th>
-                                <th scope="col" style="width:10%">이력서</th>
-                                <th scope="col" style="width:25%">지원 공고</th>
+                                <th scope="col" style="width:12%">이력서</th>
+                                <th scope="col" style="width:28%">지원 공고</th>
                                 <th scope="col" style="width:10%">경력</th>
-                                <th scope="col" style="width:10%">상태</th>
-                                <th scope="col" style="width:15%">응답</th>
+                                <th scope="col" style="width:12%">상태</th>
+                                <th scope="col" style="width:18%">응답</th>
                             </tr>
                         </thead>
                         <c:forEach items="${aDtos}" varStatus="status" var="aDto">
@@ -74,10 +74,10 @@
                                             <div class="badge bg-secondary p-2">대기중</div>
                                             </c:if>
                                             <c:if test="${aDto.state == 1}" >
-                                            <div class="badge bg-success p-2">수락</div>
+                                            <div class="badge bg-success p-2">합격</div>
                                             </c:if>
                                             <c:if test="${aDto.state == -1}" >
-                                            <div class="badge bg-danger p-2">거절</div>
+                                            <div class="badge bg-danger p-2">불합격</div>
                                             </c:if>
                                             </div>
                                         </div>
@@ -98,8 +98,8 @@
                                                 </c:choose>
 
                                                 <ul class="dropdown-menu">
-                                                  <li><a class="dropdown-item" onclick="accept(`${principal.userId}`,`${aDto.applyId}`)">수락</a></li>
-                                                  <li><a class="dropdown-item" onclick="deny(`${principal.userId}`,`${aDto.applyId}`)">거절</a></li>
+                                                  <li><a class="dropdown-item" onclick="accept(`${compSession.compId}`,`${aDto.applyId}`)">수락</a></li>
+                                                  <li><a class="dropdown-item" onclick="deny(`${compSession.compId}`,`${aDto.applyId}`)">거절</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -125,7 +125,7 @@
                     <div class="mb-3">
                         <label for="inputPassword" class="form-label">Password</label>
                         <input type="password" class="form-control" id="inputPassword" aria-describedby="passwordHelp"
-                            onkeypress="if(event.keyCode=='13'){event.preventDefault(); checkPS(${compSession.compId});}">
+                            onkeypress="if(event.keyCode=='13'){event.preventDefault(); checkPS(`${compSession.compId}`);}">
                         <div id="passwordHelp" class="form-text">현재 비밀번호를 입력해 주세요.</div>
                     </div>
                 </form>
@@ -133,7 +133,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary"
-                    onclick="passwordCheckBtn(${compSession.compId})">Check</button>
+                    onclick="passwordCheckBtn(`${compSession.compId}`)">Check</button>
             </div>
         </div>
     </div>
@@ -145,7 +145,7 @@
 
     function accept(id,aId){
                 let data = {
-                    userId: id,
+                    compId: id,
                     applyId: aId,
                     state: 1
                 }
@@ -167,7 +167,7 @@
        
             function deny(id,aId){
                 let data = {
-                    userId: id,
+                    compId: id,
                     applyId: aId,
                     state: -1
                 }
@@ -194,7 +194,7 @@
                     <div id="state-btn" class="badge bg-success p-2">합격</div>
                     `;
                     let el2 = `
-                    <div class="badge bg-secondary p-2">합격</div>
+                    <div class="badge bg-secondary p-2">답변완료</div>
                     `;
                     $('#state-'+applyId).append(el1);
                     $('#response-'+applyId).append(el2);
@@ -206,7 +206,7 @@
                     <div id="state-btn" class="badge bg-danger p-2">불합격</div>
                     `;
                     let el2 = `
-                    <div class="badge bg-secondary p-2">불합격</div>
+                    <div class="badge bg-secondary p-2">답변완료</div>
                     `;
                     $('#state-'+applyId).append(el1);
                     $('#response-'+applyId).append(el2);
