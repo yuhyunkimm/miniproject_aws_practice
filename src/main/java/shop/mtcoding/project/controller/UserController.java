@@ -121,7 +121,8 @@ public class UserController {
     }
 
     @PostMapping("/user/login2")
-    public ResponseEntity<?> login2(@RequestBody UserLoginReqDto userloginReqDto, HttpServletResponse httpServletResponse) {
+    public ResponseEntity<?> login2(@RequestBody UserLoginReqDto userloginReqDto,
+            HttpServletResponse httpServletResponse) {
         if (userloginReqDto.getEmail() == null || userloginReqDto.getEmail().isEmpty()) {
             throw new CustomApiException("email을 작성해주세요");
         }
@@ -228,6 +229,19 @@ public class UserController {
     public String logout() {
         session.invalidate();
         return "redirect:/";
+    }
+
+    @GetMapping("/user/profileUpdate")
+    public String profileUpdateForm(Model model) {
+        User principal = (User) session.getAttribute("principal");
+        if (principal == null) {
+            return "redirect:/user/login";
+        }
+
+        User userPS = userRepository.findById(principal.getUserId());
+        model.addAttribute("user", userPS);
+
+        return "user/profileUpdateForm";
     }
 }
 
