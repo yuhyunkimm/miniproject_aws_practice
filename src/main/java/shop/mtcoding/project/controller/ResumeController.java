@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import shop.mtcoding.project.dto.apply.ApplyResp.ApplytoCompRespDto;
 import shop.mtcoding.project.dto.common.ResponseDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeUpdateReqDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
@@ -227,7 +228,9 @@ public class ResumeController {
             } catch (Exception e) {
             }
             try {
-                rDto.setApplyState(applyRepository.findByCompIdAndApplyId(compSession.getCompId(), id).getState());                 ;
+                ApplytoCompRespDto aDto = applyRepository.findByCompIdAndApplyId(compSession.getCompId(), id);
+                rDto.setApplyState(aDto.getState());   
+                rDto.setApplyId(aDto.getApplyId());
             } catch (Exception e) {
             }
         }

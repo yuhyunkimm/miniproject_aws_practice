@@ -20,6 +20,7 @@ public class ResumeResp {
     @ToString
     public static class ResumeDetailRespDto {
         private Integer resumeId;
+        private Integer applyId;
         private String photo;
         private String name;
         private String title;

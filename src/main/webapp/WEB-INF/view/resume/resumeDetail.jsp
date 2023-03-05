@@ -188,10 +188,10 @@
                                 
                                    <c:otherwise>
                                     <div class="mb-2">
-                                        <button type="button" class="btn btn-success w-100">합격</button>
+                                        <button type="button" class="btn btn-success w-100" onclick="accept(`${compSession.compId}`,`${rDto.applyId}`)">합격</button>
                                     </div>
                                     <div>
-                                        <button type="button" class="btn btn-danger w-100">불합격</button>
+                                        <button type="button" class="btn btn-danger w-100" onclick="deny(`${compSession.compId}`,`${rDto.applyId}`)">불합격</button>
                                     </div>
                                    </c:otherwise>
                                 </c:choose>
@@ -406,6 +406,80 @@
             }
             $('#scrap-' + resumeId + '-render').append(el);
         }
+
+        function accept(id,aId){
+                let data = {
+                    compId: id,
+                    applyId: aId,
+                    state: 1
+                }
+                $.ajax({
+                    type: "put",
+                    url: "/apply/update",
+                    data: JSON.stringify(data),
+                    headers:{
+                        "content-type":"application/json; charset=utf-8"
+                    },
+                    dataType:"json"
+                }).done((res) => {
+                    window.close();
+                    window.opener.location.reload();
+                    // renderbtn(res.data, aId);
+                }).fail((err) => {
+                
+                });
+            }
+
+       
+            function deny(id,aId){
+                let data = {
+                    compId: id,
+                    applyId: aId,
+                    state: -1
+                }
+                $.ajax({
+                    type: "put",
+                    url: "/apply/update",
+                    data: JSON.stringify(data),
+                    headers:{
+                        "content-type":"application/json; charset=utf-8"
+                    },
+                    dataType:"json"
+                }).done((res) => {
+                    window.close();
+                    window.opener.location.reload();
+                    // renderbtn(res.data, aId);
+                }).fail((err) => {
+                
+                });
+            }
+
+            // function renderbtn(num, applyId){
+            //     if(num === 1){
+            //         $('#state-btn-'+applyId).remove();
+            //         $('#response-dropdown-'+applyId).remove();
+            //         let el1 = `
+            //         <div id="state-btn" class="badge bg-success p-2">합격</div>
+            //         `;
+            //         let el2 = `
+            //         <div class="badge bg-secondary p-2">답변완료</div>
+            //         `;
+            //         $('#state-'+applyId).append(el1);
+            //         $('#response-'+applyId).append(el2);
+            //     }
+            //     if(num === -1){
+            //         $('#state-btn-'+applyId).remove();
+            //         $('#response-dropdown-'+applyId).remove();
+            //         let el1 = `
+            //         <div id="state-btn" class="badge bg-danger p-2">불합격</div>
+            //         `;
+            //         let el2 = `
+            //         <div class="badge bg-secondary p-2">답변완료</div>
+            //         `;
+            //         $('#state-'+applyId).append(el1);
+            //         $('#response-'+applyId).append(el2);
+            //     }
+            // }
     </script>
 
 </body>
