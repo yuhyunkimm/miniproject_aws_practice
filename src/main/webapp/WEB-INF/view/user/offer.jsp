@@ -26,7 +26,7 @@
                                   <a class="nav-link a p-1 mb-1 active" href="/user/offer">지원 / 제안</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link a p-1" href="/user/scrap">스크랩</a>
+                                  <a class="nav-link a p-1 mb-1" href="/user/scrap">스크랩</a>
                                 </li>
                                 <hr>
                                 <li class="nav-item">

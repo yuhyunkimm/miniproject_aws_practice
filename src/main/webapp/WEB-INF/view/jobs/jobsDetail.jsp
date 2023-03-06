@@ -95,7 +95,9 @@
                                             </div>
                                         </div>
                                         <div>
-                                            ${jDto.address}
+                                            <div>
+                                                ${jDto.address}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

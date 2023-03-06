@@ -15,6 +15,21 @@
         where s.comp_id = #{compId}
     </select>
 
+    <select id="findAllScrapByUserId" resultType="shop.mtcoding.project.dto.scrap.UserScrapResp$UserScrapRespDto">
+          SELECT us.user_scrap_id,
+              j.jobs_id,
+              j.position,
+              j.career,
+              j.title,
+              c.comp_name,
+              j.end_date
+              FROM user_scrap_tb us
+              JOIN jobs_tb j ON us.jobs_id = j.jobs_id
+              join comp_tb c 
+              on c.comp_id = j.comp_id
+              WHERE us.user_id = #{userId}
+    </select>
+
     <select id="findByUserId" resultType="shop.mtcoding.project.model.UserScrap">
       select * from user_scrap_tb where user_scrap_id = #{userScrapId}
     </select>
@@ -38,4 +53,7 @@
     <delete id="deleteByCompScrapId">
       delete from comp_scrap_tb where comp_scrap_id = #{compScrapId}
     </delete>
+
+  
+
 </mapper>
