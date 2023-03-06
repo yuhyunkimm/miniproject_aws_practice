@@ -50,8 +50,8 @@ public class MainController {
     @GetMapping("/")
     public String main(Model model) {
         // 임시 세션
-        MockSession.mockUser(session);
-        session.setAttribute("compSession", null);
+        // MockSession.mockUser(session);
+        // session.setAttribute("compSession", null);
 
         User principal = (User) session.getAttribute("principal");
         if (principal != null) {

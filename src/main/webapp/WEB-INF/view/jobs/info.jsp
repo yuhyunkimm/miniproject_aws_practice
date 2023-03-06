@@ -385,7 +385,7 @@
                             </div>
                             <div>
                                 <c:forEach items="${jDto.skillList}" var="skill">
-                                    <span class="badge bg-primary">${skill}</span>
+                                    <span class="badge  skill-color">${skill}</span>
                                 </c:forEach>
                             </div>
                             <div>
@@ -724,10 +724,8 @@
                             <div class="fs-5">
                                 `+ jDto.title + `
                             </div>
-                            <div>
-                                <c:forEach items="`+jDto.skillList+`" var="skill">
-                                    <span class="badge bg-primary">${skill}</span><span>이거 왜 붙어 나옴.. 수정필요</span>
-                                </c:forEach>
+                            <div id="insert-skill-`+jDto.jobsId+`">
+                                
                             </div>
                             <div>
                                 `+ jDto.career + " " + jDto.education + " " + jDto.address + `
@@ -747,8 +745,19 @@
                 </a>
             </div>
             `;
+
+            // console.log(jDto.skillList);
             $('.info-card').append(el);
+            insertSkill(jDto.skillList,jDto.jobsId);
         });
+    }
+    function insertSkill(skillList,jobsId){
+        skillList.forEach(skill => {
+            el =`
+                <span class="badge skill-color">`+skill+`</span>
+            `;
+        $('#insert-skill-'+jobsId).append(el);
+        })
     }
 </script>
 <%@ include file="../layout/footer.jsp" %>

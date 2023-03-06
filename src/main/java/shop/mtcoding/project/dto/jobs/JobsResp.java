@@ -91,6 +91,7 @@ public class JobsResp {
     @ToString
     public static class JobsDetailRespDto {
         private Integer jobsId;
+        private Integer compId;
         private String photo;
         private String compName;
         private String title;

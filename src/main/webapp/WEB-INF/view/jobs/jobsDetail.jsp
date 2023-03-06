@@ -91,23 +91,24 @@
                                     <div class="col-4">
                                         <div>
                                             <div>
-                                                ${jDto.position}
+                                                 ${jDto.address}
                                             </div>
                                         </div>
                                         <div>
                                             <div>
-                                                ${jDto.address}
+                                               ${jDto.position}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-flex">
+                                <div class="d-flex pb-3" style="border-bottom: 1px solid black;">
                                     <div>필요기술 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <c:forEach items="${jDto.skillList}" var="skill">
-                                            <span class="badge bg-primary me-2">${skill}</span>
+                                            <span class="badge skill-color me-2">${skill}</span>
                                         </c:forEach>
                                     </div>
                                 </div>
+                                
                                 <div class="relative">
                                     ${jDto.content}
                                     <img class="w-100"
@@ -187,31 +188,42 @@
                             <div class="align-self-end" id="apply-render">
                                 <div id="apply-btn">
                                     <c:choose>
-                                        <c:when test="${compSession == null}">
-                                            <c:choose>
-                                                <c:when test="${principal == null}">
-                                                    <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#loginModal">지원하기</button>
-                                                </c:when>
-
-                                                <c:otherwise>
-                                                    <c:if test="${jDto.state == null}" >
-                                                        <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#myModal" onclick="requestResume()">지원하기</button>
-                                                    </c:if>
-                                                    <c:if test="${jDto.state == 0}" >
-                                                        <button type="button" class="btn btn-secondary w-100">지원완료</button>
-                                                    </c:if>
-                                                    <c:if test="${jDto.state == 1}" >
-                                                        <button type="button" class="btn btn-secondary w-100">합격</button>
-                                                    </c:if>
-                                                    <c:if test="${jDto.state == -1}" >
-                                                        <button type="button" class="btn btn-secondary w-100">불합격</button>
-                                                    </c:if>
-                                                </c:otherwise>
-                                            </c:choose>
+                                        <c:when test="${principal == null && compSession == null}">
+                                            <button type="button" class="btn btn-success w-100" data-bs-toggle="modal"
+                                                data-bs-target="#loginModal">지원하기</button>
                                         </c:when>
 
                                         <c:otherwise>
-                                            <button type="button" class="btn btn-danger w-100" onclick="location.href='/jobs/${jDto.jobsId}/update'">수정하기</button>
+                                            <c:choose>
+                                                <c:when test="${principal != null && compSession == null}">
+                                                    <c:choose>
+                                                        <c:when test="${jDto.state != null}">
+                                                            <c:if test="${jDto.state == 0}" >
+                                                                    <button type="button" class="btn btn-secondary w-100">지원완료</button>
+                                                            </c:if>
+                                                            <c:if test="${jDto.state == 1}" >
+                                                                    <button type="button" class="btn btn-primary w-100">합격</button>
+                                                            </c:if>
+                                                            <c:if test="${jDto.state == -1}" >
+                                                                    <button type="button" class="btn btn-danger w-100">불합격</button>
+                                                            </c:if>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                        <button type="button" class="btn btn-success w-100"
+                                                                data-bs-toggle="modal" data-bs-target="#myModal"
+                                                                onclick="requestResume()">지원하기</button>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:when>
+
+                                                <c:otherwise>
+                                                        <c:if
+                                                            test="${compSession != null && compSession.compId == jDto.compId }">
+                                                            <button type="button" class="btn btn-danger w-100"
+                                                                onclick="location.href='/jobs/${jDto.jobsId}/update'">수정하기</button>
+                                                        </c:if>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </c:otherwise>
                                     </c:choose>
 
@@ -295,7 +307,8 @@
                                         </div> -->
 
                                     <div class="d-grid gap-2 mb-2">
-                                        <button class="btn btn-primary" type="button" onclick="submitLogin(`${jDto.jobsId}`)">로그인
+                                        <button class="btn btn-primary" type="button"
+                                            onclick="submitLogin(`${jDto.jobsId}`)">로그인
                                         </button>
                                         <div> <a href="/user/join">회원가입</a> </div>
                                     </div>
@@ -341,6 +354,7 @@
                 }).done((res) => {
                     userScrapId = res.data;
                     changeScrap();
+                    opener.parent.location.reload();
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
                 });
@@ -360,6 +374,7 @@
                     dataType: "json"
                 }).done((res) => {
                     userScrapId = res.data;
+                    opener.parent.location.reload();
                     changeScrap();
                 }).fail((err) => {
                     alert(err.responseJSON.msg);

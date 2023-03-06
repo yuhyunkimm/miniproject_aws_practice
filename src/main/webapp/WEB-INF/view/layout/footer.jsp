@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<div class="p-3 bg-light text-black rounded " style="margin-bottom: 0">
+<div class="p-3 header-color text-black rounded " style="margin-bottom: 0">
     <div class="width-53 mx-auto">
         <div class="d-flex justify-content-around text-center">
             <div>

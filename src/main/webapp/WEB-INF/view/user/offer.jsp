@@ -11,9 +11,14 @@
                     <div class="card-body">
                         <div class="relative mb-3">
                             <div>
-                                <img src="/images/default_profile.png" class="rounded" alt="Cinque Terre"
-                                    style="max-width: 80px;">
-                            </div>
+                                        <a href="/user/profileUpdateForm"
+                                            onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                            <div class="user-img">
+                                                <img src="${user.photo}" class="rounded" alt="Cinque Terre"
+                                                    style="max-width: 80px;">
+                                            </div>
+                                        </a>
+                                    </div>
                         </div>
                         <div>
                             <h6 class="card-subtitle text-muted">${principal.name}</h6>
@@ -43,7 +48,7 @@
                     </div>
                     <div class="col-9 my-4 pe-5">
                 <div>
-                    <h6><b>지원  <div class="badge bg-secondary p-2 " style="font-weight: 700;">${aDtos.size()}</div></b></h6>
+                    <h6><b>지원  <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">${aDtos.size()}</div></b></h6>
                     <table class="table" style="width:100%">
                         <thead>
                             <tr class="table-secondary" align=center>
@@ -62,7 +67,7 @@
                                     <td><a href="/resume/${aDto.resumeId}" onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;"> ${aDto.resumeTitle}</a></td>
                                     <td>${aDto.position}</td>
                                     <td>
-                                        <div class="badge bg-secondary p-2">${aDto.state == 0 ? '대기중' : aDto.state == 1 ? '합격' : '불합격'}</div>
+                                        <div class="badge bg-secondary p-2">${aDto.state == 0 ? '대기중' : aDto.state == 1 ? '합격' : '불합격'}</div>                                            
                                     </td>
                                 </tr>
                             </tbody>
@@ -70,7 +75,7 @@
 
                     </table>
                             <table class="table" style="width:100%">
-                                <h6><b>제안 <div class="badge bg-secondary p-2 " style="font-weight: 700;">${sDtos.size()}</div> </b></h6>
+                                <h6><b>제안  <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">${sDtos.size()}</div></b></h6>
                                 <thead>
                                     <tr class="table-secondary " align=center>
                                         <th scope="col" style="width:10%">No.</th>

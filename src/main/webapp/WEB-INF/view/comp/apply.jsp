@@ -10,10 +10,13 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="relative mb-3">
-                            <div>
-                                <img src="/images/default_profile.png" class="rounded" alt="Cinque Terre"
-                                    style="max-width: 80px;">
-                            </div>
+                            <a href="/comp/profileUpdateForm"
+                                            onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                            <div class="user-img">
+                                                <img src="${comp.photo}" class="rounded" alt="Cinque Terre"
+                                                    style="max-width: 80px;">
+                                            </div>
+                                        </a>
                         </div>
                         <div>
                             <h6 class="card-subtitle text-muted">${compSession.compName}</h6>
@@ -23,7 +26,7 @@
                                     <a class="nav-link a p-1 mb-1" aria-current="page" href="/comp/jobs">공고등록 / 수정</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1 mb-1 active" href="/comp/apply">지원자 현황</a>
+                                    <a class="nav-link a p-1 mb-1 active" href="/comp/apply">지원 / 제안</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link a p-1" href="/comp/resume/scrap">이력서 스크랩</a>
@@ -43,7 +46,47 @@
             </div>
             <div class="col-9  my-4 pe-5">
                 <div>
-                    <h6><b>지원자 <div class="badge bg-secondary p-2 " style="font-weight: 700;">${aDtos.size()}</div></b></h6>
+                <h6><b>제안  <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">${sDtos.size()}</div></b></h6>
+                    <table class="table" style="width:100%">
+                        <thead>
+                            <tr class="table-secondary" align=center>
+                                <th scope="col" style="width:10%">No.</th>
+                                <th scope="col" style="width:10%">이름</th>
+                                <th scope="col" style="width:15%">이력서</th>
+                                <th scope="col" style="width:30%">공고명</th>
+                                <th scope="col" style="width:20%">포지션</th>
+                                <th scope="col" style="width:15%">상태</th>
+                            </tr>
+                        </thead>
+                        <c:forEach items="${sDtos}" varStatus="status" var="sDto">
+                            <tbody>
+                                <tr align=center>
+                                    <td>${status.count}</td>
+                                    <td>${sDto.name}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success btn-sm"
+                                         onclick="window.open('/resume/${sDto.resumeId}', '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">이력서</button>
+                                    </td>
+                                    <td><a href="/jobs/${sDto.jobsId}" onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;"> ${sDto.title}</a></td>
+                                    <td>${sDto.position}</td>
+                                    <td>
+                                        <%-- <div class="badge bg-secondary p-2"> ${sDto.state == 0 ? '대기중' : sDto.state == 1 ? '제안수락' : '제안거절'}</div> --%>
+                                                <c:if test="${sDto.state == 0}" >
+                                                <div class="badge bg-secondary p-2">대기중</div>
+                                                </c:if>
+                                                <c:if test="${sDto.state == 1}" >
+                                                <div class="badge bg-success p-2">제안수락</div>
+                                                </c:if>
+                                                <c:if test="${sDto.state == -1}" >
+                                                <div class="badge bg-danger p-2">제안거절</div>
+                                                </c:if>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </c:forEach>
+
+                    </table>
+                    <h6><b>지원자  <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">${aDtos.size()}</div></b></h6>
                     <table class="table" style="width:100%">
                         <thead>
                             <tr class="table-secondary" align=center>
@@ -108,6 +151,7 @@
                             </tbody>
                         </c:forEach>
                     </table>
+                    
                 </div>
             </div>
         </div>

@@ -88,6 +88,8 @@ public class ResumeController {
             }
         }
         model.addAttribute("rDtos", rLists);
+        User userPS = userRepository.findById(principal.getUserId());
+        model.addAttribute("user", userPS);
         // rList.forEach((s)->{System.out.println("테스트 : "+ s.toString());});
         return "resume/manageResume";
     }

@@ -71,7 +71,7 @@
                     <h2 class="text-center">프로필 사진 변경</h2>
                     <form id="profileForm">
                         <div class="form-group">
-                        <img src="${user.photo == null ? 'default_profile.png' : user.photo}"
+                        <img src="${comp.photo == null ? 'default_profile.png' : comp.photo}"
                                 alt="Current Photo" class="img-fluid" id="imagePreview">
                         </div>
                         <div class="form-group">
@@ -107,9 +107,10 @@
                     let profileForm = $('#profileForm')[0];
                     console.log(profileForm);
                     let formData = new FormData(profileForm);
-                    $.ajax({
+                    
+                        $.ajax({
                         type: "put",
-                        url: "/user/profileUpdate",
+                        url: "/comp/profileUpdate",
                         contentType: false,
                         processData: false,
                         data: formData,
@@ -123,8 +124,7 @@
                     }).fail((err) => {
                         alert(err.responseJSON.msg);
                     });
-                    }
-                    
+                }
             </script>
 
         </html>

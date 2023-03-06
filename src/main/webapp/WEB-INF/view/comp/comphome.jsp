@@ -12,7 +12,13 @@
                                 <!-- <h5 class="card-title">지원 및 제안</h5><br> -->
                                 <div class="relative mb-3">
                                     <div>
-                                        <img src="/images/default_profile.png" class="rounded" alt="Cinque Terre" style="max-width: 80px;">
+                                        <a href="/comp/profileUpdateForm"
+                                            onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                            <div class="user-img">
+                                                <img src="${comp.photo}" class="rounded" alt="Cinque Terre"
+                                                    style="max-width: 80px;">
+                                            </div>
+                                        </a>
                                     </div>
                                     </div>
                                     <div>
@@ -23,7 +29,7 @@
                                               <a class="nav-link a p-1 mb-1" aria-current="page" href="/comp/jobs">공고등록 / 수정</a>
                                             </li>
                                             <li class="nav-item">
-                                              <a class="nav-link a p-1 mb-1" href="/comp/apply">지원자 현황</a>
+                                              <a class="nav-link a p-1 mb-1" href="/comp/apply">지원 / 제안</a>
                                             </li>
                                             <li class="nav-item">
                                               <a class="nav-link a p-1" href="/comp/resume/scrap">이력서 스크랩</a>

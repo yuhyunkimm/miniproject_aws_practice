@@ -83,8 +83,11 @@ public class UserService {
 
         User userPS = userRepository.findById(pricipalId);
         userPS.setPhoto(uuidImageName);
-        // System.out.println("테스트 : " + uuidImageName);
-        userRepository.updatePhotoById(uuidImageName, pricipalId);
+        try {
+            userRepository.updatePhotoById(uuidImageName, pricipalId);
+        } catch (Exception e) {
+            throw new CustomException("사진 수정에 실패 했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return userPS;
     }
 }
