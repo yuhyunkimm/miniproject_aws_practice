@@ -385,7 +385,7 @@
                             </div>
                             <div>
                                 <c:forEach items="${jDto.skillList}" var="skill">
-                                    <span class="badge bg-primary">${skill}</span>
+                                    <span class="badge  skill-color">${skill}</span>
                                 </c:forEach>
                             </div>
                             <div>

@@ -104,7 +104,7 @@
                                 <div class="d-flex">
                                     <div>필요기술 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <c:forEach items="${jDto.skillList}" var="skill">
-                                            <span class="badge bg-primary me-2">${skill}</span>
+                                            <span class="badge skill-color me-2">${skill}</span>
                                         </c:forEach>
                                     </div>
                                 </div>

@@ -55,11 +55,15 @@
                 .btn {
                     margin-top: 1rem;
                 }
+                body{
+                    overflow-x:hidden; overflow-y:hidden;
+                    width:100vw;
+                }
             </style>
         </head>
 
         <body>
-            <div class="mx-auto width-53 top-80">
+            <div class="">
 
                 <div class="container">
                     <h2 class="text-center">프로필 사진 변경</h2>

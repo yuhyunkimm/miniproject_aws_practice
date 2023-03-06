@@ -34,7 +34,7 @@
                             </div>
                             <div>
                                 <c:forEach items="${jDto.skillList}" var="skill" begin="0" end="3">
-                                ${skill}
+                                <span class="badge  skill-color">${skill}</span>
                                 </c:forEach>
                             </div>
                             <div>
@@ -111,7 +111,7 @@
                         </div>
                             <div>
                                 <c:forEach items="${jDto.skillList}" var="skill" begin="0" end="1">
-                                ${skill}
+                                <span class="badge  skill-color">${skill}</span>
                                 </c:forEach>
                             </div>
                         <div>
