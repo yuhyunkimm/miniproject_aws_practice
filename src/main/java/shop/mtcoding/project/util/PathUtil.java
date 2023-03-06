@@ -10,25 +10,22 @@ import org.springframework.web.multipart.MultipartFile;
 
 import shop.mtcoding.project.exception.CustomException;
 
-public class UserPathUtil {
-
+public class PathUtil {
     private static String getStaticFolder() {
-
         return System.getProperty("user.dir") + "\\src\\main\\resources\\static\\";
-
     }
 
-    public static String writeImageFile(MultipartFile photo) {
+    public static String writeImageFile(MultipartFile profile) {
         UUID uuid = UUID.randomUUID();
-        String uuidImageRealName = "images\\" + uuid + "_" + photo.getOriginalFilename();
-
+        String uuidImageDBName = "/images/" + uuid + "_" + profile.getOriginalFilename();
+        String uuidImageRealName = "\\images\\" + uuid + "_" + profile.getOriginalFilename();
         String staticFolder = getStaticFolder();
-        Path imageFilePath = Paths.get(staticFolder + uuidImageRealName);
+        Path imageFilePath = Paths.get(staticFolder + "\\" + uuidImageRealName);
         try {
-            Files.write(imageFilePath, photo.getBytes());
+            Files.write(imageFilePath, profile.getBytes()); // 내부적으로 비동기. .. 스레드가 있음
         } catch (Exception e) {
             throw new CustomException("사진을 웹서버에 저장하지 못하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return "/images/" + uuid + "_" + photo.getOriginalFilename();
+        return uuidImageDBName;
     }
 }

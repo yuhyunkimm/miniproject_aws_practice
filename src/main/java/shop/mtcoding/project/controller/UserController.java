@@ -205,15 +205,18 @@ public class UserController {
     }
 
     @GetMapping("/user/myhome")
-    public String myhome() {
-        // 임시 세션 
+    public String myhome(Model model) {
+        // 임시 세션
         MockSession.mockUser(session);
-        session.setAttribute("compSession", null);
+        // session.setAttribute("compSession", null);
 
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             return "redirect:/user/login";
         }
+        User userPS = userRepository.findById(principal.getUserId());
+        model.addAttribute("user", userPS);
+        // System.out.println("테스트 : " + userPS.getPhoto());
         return "user/myhome";
     }
 
@@ -238,19 +241,20 @@ public class UserController {
         return "redirect:/";
     }
 
-    @PostMapping("/user/profileUpdate")
-    public String profileUpdate(MultipartFile photo) {
-        User principal = (User) session.getAttribute("principal");
-        if (principal == null) {
-            return "redirect:/user/login";
-        }
-        if (photo.isEmpty()) {
-            throw new CustomException("사진이 전송되지 않았습니다");
-        }
-        User userPS = userService.프로필사진수정(photo, principal.getUserId());
-        session.setAttribute("principal", userPS);
-        return "user/myhome";
-    }
+    // @PutMapping("/user/profileUpdate")
+    // public String profileUpdate(MultipartFile photo) {
+    // User principal = (User) session.getAttribute("principal");
+    // if (principal == null) {
+    // return "redirect:/user/login";
+    // }
+    // if (photo.isEmpty()) {
+    // throw new CustomException("사진이 전송되지 않았습니다");
+    // }
+    // User userPS = userService.프로필사진수정(photo, principal.getUserId());
+    // System.out.println("테스트 : " + userPS.getPhoto());
+    // session.setAttribute("principal", userPS);
+    // return "redirect:/user/myhome";
+    // }
 
     @GetMapping("/user/profileUpdateForm")
     public String profileUpdateForm(Model model) {
@@ -260,9 +264,28 @@ public class UserController {
         }
 
         User userPS = userRepository.findById(principal.getUserId());
+
         model.addAttribute("user", userPS);
 
         return "user/profileUpdateForm";
+    }
+
+    @PutMapping("/user/profileUpdate")
+    public ResponseEntity<?> profileUpdate(MultipartFile photo) throws Exception {
+        User principal = (User) session.getAttribute("principal");
+        if (principal == null) {
+            throw new CustomApiException("로그인이 필요한 페이지 입니다.", HttpStatus.UNAUTHORIZED);
+        }
+        // System.out.println(profile.getContentType());
+        // System.out.println(profile.getOriginalFilename());
+        if (photo.isEmpty()) {
+            throw new CustomApiException("사진이 전송 되지 않았습니다.");
+        }
+
+        User userPS = userService.프로필사진수정(photo, principal.getUserId());
+        session.setAttribute("principal", userPS);
+        // System.out.println("테스트 : "+userPS.getProfile());
+        return new ResponseEntity<>(new ResponseDto<>(1, "프로필 수정 성공", null), HttpStatus.OK);
     }
 }
 

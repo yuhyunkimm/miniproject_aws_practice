@@ -14,7 +14,7 @@ import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
-import shop.mtcoding.project.util.UserPathUtil;
+import shop.mtcoding.project.util.PathUtil;
 
 @Service
 public class UserService {
@@ -72,7 +72,7 @@ public class UserService {
     @Transactional
     public User 프로필사진수정(MultipartFile photo, Integer pricipalId) {
 
-        String uuidImageName = UserPathUtil.writeImageFile(photo);
+        String uuidImageName = PathUtil.writeImageFile(photo);
 
         User userPS = userRepository.findById(pricipalId);
         userPS.setPhoto(uuidImageName);
