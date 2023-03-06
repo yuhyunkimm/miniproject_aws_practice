@@ -16,7 +16,14 @@
     </select>
 
     <select id="findAllScrapByUserId" resultType="shop.mtcoding.project.dto.scrap.UserScrapResp$UserScrapRespDto">
-          
+          SELECT us.user_scrap_id, j.jobs_id, j.position, j.career,
+          GROUP_CONCAT(rs.skill SEPARATOR ', ') AS skillList,
+          TIMESTAMPDIFF(SECOND, NOW(), j.end_date) AS leftTime, j.end_date
+          FROM user_scrap_tb us
+          JOIN jobs_tb j ON us.jobs_id = j.jobs_id
+          LEFT JOIN required_skill_tb rs ON j.jobs_id = rs.jobs_id
+          WHERE us.user_id = #{userId}
+          GROUP BY us.user_scrap_id
     </select>
 
     <select id="findByUserId" resultType="shop.mtcoding.project.model.UserScrap">
