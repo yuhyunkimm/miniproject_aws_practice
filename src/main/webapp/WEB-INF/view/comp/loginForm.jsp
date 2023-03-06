@@ -21,12 +21,12 @@
         </head>
 <body>
     <div class="mx-auto width-53">
-        <div class="container all-form border border-3 p-3 mt-5">
+        <div class="container all-form border border-3 p-3 mt-5" style="width: 400px;">
             <div class="card-header d-flex justify-content-around my-4">
-                <div class="fs-5">
+                <div class="fs-4">
                     <a href="/comp/login">기업 로그인</a>
                 </div>
-                <div class="fs-5">
+                <div class="fs-4">
                     <a href="/comp/join">기업 회원가입</a>
                 </div>
             </div>

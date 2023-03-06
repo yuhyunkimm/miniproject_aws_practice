@@ -20,99 +20,102 @@
             <title>기업 회원가입 페이지</title>
         </head>
 
-<body>
-    <div class="mx-auto width-53">
-        <div class="container all-form border border-3 p-3 mt-5" >
-            <div class="card-header ">
-                <div class="d-flex justify-content-around my-4">
-                    <div class="fs-5">
-                        <a href="/comp/login">기업 로그인</a>
+        <body>
+            <div class="mx-auto width-53">
+                <div class="container all-form border border-3 p-3 mt-5" style="width: 400px;">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-around my-4">
+                            <div class="fs-4">
+                                <a href="/comp/login">기업 로그인</a>
+                            </div>
+                            <div class="fs-4">
+                                <a href="/comp/join">기업 회원가입</a>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="fs-5">
-                        <a href="/comp/join">기업 회원가입</a>
-                    </div>
+
+                    <form action="/comp/join" method="post">
+                        <div class="d-flex form-group mb-2">
+                            <input type="email" name="email" class="form-control" placeholder="Enter email" id="email">
+                            <button type="button" class="badge bg-secondary ms-2"
+                                onclick="emailCheckBtn()">중복확인</button>
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <input type="password" name="password" class="form-control" placeholder="Enter password"
+                                id="password">
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <input type="password" class="form-control" placeholder="Enter passwordCheck"
+                                id="passwordCheck">
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <input type="text" name="compName" class="form-control" placeholder="Enter companyName"
+                                id="compName">
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <input type="text" name="representativeName" class="form-control"
+                                placeholder="Enter representativeName" id="representativeName">
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <input type="text" name="businessNumber" class="form-control"
+                                placeholder="Enter businessNumber" id="businessNumber">
+                        </div>
+
+
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="flexCheckChecked1">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                (필수) 이용약관 동의
+                            </label>
+                        </div>
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" id="flexCheckChecked2">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                (필수) 개인정보 수집 및 이용 동의
+                            </label>
+                        </div>
+
+                        <div class="d-grid gap-2 mb-4">
+                            <input id="button" class=" btn btn-primary" type="submit" value="회원가입"
+                                onclick="submitForm()">
+                        </div>
+                    </form>
                 </div>
-                
             </div>
+            </div>
+            <script>
+                // 회원가입 버튼 클릭 이벤트
+                function submitForm() {
+                    let agreeCheckbox1 = document.getElementById("flexCheckChecked1");
+                    let agreeCheckbox2 = document.getElementById("flexCheckChecked2");
+                    if (!agreeCheckbox1.checked || !agreeCheckbox2.checked) {
+                        alert("약관에 동의해주세요.");
+                        return;
+                    }
+                }
 
-            <form action="/comp/join" method="post">
-                <div class="d-flex form-group mb-2">
-                    <input type="email" name="email" class="form-control" placeholder="Enter email" id="email">
-                    <button type="button" class="badge bg-secondary ms-2" onclick="emailCheckBtn()">중복확인</button>
-                </div>
+                // 이메일 중복 확인 버튼
+                function emailCheckBtn() {
+                    let email1 = $("#email").val();
+                    $.ajax({
+                        type: "get",
+                        url: "/user/emailCheck?email=" + email1,
+                        datatype: "json"
+                    }).done((res) => {
+                        alert(res.msg);
+                    }).fail((err) => {
+                        alert(err.responseJSON.msg);
+                    });
+                }
+            </script>
 
-                <div class="form-group mb-2">
-                    <input type="password" name="password" class="form-control" placeholder="Enter password"
-                        id="password">
-                </div>
+        </body>
 
-                <div class="form-group mb-2">
-                    <input type="password" class="form-control" placeholder="Enter passwordCheck" id="passwordCheck">
-                </div>
-
-                <div class="form-group mb-2">
-                    <input type="text" name="compName" class="form-control" placeholder="Enter companyName"
-                        id="compName">
-                </div>
-
-                <div class="form-group mb-2">
-                    <input type="text" name="representativeName" class="form-control" placeholder="Enter representativeName"
-                        id="representativeName">
-                </div>
-
-                <div class="form-group mb-2">
-                    <input type="text" name="businessNumber" class="form-control" placeholder="Enter businessNumber"
-                        id="businessNumber">
-                </div>
-
-                
-
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="flexCheckChecked1">
-                    <label class="form-check-label" for="flexCheckChecked">
-                        (필수) 이용약관 동의
-                    </label>
-                </div>
-                <div class="form-check mb-4">
-                    <input class="form-check-input" type="checkbox" id="flexCheckChecked2">
-                    <label class="form-check-label" for="flexCheckChecked">
-                        (필수) 개인정보 수집 및 이용 동의
-                    </label>
-                </div>
-
-                <div class="d-grid gap-2 mb-4">
-                    <input id="button" class=" btn btn-primary" type="submit" value="회원가입" onclick="submitForm()">
-                </div>
-            </form>
-        </div>
-    </div>
-    </div>
-    <script>
-        // 회원가입 버튼 클릭 이벤트
-        function submitForm() {
-            let agreeCheckbox1 = document.getElementById("flexCheckChecked1");
-            let agreeCheckbox2 = document.getElementById("flexCheckChecked2");
-            if (!agreeCheckbox1.checked || !agreeCheckbox2.checked) {
-                alert("약관에 동의해주세요.");
-                return;
-            }
-        }
-
-        // 이메일 중복 확인 버튼
-        function emailCheckBtn() {
-            let email1 = $("#email").val();
-            $.ajax({
-                type: "get",
-                url: "/user/emailCheck?email=" + email1,
-                datatype: "json"
-            }).done((res) => {
-                alert(res.msg);
-            }).fail((err) => {
-                alert(err.responseJSON.msg);
-            });
-        }
-    </script>
-
-</body>
-
-</html>
+        </html>
