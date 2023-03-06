@@ -1,5 +1,6 @@
 package shop.mtcoding.project.controllerTest;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
@@ -49,6 +50,20 @@ public class JobsControllerTest {
             new Timestamp(System.currentTimeMillis()));
             mockSession = new MockHttpSession();
             mockSession.setAttribute("compSession", mockcomp);
+    }
+
+    @Test
+    public void searchCheckbox_test() throws Exception {
+        // given
+        String keyword = "address=서울,경기도,제주&career=신입";
+        
+        // when
+        ResultActions rs = mvc.perform(get("/jobs/info/search?"+keyword));
+    
+        // then
+        String result = rs.andReturn().getResponse().getContentAsString();
+        System.out.println("테스트 : "+ result);
+    
     }
     
     @Test

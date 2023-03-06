@@ -72,7 +72,6 @@
                     <div>
                         D-${jDto.leftTime}
                     </div>
-
                 </div>
             </div>
     </div>

@@ -12,6 +12,7 @@ import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.CompRepository;
+import shop.mtcoding.project.util.Sha256;
 
 @Service
 public class CompService {
@@ -22,8 +23,10 @@ public class CompService {
     @Transactional
     public void 회원가입(CompJoinReqDto compJoinReqDto) {
         Comp compPS = compRepository.findByCompEmail(compJoinReqDto.getEmail());
-        if (compPS != null)
+        if (compPS != null) {
             throw new CustomException("존재하는 회원입니다.");
+        }
+        compJoinReqDto.setPassword(Sha256.encode(compJoinReqDto.getPassword()));
         try {
             compRepository.insert(compJoinReqDto);
         } catch (Exception e) {
@@ -33,6 +36,7 @@ public class CompService {
 
     @Transactional(readOnly = true)
     public Comp 로그인(CompLoginReqDto compLoginReqDto) {
+        compLoginReqDto.setPassword(Sha256.encode(compLoginReqDto.getPassword()));
         Comp principal = compRepository.findByEmailAndPassword(compLoginReqDto.getEmail(),
                 compLoginReqDto.getPassword());
         if (principal == null) {

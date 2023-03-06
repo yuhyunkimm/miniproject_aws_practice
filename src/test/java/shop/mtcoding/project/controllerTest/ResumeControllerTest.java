@@ -37,9 +37,6 @@ import shop.mtcoding.project.model.User;
 public class ResumeControllerTest {
 
     @Autowired
-    private ResumeRepository resumeRepository;
-
-    @Autowired
     private ObjectMapper om;
 
     @Autowired
@@ -154,7 +151,7 @@ public class ResumeControllerTest {
 
         // when
         ResultActions resultActions = mvc.perform(
-                delete("/resume/" + id).session(mockSession));
+                delete("/resume/" + id + "/delete").session(mockSession));
         String responseBody = resultActions.andReturn().getResponse().getContentAsString();
         System.out.println("delete_test : " + responseBody);
 

@@ -43,28 +43,66 @@
             </div>
             <div class="col-9  my-4 pe-5">
                 <div>
-                    <h6><b>지원 ${aDtos.size()} </b></h6>
+                    <h6><b>지원자 <div class="badge bg-secondary p-2 " style="font-weight: 700;">${aDtos.size()}</div></b></h6>
                     <table class="table" style="width:100%">
                         <thead>
                             <tr class="table-secondary" align=center>
-                                <th scope="col" style="width:15%">이름</th>
-                                <th scope="col" style="width:25%">이력서 제목</th>
-                                <th scope="col" style="width:25%">포지션</th>
+                                <th scope="col" style="width:10%">No.</th>
+                                <th scope="col" style="width:10%">이름</th>
+                                <th scope="col" style="width:12%">이력서</th>
+                                <th scope="col" style="width:28%">지원 공고</th>
                                 <th scope="col" style="width:10%">경력</th>
-                                <th scope="col" style="width:10%">학력</th>
-                                <th scope="col" style="width:15%">상세보기</th>
+                                <th scope="col" style="width:12%">상태</th>
+                                <th scope="col" style="width:18%">응답</th>
                             </tr>
                         </thead>
                         <c:forEach items="${aDtos}" varStatus="status" var="aDto">
                             <tbody>
                                 <tr align=center>
+                                    <td>${status.count}</td>
                                     <td>${aDto.name}</td>
-                                    <td>${aDto.title}</td>
-                                    <td>${aDto.position}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success btn-sm"
+                                         onclick="window.open('/resume/apply/${aDto.applyId}', '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">이력서</button>
+                                    </td>
+                                    <td><a href="/jobs/${aDto.jobsId}">${aDto.title}</a> </td>
                                     <td>${aDto.career}</td>
-                                    <td>${aDto.education}</td>
-                                    <td><button type="button" class="btn btn-success btn-sm"
-                                            onclick="window.open('/resume/${aDto.resumeId}', '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">상세보기</button>
+                                    <td>
+                                        <div id="state-${aDto.applyId}">
+                                            <div id="state-btn-${aDto.applyId}">
+                                            <c:if test="${aDto.state == 0}" >
+                                            <div class="badge bg-secondary p-2">대기중</div>
+                                            </c:if>
+                                            <c:if test="${aDto.state == 1}" >
+                                            <div class="badge bg-success p-2">합격</div>
+                                            </c:if>
+                                            <c:if test="${aDto.state == -1}" >
+                                            <div class="badge bg-danger p-2">불합격</div>
+                                            </c:if>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div id="response-${aDto.applyId}">
+                                            <div class="dropdown" id="response-dropdown-${aDto.applyId}">
+                                                <c:choose>
+                                                   <c:when test="${aDto.state == 0 }">
+                                                        <button type="button" class="btn btn-primary dropdown-toggle py-0" data-bs-toggle="dropdown">
+                                                            답변하기
+                                                        </button>
+                                                   </c:when>
+                                                
+                                                   <c:otherwise>
+                                                    <div class="badge bg-secondary p-2">답변완료</div>
+                                                   </c:otherwise>
+                                                </c:choose>
+
+                                                <ul class="dropdown-menu">
+                                                  <li><a class="dropdown-item" onclick="accept(`${compSession.compId}`,`${aDto.applyId}`)">수락</a></li>
+                                                  <li><a class="dropdown-item" onclick="deny(`${compSession.compId}`,`${aDto.applyId}`)">거절</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
@@ -87,7 +125,7 @@
                     <div class="mb-3">
                         <label for="inputPassword" class="form-label">Password</label>
                         <input type="password" class="form-control" id="inputPassword" aria-describedby="passwordHelp"
-                            onkeypress="if(event.keyCode=='13'){event.preventDefault(); checkPS(${compSession.compId});}">
+                            onkeypress="if(event.keyCode=='13'){event.preventDefault(); checkPS(`${compSession.compId}`);}">
                         <div id="passwordHelp" class="form-text">현재 비밀번호를 입력해 주세요.</div>
                     </div>
                 </form>
@@ -95,7 +133,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary"
-                    onclick="passwordCheckBtn(${compSession.compId})">Check</button>
+                    onclick="passwordCheckBtn(`${compSession.compId}`)">Check</button>
             </div>
         </div>
     </div>
@@ -104,6 +142,76 @@
     function checkPS(cId) {
         passwordCheckBtn(cId);
     }
+
+    function accept(id,aId){
+                let data = {
+                    compId: id,
+                    applyId: aId,
+                    state: 1
+                }
+                $.ajax({
+                    type: "put",
+                    url: "/apply/update",
+                    data: JSON.stringify(data),
+                    headers:{
+                        "content-type":"application/json; charset=utf-8"
+                    },
+                    dataType:"json"
+                }).done((res) => {
+                    renderbtn(res.data, aId);
+                }).fail((err) => {
+                
+                });
+            }
+
+       
+            function deny(id,aId){
+                let data = {
+                    compId: id,
+                    applyId: aId,
+                    state: -1
+                }
+                $.ajax({
+                    type: "put",
+                    url: "/apply/update",
+                    data: JSON.stringify(data),
+                    headers:{
+                        "content-type":"application/json; charset=utf-8"
+                    },
+                    dataType:"json"
+                }).done((res) => {
+                    renderbtn(res.data, aId);
+                }).fail((err) => {
+                
+                });
+            }
+
+            function renderbtn(num, applyId){
+                if(num === 1){
+                    $('#state-btn-'+applyId).remove();
+                    $('#response-dropdown-'+applyId).remove();
+                    let el1 = `
+                    <div id="state-btn" class="badge bg-success p-2">합격</div>
+                    `;
+                    let el2 = `
+                    <div class="badge bg-secondary p-2">답변완료</div>
+                    `;
+                    $('#state-'+applyId).append(el1);
+                    $('#response-'+applyId).append(el2);
+                }
+                if(num === -1){
+                    $('#state-btn-'+applyId).remove();
+                    $('#response-dropdown-'+applyId).remove();
+                    let el1 = `
+                    <div id="state-btn" class="badge bg-danger p-2">불합격</div>
+                    `;
+                    let el2 = `
+                    <div class="badge bg-secondary p-2">답변완료</div>
+                    `;
+                    $('#state-'+applyId).append(el1);
+                    $('#response-'+applyId).append(el2);
+                }
+            }
 
     const passwordInputEl = document.querySelector('#inputPassword')
     const modalEl = document.querySelector('#modal')

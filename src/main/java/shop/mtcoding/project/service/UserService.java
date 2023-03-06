@@ -12,6 +12,7 @@ import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
+import shop.mtcoding.project.util.Sha256;
 
 @Service
 public class UserService {
@@ -22,8 +23,10 @@ public class UserService {
     @Transactional
     public void 회원가입(UserJoinReqDto userJoinReqDto) {
         User userPS = userRepository.findByUserEmail(userJoinReqDto.getEmail());
-        if (userPS != null)
+        if (userPS != null) {
             throw new CustomException("존재하지 않는 회원입니다.");
+        }
+        userJoinReqDto.setPassword(Sha256.encode(userJoinReqDto.getPassword()));
         try {
             userRepository.insert(userJoinReqDto);
         } catch (Exception e) {
@@ -33,6 +36,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User 로그인(UserLoginReqDto userloginReqDto) {
+        userloginReqDto.setPassword(Sha256.encode(userloginReqDto.getPassword()));
         User principal = userRepository.findByEmailAndPassword(userloginReqDto.getEmail(),
                 userloginReqDto.getPassword());
         if (principal == null) {

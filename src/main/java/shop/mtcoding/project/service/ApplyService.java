@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.project.dto.apply.ApplyReq.ApplyReqDto;
+import shop.mtcoding.project.dto.apply.ApplyReq.ApplyUpdateReqDto;
 import shop.mtcoding.project.exception.CustomApiException;
+import shop.mtcoding.project.model.Apply;
 import shop.mtcoding.project.model.ApplyRepository;
 import shop.mtcoding.project.model.Jobs;
 import shop.mtcoding.project.model.JobsRepository;
@@ -44,6 +46,40 @@ public class ApplyService {
         } catch (Exception e) {
             throw new CustomApiException("서버에 일시적인 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @Transactional
+    public Integer 합격(ApplyUpdateReqDto aDto, Integer compId) {
+        if (compId != aDto.getCompId()){
+            throw new CustomApiException("수정 권한이 없습니다." , HttpStatus.FORBIDDEN);
+        }
+        Apply applyPS = applyRepository.findByApplyId(aDto.getApplyId());
+        if ( applyPS == null){
+            throw new CustomApiException("존재하지 않는 지원자입니다.");
+        }
+        try {
+            applyRepository.updateByApplyId(aDto);
+        } catch (Exception e) {
+            throw new CustomApiException("서버에 일시적인 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return 1;
+    }
+
+    @Transactional
+    public Integer 불합격(ApplyUpdateReqDto aDto, Integer compId) {
+        if (compId != aDto.getCompId()){
+            throw new CustomApiException("수정 권한이 없습니다." , HttpStatus.FORBIDDEN);
+        }
+        Apply applyPS = applyRepository.findByApplyId(aDto.getApplyId());
+        if ( applyPS == null){
+            throw new CustomApiException("존재하지 않는 지원자입니다.");
+        }
+        try {
+            applyRepository.updateByApplyId(aDto);
+        } catch (Exception e) {
+            throw new CustomApiException("서버에 일시적인 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return 1;
     }
 }
 

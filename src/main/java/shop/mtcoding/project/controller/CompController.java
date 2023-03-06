@@ -28,7 +28,6 @@ import shop.mtcoding.project.dto.comp.CompReq.CompPasswordReqDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompUpdateReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsIdRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsManageJobsRespDto;
-import shop.mtcoding.project.dto.jobs.JobsResp.JobsMatchRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeMatchRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeReadRespDto;
 import shop.mtcoding.project.dto.scrap.CompScrapResp.CompScrapResumeRespDto;
@@ -45,7 +44,7 @@ import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.ScrapRepository;
 import shop.mtcoding.project.model.SkillRepository;
 import shop.mtcoding.project.service.CompService;
-import shop.mtcoding.project.util.DateUtil;
+import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class CompController {
@@ -151,6 +150,10 @@ public class CompController {
 
     @GetMapping("/comp/comphome")
     public String compMyhome(Model model) {
+        // 임시 세션 
+        MockSession.mockComp(session);
+        session.setAttribute("principal", null);        
+        
         Comp compSession = (Comp)session.getAttribute("compSession");
         if ( compSession == null ){
             return "redirect:/comp/login";

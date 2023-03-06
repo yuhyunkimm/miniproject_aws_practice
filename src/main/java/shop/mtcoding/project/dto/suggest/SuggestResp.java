@@ -6,7 +6,7 @@ import lombok.Setter;
 public class SuggestResp {
     @Getter
     @Setter
-    public static class SuggestToUserRespDto{
+    public static class SuggestToUserRespDto {
         private Integer suggestId;
         private Integer jobsId;
         private Integer resumeId;
@@ -17,4 +17,10 @@ public class SuggestResp {
         private Integer state;
     }
 
+    @Getter
+    @Setter
+    public static class SuggestToCompRespDto {
+        private Integer suggestId;
+        private Integer state;
+    }
 }

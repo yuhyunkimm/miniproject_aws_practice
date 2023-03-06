@@ -60,7 +60,6 @@ public class ScrapController {
 
     @DeleteMapping("/comp/scrap/{id}/delete")
     public ResponseEntity<?> deleteResumeScrap(@PathVariable Integer id) {
-        System.out.println("테스트 : "+ id);
         if (id == null) {
             throw new CustomApiException("스크랩 번호가 필요합니다.");
         }

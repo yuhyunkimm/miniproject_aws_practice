@@ -1,7 +1,7 @@
 package shop.mtcoding.project.repositoryTest;
 
 import java.sql.Timestamp;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -15,6 +15,7 @@ import shop.mtcoding.project.dto.jobs.JobsReq.JobsWriteReqDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsMainRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSearchRespDto;
 import shop.mtcoding.project.dto.jobs.JobsResp.JobsSuggestRespDto;
+import shop.mtcoding.project.model.Jobs;
 import shop.mtcoding.project.model.JobsRepository;
 
 @MybatisTest
@@ -25,18 +26,39 @@ public class JobsRepositoryTest {
 
     @Test
     @Transactional
+    public void findBySearch_test() throws Exception {
+        // given
+        String keyword = "서울";
+    
+        // when
+        List<JobsSearchRespDto> sDtos = jobsRepository.findBySearch(keyword, null);
+        
+        // then
+        System.out.println("테스트 : "+ sDtos.size());
+        sDtos.forEach(System.out::print);
+    
+    }
+
+    @Test
+    @Transactional
     public void findByCheckBox_test() throws Exception {
+        // given
         JobsCheckBoxReqDto j = new JobsCheckBoxReqDto();
         j.setCareer("");
-        List<String> skill = Arrays.asList("React");
+        List<String> insertList = new ArrayList<>();
+        insertList.add("인천");
+        insertList.add("제주");
+        j.setAddress(insertList);
         // List<String> position = Arrays.asList("서울");
 
-        System.out.println("테스트 : "+skill);
-        // System.out.println("테스트 : "+position);
-        j.setAddress(skill);
-        // j.setAddress(position);
-        List<JobsSearchRespDto> t = jobsRepository.findByCheckBox(j);
-        System.out.println("테스트 : "+ t.size());
+        // when
+        List<JobsSearchRespDto> jDtos = jobsRepository.findByCheckBox(j);
+        for (JobsSearchRespDto jDto : jDtos) {
+            System.out.println("테스트 : "+ jDto.toString());
+            }
+        System.out.println("테스트 : "+ jDtos.size());
+
+        //then
     }
 
     @Test
@@ -125,4 +147,20 @@ public class JobsRepositoryTest {
         // then
         sList.forEach((s)->{System.out.println("테스트 : "+ s.toString());});
         }
+    
+    @Test
+    @Transactional
+    public void deleteById_test() throws Exception {
+        // given
+        Integer id = 1;
+    
+        // when
+        jobsRepository.deleteById(id);
+    
+        // then
+        Jobs jobsPS = jobsRepository.findById(id);
+        if (jobsPS == null ){
+            System.out.println("테스트 : 삭제성공");
+        }
+    }
 }

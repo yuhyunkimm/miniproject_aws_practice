@@ -18,6 +18,7 @@ import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.SkillRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.util.DateUtil;
+import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class MainController {
@@ -48,10 +49,12 @@ public class MainController {
 
     @GetMapping("/")
     public String main(Model model) {
+        // 임시 세션 
+        MockSession.mockUser(session);
+        session.setAttribute("compSession", null);      
+          
         User principal = (User) session.getAttribute("principal");
         if (principal != null) {
-            // 유저의 관심카테고리 - 백엔드 -> 공고들의 position에서 검색
-            // 매칭이 되는 공고를 추천공고에 띄워준다
             List<JobsMainRecommendRespDto> rDtos = jobsRepository.findAlltoMainRecommend(principal.getUserId());
             for (JobsMainRecommendRespDto jDto : rDtos) {
                 long dDay = DateUtil.dDay(jDto.getEndDate());

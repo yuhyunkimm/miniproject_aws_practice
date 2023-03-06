@@ -35,14 +35,15 @@ public interface JobsRepository {
     public int updateById(
         @Param("jDto") JobsUpdateReqDto jDto
     );
-    public int deleteById(
-    );
+    public int deleteById(Integer jobsId);
+    
     public List<JobsMainRecommendRespDto> findAlltoMainRecommend(Integer userId);
 
     public List<JobsMainRespDto> findAlltoMain(Integer userId);
 
     public List<JobsSearchRespDto> findBySearch(
-        @Param("keyword") String keyword
+        @Param("keyword") String keyword,
+        @Param("userId") Integer userId
         );
     public List<JobsSearchRespDto> findByCheckBox(
         @Param("jDto") JobsCheckBoxReqDto jDto

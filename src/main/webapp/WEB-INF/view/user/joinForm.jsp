@@ -22,8 +22,7 @@
 
         <body>
             <div class="mx-auto width-53">
-                <!-- <div class="mx-5" style="border: solid black;"> -->
-                <div class="container all-form border border-3 p-3 mt-5" >
+                <div class="container all-form border border-3 p-3 mt-5" style="width: 400px;" >
                     <div class="card-header d-flex justify-content-around my-4">
                         <div class="fs-4">
                             <a href="/user/login">로그인</a>
@@ -87,7 +86,7 @@
                                 (필수) 14세 이상 연령
                             </label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check mb-4">
                             <input class="form-check-input" type="checkbox" id="flexCheck">
                             <label class="form-check-label" for="flexCheckChecked">
                                 (선택) 이메일 수신 동의

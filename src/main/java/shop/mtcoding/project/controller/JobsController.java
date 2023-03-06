@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,7 +45,6 @@ import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.SkillRepository;
 import shop.mtcoding.project.model.User;
-import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.service.JobsService;
 import shop.mtcoding.project.util.DateUtil;
 
@@ -60,9 +60,6 @@ public class JobsController {
     @Autowired
     private SkillRepository skillRepository;
     
-    @Autowired
-    private UserRepository userRepository;
-
     @Autowired
     private ResumeRepository resumeRepository;
 
@@ -82,6 +79,78 @@ public class JobsController {
         return new ResponseEntity<>(new ResponseDto<>(1, "공고 불러오기 완료", jDtos), HttpStatus.OK);
     }
 
+    @GetMapping("/jobs/search")
+    public String searchJobs(String keyword, Model model){
+        if(ObjectUtils.isEmpty(keyword)){
+            keyword = "검색어를 입력해 주세요 !!!";
+            throw new CustomException("검색어가 없습니다.");
+        }
+        User principal = (User) session.getAttribute("principal");
+        Integer num = null;
+        if( principal != null ){
+            num = principal.getUserId();
+        }
+        List<JobsSearchRespDto> jDtos = jobsRepository.findBySearch(keyword, num);
+        for (JobsSearchRespDto jDto : jDtos) {
+            long dDay = DateUtil.dDay(jDto.getEndDate());
+            jDto.setLeftTime(dDay);
+            List<String> insertList = new ArrayList<>();
+            for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto.getJobsId())) {
+                insertList.add(skill.getSkill());
+            }
+            jDto.setSkillList(insertList);
+        }
+
+        model.addAttribute("jDtos", jDtos);
+        model.addAttribute("keyword", keyword);
+        return "jobs/info";
+    }
+
+    // @GetMapping("/jobs/info/search")
+    // public String searchCheckbox(String keyword, Model model){
+    //     if(ObjectUtils.isEmpty(keyword)){
+    //         keyword = "검색어를 입력해 주세요 !!!";
+    //         throw new CustomException("검색어가 없습니다.");
+    //     }
+    //     User principal = (User) session.getAttribute("principal");
+    //     Integer num = null;
+    //     if( principal != null ){
+    //         num = principal.getUserId();
+    //     }
+    //     List<JobsSearchRespDto> jDtos = jobsRepository.findBySearch(keyword, num);
+    //     for (JobsSearchRespDto jDto : jDtos) {
+    //         long dDay = DateUtil.dDay(jDto.getEndDate());
+    //         jDto.setLeftTime(dDay);
+    //         List<String> insertList = new ArrayList<>();
+    //         for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto.getJobsId())) {
+    //             insertList.add(skill.getSkill());
+    //         }
+    //         jDto.setSkillList(insertList);
+    //     }
+
+    //     model.addAttribute("jDtos", jDtos);
+    //     model.addAttribute("keyword", keyword);
+    //     return "jobs/info";
+    // }
+
+    @GetMapping("/jobs/info/search")
+    public ResponseEntity<?> searchCheckbox(JobsCheckBoxReqDto jobsDto, Model model) {
+        if (jobsDto.getCareer() == null || jobsDto.getCareer().isEmpty()) {
+            jobsDto.setCareer("");
+        }
+        List<JobsSearchRespDto> jDtos = jobsRepository.findByCheckBox(jobsDto);
+        for (JobsSearchRespDto jDto : jDtos) {
+            long dDay = DateUtil.dDay(jDto.getEndDate());
+            jDto.setLeftTime(dDay);
+            List<String> insertList = new ArrayList<>();
+            for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto.getJobsId())) {
+                insertList.add(skill.getSkill());
+            }
+            jDto.setSkillList(insertList);
+        }
+        return new ResponseEntity<>(new ResponseDto<>(1, "검색 성공", jDtos), HttpStatus.OK);
+    }
+
     @GetMapping("/jobs/info")
     public String info(JobsSearchReqDto jDto, Model model) throws Exception {
         if (jDto.getAddress() == null || jDto.getAddress().isEmpty()) {
@@ -96,18 +165,30 @@ public class JobsController {
         if (jDto.getSkill() == null || jDto.getSkill().isEmpty()) {
             jDto.setSkill("");
         }
-
-
-
-
-
-        // 여기 수정 해야함 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         User principal = (User) session.getAttribute("principal");
         if (principal != null) {
             List<JobsMainRespDto> jDtos = jobsRepository.findAlltoMain(principal.getUserId());
+            for (JobsMainRespDto jDto1 : jDtos) {
+                long dDay = DateUtil.dDay(jDto1.getEndDate());
+                jDto1.setLeftTime(dDay);
+                List<String> insertList = new ArrayList<>();
+                for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto1.getJobsId())) {
+                    insertList.add(skill.getSkill());
+                }
+                jDto1.setSkillList(insertList);
+            }
             model.addAttribute("jDtos", jDtos);
         } else {
             List<JobsMainRespDto> jDtos = jobsRepository.findAlltoMain(null);
+            for (JobsMainRespDto jDto2 : jDtos) {
+                long dDay = DateUtil.dDay(jDto2.getEndDate());
+                jDto2.setLeftTime(dDay);
+                List<String> insertList = new ArrayList<>();
+                for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto2.getJobsId())) {
+                    insertList.add(skill.getSkill());
+                }
+                jDto2.setSkillList(insertList);
+            }
             model.addAttribute("jDtos", jDtos);
         }
 
@@ -177,21 +258,8 @@ public class JobsController {
         return "jobs/updateJobsForm";
     }
 
-    // 나중에 get으로 바꿔보자
-    @PostMapping("/jobs/info/search")
-    public ResponseEntity<?> searchJobs(@RequestBody JobsCheckBoxReqDto jDto, Model model) {
-        // System.out.println("테스트 : "+ jDto.toString());
-        if (jDto.getCareer() == null || jDto.getCareer().isEmpty()) {
-            jDto.setCareer("");
-        }
-        List<JobsSearchRespDto> jDtos = jobsRepository.findByCheckBox(jDto);
-        model.addAttribute("jDtos", jDtos);
-        return new ResponseEntity<>(new ResponseDto<>(1, "검색 성공", jDtos), HttpStatus.OK);
-    }
-
     @PostMapping("/jobs/info/list")
     public ResponseEntity<?> searchJobsSize(@RequestBody JobsCheckBoxReqDto jDto, Model model) {
-        System.out.println("테스트 : "+ jDto.toString());
         if (jDto.getCareer() == null || jDto.getCareer().isEmpty()) {
             jDto.setCareer("");
         }
@@ -338,6 +406,13 @@ public class JobsController {
 
         Integer jobdId = jobsService.공고수정(jDto, compSession.getCompId());
         return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료", jobdId), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/jobs/{id}/delete")
+    public ResponseEntity<?> deleteJobs(@PathVariable Integer id){
+        Comp compSession = (Comp)session.getAttribute("compSession");
+        jobsService.공고삭제(id, compSession.getCompId());
+        return new ResponseEntity<>(new ResponseDto<>(1, "공고 삭제 성공", null), HttpStatus.OK);
     }
 }
 // ⬜ 채용정보 "/jobs/info"
