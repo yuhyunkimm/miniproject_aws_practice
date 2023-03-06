@@ -27,7 +27,6 @@ import shop.mtcoding.project.dto.suggest.SuggestResp.SuggestToUserRespDto;
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserLoginReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserPasswordReqDto;
-import shop.mtcoding.project.dto.user.UserReq.UserUpdatePhotoReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserUpdateReqDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
@@ -38,10 +37,9 @@ import shop.mtcoding.project.model.SuggestRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.service.UserService;
-
 import shop.mtcoding.project.util.DateUtil;
-
 import shop.mtcoding.project.util.MockSession;
+import shop.mtcoding.project.util.Sha256;
 
 
 @Controller
@@ -172,6 +170,7 @@ public class UserController {
 
     @PostMapping("/user/passwordCheck")
     public @ResponseBody ResponseEntity<?> samePasswordCheck(@RequestBody UserPasswordReqDto userPasswordReqDto) {
+        userPasswordReqDto.setPassword(Sha256.encode(userPasswordReqDto.getPassword()));
         User userPS = userRepository.findByUseridAndPassword(
                 userPasswordReqDto.getUserId(),
                 userPasswordReqDto.getPassword());
@@ -184,6 +183,7 @@ public class UserController {
 
     @PutMapping("/user/update")
     public ResponseEntity<?> updateUser(@RequestBody UserUpdateReqDto userUpdateReqDto) {
+        userUpdateReqDto.setPassword(Sha256.encode(userUpdateReqDto.getPassword()));
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);

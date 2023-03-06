@@ -75,7 +75,7 @@
     
                                         <div style="float: right;" pt-2>
                                             <button type="button" class="btn btn-success btn-sm"
-                                                onclick="location.href=`/jobs/`+${usDto.userScrapId}">상세보기</button>
+                                            onclick="window.open(`/jobs/${usDto.userScrapId}`, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">상세보기</button>
                                         </div>     
                                     </div>
                                     

@@ -353,6 +353,7 @@
                 }).done((res) => {
                     userScrapId = res.data;
                     changeScrap();
+                    opener.parent.location.reload();
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
                 });
@@ -372,6 +373,7 @@
                     dataType: "json"
                 }).done((res) => {
                     userScrapId = res.data;
+                    opener.parent.location.reload();
                     changeScrap();
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
