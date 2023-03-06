@@ -101,7 +101,6 @@ public class MainController {
                     insertList.add(skill.getSkill());
                 }
                 jDto.setSkillList(insertList);
-                System.out.println("테스트 : "+ jDto.toString());
             }
             model.addAttribute("jDtos", jDtosb);
         }

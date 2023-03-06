@@ -277,6 +277,13 @@ public class CompController {
     public String scrapResume(Model model) {
         Comp compSession = (Comp) session.getAttribute("compSession");
         List<CompScrapResumeRespDto> sList = scrapRepository.findAllScrapByCompId(compSession.getCompId());
+        for (CompScrapResumeRespDto jDto : sList) {
+            List<String> insertList = new ArrayList<>();
+            for (ResumeSkillRespDto skill : skillRepository.findByResumeSkill(jDto.getResumeId())) {
+                insertList.add(skill.getSkill());
+            }
+            jDto.setSkillList(insertList);
+        }
         model.addAttribute("sDtos", sList);
         Comp compPS = compRepository.findByCompId(compSession.getCompId());
         model.addAttribute("comp", compPS);

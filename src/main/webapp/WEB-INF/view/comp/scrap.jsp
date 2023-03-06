@@ -27,7 +27,7 @@
                                       <a class="nav-link a p-1 mb-1" aria-current="page" href="/comp/jobs">공고등록 / 수정</a>
                                     </li>
                                     <li class="nav-item">
-                                      <a class="nav-link a p-1 mb-1" href="/comp/apply">지원자 현황</a>
+                                      <a class="nav-link a p-1 mb-1" href="/comp/apply">지원 / 제안</a>
                                     </li>
                                     <li class="nav-item">
                                       <a class="nav-link a p-1 mb-1 active" href="/comp/resume/scrap">이력서 스크랩</a>
@@ -47,23 +47,27 @@
             </div>
 
             <div class="col-9 my-4 pe-5">
-                <h6><b>전체 ${sDtos.size()} </b></h6>
-                <hr />
+                <h6><b>전체  <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">${sDtos.size()}</div></b></h6>
                 <c:forEach items="${sDtos}" var="sDto">
                 <div class="card mb-4">
                     <div class="card-body">
                         <h5 class="card-title" style="text-align: left;">${sDto.title}</h5>
                         <div class="m-2" style="float: left;">
-                            <h6 class="card-subtitle mb-2 text-muted">${sDto.name} ${sDto.birth}</h6>
-                        </div>
-                        <div class="m-2" style="float: left;">
-                            <h6 class="card-subtitle mb-2 text-muted">${sDto.education}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">${sDto.name} </h6>
                         </div>
                         <div class="m-2" style="float: left;">
                             <h6 class="card-subtitle mb-2 text-muted">${sDto.career}</h6>
                         </div>
-                                               <div class="m-2" style="float: left;">
+                        <div class="m-2" style="float: left;">
+                            <h6 class="card-subtitle mb-2 text-muted">${sDto.education}</h6>
+                        </div>
+                        <div class="m-2 me-5" style="float: left;">
                             <h6 class="card-subtitle mb-2 text-muted">${sDto.address}</h6>
+                        </div>
+                        <div>
+                            <c:forEach items="${sDto.skillList}" var="skill" begin="0" end="3">
+                                <span class="badge  skill-color">${skill}</span>
+                            </c:forEach>
                         </div>
                         <div style="float: right;" pt-2>
                             <button type="button" class="btn btn-success btn-sm"

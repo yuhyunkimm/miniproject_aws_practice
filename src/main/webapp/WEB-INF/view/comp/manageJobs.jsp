@@ -27,7 +27,7 @@
                                         수정</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1 mb-1" href="/comp/apply">지원자 현황</a>
+                                    <a class="nav-link a p-1 mb-1" href="/comp/apply">지원 / 제안</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link a p-1" href="/comp/resume/scrap">이력서 스크랩</a>
@@ -45,8 +45,18 @@
                     </div>
                 </div>
             </div>
-            <div class="col-9 my-4 pe-5">
+            <div class="col-9 my-2 pe-5">
                 <div>
+                <div class="d-flex justify-content-between " style="height: 3em;">
+                    <div>
+                        <h6><b>전체  <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">${jDtos.size()}</div></b></h6>
+                    </div>
+                    <div>
+                        <button style="float: right;" type="button" class="btn btn-success mb-4"
+                    onclick="location.href='/jobs/write'">공고 작성</button>
+                    </div>
+                </div>
+                
                     <c:forEach items="${jDtos}" var="jDto">
                     <div class="card mb-4">
                         <div class="card-body row">
@@ -62,12 +72,12 @@
                             </div>
                             <div class="col-3">
                                 <div style="float: right;">
-                                    <button type="button" style="width: 7em;" class="btn btn-secondary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#dModal"
+                                    <button type="button" style="width: 7em;" class="btn btn-danger btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#dModal"
                                         style="float: right;" onclick="event.preventDefault();deleteBtn(event, `${jDto.jobsId}`);">공고
                                         삭제</button>
                                 </div>
                                 <div style="float: right;">
-                                    <button type="button"  style="width: 7em;" class="btn btn-success btn-sm" onclick="location.href=`/jobs/`+`${jDto.jobsId}`+`/update`">공고
+                                    <button type="button"  style="width: 7em;" class="btn btn-primary btn-sm" onclick="location.href=`/jobs/`+`${jDto.jobsId}`+`/update`">공고
                                         수정</button>
                                 </div>
                             </div>
@@ -76,8 +86,7 @@
                     </div>
                 </c:forEach>
                 </div>
-                <button style="float: right;" type="button" class="btn btn-success mb-4"
-                    onclick="location.href='/jobs/write'">공고 작성</button>
+                
             </div>
         </div>
     </div>

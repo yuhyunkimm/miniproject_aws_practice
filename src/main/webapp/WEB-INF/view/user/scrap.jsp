@@ -11,13 +11,11 @@
                             <div class="card-body">
                                 <div class="relative mb-3">
                                     <div>
-                                        <a href="/user/profileUpdateForm" onclick="window.open(this.href, '_blank', 'left=300,width=1100,height=900,toolbars=no,scrollbars=no, toolbars=no, menubar=no, resizable=no'); return false;">
-                                            <div>
-                                                <img src="${user.photo}" class="rounded" alt="Cinque Terre" style="max-width: 80px;">
-                                                <%-- <img src="${user.photo}" alt="Current Photo" class="img-fluid" id="imagePreview"> --%>
-                                            </div>
-                                            <div>
-                                                <span style="font-size: 14px;">사진 수정</span><i class="ms-1 fa-solid fa-gear mt-3"></i>
+                                        <a href="/user/profileUpdateForm"
+                                            onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                            <div class="user-img">
+                                                <img src="${user.photo}" class="rounded" alt="Cinque Terre"
+                                                    style="max-width: 80px;">
                                             </div>
                                         </a>
                                     </div>

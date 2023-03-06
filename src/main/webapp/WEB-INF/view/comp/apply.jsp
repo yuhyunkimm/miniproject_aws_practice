@@ -26,7 +26,7 @@
                                     <a class="nav-link a p-1 mb-1" aria-current="page" href="/comp/jobs">공고등록 / 수정</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1 mb-1 active" href="/comp/apply">지원자 현황</a>
+                                    <a class="nav-link a p-1 mb-1 active" href="/comp/apply">지원 / 제안</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link a p-1" href="/comp/resume/scrap">이력서 스크랩</a>
@@ -46,7 +46,33 @@
             </div>
             <div class="col-9  my-4 pe-5">
                 <div>
-                    <h6><b>지원자 <div class="badge bg-secondary p-2 " style="font-weight: 700;">${aDtos.size()}</div></b></h6>
+                <h6><b>제안  <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;"></div></b></h6>
+                    <table class="table" style="width:100%">
+                        <thead>
+                            <tr class="table-secondary" align=center>
+                                <th scope="col" style="width:10%">No.</th>
+                                <th scope="col" style="width:23%">공고명</th>
+                                <th scope="col" style="width:23%">이력서</th>
+                                <th scope="col" style="width:20%">포지션</th>
+                                <th scope="col" style="width:16%">상태</th>
+                            </tr>
+                        </thead>
+                        <c:forEach items="" varStatus="status" var="aDto">
+                            <tbody>
+                                <tr align=center>
+                                    <td>${status.count}</td>
+                                    <td><a href="/jobs/" onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;"> 공ㄱㄱ</a></td>
+                                    <td><a href="/resume/" onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;"> ㅇㄹㅇ</a></td>
+                                    <td></td>
+                                    <td>
+                                        <div class="badge bg-secondary p-2"> == 0 ? '대기중' : aDto.state == 1 ? '합격' : '불합격'}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </c:forEach>
+
+                    </table>
+                    <h6><b>지원자  <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">${aDtos.size()}</div></b></h6>
                     <table class="table" style="width:100%">
                         <thead>
                             <tr class="table-secondary" align=center>
@@ -111,6 +137,7 @@
                             </tbody>
                         </c:forEach>
                     </table>
+                    
                 </div>
             </div>
         </div>

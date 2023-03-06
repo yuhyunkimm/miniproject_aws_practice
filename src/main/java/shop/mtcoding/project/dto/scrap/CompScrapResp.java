@@ -1,5 +1,7 @@
 package shop.mtcoding.project.dto.scrap;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +17,7 @@ public class CompScrapResp {
         private String title;
         private String career;
         private String education;
+        private List<String> skillList;
         private String address;
     }
 }
