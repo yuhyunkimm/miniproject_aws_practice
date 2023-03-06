@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusUserRespDto;
 import shop.mtcoding.project.dto.common.ResponseDto;
+import shop.mtcoding.project.dto.scrap.UserScrapResp.UserScrapRespDto;
 import shop.mtcoding.project.dto.suggest.SuggestResp.SuggestToUserRespDto;
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserLoginReqDto;
@@ -27,6 +28,7 @@ import shop.mtcoding.project.dto.user.UserReq.UserUpdateReqDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.ApplyRepository;
+import shop.mtcoding.project.model.ScrapRepository;
 import shop.mtcoding.project.model.SuggestRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
@@ -49,6 +51,9 @@ public class UserController {
 
     @Autowired
     private SuggestRepository suggestRepository;
+
+    @Autowired
+    private ScrapRepository scrapRepository;
 
     @PostMapping("/user/join")
     public String join(UserJoinReqDto userJoinReqDto) {
@@ -220,7 +225,10 @@ public class UserController {
     // }
 
     @GetMapping("/user/scrap")
-    public String scarp() {
+    public String scarp(Model model) {
+        User principal = (User) session.getAttribute("principal");
+        List<UserScrapRespDto> usList = scrapRepository.findAllScrapByUserId(principal.getUserId());
+        model.addAttribute("usDtos", usList);
         return "user/scrap";
     }
 

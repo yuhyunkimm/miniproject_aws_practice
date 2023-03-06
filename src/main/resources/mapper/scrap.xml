@@ -15,6 +15,10 @@
         where s.comp_id = #{compId}
     </select>
 
+    <select id="findAllScrapByUserId" resultType="shop.mtcoding.project.dto.scrap.UserScrapResp$UserScrapRespDto">
+          
+    </select>
+
     <select id="findByUserId" resultType="shop.mtcoding.project.model.UserScrap">
       select * from user_scrap_tb where user_scrap_id = #{userScrapId}
     </select>
@@ -38,4 +42,7 @@
     <delete id="deleteByCompScrapId">
       delete from comp_scrap_tb where comp_scrap_id = #{compScrapId}
     </delete>
+
+  
+
 </mapper>
