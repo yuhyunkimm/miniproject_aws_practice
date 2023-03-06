@@ -43,13 +43,13 @@
                         </div>
                     </div>
                     <div class="col-9 my-4 pe-5">
-
+                        <h6><b>전체 ${usDtos.size()} </b></h6>
                         <hr />
+                        <c:forEach items="${usDtos}" var="usDto">
                         <div class="card mb-4">
                             <div class="card-body">
-                                <div>
-                                    <h5 class="card-title" style="text-align: left;">회사이름</h5>
-                                </div>
+                                <h5 class="card-title" style="text-align: left;">${usDto.title}</h5>
+                                
                                 <div class="m-2" style="float: left;">
                                     <h6 class="card-subtitle mb-2 text-muted">경력</h6>
                                 </div>

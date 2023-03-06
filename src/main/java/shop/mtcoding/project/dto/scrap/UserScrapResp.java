@@ -13,6 +13,8 @@ public class UserScrapResp {
     public static class UserScrapRespDto {
         private Integer userScrapId;
         private Integer jobsId;
+        private String compName;
+        private String title;
         private String position;
         private String career;
         private List<String> skillList;
