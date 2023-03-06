@@ -18,6 +18,7 @@ import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.SkillRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.util.DateUtil;
+import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class MainController {
@@ -33,7 +34,7 @@ public class MainController {
 
     // @GetMapping("/sample")
     // public String sample() {
-    //     return "main/sample";
+    // return "main/sample";
     // }
 
     @GetMapping("/jusoPopup")
@@ -48,6 +49,7 @@ public class MainController {
 
     @GetMapping("/")
     public String main(Model model) {
+        MockSession.mockUser(session);
         User principal = (User) session.getAttribute("principal");
         if (principal != null) {
             List<JobsMainRecommendRespDto> rDtos = jobsRepository.findAlltoMainRecommend(principal.getUserId());

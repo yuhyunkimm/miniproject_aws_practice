@@ -80,4 +80,46 @@
 
         </body>
 
+        <script>
+
+            // function updateImage() {
+            //     let profileForm = $("#profileForm")[0];
+            //     let formData = new FormData(profileForm);
+
+            //     $.ajax({
+            //         type: "put",
+            //         url: "/user/profileUpdate",
+            //         data: formData,
+            //         contentType: false,
+            //         processData: false,
+            //         enctype: "multipart/form-data",
+            //         dataType: "json"
+            //     }).done((res) => { // 20X 일때
+            //         alert(res.msg);
+            //         location.href = "/user/myhome";
+            //     }).fail((err) => { // 40X, 50X 일때
+            //         alert(err.responseJSON.msg);
+            //     });
+            // }
+
+            function chooseImage(obj) {
+
+                let f = obj.files[0];
+
+                if (!f.type.match("image.*")) {
+                    alert("이미지를 등록해야 합니다.");
+                    return;
+                }
+
+                let reader = new FileReader();
+                reader.readAsDataURL(f);
+
+                reader.onload = function (e) {
+                    console.log(e);
+                    console.log(e.target.result);
+                    $("#imagePreview").attr("src", e.target.result);
+                }
+            }
+        </script>
+
         </html>

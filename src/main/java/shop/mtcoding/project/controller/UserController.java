@@ -24,6 +24,7 @@ import shop.mtcoding.project.dto.suggest.SuggestResp.SuggestToUserRespDto;
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserLoginReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserPasswordReqDto;
+import shop.mtcoding.project.dto.user.UserReq.UserUpdatePhotoReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserUpdateReqDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;

@@ -70,14 +70,14 @@ public class UserService {
     }
 
     @Transactional
-    public User 프로필사진수정(MultipartFile photo, Integer pricipalId, UserUpdatePhotoReqDto updatePhotoReqDto) {
+    public User 프로필사진수정(MultipartFile photo, Integer pricipalId) {
 
         String uuidImageName = UserPathUtil.writeImageFile(photo);
 
         User userPS = userRepository.findById(pricipalId);
         userPS.setPhoto(uuidImageName);
-
-        userRepository.updatePhotoById(updatePhotoReqDto);
+        // System.out.println("테스트 : " + uuidImageName);
+        userRepository.updatePhotoById(uuidImageName, pricipalId);
         return userPS;
     }
 }
