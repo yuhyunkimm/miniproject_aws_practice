@@ -121,7 +121,8 @@ public class UserController {
     }
 
     @PostMapping("/user/login2")
-    public ResponseEntity<?> login2(@RequestBody UserLoginReqDto userloginReqDto, HttpServletResponse httpServletResponse) {
+    public ResponseEntity<?> login2(@RequestBody UserLoginReqDto userloginReqDto,
+            HttpServletResponse httpServletResponse) {
         if (userloginReqDto.getEmail() == null || userloginReqDto.getEmail().isEmpty()) {
             throw new CustomApiException("email을 작성해주세요");
         }
@@ -208,6 +209,15 @@ public class UserController {
         }
         return "user/myhome";
     }
+
+    // @GetMapping("/comp/resume/scrap")
+    // public String scrapResume(Model model) {
+    // Comp compSession = (Comp) session.getAttribute("compSession");
+    // List<CompScrapResumeRespDto> sList =
+    // scrapRepository.findAllScrapByCompId(compSession.getCompId());
+    // model.addAttribute("sDtos", sList);
+    // return "comp/scrap";
+    // }
 
     @GetMapping("/user/scrap")
     public String scarp() {
