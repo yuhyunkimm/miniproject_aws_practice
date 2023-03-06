@@ -65,10 +65,9 @@
                                         </div>
                                     </c:forEach>
 
-
                                     <div style="float: right;" pt-2>
                                         <button type="button" class="btn btn-success btn-sm"
-                                            onclick="location.href='/jobs/{id}'">상세보기</button>
+                                            onclick="location.href=`/jobs/`+${usDto.userScrapId}">상세보기</button>
                                     </div>
                                 </div>
                             </div>
