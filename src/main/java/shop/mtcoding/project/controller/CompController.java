@@ -35,6 +35,7 @@ import shop.mtcoding.project.dto.scrap.CompScrapResp.CompScrapResumeRespDto;
 import shop.mtcoding.project.dto.skill.RequiredSkillReq.RequiredSkillWriteReqDto;
 import shop.mtcoding.project.dto.skill.RequiredSkillResp.RequiredSkillByCompRespDto;
 import shop.mtcoding.project.dto.skill.ResumeSkillResp.ResumeSkillRespDto;
+import shop.mtcoding.project.dto.suggest.SuggestResp.SuggestToCompRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.ApplyRepository;
@@ -44,6 +45,7 @@ import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.ScrapRepository;
 import shop.mtcoding.project.model.SkillRepository;
+import shop.mtcoding.project.model.SuggestRepository;
 import shop.mtcoding.project.service.CompService;
 import shop.mtcoding.project.util.MockSession;
 
@@ -67,6 +69,9 @@ public class CompController {
 
     @Autowired
     private ScrapRepository scrapRepository;
+
+    @Autowired
+    private SuggestRepository suggestRepository;
 
     @Autowired
     private CompService compService;
@@ -240,6 +245,8 @@ public class CompController {
         Comp compSession = (Comp)session.getAttribute("compSession");
         List<ApllyStatusCompRespDto> aList = applyRepository.findAllByCompIdtoApply(compSession.getCompId());
         model.addAttribute("aDtos", aList);
+        List<SuggestToCompRespDto> sList = suggestRepository.findAllByCompIdtoSuggest((compSession.getCompId()));
+        model.addAttribute("sDtos", sList);
         Comp compPS = compRepository.findByCompId(compSession.getCompId());
         model.addAttribute("comp", compPS);
         return "comp/apply";

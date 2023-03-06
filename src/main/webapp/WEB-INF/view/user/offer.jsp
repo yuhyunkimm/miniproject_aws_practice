@@ -67,7 +67,7 @@
                                     <td><a href="/resume/${aDto.resumeId}" onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;"> ${aDto.resumeTitle}</a></td>
                                     <td>${aDto.position}</td>
                                     <td>
-                                        <div class="badge bg-secondary p-2">${aDto.state == 0 ? '대기중' : aDto.state == 1 ? '합격' : '불합격'}</div>
+                                        <div class="badge bg-secondary p-2">${aDto.state == 0 ? '대기중' : aDto.state == 1 ? '합격' : '불합격'}</div>                                            
                                     </td>
                                 </tr>
                             </tbody>

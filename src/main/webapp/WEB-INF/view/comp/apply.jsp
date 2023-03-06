@@ -46,26 +46,40 @@
             </div>
             <div class="col-9  my-4 pe-5">
                 <div>
-                <h6><b>제안  <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;"></div></b></h6>
+                <h6><b>제안  <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">${sDtos.size()}</div></b></h6>
                     <table class="table" style="width:100%">
                         <thead>
                             <tr class="table-secondary" align=center>
                                 <th scope="col" style="width:10%">No.</th>
-                                <th scope="col" style="width:23%">공고명</th>
-                                <th scope="col" style="width:23%">이력서</th>
+                                <th scope="col" style="width:10%">이름</th>
+                                <th scope="col" style="width:15%">이력서</th>
+                                <th scope="col" style="width:30%">공고명</th>
                                 <th scope="col" style="width:20%">포지션</th>
-                                <th scope="col" style="width:16%">상태</th>
+                                <th scope="col" style="width:15%">상태</th>
                             </tr>
                         </thead>
-                        <c:forEach items="" varStatus="status" var="aDto">
+                        <c:forEach items="${sDtos}" varStatus="status" var="sDto">
                             <tbody>
                                 <tr align=center>
                                     <td>${status.count}</td>
-                                    <td><a href="/jobs/" onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;"> 공ㄱㄱ</a></td>
-                                    <td><a href="/resume/" onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;"> ㅇㄹㅇ</a></td>
-                                    <td></td>
+                                    <td>${sDto.name}</td>
                                     <td>
-                                        <div class="badge bg-secondary p-2"> == 0 ? '대기중' : aDto.state == 1 ? '합격' : '불합격'}</div>
+                                        <button type="button" class="btn btn-success btn-sm"
+                                         onclick="window.open('/resume/${sDto.resumeId}', '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">이력서</button>
+                                    </td>
+                                    <td><a href="/jobs/${sDto.jobsId}" onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;"> ${sDto.title}</a></td>
+                                    <td>${sDto.position}</td>
+                                    <td>
+                                        <%-- <div class="badge bg-secondary p-2"> ${sDto.state == 0 ? '대기중' : sDto.state == 1 ? '제안수락' : '제안거절'}</div> --%>
+                                                <c:if test="${sDto.state == 0}" >
+                                                <div class="badge bg-secondary p-2">대기중</div>
+                                                </c:if>
+                                                <c:if test="${sDto.state == 1}" >
+                                                <div class="badge bg-success p-2">제안수락</div>
+                                                </c:if>
+                                                <c:if test="${sDto.state == -1}" >
+                                                <div class="badge bg-danger p-2">제안거절</div>
+                                                </c:if>
                                     </td>
                                 </tr>
                             </tbody>
