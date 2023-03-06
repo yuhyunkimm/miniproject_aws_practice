@@ -106,33 +106,6 @@ public class JobsController {
         return "jobs/info";
     }
 
-    // @GetMapping("/jobs/info/search")
-    // public String searchCheckbox(String keyword, Model model){
-    //     if(ObjectUtils.isEmpty(keyword)){
-    //         keyword = "검색어를 입력해 주세요 !!!";
-    //         throw new CustomException("검색어가 없습니다.");
-    //     }
-    //     User principal = (User) session.getAttribute("principal");
-    //     Integer num = null;
-    //     if( principal != null ){
-    //         num = principal.getUserId();
-    //     }
-    //     List<JobsSearchRespDto> jDtos = jobsRepository.findBySearch(keyword, num);
-    //     for (JobsSearchRespDto jDto : jDtos) {
-    //         long dDay = DateUtil.dDay(jDto.getEndDate());
-    //         jDto.setLeftTime(dDay);
-    //         List<String> insertList = new ArrayList<>();
-    //         for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto.getJobsId())) {
-    //             insertList.add(skill.getSkill());
-    //         }
-    //         jDto.setSkillList(insertList);
-    //     }
-
-    //     model.addAttribute("jDtos", jDtos);
-    //     model.addAttribute("keyword", keyword);
-    //     return "jobs/info";
-    // }
-
     @GetMapping("/jobs/info/search")
     public ResponseEntity<?> searchCheckbox(JobsCheckBoxReqDto jobsDto, Model model) {
         if (jobsDto.getCareer() == null || jobsDto.getCareer().isEmpty()) {

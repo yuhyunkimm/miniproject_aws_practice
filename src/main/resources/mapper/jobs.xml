@@ -103,7 +103,7 @@
 
     <select id="findByJobsDetail" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsDetailRespDto">
       select j.jobs_id, c.photo, c.comp_name,
-        j.title, j.content,
+        j.title, j.content, j.comp_id,
         j.career, j.education, j.position,
         j.address, j.receipt,
         c.homepage, c.representative_name, j.end_date,

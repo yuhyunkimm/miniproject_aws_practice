@@ -187,7 +187,12 @@
                             <div class="align-self-end" id="apply-render">
                                 <div id="apply-btn">
                                     <c:choose>
-                                        <c:when test="${compSession == null}">
+                                        <c:when test="${compSession != null && compSession.compId == jDto.compId }">
+                                            <button type="button" class="btn btn-danger w-100" onclick="location.href='/jobs/${jDto.jobsId}/update'">수정하기</button>
+                                        </c:when>
+
+
+                                        <c:otherwise>
                                             <c:choose>
                                                 <c:when test="${principal == null}">
                                                     <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#loginModal">지원하기</button>
@@ -208,11 +213,10 @@
                                                     </c:if>
                                                 </c:otherwise>
                                             </c:choose>
-                                        </c:when>
-
-                                        <c:otherwise>
-                                            <button type="button" class="btn btn-danger w-100" onclick="location.href='/jobs/${jDto.jobsId}/update'">수정하기</button>
+                                        
                                         </c:otherwise>
+
+                                        
                                     </c:choose>
 
                                 </div>

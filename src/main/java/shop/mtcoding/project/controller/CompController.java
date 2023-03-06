@@ -152,7 +152,7 @@ public class CompController {
     public String compMyhome(Model model) {
         // 임시 세션 
         MockSession.mockComp(session);
-        session.setAttribute("principal", null);        
+        session.setAttribute("principal", null);
         
         Comp compSession = (Comp)session.getAttribute("compSession");
         if ( compSession == null ){
