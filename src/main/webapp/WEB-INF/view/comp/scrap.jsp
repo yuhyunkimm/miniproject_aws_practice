@@ -26,7 +26,7 @@
                                       <a class="nav-link a p-1 mb-1" href="/comp/apply">지원자 현황</a>
                                     </li>
                                     <li class="nav-item">
-                                      <a class="nav-link a p-1 active" href="/comp/resume/scrap">이력서 스크랩</a>
+                                      <a class="nav-link a p-1 mb-1 active" href="/comp/resume/scrap">이력서 스크랩</a>
                                     </li>
                                     <hr>
                                     <li class="nav-item">
