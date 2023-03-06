@@ -3,7 +3,7 @@
 <div class="mx-auto width-53 top-80">
     <div class="d-flex">
         <c:forEach items="${sDto.skillList}" var="skill">
-            <span class="badge bg-secondary me-2">${skill}</span>
+            <span class="badge skill-color2 me-2">${skill}</span>
         </c:forEach>
         에 매칭되는 공고 리스트 입니다.
     </div>
@@ -25,7 +25,7 @@
                             </div>
                             <div>
                                 <c:forEach items="${jDto.skillList}" var="skill">
-                                    <span class="badge bg-secondary me-2">${skill}</span>
+                                    <span class="badge skill-color me-2">${skill}</span>
                                 </c:forEach>
                             </div>
                             <div>

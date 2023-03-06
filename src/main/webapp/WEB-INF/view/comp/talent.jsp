@@ -4,7 +4,7 @@
 <div class="mx-auto width-53 top-80">
    <div class="d-flex">
         <c:forEach items="${sDto.skillList}" var="skill">
-            <span class="badge bg-secondary me-2">${skill}</span>
+            <span class="badge skill-color2 me-2">${skill}</span>
         </c:forEach>
         기술을 가진 인재를 추천합니다. 
     </div>
@@ -25,7 +25,7 @@
                             </div>
                             <div>
                                 <c:forEach items="${rDto.skillList}" var="skill">
-                                    <span class="badge bg-secondary me-2">${skill}</span>
+                                    <span class="badge skill-color me-2">${skill}</span>
                                 </c:forEach>
                             </div>
                             <div>
