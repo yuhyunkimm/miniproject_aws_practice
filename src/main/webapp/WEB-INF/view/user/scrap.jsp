@@ -11,8 +11,15 @@
                             <div class="card-body">
                                 <div class="relative mb-3">
                                     <div>
-                                        <img src="/images/default_profile.png" class="rounded" alt="Cinque Terre"
-                                            style="max-width: 80px;">
+                                        <a href="/user/profileUpdateForm" onclick="window.open(this.href, '_blank', 'left=300,width=1100,height=900,toolbars=no,scrollbars=no, toolbars=no, menubar=no, resizable=no'); return false;">
+                                            <div>
+                                                <img src="${user.photo}" class="rounded" alt="Cinque Terre" style="max-width: 80px;">
+                                                <%-- <img src="${user.photo}" alt="Current Photo" class="img-fluid" id="imagePreview"> --%>
+                                            </div>
+                                            <div>
+                                                <span style="font-size: 14px;">사진 수정</span><i class="ms-1 fa-solid fa-gear mt-3"></i>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                                 <div>
@@ -43,32 +50,35 @@
                         </div>
                     </div>
                     <div class="col-9 my-4 pe-5">
-                        <h6><b>전체 ${usDtos.size()} </b></h6>
+                        <h6><b>전체  <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">${usDtos.size()}</div></b></h6>
                         <hr />
                         <c:forEach items="${usDtos}" var="usDto">
                             <div class="card mb-4">
                                 <div class="card-body">
                                     <h5 class="card-title" style="text-align: left;">${usDto.title} D-${usDto.leftTime}
                                     </h5>
-                                    <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle mb-2 text-muted">${usDto.compName}</h6>
-                                    </div>
-                                    <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle mb-2 text-muted">${usDto.position}</h6>
-                                    </div>
-                                    <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle mb-2 text-muted">${usDto.career}</h6>
-                                    </div>
-                                    <c:forEach items="${usDto.skillList}" var="skill" begin="0" end="3">
-                                        <div class="m-2" style="float: left;">
-                                            <h6 class="card-subtitle mb-2 text-muted">${skill}</h6>
+                                    <div class="mt-4">
+                                        <div class="me-2" style="float: left;">
+                                            <h6 class="card-subtitle  text-muted">${usDto.compName}</h6>
                                         </div>
-                                    </c:forEach>
-
-                                    <div style="float: right;" pt-2>
-                                        <button type="button" class="btn btn-success btn-sm"
-                                            onclick="location.href=`/jobs/`+${usDto.userScrapId}">상세보기</button>
+                                        <div class="me-2" style="float: left;">
+                                            <h6 class="card-subtitle  text-muted">${usDto.position}</h6>
+                                        </div>
+                                        <div class="me-2" style="float: left;">
+                                            <h6 class="card-subtitle  text-muted">${usDto.career}</h6>
+                                        </div>
+                                        <c:forEach items="${usDto.skillList}" var="skill" begin="0" end="3">
+                                            <div class="me-2 pb-2" style="float: left;">
+                                                <span class="badge  skill-color">${skill}</span>
+                                            </div>
+                                        </c:forEach>
+    
+                                        <div style="float: right;" pt-2>
+                                            <button type="button" class="btn btn-success btn-sm"
+                                                onclick="location.href=`/jobs/`+${usDto.userScrapId}">상세보기</button>
+                                        </div>     
                                     </div>
+                                    
                                 </div>
                             </div>
                         </c:forEach>

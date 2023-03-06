@@ -12,9 +12,16 @@
                                 <div class="card-body">
                                     <div class="relative mb-3">
                                         <div>
-                                            <img src="/images/default_profile.png" class="rounded" alt="Cinque Terre"
-                                                style="max-width: 80px;">
-                                        </div>
+                                        <a href="/user/profileUpdateForm" onclick="window.open(this.href, '_blank', 'left=300,width=1100,height=900,toolbars=no,scrollbars=no, toolbars=no, menubar=no, resizable=no'); return false;">
+                                            <div>
+                                                <img src="${user.photo}" class="rounded" alt="Cinque Terre" style="max-width: 80px;">
+                                                <%-- <img src="${user.photo}" alt="Current Photo" class="img-fluid" id="imagePreview"> --%>
+                                            </div>
+                                            <div>
+                                                <span style="font-size: 14px;">사진 수정</span><i class="ms-1 fa-solid fa-gear mt-3"></i>
+                                            </div>
+                                        </a>
+                                    </div>
                                     </div>
                                     <div>
                                         <h6 class="card-subtitle text-muted">${principal.name}</h6>
@@ -72,7 +79,7 @@
                                                             </div>
                                                             <div style="float: left; d-flex">
                                                                 <c:forEach items="${rDto.skillList}" var="skill">
-                                                                    <span class="badge bg-secondary">${skill}</span>
+                                                                    <span class="badge  skill-color">${skill}</span>
                                                                 </c:forEach>
                                                             </div>
                                                         </div>

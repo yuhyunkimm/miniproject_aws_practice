@@ -279,6 +279,8 @@ public class UserController {
             }
             model.addAttribute("usDtos", usDtos);
         }
+        User userPS = userRepository.findById(principal.getUserId());
+        model.addAttribute("user", userPS);
         return "user/scrap";
     }
 
@@ -289,6 +291,8 @@ public class UserController {
         model.addAttribute("aDtos", aDtos);
         List<SuggestToUserRespDto> sDtos = suggestRepository.findAllGetOfferByUserId(principal.getUserId());
         model.addAttribute("sDtos", sDtos);
+        User userPS = userRepository.findById(principal.getUserId());
+        model.addAttribute("user", userPS);
         return "user/offer";
     }
 
