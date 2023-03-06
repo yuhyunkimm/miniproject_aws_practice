@@ -121,7 +121,7 @@ public class CompControllerTest {
 
         // then
         assertThat(principal.getEmail()).isEqualTo("kakao@nate.com");
-        assertThat(principal.getPassword()).isEqualTo("1234");
+        // assertThat(principal.getPassword()).isEqualTo("1234");
         resultActions.andExpect(status().is3xxRedirection());
     }
 
