@@ -46,49 +46,35 @@
                         <h6><b>전체 ${usDtos.size()} </b></h6>
                         <hr />
                         <c:forEach items="${usDtos}" var="usDto">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h5 class="card-title" style="text-align: left;">${usDto.title}</h5>
-                                
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">경력</h6>
-                                </div>
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">기술</h6>
-                                </div>
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">기간</h6>
-                                </div>
-                                <div style="float: right;" pt-2>
-                                    <button type="button" class="btn btn-success btn-sm"
-                                        onclick="location.href='/jobs/{id}'">상세보기</button>
-                                </div>
-                            </div>
-                        </div>
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="text-align: left;">${usDto.title} D-${usDto.leftTime}
+                                    </h5>
+                                    <div class="m-2" style="float: left;">
+                                        <h6 class="card-subtitle mb-2 text-muted">${usDto.compName}</h6>
+                                    </div>
+                                    <div class="m-2" style="float: left;">
+                                        <h6 class="card-subtitle mb-2 text-muted">${usDto.position}</h6>
+                                    </div>
+                                    <div class="m-2" style="float: left;">
+                                        <h6 class="card-subtitle mb-2 text-muted">${usDto.career}</h6>
+                                    </div>
+                                    <c:forEach items="${usDto.skillList}" var="skill" begin="0" end="3">
+                                        <div class="m-2" style="float: left;">
+                                            <h6 class="card-subtitle mb-2 text-muted">${skill}</h6>
+                                        </div>
+                                    </c:forEach>
 
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div>
-                                    <h5 class="card-title" style="text-align: left;">회사이름</h5>
-                                </div>
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">경력</h6>
-                                </div>
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">기술</h6>
-                                </div>
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">기간</h6>
-                                </div>
-                                <div style="float: right;" pt-2>
-                                    <button type="button" class="btn btn-success btn-sm"
-                                        onclick="location.href='/jobs/{id}'">상세보기</button>
+
+                                    <div style="float: right;" pt-2>
+                                        <button type="button" class="btn btn-success btn-sm"
+                                            onclick="location.href='/jobs/{id}'">상세보기</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </c:forEach>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
