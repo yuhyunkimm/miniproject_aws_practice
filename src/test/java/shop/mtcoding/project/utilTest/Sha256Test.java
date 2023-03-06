@@ -1,10 +1,14 @@
-package shop.mtcoding.project.util;
+package shop.mtcoding.project.utilTest;
 
 import java.security.MessageDigest;
 
-public class Sha256 {
-    public static String encode(String password1) {
-        String password = "salt" + password1;
+import org.junit.jupiter.api.Test;
+
+public class Sha256Test {
+
+    @Test
+    public static void encode(String ps) {
+        String password = "salt" + ps;
         String SHA = "";
         try {
             MessageDigest sh = MessageDigest.getInstance("SHA-256");
@@ -20,6 +24,10 @@ public class Sha256 {
             e.printStackTrace();
             SHA = null;
         }
-        return SHA;
+        System.out.println("테스트 : " + SHA);
+    }
+
+    public static void main(String[] args) {
+        encode("1234");
     }
 }
