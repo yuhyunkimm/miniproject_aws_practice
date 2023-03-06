@@ -100,7 +100,7 @@
             <a href="/jobs/${jDto.jobsId}" onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
                 <div class="card main-card">
                     <div class=" pt-4 px-auto" >
-                        <img src='${jDto.photo}' alt="" srcset="" style="height: 4em;">
+                        <img src="${jDto.photo}" alt="" srcset="" style="height: 4em;">
                     </div>
                     <div class="card-body">
                         <div>

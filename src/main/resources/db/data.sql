@@ -14,7 +14,9 @@ values ('kakao@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d
 insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
 values ('naver@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '다이소', '안현민', '451-23-15631', '/images/daiso1.png', 'www.naver.com',now());
 insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
-values ('samsung@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '삼성', '이재용', '111-22-33333', '/images/kakao.png', 'www.kakao.com',now());
+values ('samsung@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '삼성', '이재용', '111-22-33333', '/images/daiso1.png', 'www.kakao.com',now());
+insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
+values ('samsung2@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '삼성123', '이재용123', '111-22-33333', '/images/kakao.png', 'www.kakao.com',now());
 
 insert into resume_skill_tb (resume_id, skill) values (1, 'Vue.js');
 insert into resume_skill_tb (resume_id, skill) values (1, 'JavaScript');
