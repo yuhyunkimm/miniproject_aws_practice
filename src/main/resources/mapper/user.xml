@@ -45,6 +45,13 @@
             where user_id = #{uDto.userId}
     </update>
 
+    <update id="updatePhotoById">
+        update user_tb set             
+            photo =  #{photo}
+            where user_id = #{userId}
+    </update>
+
+
     <delete id="deleteById">
         delete from user_tb where id = #{uDto.userId}
     </delete>
