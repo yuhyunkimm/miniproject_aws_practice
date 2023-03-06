@@ -11,12 +11,16 @@
                     <div class="card-body">
                         <!-- <h5 class="card-title">지원 및 제안</h5><br> -->
                         <div class="relative mb-3">
-                            <div>
-                                <img src="/images/default_profile.png" class="rounded" alt="Cinque Terre" style="max-width: 80px;">
+                            <a href="/comp/profileUpdateForm"
+                                            onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                            <div class="user-img">
+                                                <img src="${comp.photo}" class="rounded" alt="Cinque Terre"
+                                                    style="max-width: 80px;">
+                                            </div>
+                                        </a>
                             </div>
-                            </div>
                             <div>
-                                <h6 class="card-subtitle text-muted">${compSession.compName}</h6>
+                                <h6 class="card-subtitle text-muted">${comp.compName}</h6>
                                 <hr>
                                 <ul class="nav flex-column nav-pills">
                                     <li class="nav-item">

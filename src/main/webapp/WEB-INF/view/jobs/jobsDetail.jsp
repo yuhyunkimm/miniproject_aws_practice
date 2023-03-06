@@ -91,23 +91,24 @@
                                     <div class="col-4">
                                         <div>
                                             <div>
-                                                ${jDto.position}
+                                                 ${jDto.address}
                                             </div>
                                         </div>
                                         <div>
                                             <div>
-                                                ${jDto.address}
+                                               ${jDto.position}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-flex">
+                                <div class="d-flex pb-3" style="border-bottom: 1px solid black;">
                                     <div>필요기술 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <c:forEach items="${jDto.skillList}" var="skill">
                                             <span class="badge skill-color me-2">${skill}</span>
                                         </c:forEach>
                                     </div>
                                 </div>
+                                
                                 <div class="relative">
                                     ${jDto.content}
                                     <img class="w-100"

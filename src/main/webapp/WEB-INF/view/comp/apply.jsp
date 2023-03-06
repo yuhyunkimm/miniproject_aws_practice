@@ -10,10 +10,13 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="relative mb-3">
-                            <div>
-                                <img src="/images/default_profile.png" class="rounded" alt="Cinque Terre"
-                                    style="max-width: 80px;">
-                            </div>
+                            <a href="/comp/profileUpdateForm"
+                                            onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                            <div class="user-img">
+                                                <img src="${comp.photo}" class="rounded" alt="Cinque Terre"
+                                                    style="max-width: 80px;">
+                                            </div>
+                                        </a>
                         </div>
                         <div>
                             <h6 class="card-subtitle text-muted">${compSession.compName}</h6>

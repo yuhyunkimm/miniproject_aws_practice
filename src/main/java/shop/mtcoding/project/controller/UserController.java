@@ -302,21 +302,6 @@ public class UserController {
         return "redirect:/";
     }
 
-    // @PutMapping("/user/profileUpdate")
-    // public String profileUpdate(MultipartFile photo) {
-    // User principal = (User) session.getAttribute("principal");
-    // if (principal == null) {
-    // return "redirect:/user/login";
-    // }
-    // if (photo.isEmpty()) {
-    // throw new CustomException("사진이 전송되지 않았습니다");
-    // }
-    // User userPS = userService.프로필사진수정(photo, principal.getUserId());
-    // System.out.println("테스트 : " + userPS.getPhoto());
-    // session.setAttribute("principal", userPS);
-    // return "redirect:/user/myhome";
-    // }
-
     @GetMapping("/user/profileUpdateForm")
     public String profileUpdateForm(Model model) {
         User principal = (User) session.getAttribute("principal");

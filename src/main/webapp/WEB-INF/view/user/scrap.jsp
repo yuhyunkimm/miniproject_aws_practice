@@ -51,7 +51,6 @@
                     </div>
                     <div class="col-9 my-4 pe-5">
                         <h6><b>전체  <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">${usDtos.size()}</div></b></h6>
-                        <hr />
                         <c:forEach items="${usDtos}" var="usDto">
                             <div class="card mb-4">
                                 <div class="card-body">

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import shop.mtcoding.project.dto.comp.CompReq.CompJoinReqDto;
 import shop.mtcoding.project.dto.comp.CompReq.CompLoginReqDto;
@@ -12,6 +13,7 @@ import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.CompRepository;
+import shop.mtcoding.project.util.PathUtil;
 import shop.mtcoding.project.util.Sha256;
 
 @Service
@@ -58,5 +60,20 @@ public class CompService {
         } catch (Exception e) {
             throw new CustomException("서버 에러가 발생 했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @Transactional
+    public Comp 프로필사진수정(MultipartFile photo, Integer compId) {
+
+        String uuidImageName = PathUtil.writeImageFile(photo);
+
+        Comp compPS = compRepository.findByCompId(compId);
+        compPS.setPhoto(uuidImageName);
+        try {
+            compRepository.updatePhotoById(uuidImageName, compId);
+        } catch (Exception e) {
+            throw new CustomException("사진 수정에 실패 했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return compPS;
     }
 }

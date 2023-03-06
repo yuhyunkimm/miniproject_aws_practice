@@ -49,6 +49,12 @@
               business_number = #{compUpdateReqDto.businessNumber}
         where comp_id = #{compUpdateReqDto.compId}
     </update>
+    
+    <update id="updatePhotoById">
+      update comp_tb set
+        photo = #{photo}
+        where comp_id = #{compId}
+    </update>
 
     <delete id="deleteById">
 
