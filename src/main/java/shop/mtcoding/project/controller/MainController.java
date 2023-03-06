@@ -34,7 +34,7 @@ public class MainController {
 
     // @GetMapping("/sample")
     // public String sample() {
-    //     return "main/sample";
+    // return "main/sample";
     // }
 
     @GetMapping("/jusoPopup")
@@ -49,10 +49,10 @@ public class MainController {
 
     @GetMapping("/")
     public String main(Model model) {
-        // 임시 세션 
+        // 임시 세션
         MockSession.mockUser(session);
-        session.setAttribute("compSession", null);      
-          
+        session.setAttribute("compSession", null);
+
         User principal = (User) session.getAttribute("principal");
         if (principal != null) {
             List<JobsMainRecommendRespDto> rDtos = jobsRepository.findAlltoMainRecommend(principal.getUserId());
