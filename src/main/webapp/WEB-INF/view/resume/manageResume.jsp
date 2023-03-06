@@ -42,12 +42,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-9 my-4 pe-5">
+                        <div class="col-9 my-4 pe-5 mt-5">
                             <c:choose>
 
                                 <c:when test="${rDtos != null }">
                                     <c:forEach items="${rDtos}" var="rDto">
-                                        <div class="card mb-4">
+                                        <div class="card mb-4 mt-1">
                                             <a href="/resume/${rDto.resumeId}"
                                                 onclick="window.open(this.href, '_blank', 'width=1200,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                                 <div class="card-body">
