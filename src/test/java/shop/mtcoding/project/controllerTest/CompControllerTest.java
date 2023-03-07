@@ -131,8 +131,7 @@ public class CompControllerTest {
         // given
 
         // when
-        ResultActions resultActions = mvc.perform(
-                get("/comp/resume/read"));
+        ResultActions resultActions = mvc.perform(get("/comp/resume/read").session(mockSession));
         Map<String, Object> map = resultActions.andReturn().getModelAndView().getModel();
         List<ResumeResp.ResumeReadRespDto> rDtos = (List<ResumeResp.ResumeReadRespDto>) map.get("rDtos");
         String model = om.writeValueAsString(rDtos);
