@@ -22,7 +22,7 @@
 
         <body>
             <div class="mx-auto width-53">
-                <div class="container all-form border border-3 p-3 mt-5" style="width: 400px;" >
+                <div class="rounded-3 container all-form border border-3 p-3 mt-5" style="width: 400px;" >
  
 
                     <ul class="nav nav-tabs nav-justified">
