@@ -48,8 +48,19 @@
                             </div>
                         </div>
 
-                        <div class="col-9 my-4 pe-5">
-                        <h6><b>전체  <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">${rDtos.size()}</div></b></h6>
+                        <div class="col-9 my-2 pe-5">
+                        <div class="d-flex justify-content-between " style="height: 3em;">
+                        <div>
+                            <h6><b>전체 <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">
+                                        ${rDtos.size()}</div></b></h6>
+                        </div>
+                        <div>
+                            
+                                <button style="float: right;" type="button" class="btn btn-success mb-4"
+                                        onclick="location.href='/user/resume/write'">이력서
+                                        작성</button>
+                        </div>
+                        </div>
 
                             <c:choose>
 
@@ -119,9 +130,7 @@
                                         </div>
                                     </c:forEach>
 
-                                    <button style="float: right;" type="button" class="btn btn-success mb-4"
-                                        onclick="location.href='/user/resume/write'">이력서
-                                        작성</button>
+                                    
                                 </c:when>
 
                                 <c:otherwise>
