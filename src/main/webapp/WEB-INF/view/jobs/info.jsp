@@ -101,15 +101,64 @@
                 </table>
             </div>
 
-            <div id="my-table-body2" style="display: none;">
-                <table class="my-table table table-bordered">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="form-check text-center">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" name="skill" value="Java">Java
-                                    </label>
+
+        </div>
+        <div class="col-4 d-flex justify-content-end">
+            <button type="button" class="btn btn-primary mb-2 my-auto" onclick="resetCheckboxes()" >초기화</button>
+            <button type="button" class="btn btn-primary mx-3 mb-2 my-auto" onclick="searchInfo()" id="search-info-btn">검색하기</button>
+        </div>
+    </div>
+
+
+    <div class="hr"></div>
+    <div class="under-line">
+    </div>
+    <div id="result">
+        ${keyword} 검색결과
+    </div>
+    <!-- 공고들 -->
+    <div class="d-flex flex-wrap my-3 info-card">
+        <c:forEach items="${jDtos}" var="jDto">
+            <div class="col-3 px-2 py-2 remove-card">
+                <a href="/jobs/${jDto.jobsId}"
+                    onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                    <div class="card">
+                        <div>
+                            <img src='${jDto.photo}' alt="" srcset="">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                ${jDto.compName}
+                            </div>
+                            <div class="fs-5">
+                                ${jDto.title}
+                            </div>
+                            <div>
+                                <c:forEach items="${jDto.skillList}" var="skill">
+                                    <span class="badge  skill-color">${skill}</span>
+                                </c:forEach>
+                            </div>
+                            <div>
+                                ${jDto.career} ${jDto.education} ${jDto.address}
+                            </div>
+                </a>
+                <div class="d-flex justify-content-between">
+                    <c:choose>
+                        <c:when test="${principal != null}">
+                            <div id="scrap-${jDto.jobsId}-render">
+                                <div id="scrap-${jDto.jobsId}-remove">
+                                    <c:choose>
+                                        <c:when test="${jDto.userScrapId > 0}">
+                                            <i id="scrap-${jDto.jobsId}" class="fa-solid on-Clicked fa-star my-cursor"
+                                                onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
+                                        </c:when>
+        
+                                        <c:otherwise>
+                                            <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star my-cursor"
+                                                onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
+                                        </c:otherwise>
+                                    </c:choose>
+
                                 </div>
                             </td>
                             <td>
@@ -744,10 +793,8 @@
                             <div class="fs-5">
                                 `+ jDto.title + `
                             </div>
-                            <div>
-                                <c:forEach items="`+ jDto.skillList + `" var="skill">
-                                    <span class="badge bg-primary">${skill}</span><span>이거 왜 붙어 나옴.. 수정필요</span>
-                                </c:forEach>
+
+                            <div id="insert-skill-`+jDto.jobsId+`">
                             </div>
                             <div>
                                 `+ jDto.career + " " + jDto.education + " " + jDto.address + `
@@ -767,8 +814,21 @@
                 </a>
             </div>
             `;
-                    $('.info-card').append(el);
-                });
-            }
-        </script>
-        <%@ include file="../layout/footer.jsp" %>
+
+
+            // console.log(jDto.skillList);
+            $('.info-card').append(el);
+            insertSkill(jDto.skillList,jDto.jobsId);
+        });
+    }
+    function insertSkill(skillList,jobsId){
+        skillList.forEach(skill => {
+            el =`
+                <span class="badge skill-color">`+skill+`</span>
+            `;
+        $('#insert-skill-'+jobsId).append(el);
+        })
+    }
+</script>
+<%@ include file="../layout/footer.jsp" %>
+

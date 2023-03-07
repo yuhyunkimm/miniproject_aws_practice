@@ -28,6 +28,11 @@ public interface CompRepository {
 
     public int deleteById();
 
+    public int updatePhotoById(
+        @Param("photo") String photo,
+        @Param("compId") Integer compId
+    );
+
     public int updateByCompId(
             @Param("compUpdateReqDto") CompUpdateReqDto compUpdateReqDto,
             @Param("compId") Integer compId);

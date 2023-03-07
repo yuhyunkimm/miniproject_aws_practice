@@ -339,7 +339,7 @@
                                                 </div>
                                                 <div style="float: left; d-flex">
                                                     <c:forEach items="${rDto.skillList}" var="skill">
-                                                        <span class="badge bg-secondary">${skill}</span>
+                                                        <span class="badge skill-color">${skill}</span>
 
                                                     </c:forEach>
                                                     <%-- ${rDto.skillList} --%>

@@ -12,9 +12,14 @@
                                 <div class="card-body">
                                     <div class="relative mb-3">
                                         <div>
-                                            <img src="/images/default_profile.png" class="rounded" alt="Cinque Terre"
-                                                style="max-width: 80px;">
-                                        </div>
+                                        <a href="/user/profileUpdateForm"
+                                            onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                            <div class="user-img">
+                                                <img src="${user.photo}" class="rounded" alt="Cinque Terre"
+                                                    style="max-width: 80px;">
+                                            </div>
+                                        </a>
+                                    </div>
                                     </div>
                                     <div>
                                         <h6 class="card-subtitle text-muted">${principal.name}</h6>
@@ -42,19 +47,27 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-9 my-4 pe-5 mt-5">
+
+                        <div class="col-9 my-4 pe-5">
+                        <h6><b>전체  <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">${rDtos.size()}</div></b></h6>
+
                             <c:choose>
 
                                 <c:when test="${rDtos != null }">
                                     <c:forEach items="${rDtos}" var="rDto">
+
                                         <div class="card mb-4 mt-1">
-                                            <a href="/resume/${rDto.resumeId}"
-                                                onclick="window.open(this.href, '_blank', 'width=1200,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                          
+
                                                 <div class="card-body">
+                                                
                                                     <div class="row">
+                                                   
                                                         <div class="col-9 mt-2">
+                                                         <a href="/resume/${rDto.resumeId}"
+                                                onclick="window.open(this.href, '_blank', 'width=1200,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                                             <h5 class="card-title" style="text-align: left;">
-                                                                ${rDto.title}
+                                                                ${rDto.title} 
                                                             </h5>
                                                             <div class="m-2" style="float: left;">
                                                                 <h6 class="card-subtitle text-muted">
@@ -72,27 +85,28 @@
                                                             </div>
                                                             <div style="float: left; d-flex">
                                                                 <c:forEach items="${rDto.skillList}" var="skill">
-                                                                    <span class="badge bg-secondary">${skill}</span>
+                                                                    <span class="badge  skill-color">${skill}</span>
                                                                 </c:forEach>
                                                             </div>
+                                                            </a>
                                                         </div>
-
+                                    
                                                         <div class="col-3">
                                                             <div class="row">
                                                                 <input type="hidden" value="${rDto.resumeId}" name=""
                                                                     id="resumeId">
                                                                 <div style="float: right;">
                                                                     <button type="button"
-                                                                        class="btn btn-secondary btn-sm mb-2"
+                                                                        class="btn btn-danger btn-sm mb-2"
                                                                         data-bs-toggle="modal" data-bs-target="#dModal"
                                                                         style="float: right;"
                                                                         onclick="event.preventDefault();deleteBtn(event, ${rDto.resumeId});">이력서
                                                                         삭제</button>
                                                                 </div>
                                                                 <div style="float: right;">
-                                                                    <button type="button" class="btn btn-success btn-sm"
+                                                                    <button type="button" class="btn btn-primary btn-sm"
                                                                         style="float: right;"
-                                                                        onclick="location.href=`/user/resume/`+${rDto.resumeId}+`/update`">이력서
+                                                                        onclick="location.href=`/user/resume/${rDto.resumeId}/update`">이력서
                                                                         수정</button>
                                                                 </div>
                                                             </div>
@@ -100,7 +114,7 @@
                                                     </div>
 
                                                 </div>
-                                            </a>
+                                           
 
                                         </div>
                                     </c:forEach>

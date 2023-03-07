@@ -28,10 +28,10 @@ public class JobsRepositoryTest {
     @Transactional
     public void findBySearch_test() throws Exception {
         // given
-        String keyword = "서울";
+        String keyword = "백";
     
         // when
-        List<JobsSearchRespDto> sDtos = jobsRepository.findBySearch(keyword, null);
+        List<JobsSearchRespDto> sDtos = jobsRepository.findBySearch(keyword, 1);
         
         // then
         System.out.println("테스트 : "+ sDtos.size());

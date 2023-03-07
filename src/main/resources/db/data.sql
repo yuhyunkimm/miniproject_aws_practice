@@ -14,6 +14,7 @@ values ('kakao@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d
 insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
 values ('coupang@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '쿠팡', '강한승', '451-23-15631', '/images/coupang.png', 'www.coupang.com',now());
 insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
+
 values ('samsung@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '삼성', '이재용', '111-22-33333', '/images/Samsung.png', 'www.Samsung.com',now());
 insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
 values ('Nexon@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '넥슨', '이정헌', '123-45-67890', '/images/Nexon.png', 'www.Nexon.com',now());
@@ -25,6 +26,11 @@ insert into comp_tb (email, password, comp_name, representative_name, business_n
 values ('sk@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', 'SK', '최태원', '246-80-12345', '/images/sk.jpg', 'www.sk.com',now());
 insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
 values ('ncsoft@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '(주)엔씨소프트', '김택진', '222-60-14745', '/images/ncsoft.jpg', 'www.ncsoft.com',now());
+
+values ('samsung@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '삼성', '이재용', '111-22-33333', '/images/daiso1.png', 'www.kakao.com',now());
+insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
+values ('samsung2@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '삼성123', '이재용123', '111-22-33333', '/images/kakao.png', 'www.kakao.com',now());
+
 
 insert into resume_skill_tb (resume_id, skill) values (1, 'Vue.js');
 insert into resume_skill_tb (resume_id, skill) values (1, 'JavaScript');

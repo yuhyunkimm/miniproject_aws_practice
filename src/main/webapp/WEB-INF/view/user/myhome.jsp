@@ -19,12 +19,12 @@
                                 <div class="relative mb-3">
                                     <div>
                                         <a href="/user/profileUpdateForm"
-                                            onclick="window.open(this.href, '_blank', 'width=1000,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
+
+                                            onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                             <div class="user-img">
                                                 <img src="${user.photo}" class="rounded" alt="Cinque Terre"
                                                     style="max-width: 80px;">
-                                                <%-- <img src="${user.photo}" alt="Current Photo" class="img-fluid"
-                                                    id="imagePreview"> --%>
+
                                             </div>
                                         </a>
                                     </div>
@@ -126,7 +126,7 @@
                                     <label for="inputPassword" class="form-label">Password</label>
                                     <input type="password" class="form-control" id="inputPassword"
                                         aria-describedby="passwordHelp"
-                                        onkeypress="if(event.keyCode=='13'){event.preventDefault(); checkPS(${principal.userId});}">
+                                        onkeypress="if(event.keyCode=='13'){event.preventDefault(); checkPS(`${principal.userId}`);}">
                                     <div id="passwordHelp" class="form-text">현재 비밀번호를 입력해 주세요.</div>
                                 </div>
                             </form>
@@ -134,7 +134,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary"
-                                onclick="passwordCheckBtn(${principal.userId})">Check</button>
+                                onclick="passwordCheckBtn(`${principal.userId}`)">Check</button>
                         </div>
                     </div>
                 </div>

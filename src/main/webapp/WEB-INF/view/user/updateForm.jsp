@@ -18,6 +18,7 @@
             <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
             <link rel="stylesheet" href="/css/style.css">
             <title>개인 회원수정 페이지</title>
+
         </head>
 
         <body>

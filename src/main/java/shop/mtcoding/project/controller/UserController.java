@@ -27,7 +27,6 @@ import shop.mtcoding.project.dto.suggest.SuggestResp.SuggestToUserRespDto;
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserLoginReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserPasswordReqDto;
-import shop.mtcoding.project.dto.user.UserReq.UserUpdatePhotoReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserUpdateReqDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
@@ -38,10 +37,9 @@ import shop.mtcoding.project.model.SuggestRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.model.UserRepository;
 import shop.mtcoding.project.service.UserService;
-
 import shop.mtcoding.project.util.DateUtil;
-
 import shop.mtcoding.project.util.MockSession;
+import shop.mtcoding.project.util.Sha256;
 
 
 @Controller
@@ -172,6 +170,7 @@ public class UserController {
 
     @PostMapping("/user/passwordCheck")
     public @ResponseBody ResponseEntity<?> samePasswordCheck(@RequestBody UserPasswordReqDto userPasswordReqDto) {
+        userPasswordReqDto.setPassword(Sha256.encode(userPasswordReqDto.getPassword()));
         User userPS = userRepository.findByUseridAndPassword(
                 userPasswordReqDto.getUserId(),
                 userPasswordReqDto.getPassword());
@@ -184,6 +183,7 @@ public class UserController {
 
     @PutMapping("/user/update")
     public ResponseEntity<?> updateUser(@RequestBody UserUpdateReqDto userUpdateReqDto) {
+        userUpdateReqDto.setPassword(Sha256.encode(userUpdateReqDto.getPassword()));
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
@@ -279,6 +279,8 @@ public class UserController {
             }
             model.addAttribute("usDtos", usDtos);
         }
+        User userPS = userRepository.findById(principal.getUserId());
+        model.addAttribute("user", userPS);
         return "user/scrap";
     }
 
@@ -289,6 +291,8 @@ public class UserController {
         model.addAttribute("aDtos", aDtos);
         List<SuggestToUserRespDto> sDtos = suggestRepository.findAllGetOfferByUserId(principal.getUserId());
         model.addAttribute("sDtos", sDtos);
+        User userPS = userRepository.findById(principal.getUserId());
+        model.addAttribute("user", userPS);
         return "user/offer";
     }
 
@@ -297,21 +301,6 @@ public class UserController {
         session.invalidate();
         return "redirect:/";
     }
-
-    // @PutMapping("/user/profileUpdate")
-    // public String profileUpdate(MultipartFile photo) {
-    // User principal = (User) session.getAttribute("principal");
-    // if (principal == null) {
-    // return "redirect:/user/login";
-    // }
-    // if (photo.isEmpty()) {
-    // throw new CustomException("사진이 전송되지 않았습니다");
-    // }
-    // User userPS = userService.프로필사진수정(photo, principal.getUserId());
-    // System.out.println("테스트 : " + userPS.getPhoto());
-    // session.setAttribute("principal", userPS);
-    // return "redirect:/user/myhome";
-    // }
 
     @GetMapping("/user/profileUpdateForm")
     public String profileUpdateForm(Model model) {

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusCompRespDto;
 import shop.mtcoding.project.dto.common.ResponseDto;
@@ -34,6 +35,7 @@ import shop.mtcoding.project.dto.scrap.CompScrapResp.CompScrapResumeRespDto;
 import shop.mtcoding.project.dto.skill.RequiredSkillReq.RequiredSkillWriteReqDto;
 import shop.mtcoding.project.dto.skill.RequiredSkillResp.RequiredSkillByCompRespDto;
 import shop.mtcoding.project.dto.skill.ResumeSkillResp.ResumeSkillRespDto;
+import shop.mtcoding.project.dto.suggest.SuggestResp.SuggestToCompRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.ApplyRepository;
@@ -43,6 +45,7 @@ import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.ScrapRepository;
 import shop.mtcoding.project.model.SkillRepository;
+import shop.mtcoding.project.model.SuggestRepository;
 import shop.mtcoding.project.service.CompService;
 import shop.mtcoding.project.util.MockSession;
 
@@ -66,6 +69,9 @@ public class CompController {
 
     @Autowired
     private ScrapRepository scrapRepository;
+
+    @Autowired
+    private SuggestRepository suggestRepository;
 
     @Autowired
     private CompService compService;
@@ -96,6 +102,17 @@ public class CompController {
         compService.회원가입(compJoinReqDto);
 
         return "redirect:/comp/login";
+    }
+
+    @GetMapping("/comp/profileUpdateForm")
+    public String profileUpdateForm(Model model) {
+        Comp compSession = (Comp) session.getAttribute("compSession");
+        if (compSession == null) {
+            return "redirect:/comp/login";
+        }
+        Comp compPS = compRepository.findByCompId(compSession.getCompId());
+        model.addAttribute("comp", compPS);
+        return "comp/profileUpdateForm";
     }
 
     @GetMapping("/comp/emailCheck")
@@ -152,14 +169,16 @@ public class CompController {
     public String compMyhome(Model model) {
         // 임시 세션 
         MockSession.mockComp(session);
-        session.setAttribute("principal", null);        
+        session.setAttribute("principal", null);
         
         Comp compSession = (Comp)session.getAttribute("compSession");
         if ( compSession == null ){
             return "redirect:/comp/login";
         }
         List<JobsManageJobsRespDto> jDtos = jobsRepository.findByIdtoManageJobs(compSession.getCompId());
-        model.addAttribute("jDtos", jDtos);
+        model.addAttribute("jDtos", jDtos);  
+        Comp compPS = compRepository.findByCompId(compSession.getCompId());
+        model.addAttribute("comp", compPS);
         return "comp/comphome";
     }
 
@@ -195,14 +214,29 @@ public class CompController {
         return new ResponseEntity<>(new ResponseDto<>(1, "수정완료", null), HttpStatus.OK);
     }
 
+    @PutMapping("/comp/profileUpdate")
+    public ResponseEntity<?> profileUpdate(MultipartFile photo) throws Exception {
+        Comp compSession = (Comp) session.getAttribute("compSession");
+        if (compSession == null) {
+            throw new CustomApiException("로그인이 필요한 페이지 입니다.", HttpStatus.UNAUTHORIZED);
+        }
+        if (photo.isEmpty()) {
+            throw new CustomApiException("사진이 전송 되지 않았습니다.");
+        }
+
+        Comp compPS = compService.프로필사진수정(photo, compSession.getCompId());
+        session.setAttribute("compSession", compPS);
+        return new ResponseEntity<>(new ResponseDto<>(1, "프로필 수정 성공", null), HttpStatus.OK);
+    }
+
     @GetMapping("/comp/update")
     public String updateForm(Model model) {
-        Comp compSession = (Comp) session.getAttribute("compSession");
+        Comp compSession = (Comp) session.getAttribute("compSession");        
         if (compSession == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
         Comp compPS = compRepository.findByCompId(compSession.getCompId());
-        model.addAttribute("compUpdateReqDto", compPS);
+        model.addAttribute("comp", compPS);
         return "comp/updateForm";
     }
 
@@ -211,6 +245,10 @@ public class CompController {
         Comp compSession = (Comp)session.getAttribute("compSession");
         List<ApllyStatusCompRespDto> aList = applyRepository.findAllByCompIdtoApply(compSession.getCompId());
         model.addAttribute("aDtos", aList);
+        List<SuggestToCompRespDto> sList = suggestRepository.findAllByCompIdtoSuggest((compSession.getCompId()));
+        model.addAttribute("sDtos", sList);
+        Comp compPS = compRepository.findByCompId(compSession.getCompId());
+        model.addAttribute("comp", compPS);
         return "comp/apply";
     }
 
@@ -219,6 +257,8 @@ public class CompController {
         Comp compSession = (Comp) session.getAttribute("compSession");
         List<JobsManageJobsRespDto> jDtos = jobsRepository.findByIdtoManageJobs(compSession.getCompId());
         model.addAttribute("jDtos", jDtos);
+        Comp compPS = compRepository.findByCompId(compSession.getCompId());
+        model.addAttribute("comp", compPS);
 
         return "comp/manageJobs";
     }
@@ -244,7 +284,16 @@ public class CompController {
     public String scrapResume(Model model) {
         Comp compSession = (Comp) session.getAttribute("compSession");
         List<CompScrapResumeRespDto> sList = scrapRepository.findAllScrapByCompId(compSession.getCompId());
+        for (CompScrapResumeRespDto jDto : sList) {
+            List<String> insertList = new ArrayList<>();
+            for (ResumeSkillRespDto skill : skillRepository.findByResumeSkill(jDto.getResumeId())) {
+                insertList.add(skill.getSkill());
+            }
+            jDto.setSkillList(insertList);
+        }
         model.addAttribute("sDtos", sList);
+        Comp compPS = compRepository.findByCompId(compSession.getCompId());
+        model.addAttribute("comp", compPS);
         return "comp/scrap";
     }
 

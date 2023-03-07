@@ -27,7 +27,4 @@ public class Sha256Test {
         System.out.println("테스트 : " + SHA);
     }
 
-    public static void main(String[] args) {
-        encode("1234");
-    }
 }
