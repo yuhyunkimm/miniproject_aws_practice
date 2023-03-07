@@ -318,7 +318,6 @@
             <div class="row row-cols-1 row-cols-md-2">
                 <c:forEach items="${rDtos}" var="rDto">
                     <div class="col mb-3">
-
                         <a href="/resume/${rDto.resumeId}" onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
                             <div class="card">
                                 <div class="row g-0">
@@ -340,9 +339,7 @@
                                                 <div style="float: left; d-flex">
                                                     <c:forEach items="${rDto.skillList}" var="skill">
                                                         <span class="badge skill-color">${skill}</span>
-
                                                     </c:forEach>
-                                                    <%-- ${rDto.skillList} --%>
                                                 </div>
                                             </div>
                                         </div>
@@ -351,7 +348,6 @@
                             </div>
                         </a>
                     </div>
-
                 </c:forEach>
             </div>
 

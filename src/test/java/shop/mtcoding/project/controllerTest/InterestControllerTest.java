@@ -53,11 +53,12 @@ public class InterestControllerTest {
     @Test
     public void 관심수정_test() throws Exception {
         // given
-        List<String> inter = new ArrayList<>();
-        inter.add("박ㅇ");
-        inter.add("서버");
-        inter.add("개발자");
         InterestChangeReqDto iDto = new InterestChangeReqDto();
+        List<String> inter = new ArrayList<>();
+        inter.add("백엔드 개발자");
+        inter.add("풀스택 개발자");
+        inter.add("임베디드 개발자");
+        iDto.setUserId(1);
         iDto.setUserId(1);
         iDto.setInterestList(inter);
         String insert = om.writeValueAsString(iDto);
