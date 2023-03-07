@@ -76,7 +76,7 @@ public class ResumeControllerTest {
         // then
         resultActions.andExpect(status().isOk());
         // assertThat(rDtos.size()).isEqualTo(1);
-        assertThat(rDtos.get(0).getTitle()).isEqualTo("백엔드 이력서");
+        assertThat(rDtos.get(0).getTitle()).isEqualTo("끊임없이 개선하려는 개발자");
         assertThat(rDtos.get(0).getEducation()).isEqualTo("고졸");
         assertThat(rDtos.get(0).getCareer()).isEqualTo("신입");
 

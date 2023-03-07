@@ -31,7 +31,7 @@ public class JobsRepositoryTest {
         String keyword = "백";
     
         // when
-        List<JobsSearchRespDto> sDtos = jobsRepository.findBySearch(keyword, 1);
+        List<JobsSearchRespDto> sDtos = jobsRepository.findBySearch(keyword, null);
         
         // then
         System.out.println("테스트 : "+ sDtos.size());
