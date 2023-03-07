@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ include file="../layout/header.jsp" %>
+        <style>
+            .user-img:hover {
+                filter: brightness(70%);
+                /* color: #100f0f;
+                opacity: 40%; */
+            }
+        </style>
         <div class="mx-auto width-53 top-80">
             <div class="container my-5 py-5">
                 <div class="row">
@@ -12,10 +19,12 @@
                                 <div class="relative mb-3">
                                     <div>
                                         <a href="/user/profileUpdateForm"
+
                                             onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                             <div class="user-img">
                                                 <img src="${user.photo}" class="rounded" alt="Cinque Terre"
                                                     style="max-width: 80px;">
+
                                             </div>
                                         </a>
                                     </div>

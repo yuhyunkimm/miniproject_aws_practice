@@ -13,8 +13,8 @@
                 <a href="/jobs/${jDto.jobsId}"
                     onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
                     <div class="card">
-                        <div>
-                            <img src='${jDto.photo}' alt="" srcset="">
+                        <div class="pt-4 px-auto" style="text-align: center;">
+                            <img src='${jDto.photo}' alt="" srcset="" style="height: 4em; width: 130px;">
                         </div>
                         <div class="card-body">
                             <div>
