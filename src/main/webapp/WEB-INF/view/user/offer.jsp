@@ -62,7 +62,7 @@
                         <c:forEach items="${aDtos}" varStatus="status" var="aDto">
                             <tbody>
                                 <tr align=center>
-                                    <td>${status.count}</td>
+                                    <th >${status.count}</th>
                                     <td><a href="/jobs/${aDto.jobsId}" onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;"> ${aDto.jobsTitle}</a></td>
                                     <td><a href="/resume/${aDto.resumeId}" onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;"> ${aDto.resumeTitle}</a></td>
                                     <td>${aDto.position}</td>
@@ -176,7 +176,7 @@
                 }
                 $.ajax({
                     type: "put",
-                    url: "/suggest/update",
+                    url: "/user/suggest/update",
                     data: JSON.stringify(data),
                     headers:{
                         "content-type":"application/json; charset=utf-8"
@@ -198,7 +198,7 @@
                 }
                 $.ajax({
                     type: "put",
-                    url: "/suggest/update",
+                    url: "/user/suggest/update",
                     data: JSON.stringify(data),
                     headers:{
                         "content-type":"application/json; charset=utf-8"
@@ -219,7 +219,7 @@
                     <div id="state-btn" class="badge bg-success p-2">수락</div>
                     `;
                     let el2 = `
-                    <div class="badge bg-secondary p-2">수락</div>
+                    <div class="badge bg-secondary p-2">답변완료</div>
                     `;
                     $('#state-'+suggestId).append(el1);
                     $('#response-'+suggestId).append(el2);
@@ -231,7 +231,7 @@
                     <div id="state-btn" class="badge bg-danger p-2">거절</div>
                     `;
                     let el2 = `
-                    <div class="badge bg-secondary p-2">거절</div>
+                    <div class="badge bg-secondary p-2">답변완료</div>
                     `;
                     $('#state-'+suggestId).append(el1);
                     $('#response-'+suggestId).append(el2);

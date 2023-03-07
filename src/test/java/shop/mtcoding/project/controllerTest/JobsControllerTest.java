@@ -95,7 +95,7 @@ public class JobsControllerTest {
         String test = om.writeValueAsString(jDto);
 
         // when
-        ResultActions rs = mvc.perform(post("/jobs/write")
+        ResultActions rs = mvc.perform(post("/comp/jobs/write")
         .content(test)
         .contentType(MediaType.APPLICATION_JSON_VALUE).session(mockSession));
 
@@ -132,7 +132,7 @@ public class JobsControllerTest {
         String test = om.writeValueAsString(jDto);
 
         // when
-        ResultActions rs = mvc.perform(put("/jobs/update")
+        ResultActions rs = mvc.perform(put("/comp/jobs/update")
         .content(test)
         .contentType(MediaType.APPLICATION_JSON_VALUE).session(mockSession));
 

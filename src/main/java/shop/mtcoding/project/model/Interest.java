@@ -1,14 +1,16 @@
 package shop.mtcoding.project.model;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class Interest {
     private Integer interestId;
     private Integer userId;
-    private String interestCt1;
-    private String interestCt2;
-    private String interestCt3;
+    private List<String> interestCt;
 }

@@ -39,7 +39,10 @@ public interface JobsRepository {
     
     public List<JobsMainRecommendRespDto> findAlltoMainRecommend(Integer userId);
 
+    public List<JobsMainRecommendRespDto> findAlltoMainRecommendRandom(Integer userId);
+
     public List<JobsMainRespDto> findAlltoMain(Integer userId);
+    public List<JobsMainRespDto> findAlltoMainRamdom(Integer userId);
 
     public List<JobsSearchRespDto> findBySearch(
         @Param("keyword") String keyword,

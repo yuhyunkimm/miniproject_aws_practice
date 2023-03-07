@@ -49,22 +49,26 @@
                     </div>
                     <div class="col-9 my-4 pe-5">
                         <div>
-                            <h6><b> 등록된 공고 </b></h6>
+                            <div>
+                        <h6><b>전체  <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">${jDtos.size()}</div></b></h6>
+                    </div>
                             <table class="table" style="width:100%">
                                 <thead>
                                     <tr class="table-secondary" align=center>
                                         <th scope="col" style="width:10%">No.</th>
                                         <th scope="col" colspan=2 style="width:30%">제목</th>
                                         <th scope="col" style="width:30%">포지션</th>
-                                        <th scope="col" style="width:20%"></th>
+                                        <th scope="col" style="width:10%">경력</th>
+                                        <th scope="col" style="width:20%">상세보기</th>
                                     </tr>
                                 </thead>
                                 <c:forEach items="${jDtos}" varStatus="status" var="jDto">
                                     <tbody>
                                     <tr align=center>
-                                        <th scope="row">${status.count}</th>
+                                        <th >${status.count}</th>
                                         <td colspan=2>${jDto.title}</td>
                                         <td>${jDto.position}</td>
+                                        <td>${jDto.career}</td>
                                         <td><button type="button" class="btn btn-success btn-sm" 
                                         onclick="location.href='/jobs/${jDto.jobsId}'">상세보기</button>
                                         </td>
@@ -75,31 +79,60 @@
                                 
                             </table>
                             <br />
-                                <h6><b>추천 인재</b></h6>
+                            <div>
+                                <h6><b>추천인재  <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">${rDtos.size()}</div></b></h6>
+                            </div>
                             <table class="table" style="width:100%">
                                 <thead>
                                     <tr class="table-secondary" align=center>
-                                        <th scope="col" style="width:30%">No.</th>
-                                        <th scope="col" colspan=2 style="width:40%">Name</th>
-                                        <th scope="col"></th>
-                                        <th scope="col" style="width:30%">Value</th>
+                                        <th scope="col" style="width:8%">No.</th>
+                                        <th scope="col" style="width:8%">이름</th>
+                                        <th scope="col" style="width:10%">경력</th>
+                                        <th scope="col" style="width:10%">지역</th>
+                                        <th scope="col" style="width:15%">학력</th>
+                                        <th scope="col" style="width:35%">기술</th>
+                                        <th scope="col" colspan=2 style="width:18%">상세보기</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr align=center>
-                                        <th scope="row">1</th>
-                                        <td colspan=2>최주호</td>
-                                        <td></td>
-                                        <td><button type="button" class="btn btn-success btn-sm">상세보기</button></td>
-                                    </tr>
-                                    <tr align=center>
-                                        <th scope="row">2</th>
-                                        <td colspan=2></td>
-                                        <td></td>
-                                        <td><button type="button" class="btn btn-success btn-sm">상세보기</button></td>
-                                    </tr>
-                                </tbody>
+                                <c:forEach items="${rDtos}" var="rDto" varStatus="status">
+                                    <tbody>
+                                        <tr align=center>
+                                            <th >${status.count}</th>
+                                            <td>
+                                                <div>
+                                                    ${rDto.name}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    ${rDto.career}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    ${rDto.address}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    ${rDto.education}
+                                                </div>
+                                            </td>
+                                            <td style="text-align: left;">
+                                                <div>
+                                                    <c:forEach items="${rDto.skillList}" var="skill" begin="1" end="3">
+                                                        <span class="badge skill-color me-2">${skill}</span>
+                                                    </c:forEach>
+                                                </div>
+                                            </td>
+                                            <td><a href="/resume/${rDto.resumeId}"
+                                                onclick="window.open(this.href, '_blank', 'width=1200,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;"><button type="button" class="btn btn-success btn-sm">상세보기</button></a></td>
+                                        </tr>
+                                    </tbody>
+                                </c:forEach>
                             </table>
+
+        
                         </div>
                     </div>
                 </div>

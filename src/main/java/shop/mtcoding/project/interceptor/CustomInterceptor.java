@@ -7,6 +7,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import shop.mtcoding.project.model.Comp;
+import shop.mtcoding.project.model.User;
+
 public class CustomInterceptor implements HandlerInterceptor {
 
     @Override
@@ -14,37 +17,28 @@ public class CustomInterceptor implements HandlerInterceptor {
             throws Exception {
         String requestURI = request.getRequestURI();
         if (requestURI.startsWith("/user")) { // "/blocked"로 시작하는 요청을 차단
-            response.sendRedirect("/user/login");
-            return false;
+            User principal = (User) request.getSession(false).getAttribute("principal");
+            if (principal == null) {
+                response.sendRedirect("/user/login");
+                return false;
+            }
         }
         if (requestURI.startsWith("/comp")) { // "/blocked"로 시작하는 요청을 차단
-            response.sendRedirect("/comp/login");
-            return false;
+            Comp compSession = (Comp) request.getSession(false).getAttribute("compSession");
+            if (compSession == null) {
+                response.sendRedirect("/comp/login");
+                return false;
+            }
         }
         return true;
 
         // System.out.println("테스트 : "+ request.getRequestURL().toString());
-        // if
-        // (request.getRequestURL().toString().equals("http://localhost:8080/user/**"))
-        // {
-        // User principal = (User) request.getSession(false).getAttribute("principal");
-        // if (principal == null) {
-        // response.sendRedirect("/user/login");
-        // return false;
-        // // return true;
+        // if (request.getRequestURL().toString().equals("http://localhost:8080/user/**")) {
+
         // }
+        // if (request.getRequestURL().toString().equals("http://localhost:8080/comp/**")) {
+
         // }
-        // if
-        // (request.getRequestURL().toString().equals("http://localhost:8080/comp/**"))
-        // {
-        // User principal = (User) request.getSession(false).getAttribute("principal");
-        // if (principal == null) {
-        // response.sendRedirect("/comp/login");
-        // return false;
-        // // return true;
-        // }
-        // }
-        // return true;
     }
 
     @Override
