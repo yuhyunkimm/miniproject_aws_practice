@@ -61,36 +61,31 @@
                     <c:forEach items="${jDtos}" var="jDto">
                         <div class="card mb-4">
                             <div class="card-body row">
-                                
                                 <div class="col-9">
                                     <a href="/jobs/${jDto.jobsId}">
                                         <div>
                                             <h5 class="card-title" style="text-align: left;"> ${jDto.title}</h5>
-                                    <div class="m-2" style="float: left;">
-                                        <div class="d-flex">
-                                            <div class="me-3">
-                                                <h6 class="card-subtitle text-muted">${jDto.position}</h6>
-                                            </div>
+                                            <div class="m-2" style="float: left;">
+                                                <div class="d-flex">
+                                                    <div class="me-3">
+                                                        <h6 class="card-subtitle text-muted">${jDto.position}</h6>
+                                                    </div>
 
-                                            <div>
-                                                <h6 class="card-subtitle mb-2 text-muted">${jDto.career}</h6>
+                                                    <div>
+                                                        <h6 class="card-subtitle mb-2 text-muted">${jDto.career}</h6>
+                                                    </div>
+                                                    <input type="hidden" value="${jDto.jobsId}" id="jobsId">
+                                                </div>
+                                                <div>
+                                                    <c:forEach items="${jDto.skillList}" var="skill" begin="0" end="3">
+                                                        <span class="badge  skill-color">${skill}</span>
+                                                    </c:forEach>
+                                                </div>
+
                                             </div>
-                                            <input type="hidden" value="${jDto.jobsId}" id="jobsId">
                                         </div>
-                                        <div>
-                                            <c:forEach items="${jDto.skillList}" var="skill" begin="0" end="3">
-                                                <span class="badge  skill-color">${skill}</span>
-                                            </c:forEach>
-                                        </div>
-                                    
-                                    </div>
-                                        </div>
-                                    
-                                </a>
+                                    </a>
                                 </div>
-                            
-                            
-
 
                                 <div class="col-3">
                                     <div style="float: right;">
