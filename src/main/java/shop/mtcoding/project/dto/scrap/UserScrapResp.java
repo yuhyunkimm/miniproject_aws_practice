@@ -21,4 +21,10 @@ public class UserScrapResp {
         private Long leftTime;
         private Timestamp endDate;
     }
+
+    @Getter
+    @Setter
+    public static class UserScrapIdRespDto{
+        private Integer userScrapId;
+    }
 }

@@ -17,7 +17,7 @@
                     </li>
                 </ul>
             </div>
-
+        
             <div id="my-table-body1" style="display: block;">
                 <table class="my-table table table-bordered">
                     <tbody>
@@ -86,7 +86,7 @@
                                         <input class="form-check-input" type="checkbox" name="address" value="지역"> 지역
                                     </label>
                                 </div>
-
+        
                             </td>
                             <td>
                                 <div class="form-check text-center">
@@ -100,7 +100,7 @@
                     </tbody>
                 </table>
             </div>
-
+        
             <div id="my-table-body2" style="display: none;">
                 <table class="my-table table table-bordered">
                     <tbody>
@@ -188,7 +188,7 @@
                     </tbody>
                 </table>
             </div>
-
+        
             <div id="my-table-body3" style="display: none;">
                 <table class="my-table table table-bordered">
                     <tbody>
@@ -196,8 +196,7 @@
                             <td>
                                 <div class="form-check text-center">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" name="position"
-                                            value="서버 개발자">서버 개발자
+                                        <input class="form-check-input" type="checkbox" name="position" value="서버 개발자">서버 개발자
                                     </label>
                                 </div>
                             </td>
@@ -212,8 +211,7 @@
                             <td>
                                 <div class="form-check text-center">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" name="position"
-                                            value="프론트엔드 개발자"> 프론트엔드
+                                        <input class="form-check-input" type="checkbox" name="position" value="프론트엔드 개발자"> 프론트엔드
                                         개발자
                                     </label>
                                 </div>
@@ -221,8 +219,7 @@
                             <td>
                                 <div class="form-check text-center">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" name="position"
-                                            value="안드로이드 개발자"> 안드로이드
+                                        <input class="form-check-input" type="checkbox" name="position" value="안드로이드 개발자"> 안드로이드
                                         개발자
                                     </label>
                                 </div>
@@ -248,8 +245,7 @@
                             <td>
                                 <div class="form-check text-center">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" name="position"
-                                            value="빅데이터 엔지니어"> 빅데이터
+                                        <input class="form-check-input" type="checkbox" name="position" value="빅데이터 엔지니어"> 빅데이터
                                         엔지니어
                                     </label>
                                 </div>
@@ -257,8 +253,7 @@
                             <td>
                                 <div class="form-check text-center">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" name="position"
-                                            value="임베디드 개발자"> 임베디드
+                                        <input class="form-check-input" type="checkbox" name="position" value="임베디드 개발자"> 임베디드
                                         개발자
                                     </label>
                                 </div>
@@ -266,8 +261,7 @@
                             <td>
                                 <div class="form-check text-center">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" name="position"
-                                            value="devops 개발자">
+                                        <input class="form-check-input" type="checkbox" name="position" value="devops 개발자">
                                         devops 개발자
                                     </label>
                                 </div>
@@ -283,7 +277,7 @@
                     </tbody>
                 </table>
             </div>
-
+        
             <div id="my-table-body4" class="display-none">
                 <table class="my-table table table-bordered">
                     <tbody>
@@ -366,10 +360,10 @@
                     </tbody>
                 </table>
             </div>
-
+        
             <div class="row justify-content-between">
                 <div class="col-8 d-flex flex-wrap" id="selected">
-
+        
                 </div>
                 <div class="col-4 d-flex justify-content-end">
                     <button type="button" class="btn btn-primary mb-2 my-auto" onclick="resetCheckboxes()">초기화</button>
@@ -377,8 +371,8 @@
                         id="search-info-btn">검색하기</button>
                 </div>
             </div>
-
-
+        
+        
             <div class="hr"></div>
             <div class="under-line">
             </div>
@@ -393,8 +387,7 @@
                             onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
                             <div class="card main-card">
                                 <div class="pt-4 px-auto" style="text-align: center;">
-                                    <img src='${jDto.photo}' alt="" srcset=""
-                                        style="height: 4em; width: 150px; padding: 3px;">
+                                    <img src='${jDto.photo}' alt="" srcset="" style="height: 4em; width: 150px; padding: 3px;">
                                 </div>
                                 <div class="card-body">
                                     <div>
@@ -419,11 +412,10 @@
                                         <div id="scrap-${jDto.jobsId}-remove">
                                             <c:choose>
                                                 <c:when test="${jDto.userScrapId > 0}">
-                                                    <i id="scrap-${jDto.jobsId}"
-                                                        class="fa-solid on-Clicked fa-star my-cursor"
+                                                    <i id="scrap-${jDto.jobsId}" class="fa-solid on-Clicked fa-star my-cursor"
                                                         onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
                                                 </c:when>
-
+        
                                                 <c:otherwise>
                                                     <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star my-cursor"
                                                         onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
@@ -432,7 +424,7 @@
                                         </div>
                                     </div>
                                 </c:when>
-
+        
                                 <c:otherwise>
                                     <div>
                                         <a href="/user/login">
@@ -749,29 +741,34 @@
                             <div id="insert-skill-`+ jDto.jobsId + `">
                                 
                             </div>
+                            <div id="scrap-insert-`+jDto.jobsId+`">
+
+                            </div>      
                             <div>
                                 `+ jDto.career + " " + jDto.education + " " + jDto.address + `
                             </div>
                         </a>
                             <div class="d-flex justify-content-between">
-                                <div><i id="scrap-`+ jDto.jobsId + `" class="fa-regular fa-star"
-                                        onclick="scrap(`+ jDto.jobsId + `,` + userId + `,` + jDto.userScrapId + `)"></i>
-                                    <input type="hidden" id="endDate-`+ jDto.jobsId + `" value="` + jDto.endDate + `">
+                                <div id="scrap-`+jDto.jobsId+`-render">
+                                        <div id="scrap-`+jDto.jobsId+`-remove">
+                                            
+                          
+                                
+                                        </div>
                                 </div>
                                 <div>
                                     D-`+ jDto.leftTime + `
                                 </div>
-
                             </div>
                         </div>
                 </div>
-                
             </div>
             `;
 
                     // console.log(jDto.skillList);
                     $('.info-card').append(el);
                     insertSkill(jDto.skillList, jDto.jobsId);
+                    insertScrap(jDto.jobsId, jDto.userScrapId, userId)
                 });
             }
             function insertSkill(skillList, jobsId) {
@@ -780,9 +777,33 @@
                     <span class="badge skill-color">`+ skillList[index] + `</span>
                 `;
                     $('#insert-skill-' + jobsId).append(el);
-
+                    
                 }
+            }
 
+            function insertScrap(jobsId, ScrapId){
+                // console(ScrapId)
+                let el ;
+                if ( userId > 0){
+                    if ( ScrapId > 0){
+                        el = `
+                        <i id="scrap-`+ jobsId + `" class="fa-solid on-Clicked fa-star my-cursor"
+                     onclick="scrap(`+ jobsId + `,` + userId + `,` + ScrapId + `)"></i>
+                        `;
+                    }else{
+                        el = `
+                 <i id="scrap-`+ jobsId + `" class="fa-regular fa-star my-cursor"
+                     onclick="scrap(`+ jobsId + `,` + userId + `,)"></i>
+                `;
+                    }
+                }else{
+                    el = `
+                    <a href="/user/login">
+                        <i id="scrap-`+jobsId+`" class="fa-regular fa-star"></i>
+                    </a>
+                    `;
+                }
+                $('#scrap-'+jobsId+'-remove').append(el);
             }
         </script>
         <%@ include file="../layout/footer.jsp" %>
