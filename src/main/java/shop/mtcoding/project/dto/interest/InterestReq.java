@@ -12,8 +12,6 @@ public class InterestReq {
     public static class InterestChangeReqDto{
         private Integer userId;
         private List<String> interestList;
-        //         @Param("userId") Integer userId,
-        // @Param("interestList") List<String> interestList
     }
 
 }
