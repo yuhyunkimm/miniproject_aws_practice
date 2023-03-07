@@ -64,14 +64,14 @@
                                 <table class="table" style="width:100%">
                                     <div class="row">
                                         <c:forEach items="${rDtos}" var="rDto">
-                                            <div class="col-4">
+                                            <div class="col-6">
                                                 <a href="/resume/${rDto.resumeId}" style="width: 240px; height: 120px;"
                                                     onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                                     <div class="card">
                                                         <div class="card-body">
-                                                            <h5 class="card-title">${rDto.name}</h5>
-                                                            <h6 class="card-title">${rDto.title}</h6>
-                                                            <div class="d-flex justify-content-around">
+                                                            <h5 class="card-title" style="text-align: center;">
+                                                                ${rDto.title}</h5>
+                                                            <div class="d-flex justify-content-around mt-3">
                                                                 <div style="float: left;">
                                                                     <h6 class="card-subtitle mb-2">${rDto.career}</h6>
                                                                 </div>
@@ -80,7 +80,7 @@
                                                                 </div>
 
                                                             </div>
-                                                        </div>>
+                                                        </div>
                                                     </div>
                                                 </a>
                                             </div>
@@ -342,7 +342,7 @@
 
             modalEl.addEventListener('shown.bs.modal', function () {
                 passwordInputEl.focus()
-            })
+            });
 
             function passwordCheckBtn(uId) {
 
@@ -394,37 +394,38 @@
                     }).done((res) => {
                     }).fail((err) => {
                     });
-
+                })
+            });
+            function getCheckedValues(name) {
+                var checkedValues = [];
+                var checkboxes = document.getElementsByName(name);
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].checked) {
+                        checkedValues.push(checkboxes[i].value);
+                    }
                 }
-                function getCheckedValues(name) {
-        var checkedValues = [];
-        var checkboxes = document.getElementsByName(name);
-        for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-                checkedValues.push(checkboxes[i].value);
+                return checkedValues;
             }
-        }
-        return checkedValues;
-    }
-const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach(function (checkbox) {
-        checkbox.addEventListener('click', function () {
-            interestValues = getCheckedValues("interest");
-            // console.log(interestValues);
-            let data = {
-                userId: $('#pricipalId').val(),
-                interestList: interestValues
-            };
-            $.ajax({
-                type: "put",
-                url: "/user/interest/change",
-                data: JSON.stringify(data),
-                headers: {
-                    "content-type": "application/json; charset=utf-8"
-                },
-                dataType: "json"
-            }).done((res) => {
-            }).fail((err) => {
+            checkboxes.forEach(function (checkbox) {
+                checkbox.addEventListener('click', function () {
+                    interestValues = getCheckedValues("interest");
+                    // console.log(interestValues);
+                    let data = {
+                        userId: $('#pricipalId').val(),
+                        interestList: interestValues
+                    };
+                    $.ajax({
+                        type: "put",
+                        url: "/user/interest/change",
+                        data: JSON.stringify(data),
+                        headers: {
+                            "content-type": "application/json; charset=utf-8"
+                        },
+                        dataType: "json"
+                    }).done((res) => {
+                    }).fail((err) => {
+                    });
+                })
             });
         </script>
         <%@ include file="../layout/footer.jsp" %>
