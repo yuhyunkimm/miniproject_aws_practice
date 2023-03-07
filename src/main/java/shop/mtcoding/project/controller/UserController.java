@@ -257,16 +257,26 @@ public class UserController {
         
             List<JobsMainRecommendRespDto> rDtos = jobsRepository.findAlltoMainRecommend(principal.getUserId());
             for (JobsMainRecommendRespDto jDto : rDtos) {
+                try {
+                    jDto.setUserScrapId(scrapRepository.findScrapIdByUserIdAndJobsId(principal.getUserId(), jDto.getJobsId()).getUserScrapId()); 
+                } catch (Exception e) {
+                }
+                System.out.println("테스트 : "+ jDto.getUserScrapId());
                 long dDay = DateUtil.dDay(jDto.getEndDate());
                 jDto.setLeftTime(dDay);
                 List<String> insertList = new ArrayList<>();
                 for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto.getJobsId())) {
                     insertList.add(skill.getSkill());
                 }
+                
                 jDto.setSkillList(insertList);
             }
             List<JobsMainRecommendRespDto> rDtos2 = jobsRepository.findAlltoMainRecommendRandom(principal.getUserId());
             for (JobsMainRecommendRespDto jDto : rDtos2) {
+                try {
+                    jDto.setUserScrapId(scrapRepository.findScrapIdByUserIdAndJobsId(principal.getUserId(), jDto.getJobsId()).getUserScrapId()); 
+                } catch (Exception e) {
+                }
                 long dDay = DateUtil.dDay(jDto.getEndDate());
                 jDto.setLeftTime(dDay);
                 List<String> insertList = new ArrayList<>();
