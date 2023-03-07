@@ -105,6 +105,15 @@ insert into resume_tb (user_id, title, content, education, career, link, state, 
 values (1, '데이터로 일하는 개발자', '백엔드 이력서의 내용입니다.', '고졸', '신입', '블로그 주소', 1, now());
 
 insert into resume_tb (user_id, title, content, education, career, link, state, created_at) 
+values (1, '데이터로 일하는 개발자', '백엔드 이력서의 내용입니다.', '고졸', '신입', '블로그 주소', 1, now());
+
+insert into resume_tb (user_id, title, content, education, career, link, state, created_at) 
+values (1, '데이터로 일하는 개발자', '백엔드 이력서의 내용입니다.', '고졸', '신입', '블로그 주소', 1, now());
+
+insert into resume_tb (user_id, title, content, education, career, link, state, created_at) 
+values (1, '데이터로 일하는 개발자', '백엔드 이력서의 내용입니다.', '고졸', '신입', '블로그 주소', 1, now());
+
+insert into resume_tb (user_id, title, content, education, career, link, state, created_at) 
 values (2, '백엔드 이력서33', '백엔드 이력서의 내용입니다.', '고졸', '신입', '블로그 주소', 1, now());
 
 insert into resume_tb (user_id, title, content, education, career,  link, state, created_at) 
