@@ -12,6 +12,7 @@ import shop.mtcoding.project.dto.interest.InterestResp.InterestChangeRespDto;
 public interface InterestRepository {
     public Interest findAll();
     public List<InterestChangeRespDto> findById(Integer userId);
+    
     public int insert(
         @Param("iDto") InterestChangeReqDto iDto
     );

@@ -106,7 +106,11 @@
                                             <div class="form-check text-align">
                                                 <label class="form-check-label">
                                                     <input class="form-check-input" type="checkbox" name="interest"
-                                                        value="서버 개발자">서버 개발자
+                                                        value="서버 개발자"
+                                                        <c:forEach items="${iDtos}" var="interest">
+                                                                    ${interest.interestCt=='서버 개발자' ? 'checked="checked"' : '' }
+                                                        </c:forEach>
+                                                        >서버 개발자
                                                 </label>
                                             </div>
                                         </td>
@@ -114,7 +118,11 @@
                                             <div class="form-check text-align">
                                                 <label class="form-check-label">
                                                     <input class="form-check-input" type="checkbox" name="interest"
-                                                        value="백엔드 개발자"> 백엔드 개발자
+                                                        value="백엔드 개발자"
+                                                        <c:forEach items="${iDtos}" var="interest">
+                                                                    ${interest.interestCt=='백엔드 개발자' ? 'checked="checked"' : '' }
+                                                        </c:forEach>
+                                                        > 백엔드 개발자
                                                 </label>
                                             </div>
                                         </td>
@@ -122,7 +130,11 @@
                                             <div class="form-check text-align">
                                                 <label class="form-check-label">
                                                     <input class="form-check-input" type="checkbox" name="interest"
-                                                        value="프론트엔드 개발자"> 프론트엔드 개발자
+                                                        value="프론트엔드 개발자"
+                                                        <c:forEach items="${iDtos}" var="interest">
+                                                                    ${interest.interestCt=='프론트엔드 개발자' ? 'checked="checked"' : '' }
+                                                        </c:forEach>
+                                                        > 프론트엔드 개발자
 
                                                 </label>
                                             </div>
@@ -133,7 +145,11 @@
                                             <div class="form-check text-align">
                                                 <label class="form-check-label">
                                                     <input class="form-check-input" type="checkbox" name="interest"
-                                                        value="안드로이드 개발자"> 안드로이드 개발자
+                                                        value="안드로이드 개발자"
+                                                        <c:forEach items="${iDtos}" var="interest">
+                                                                    ${interest.interestCt=='안드로이드 개발자' ? 'checked="checked"' : '' }
+                                                        </c:forEach>
+                                                        > 안드로이드 개발자
 
                                                 </label>
                                             </div>
@@ -142,7 +158,11 @@
                                             <div class="form-check text-align">
                                                 <label class="form-check-label">
                                                     <input class="form-check-input" type="checkbox" name="interest"
-                                                        value="IOS 개발자"> IOS 개발자
+                                                        value="IOS 개발자"
+                                                        <c:forEach items="${iDtos}" var="interest">
+                                                                    ${interest.interestCt=='IOS 개발자' ? 'checked="checked"' : '' }
+                                                        </c:forEach>
+                                                        > IOS 개발자
                                                 </label>
                                             </div>
                                         </td>
@@ -150,7 +170,11 @@
                                             <div class="form-check text-align">
                                                 <label class="form-check-label">
                                                     <input class="form-check-input" type="checkbox" name="interest"
-                                                        value="풀스택 개발자"> 풀스택 개발자
+                                                        value="풀스택 개발자"
+                                                        <c:forEach items="${iDtos}" var="interest">
+                                                                    ${interest.interestCt=='풀스택 개발자' ? 'checked="checked"' : '' }
+                                                        </c:forEach>
+                                                        > 풀스택 개발자
                                                 </label>
                                             </div>
                                         </td>
@@ -159,8 +183,11 @@
                                         <div class="form-check text-align">
                                             <label class="form-check-label">
                                                 <input class="form-check-input" type="checkbox" name="interest"
-                                                    value="빅데이터 엔지니어"> 빅데이터
-                                                엔지니어
+                                                    value="빅데이터 엔지니어"
+                                                    <c:forEach items="${iDtos}" var="interest">
+                                                                    ${interest.interestCt=='빅데이터 엔지니어' ? 'checked="checked"' : '' }
+                                                        </c:forEach>
+                                                        > 빅데이터 엔지니어
                                             </label>
                                         </div>
                                     </td>
@@ -168,7 +195,11 @@
                                         <div class="form-check text-align">
                                             <label class="form-check-label">
                                                 <input class="form-check-input" type="checkbox" name="interest"
-                                                    value="임베디드 개발자"> 임베디드 개발자
+                                                    value="임베디드 개발자"
+                                                    <c:forEach items="${iDtos}" var="interest">
+                                                                    ${interest.interestCt=='임베디드 개발자' ? 'checked="checked"' : '' }
+                                                        </c:forEach>
+                                                    > 임베디드 개발자
 
                                             </label>
                                         </div>
@@ -177,8 +208,11 @@
                                         <div class="form-check text-align">
                                             <label class="form-check-label">
                                                 <input class="form-check-input" type="checkbox" name="interest"
-                                                    value="devops 개발자">
-                                                devops 개발자
+                                                    value="devops 개발자"
+                                                    <c:forEach items="${iDtos}" var="interest">
+                                                                    ${interest.interestCt=='devops 개발자' ? 'checked="checked"' : '' }
+                                                        </c:forEach>
+                                                        >devops 개발자
                                             </label>
                                         </div>
                                     </td>
@@ -315,7 +349,6 @@ const checkboxes = document.querySelectorAll('input[type="checkbox"]');
                 dataType: "json"
             }).done((res) => {
             }).fail((err) => {
-                alert('서버 에러');
             });
         });
     });

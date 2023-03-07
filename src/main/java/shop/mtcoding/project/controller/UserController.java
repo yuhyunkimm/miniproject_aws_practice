@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusUserRespDto;
 import shop.mtcoding.project.dto.common.ResponseDto;
+import shop.mtcoding.project.dto.interest.InterestResp.InterestChangeRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeManageRespDto;
 import shop.mtcoding.project.dto.scrap.UserScrapResp.UserScrapRespDto;
 import shop.mtcoding.project.dto.skill.RequiredSkillReq.RequiredSkillWriteReqDto;
@@ -33,6 +34,7 @@ import shop.mtcoding.project.dto.user.UserReq.UserUpdateReqDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.ApplyRepository;
+import shop.mtcoding.project.model.InterestRepository;
 import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.ScrapRepository;
 import shop.mtcoding.project.model.SkillRepository;
@@ -71,6 +73,9 @@ public class UserController {
 
     @Autowired
     private SkillRepository skillRepository;
+
+    @Autowired
+    private InterestRepository interestRepository;
 
     @PostMapping("/user/join")
     public String join(UserJoinReqDto userJoinReqDto) {
@@ -243,6 +248,8 @@ public class UserController {
                 rList.setSkillList(insertList);
             }
         }
+        List<InterestChangeRespDto> iDtos = interestRepository.findById(principal.getUserId());
+        model.addAttribute("iDtos", iDtos);
         model.addAttribute("rDtos", rLists);
         User userPS = userRepository.findById(principal.getUserId());
         model.addAttribute("user", userPS);
