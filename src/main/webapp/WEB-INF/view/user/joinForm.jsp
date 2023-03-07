@@ -17,10 +17,11 @@
             <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
             <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
             <link rel="stylesheet" href="/css/style.css">
-            <title>회원가입 페이지</title>
+            <title>로그인 페이지</title>
         </head>
 
         <body>
+
             <div class="mx-auto width-53">
                 <div class="container all-form border border-3 p-3 mt-5" style="width: 400px;" >
                     <div class="card-header d-flex justify-content-around my-4">
@@ -134,7 +135,4 @@
                 }
 
             </script>
-
-        </body>
-
-        </html>
+ <%@ include file="../layout/footer.jsp" %>
