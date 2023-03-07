@@ -48,6 +48,7 @@ import shop.mtcoding.project.model.SkillRepository;
 import shop.mtcoding.project.model.SuggestRepository;
 import shop.mtcoding.project.service.CompService;
 import shop.mtcoding.project.util.MockSession;
+import shop.mtcoding.project.util.Sha256;
 
 @Controller
 public class CompController {
@@ -167,16 +168,16 @@ public class CompController {
 
     @GetMapping("/comp/comphome")
     public String compMyhome(Model model) {
-        // 임시 세션 
+        // 임시 세션
         MockSession.mockComp(session);
         session.setAttribute("principal", null);
-        
-        Comp compSession = (Comp)session.getAttribute("compSession");
-        if ( compSession == null ){
+
+        Comp compSession = (Comp) session.getAttribute("compSession");
+        if (compSession == null) {
             return "redirect:/comp/login";
         }
         List<JobsManageJobsRespDto> jDtos = jobsRepository.findByIdtoManageJobs(compSession.getCompId());
-        model.addAttribute("jDtos", jDtos);  
+        model.addAttribute("jDtos", jDtos);
         Comp compPS = compRepository.findByCompId(compSession.getCompId());
         model.addAttribute("comp", compPS);
         return "comp/comphome";
@@ -184,6 +185,7 @@ public class CompController {
 
     @PostMapping("/comp/passwordCheck")
     public @ResponseBody ResponseEntity<?> samePasswordCheck(@RequestBody CompPasswordReqDto compPasswordReqDto) {
+        compPasswordReqDto.setPassword(Sha256.encode(compPasswordReqDto.getPassword()));
         Comp compPS = compRepository.findByCompidAndPassword(compPasswordReqDto.getCompId(),
                 compPasswordReqDto.getPassword());
         if (compPS == null) {
@@ -194,6 +196,7 @@ public class CompController {
 
     @PutMapping("/comp/update")
     public ResponseEntity<?> updateComp(@RequestBody CompUpdateReqDto compUpdateReqDto) {
+        compUpdateReqDto.setPassword(Sha256.encode(compUpdateReqDto.getPassword()));
         Comp compSession = (Comp) session.getAttribute("compSession");
         if (compSession == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
@@ -231,7 +234,7 @@ public class CompController {
 
     @GetMapping("/comp/update")
     public String updateForm(Model model) {
-        Comp compSession = (Comp) session.getAttribute("compSession");        
+        Comp compSession = (Comp) session.getAttribute("compSession");
         if (compSession == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
@@ -242,7 +245,7 @@ public class CompController {
 
     @GetMapping("/comp/apply")
     public String apply(Model model) {
-        Comp compSession = (Comp)session.getAttribute("compSession");
+        Comp compSession = (Comp) session.getAttribute("compSession");
         List<ApllyStatusCompRespDto> aList = applyRepository.findAllByCompIdtoApply(compSession.getCompId());
         model.addAttribute("aDtos", aList);
         List<SuggestToCompRespDto> sList = suggestRepository.findAllByCompIdtoSuggest((compSession.getCompId()));
@@ -328,25 +331,25 @@ public class CompController {
             List<String> insertList = new ArrayList<>();
             for (ResumeSkillRespDto skill : skillRepository.findByResumeSkill(rDto.getResumeId())) {
                 insertList.add(skill.getSkill());
-                if ( set.contains(skill.getSkill())){
-                    count ++ ;
+                if (set.contains(skill.getSkill())) {
+                    count++;
                 }
             }
             rDto.setSkillList(insertList);
-            if ( count >= 5 ){
+            if (count >= 5) {
                 fiveMatchList.add(rDto);
-            }else if ( count >= 4 ){
+            } else if (count >= 4) {
                 fourMatchList.add(rDto);
-            }else if ( count >= 3 ){
+            } else if (count >= 3) {
                 threeMatchList.add(rDto);
-            }else if ( count >= 2 ){
+            } else if (count >= 2) {
                 twoMatchList.add(rDto);
-            }else if ( count >= 1 ){
+            } else if (count >= 1) {
                 oneMatchList.add(rDto);
             }
             count = 0;
-        }        
-        
+        }
+
         List<ResumeMatchRespDto> resultList = new ArrayList<>();
         resultList.addAll(fiveMatchList);
         resultList.addAll(fourMatchList);
