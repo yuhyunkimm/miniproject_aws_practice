@@ -37,7 +37,7 @@
                             </li>
 
                             <li class="nav-item mx-3 fs-5">
-                                <a class="nav-link text-dark" href="/jobs/interest">관심기업</a>
+                                <a class="nav-link text-dark" href="/user/jobs/interest">관심기업</a>
                             </li>
                         </ul>
                     </div>

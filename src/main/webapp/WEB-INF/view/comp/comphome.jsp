@@ -65,7 +65,7 @@
                                 <c:forEach items="${jDtos}" varStatus="status" var="jDto">
                                     <tbody>
                                     <tr align=center>
-                                        <th scope="row">${status.count}</th>
+                                        <th >${status.count}</th>
                                         <td colspan=2>${jDto.title}</td>
                                         <td>${jDto.position}</td>
                                         <td>${jDto.career}</td>
@@ -89,15 +89,15 @@
                                         <th scope="col" style="width:8%">이름</th>
                                         <th scope="col" style="width:10%">경력</th>
                                         <th scope="col" style="width:10%">지역</th>
-                                        <th scope="col" style="width:10%">학력</th>
-                                        <th scope="col" style="width:38%">기술</th>
+                                        <th scope="col" style="width:15%">학력</th>
+                                        <th scope="col" style="width:35%">기술</th>
                                         <th scope="col" colspan=2 style="width:18%">상세보기</th>
                                     </tr>
                                 </thead>
-                                <c:forEach items="${rDtos}" var="rDto">
+                                <c:forEach items="${rDtos}" var="rDto" varStatus="status">
                                     <tbody>
                                         <tr align=center>
-                                            <th scope="row">1</th>
+                                            <th >${status.count}</th>
                                             <td>
                                                 <div>
                                                     ${rDto.name}

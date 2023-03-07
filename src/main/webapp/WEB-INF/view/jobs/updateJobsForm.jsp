@@ -455,7 +455,7 @@
         if (resumeId > 0) {
             $.ajax({
                 type: "put",
-                url: "/jobs/update",
+                url: "/comp/jobs/update",
                 data: JSON.stringify(data),
                 headers: {
                     "content-type": "application/json; charset=utf-8"
@@ -470,7 +470,7 @@
         } else {
             $.ajax({
                 type: "post",
-                url: "/jobs/write",
+                url: "/comp/jobs/write",
                 data: JSON.stringify(data),
                 headers: {
                     "content-type": "application/json; charset=utf-8"
@@ -533,7 +533,7 @@
         if (jobsId > 0) {
             $.ajax({
                 type: "put",
-                url: "/jobs/update",
+                url: "/comp/jobs/update",
                 data: JSON.stringify(data),
                 headers: {
                     "content-type": "application/json; charset=utf-8"
@@ -549,7 +549,7 @@
         } else {
             $.ajax({
                 type: "post",
-                url: "/jobs/write",
+                url: "/comp/jobs/write",
                 data: JSON.stringify(data),
                 headers: {
                     "content-type": "application/json; charset=utf-8"

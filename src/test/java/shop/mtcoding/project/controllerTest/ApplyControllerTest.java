@@ -83,7 +83,7 @@ public class ApplyControllerTest {
         String json = om.writeValueAsString(aDto);
     
         // when
-        ResultActions rs = mvc.perform(post("/apply/resume")
+        ResultActions rs = mvc.perform(post("/user/apply/resume")
                               .content(json).contentType(MediaType.APPLICATION_JSON_VALUE).session(mockSession));
     
         // then
@@ -103,7 +103,7 @@ public class ApplyControllerTest {
         String requestBody = om.writeValueAsString(aDto);
     
         // when
-        ResultActions rs = mvc.perform(put("/apply/update")
+        ResultActions rs = mvc.perform(put("/comp/apply/update")
                                                 .content(requestBody)
                                                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                                                 .session(mockSession));

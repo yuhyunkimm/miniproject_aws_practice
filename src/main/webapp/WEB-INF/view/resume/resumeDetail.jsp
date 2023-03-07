@@ -242,7 +242,7 @@
         function requestJobs() {
             $.ajax({
                 type: "get",
-                url: "/request/jobs",
+                url: "/comp/request/jobs",
                 dataType: "json"
             }).done((res) => {
                 renderRes(res.data);
@@ -322,7 +322,7 @@
             }
             $.ajax({
                 type: "post",
-                url: "/suggest/jobs",
+                url: "/comp/suggest/jobs",
                 data: JSON.stringify(data),
                 headers: {
                     "content-type": "application/json; charset=utf-8"
@@ -415,7 +415,7 @@
                 }
                 $.ajax({
                     type: "put",
-                    url: "/apply/update",
+                    url: "/comp/apply/update",
                     data: JSON.stringify(data),
                     headers:{
                         "content-type":"application/json; charset=utf-8"
@@ -439,7 +439,7 @@
                 }
                 $.ajax({
                     type: "put",
-                    url: "/apply/update",
+                    url: "/comp/apply/update",
                     data: JSON.stringify(data),
                     headers:{
                         "content-type":"application/json; charset=utf-8"

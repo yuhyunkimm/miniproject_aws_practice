@@ -378,7 +378,7 @@ const checkboxes = document.querySelectorAll('input[type="checkbox"]');
             };
             $.ajax({
                 type: "put",
-                url: "/interest/change",
+                url: "/user/interest/change",
                 data: JSON.stringify(data),
                 headers: {
                     "content-type": "application/json; charset=utf-8"

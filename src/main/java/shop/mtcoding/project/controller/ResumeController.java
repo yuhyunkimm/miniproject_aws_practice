@@ -190,6 +190,9 @@ public class ResumeController {
 
     @GetMapping("/resume/{id}")
     public String resumeDetail(@PathVariable Integer id, Model model) {
+        if( ObjectUtils.isEmpty(resumeRepository.findByResumeId(id))){
+            throw new CustomException("존재하지 않는 이력서 입니다.");
+        }
         ResumeDetailRespDto rDto = resumeRepository.findDetailPublicResumebyById(id);
         List<String> insertList = new ArrayList<>();
         for (ResumeSkillRespDto skill : skillRepository.findByResumeSkill(rDto.getResumeId())) {
@@ -207,7 +210,7 @@ public class ResumeController {
         return "/resume/resumeDetail";
     }
 
-    @GetMapping("/resume/apply/{id}")
+    @GetMapping("/comp/resume/apply/{id}")
     public String applyResumeDetail(@PathVariable Integer id, Model model) {
         if (id == null) {
             throw new CustomException("지원한 아이디가 필요합니다.");
