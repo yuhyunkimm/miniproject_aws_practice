@@ -18,7 +18,6 @@ import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.SkillRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.util.DateUtil;
-import shop.mtcoding.project.util.MockSession;
 
 @Controller
 public class MainController {
@@ -64,6 +63,17 @@ public class MainController {
                     insertList.add(skill.getSkill());
                 }
                 jDto.setSkillList(insertList);
+            }
+            List<JobsMainRecommendRespDto> rDtos2 = jobsRepository.findAlltoMainRecommendRandom(principal.getUserId());
+            for (JobsMainRecommendRespDto jDto : rDtos2) {
+                long dDay = DateUtil.dDay(jDto.getEndDate());
+                jDto.setLeftTime(dDay);
+                List<String> insertList = new ArrayList<>();
+                for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto.getJobsId())) {
+                    insertList.add(skill.getSkill());
+                }
+                jDto.setSkillList(insertList);
+                rDtos.add(jDto);
             }
             model.addAttribute("rDtos", rDtos);
 

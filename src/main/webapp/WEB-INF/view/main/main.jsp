@@ -228,4 +228,4 @@
         $('.scrap-'+ jobsId +'-render').append(el);
     }
 </script>
-<%@ include file="../layout/footer.jsp" %>  
+<%@ include file="../layout/footer.jsp" %>  sk
