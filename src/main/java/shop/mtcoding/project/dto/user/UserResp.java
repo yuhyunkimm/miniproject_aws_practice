@@ -12,6 +12,7 @@ public class UserResp {
     @Setter
     public static class UserDataRespDto {
         private Integer userId;
+        private Integer resumeId;
         private String email;
         private String password;
         private String name;
