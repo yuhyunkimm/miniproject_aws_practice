@@ -25,7 +25,7 @@
                             onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
                             <div class="card">
                                 <div class="row g-0">
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 ps-2">
                                         <img src="${rDto.photo}" class="img-fluid rounded-start"
                                             style="width: 100%; height: 186px;" alt="...">
                                     </div>

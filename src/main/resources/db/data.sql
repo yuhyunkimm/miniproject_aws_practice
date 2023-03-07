@@ -1,9 +1,9 @@
 insert into user_tb (email, password, name, birth, tel, photo, address, created_at) 
-values ('ssar@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', 'ssar', '1994-12-14', '010-1234-1234', '/images/default_profile.png', '서울', now());
+values ('ssar@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', 'ssar', '1994-12-14', '010-1234-1234', '/images/ham.png', '서울', now());
 insert into user_tb (email, password, name, birth, tel, photo, address, created_at) 
-values ('ssar1@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', 'ssar1', '1994-02-22', '010-1234-1234', '/images/default_profile.png', '부산', now());
+values ('ssar1@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', 'ssar1', '1994-02-22', '010-1234-1234', '/images/boyoung.jpg', '부산', now());
 insert into user_tb (email, password, name, birth, tel, photo, address, created_at) 
-values ('ssar2@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', 'ssar2', '1994-04-21', '010-1234-1234', '/images/default_profile.png', '서울', now());
+values ('ssar2@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', 'ssar2', '1994-04-21', '010-1234-1234', '/images/park.jpg', '서울', now());
 insert into user_tb (email, password, name, birth, tel, photo, address, created_at) 
 values ('ssar3@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', 'ssar3', '1994-03-17', '010-1234-1234', '/images/default_profile.png', '인천', now());
 insert into user_tb (email, password, name, birth, tel, photo, address, created_at) 
