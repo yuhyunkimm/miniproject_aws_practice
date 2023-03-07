@@ -39,4 +39,13 @@ public class ResumeReq {
         private Timestamp createdAt;
         private List<String> skillList;
     }
+
+    @Getter
+    @Setter
+    @ToString
+    public static class ResumeCheckboxReqDto{
+        private List<String> address;
+        private List<String> skillList;
+        private String career; 
+    }
 }

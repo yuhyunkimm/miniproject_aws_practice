@@ -46,6 +46,35 @@
             where r.state = 1
     </select>
 
+    <select id="findResumeByCheckBox" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeSearchRespDto">
+        SELECT  r.resume_id, ROW_NUMBER()OVER(partition by u.user_id order by u.user_id ) num , 
+            u.user_id, u.photo, u.name, u.birth, r.education, u.address,r.title, r.career, r.state
+            FROM RESUME_TB r
+            join user_tb u
+            on r.user_id = u.user_id
+            join resume_skill_tb s
+            on r.resume_id = s.resume_id
+            where r.state = 1
+            and
+            <if test="resumeDto.address != null and resumeDto.address.size() > 0">
+                address in 
+                <foreach collection="resumeDto.address" item="address" open="(" close=")" separator=",">
+                  #{address} 
+                </foreach>
+                and
+              </if>
+        <if test="resumeDto.skillList != null and resumeDto.skillList.size() > 0">
+          s.skill in
+          <foreach collection="resumeDto.skillList" item="skill" open="(" close=")" separator=",">
+            #{skill} 
+          </foreach>
+          and
+        </if>
+        r.career regexp #{resumeDto.career} 
+        )
+        group by r.resume_id
+    </select>
+
     <select id="findMatchResumeByCompId" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeMatchRespDto">
         select r.resume_id, u.name, u.photo, r.title, r.education, r.career, u.address, r.state from resume_tb r join user_tb u
             on r.user_id = u.user_id

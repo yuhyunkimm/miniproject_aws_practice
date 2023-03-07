@@ -20,11 +20,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import shop.mtcoding.project.dto.apply.ApplyResp.ApplytoCompRespDto;
 import shop.mtcoding.project.dto.common.ResponseDto;
+import shop.mtcoding.project.dto.resume.ResumeReq.ResumeCheckboxReqDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeUpdateReqDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeDetailRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeManageRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeSaveRespDto;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeSearchRespDto;
 import shop.mtcoding.project.dto.skill.ResumeSkillResp.ResumeSkillRespDto;
 import shop.mtcoding.project.dto.user.UserResp.UserDataRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
@@ -208,6 +210,23 @@ public class ResumeController {
         }
         model.addAttribute("rDto", rDto);
         return "/resume/resumeDetail";
+    }
+
+    @GetMapping("/comp/resume/search")
+    public ResponseEntity<?> searchCheckbox(ResumeCheckboxReqDto rDto, Model model) {
+        System.out.println("테스트 : "+ rDto.toString());
+        if (rDto.getCareer() == null || rDto.getCareer().isEmpty()) {
+            rDto.setCareer("");
+        }
+        List<ResumeSearchRespDto> rDtos = resumeRepository.findResumeByCheckBox(rDto);
+        for (ResumeSearchRespDto rDto1 : rDtos) {
+            List<String> insertList = new ArrayList<>();
+            for (ResumeSkillRespDto skill : skillRepository.findByResumeSkill(rDto1.getResumeId())) {
+                insertList.add(skill.getSkill());
+            }
+            rDto1.setSkillList(insertList);
+        }
+        return new ResponseEntity<>(new ResponseDto<>(1, "검색 성공", null), HttpStatus.OK);
     }
 
     @GetMapping("/comp/resume/apply/{id}")

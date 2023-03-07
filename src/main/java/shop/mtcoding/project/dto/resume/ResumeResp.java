@@ -124,4 +124,20 @@ public class ResumeResp {
         private Integer compScrapId;
     }
 
+    @Getter
+    @Setter
+    @ToString
+    public static class ResumeSearchRespDto {
+        private Integer resumeId;
+        private Integer userId;
+        private String photo;
+        private String name;
+        private String title;
+        private String address;
+        private String career;
+        private Integer state;
+        private List<String> skillList;
+    }
+
+
 }
