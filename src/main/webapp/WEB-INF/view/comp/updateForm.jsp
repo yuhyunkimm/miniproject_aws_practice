@@ -20,18 +20,18 @@
 
                     <div class="form-group mb-2">
                         <input type="text" name="compName" class="form-control" placeholder="Enter companyName"
-                            id="compName" value="${compUpdateReqDto.compName}">
+                            id="compName" value="${comp.compName}">
                     </div>
 
                     <div class="form-group mb-2">
                         <input type="text" name="representativeName" class="form-control"
                             placeholder="Enter representativeName" id="representativeName"
-                            value="${compUpdateReqDto.representativeName}">
+                            value="${comp.representativeName}">
                     </div>
 
                     <div class="form-group mb-4">
                         <input type="text" name="businessNumber" class="form-control" placeholder="Enter businessNumber"
-                            id="businessNumber" value="${compUpdateReqDto.businessNumber}">
+                            id="businessNumber" value="${comp.businessNumber}">
                     </div>
 
 
