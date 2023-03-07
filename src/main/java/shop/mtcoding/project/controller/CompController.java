@@ -47,6 +47,7 @@ import shop.mtcoding.project.model.ScrapRepository;
 import shop.mtcoding.project.model.SkillRepository;
 import shop.mtcoding.project.model.SuggestRepository;
 import shop.mtcoding.project.service.CompService;
+import shop.mtcoding.project.util.DateUtil;
 import shop.mtcoding.project.util.MockSession;
 
 @Controller
@@ -179,6 +180,62 @@ public class CompController {
         model.addAttribute("jDtos", jDtos);  
         Comp compPS = compRepository.findByCompId(compSession.getCompId());
         model.addAttribute("comp", compPS);
+        
+
+        Set<String> set = new HashSet<>();
+        List<JobsIdRespDto> jobsIdList = jobsRepository.findJobsIdByCompId(compSession.getCompId());
+        for (JobsIdRespDto jobsId : jobsIdList) {
+            List<RequiredSkillWriteReqDto> rSkillList = skillRepository.findByJobsSkill(jobsId.getJobsId());
+            for (RequiredSkillWriteReqDto skill : rSkillList) {
+                set.add(skill.getSkill());
+            }
+        }
+
+        RequiredSkillByCompRespDto rSkillList = new RequiredSkillByCompRespDto();
+        List<String> skillList = new ArrayList<>(set);
+        rSkillList.setSkillList(skillList);
+
+        model.addAttribute("sDto", rSkillList);
+
+        List<ResumeMatchRespDto> fiveMatchList = new ArrayList<>();
+        List<ResumeMatchRespDto> fourMatchList = new ArrayList<>();
+        List<ResumeMatchRespDto> threeMatchList = new ArrayList<>();
+        List<ResumeMatchRespDto> twoMatchList = new ArrayList<>();
+        List<ResumeMatchRespDto> oneMatchList = new ArrayList<>();
+
+        List<ResumeMatchRespDto> rDtos = resumeRepository.findMatchResumeByCompId(compSession.getCompId());
+        for (ResumeMatchRespDto rDto : rDtos) {
+            int count = 0;
+            List<String> insertList = new ArrayList<>();
+            for (ResumeSkillRespDto skill : skillRepository.findByResumeSkill(rDto.getResumeId())) {
+                insertList.add(skill.getSkill());
+                if ( set.contains(skill.getSkill())){
+                    count ++ ;
+                }
+            }
+            rDto.setSkillList(insertList);
+            if ( count >= 5 ){
+                fiveMatchList.add(rDto);
+            }else if ( count >= 4 ){
+                fourMatchList.add(rDto);
+            }else if ( count >= 3 ){
+                threeMatchList.add(rDto);
+            }else if ( count >= 2 ){
+                twoMatchList.add(rDto);
+            }else if ( count >= 1 ){
+                oneMatchList.add(rDto);
+            }
+            count = 0;
+        }        
+        
+        List<ResumeMatchRespDto> resultList = new ArrayList<>();
+        resultList.addAll(fiveMatchList);
+        resultList.addAll(fourMatchList);
+        resultList.addAll(threeMatchList);
+        resultList.addAll(twoMatchList);
+        resultList.addAll(oneMatchList);
+        model.addAttribute("rDtos", resultList);
+        
         return "comp/comphome";
     }
 
@@ -256,6 +313,15 @@ public class CompController {
     public String manageJobs(Model model) {
         Comp compSession = (Comp) session.getAttribute("compSession");
         List<JobsManageJobsRespDto> jDtos = jobsRepository.findByIdtoManageJobs(compSession.getCompId());
+        for (JobsManageJobsRespDto jDto : jDtos) {
+            long dDay = DateUtil.dDay(jDto.getEndDate());
+            jDto.setLeftTime(dDay);
+            List<String> insertList = new ArrayList<>();
+            for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto.getJobsId())) {
+                insertList.add(skill.getSkill());
+            }
+            jDto.setSkillList(insertList);
+        }
         model.addAttribute("jDtos", jDtos);
         Comp compPS = compRepository.findByCompId(compSession.getCompId());
         model.addAttribute("comp", compPS);
@@ -300,7 +366,6 @@ public class CompController {
     @GetMapping("/comp/talent")
     public String talent(Model model) {
         Comp compSession = (Comp) session.getAttribute("compSession");
-
         Set<String> set = new HashSet<>();
         List<JobsIdRespDto> jobsIdList = jobsRepository.findJobsIdByCompId(compSession.getCompId());
         for (JobsIdRespDto jobsId : jobsIdList) {

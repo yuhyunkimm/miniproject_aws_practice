@@ -148,6 +148,9 @@ public class JobsResp {
         private String title;
         private String position;
         private String career;
+        private Timestamp endDate;
+        private List<String> skillList;
+        private Long leftTime;
     }
 
     @Getter

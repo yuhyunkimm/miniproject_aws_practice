@@ -64,15 +64,18 @@
                         <div class="m-2 me-5" style="float: left;">
                             <h6 class="card-subtitle mb-2 text-muted">${sDto.address}</h6>
                         </div>
-                        <div>
-                            <c:forEach items="${sDto.skillList}" var="skill" begin="0" end="3">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <c:forEach items="${sDto.skillList}" var="skill" begin="0" end="3">
                                 <span class="badge  skill-color">${skill}</span>
                             </c:forEach>
+                            </div>
+                            <div >
+                                <button type="button" class="btn btn-success btn-sm"
+                                    onclick="window.open('/resume/${sDto.resumeId}', '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">상세보기</button>
+                            </div>
                         </div>
-                        <div style="float: right;" pt-2>
-                            <button type="button" class="btn btn-success btn-sm"
-                                onclick="window.open('/resume/${sDto.resumeId}', '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">상세보기</button>
-                        </div>
+                        
                     </div>
                 </div>
                 </c:forEach>
