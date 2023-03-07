@@ -63,7 +63,8 @@
                             <div class="card-body mt-3">
                                 <table class="table" style="width:100%">
                                     <div class="row">
-                                        <c:forEach items="${rDtos}" var="rDto">
+                                        <c:forEach items="${rDtos}" var="rDto" begin="0"
+                                                                end="1">
                                             <div class="col-6">
                                                 <a href="/resume/${rDto.resumeId}" style="width: 240px; height: 120px;"
                                                     onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
