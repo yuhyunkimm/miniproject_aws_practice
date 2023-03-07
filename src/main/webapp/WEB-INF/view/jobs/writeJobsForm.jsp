@@ -27,8 +27,8 @@
                         </div>
                     </div>
                     <div class="row justify-content-between my-border ">
-                        <div class="my-border col-3">
-                            <img class="" src="${cDto.photo}" alt="" srcset="" style="" id="photo">
+                        <div class="my-border col-3 mt-2">
+                            <img class="" src="${cDto.photo}" alt="" srcset="" style="height: 5em; width: 150px; padding: 5px;" id="photo">
                         </div>
 
                         <div class="col-2 mt-3 pt-3">
