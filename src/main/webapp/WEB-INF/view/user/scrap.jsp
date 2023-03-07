@@ -48,12 +48,21 @@
                         </div>
                     </div>
                     <div class="col-9 my-4 pe-5">
-                        <h6><b>전체  <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">${usDtos.size()}</div></b></h6>
+                        <h6><b>전체 <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">
+                                    ${usDtos.size()}</div></b></h6>
                         <c:forEach items="${usDtos}" var="usDto">
                             <div class="card mb-4">
                                 <div class="card-body">
-                                    <h5 class="card-title" style="text-align: left;">${usDto.title} D-${usDto.leftTime}
+                                    <!-- <h5 class="card-title " style="text-align: left;"> -->
+                                    <h5 class="card-title " style="text-align: left;">
+                                        <div class="d-flex justify-content-between">
+                                            ${usDto.title}
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            D-${usDto.leftTime}
+                                        </div>
                                     </h5>
+
                                     <div class="mt-4">
                                         <div class="me-2" style="float: left;">
                                             <h6 class="card-subtitle  text-muted">${usDto.compName}</h6>
@@ -69,13 +78,13 @@
                                                 <span class="badge  skill-color">${skill}</span>
                                             </div>
                                         </c:forEach>
-    
+
                                         <div style="float: right;" pt-2>
                                             <button type="button" class="btn btn-success btn-sm"
-                                            onclick="window.open(`/jobs/${usDto.userScrapId}`, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">상세보기</button>
-                                        </div>     
+                                                onclick="window.open(`/jobs/${usDto.userScrapId}`, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">상세보기</button>
+                                        </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </c:forEach>
