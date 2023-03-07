@@ -94,10 +94,9 @@
                 </div>
                 <div class="mb-3 mt-3">
                     <h6><b>관심카테고리(직무별)
-                            <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">
-                                ${usDtos.size()}</div>
+
                         </b></h6>
-                    <div class="card" style="height: 216px; width: 725px;">
+                    <div class="card" >
                         <div class="card-body mt-3">
                             <table class="table" style="-ms-flex-item-align: center; width:100%">
                                 <tbody>
@@ -223,41 +222,75 @@
                         </div>
                     </div>
                 </div>
-                <div class="my-4 pe-5">
-                    <h6><b>추천 공고 <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">
-                                ${usDtos.size()}</div></b></h6>
+                <div class="my-4">
+                    <h6><b>추천 공고</b></h6>
                     <div class="card mb-2">
-                        <div class="card-body mt-3">
-                            <table class="table" style="width:100%">
-                                <div class="row">
-                                    <div class="card col-4" style="margin: 0; text-align: center; width: 16rem;">
-                                        <img src="/images/Samsung.png" class="card-img-top">
-                                        <div class="card-body">
-                                            <h5 class="card-title">벡엔드 지원자 입니다</h5>
-                                            <p class="card-text">Some quick example text to build on the card
-                                                title
-                                            </p>
-                                            <button style="display: inline-block;" type="button" class="btn btn-success"
-                                                onclick="location.href='/user/resume/write'">이력서
-                                                작성</button>
-                                        </div>
-                                    </div>
-
-                                    <div class="card col-4" style="margin: 0; text-align: center; width: 16rem;">
-                                        <img src="/images/Samsung.png" class="card-img-top">
-                                        <div class="card-body">
-                                            <h5 class="card-title">벡엔드 지원자 입니다</h5>
-                                            <p class="card-text">Some quick example text to build on the card
-                                                title
-                                            </p>
-                                            <button style="display: inline-block;" type="button" class="btn btn-success"
-                                                onclick="location.href='/user/resume/write'">이력서 작성</button>
+                        <div class="d-flex flex-wrap  info-card m-3">
+                            <c:forEach items="${jDtos}" var="jDto" begin="1" end="3">
+                                <div class="col-4 px-2 py-2 remove-card">
+                                    <a href="/jobs/${jDto.jobsId}"
+                                        onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                        <div class="card main-card">
+                                            <div class="pt-4 px-auto" style="text-align: center;">
+                                                <img src='${jDto.photo}' alt="" srcset="" style="height: 4em; width: 200px;">
+                                            </div>
+                                            <div class="card-body">
+                                                <div>
+                                                    ${jDto.compName}
+                                                </div>
+                                                <div class="fs-5">
+                                                    ${jDto.title}
+                                                </div>
+                                                <div>
+                                                    <c:forEach items="${jDto.skillList}" var="skill" begin="1" end="3">
+                                                        <span class="badge  skill-color">${skill}</span>
+                                                    </c:forEach>
+                                                </div>
+                                                <div>
+                                                    ${jDto.career} ${jDto.education} ${jDto.address}
+                                                </div>
+            
+                                    </a>
+                                    <div class="d-flex justify-content-between">
+                                        <c:choose>
+                                            <c:when test="${principal != null}">
+                                                <div class="scrap-${jDto.jobsId}-render">
+                                                    <div class="scrap-${jDto.jobsId}-remove">
+                                                        <c:choose>
+                                                            <c:when test="${jDto.userScrapId > 0}">
+                                                                <i id="scrap-${jDto.jobsId}"
+                                                                    class="fa-solid on-Clicked fa-star my-cursor"
+                                                                    onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
+                                                            </c:when>
+            
+                                                            <c:otherwise>
+                                                                <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star my-cursor"
+                                                                    onclick="scrap(`${jDto.jobsId}`,`${principal.userId}`,`${jDto.userScrapId}`)"></i>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </div>
+                                                </div>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <div>
+                                                    <a href="/user/login">
+                                                        <i id="scrap-${jDto.jobsId}" class="fa-regular fa-star"></i>
+                                                    </a>
+                                                </div>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <div>
+                                            D-${jDto.leftTime}
                                         </div>
                                     </div>
                                 </div>
-                            </table>
                         </div>
+            
                     </div>
+                    </c:forEach>
+                    </div>
+                    </div>
+
                 </div>
                 <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -287,7 +320,11 @@
                     </div>
                 </div>
             </div>
-            <input type="hidden" id="pricipalId" value="${principal.userId}">
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="pricipalId" value="${principal.userId}">
 <script>
 function checkPS(uId) {
                     passwordCheckBtn(uId);

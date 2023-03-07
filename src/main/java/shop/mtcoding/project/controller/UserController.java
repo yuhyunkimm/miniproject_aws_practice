@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusUserRespDto;
 import shop.mtcoding.project.dto.common.ResponseDto;
 import shop.mtcoding.project.dto.interest.InterestResp.InterestChangeRespDto;
+import shop.mtcoding.project.dto.jobs.JobsResp.JobsMainRecommendRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeManageRespDto;
 import shop.mtcoding.project.dto.scrap.UserScrapResp.UserScrapRespDto;
 import shop.mtcoding.project.dto.skill.RequiredSkillReq.RequiredSkillWriteReqDto;
@@ -35,6 +36,7 @@ import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.ApplyRepository;
 import shop.mtcoding.project.model.InterestRepository;
+import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.ScrapRepository;
 import shop.mtcoding.project.model.SkillRepository;
@@ -76,6 +78,9 @@ public class UserController {
 
     @Autowired
     private InterestRepository interestRepository;
+
+    @Autowired
+    private JobsRepository jobsRepository;
 
     @PostMapping("/user/join")
     public String join(UserJoinReqDto userJoinReqDto) {
@@ -253,7 +258,30 @@ public class UserController {
         model.addAttribute("rDtos", rLists);
         User userPS = userRepository.findById(principal.getUserId());
         model.addAttribute("user", userPS);
-        // System.out.println("테스트 : " + userPS.getPhoto());
+        
+            List<JobsMainRecommendRespDto> rDtos = jobsRepository.findAlltoMainRecommend(principal.getUserId());
+            for (JobsMainRecommendRespDto jDto : rDtos) {
+                long dDay = DateUtil.dDay(jDto.getEndDate());
+                jDto.setLeftTime(dDay);
+                List<String> insertList = new ArrayList<>();
+                for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto.getJobsId())) {
+                    insertList.add(skill.getSkill());
+                }
+                jDto.setSkillList(insertList);
+            }
+            List<JobsMainRecommendRespDto> rDtos2 = jobsRepository.findAlltoMainRecommendRandom(principal.getUserId());
+            for (JobsMainRecommendRespDto jDto : rDtos2) {
+                long dDay = DateUtil.dDay(jDto.getEndDate());
+                jDto.setLeftTime(dDay);
+                List<String> insertList = new ArrayList<>();
+                for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto.getJobsId())) {
+                    insertList.add(skill.getSkill());
+                }
+                jDto.setSkillList(insertList);
+                rDtos.add(jDto);
+            }
+        model.addAttribute("jDtos", rDtos);
+
         return "user/myhome";
     }
 
