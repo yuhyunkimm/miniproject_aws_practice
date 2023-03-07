@@ -372,9 +372,9 @@
             <div class="col-3 px-2 py-2 remove-card">
                 <a href="/jobs/${jDto.jobsId}"
                     onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
-                    <div class="card">
-                        <div>
-                            <img src='${jDto.photo}' alt="" srcset="">
+                    <div class="card main-card">
+                        <div class="pt-4 px-auto" style="text-align: center;">
+                            <img src='${jDto.photo}' alt="" srcset="" style="height: 4em; width: 150px; padding: 3px;">
                         </div>
                         <div class="card-body">
                             <div>
@@ -384,7 +384,7 @@
                                 ${jDto.title}
                             </div>
                             <div>
-                                <c:forEach items="${jDto.skillList}" var="skill">
+                                <c:forEach items="${jDto.skillList}" var="skill" begin="1" end="2">
                                     <span class="badge  skill-color">${skill}</span>
                                 </c:forEach>
                             </div>

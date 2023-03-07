@@ -319,7 +319,7 @@
                 <c:forEach items="${rDtos}" var="rDto">
                     <div class="col mb-3">
 
-                        <a href="/resume/${rDto.resumeId}">
+                        <a href="/resume/${rDto.resumeId}" onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
                             <div class="card">
                                 <div class="row g-0">
                                     <div class="col-md-4">
@@ -353,8 +353,6 @@
                     </div>
 
                 </c:forEach>
-
-
             </div>
 
 
