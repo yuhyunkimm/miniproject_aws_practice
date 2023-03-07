@@ -8,12 +8,16 @@
         select * from interest_tb
     </select>
 
-    <select id="findById" resultType="shop.mtcoding.project.model.User">
-
+    <select id="findById" resultType="shop.mtcoding.project.dto.interest.InterestResp$InterestChangeRespDto">
+      select interest_ct from interest_tb where user_id = #{userId}
     </select>
 
     <insert id="insert">
-
+      insert into interest_tb ( user_id , interest_ct )
+        values
+        <foreach collection="iDto.interestList" item="interest" separator=",">
+          (#{iDto.userId}, #{interest})
+        </foreach>
     </insert>
 
     <update id="updateById">
@@ -21,6 +25,6 @@
     </update>
 
     <delete id="deleteById">
-
+      delete from interest_tb where user_id = #{userId}
     </delete>
 </mapper>
