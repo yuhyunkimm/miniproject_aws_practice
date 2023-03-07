@@ -27,6 +27,7 @@ public class InterestController {
     
     @PutMapping("/interest/change")
     public ResponseEntity<?> changeInterest(@RequestBody InterestChangeReqDto iDto){
+        // System.out.println("테스트 : "+ iDto);
         if(ObjectUtils.isEmpty(iDto.getUserId())){
             throw new CustomApiException("유저아이디가 필요합니다.");
         }

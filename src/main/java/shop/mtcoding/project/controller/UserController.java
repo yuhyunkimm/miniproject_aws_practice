@@ -21,8 +21,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import shop.mtcoding.project.dto.apply.ApplyResp.ApllyStatusUserRespDto;
 import shop.mtcoding.project.dto.common.ResponseDto;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeManageRespDto;
 import shop.mtcoding.project.dto.scrap.UserScrapResp.UserScrapRespDto;
 import shop.mtcoding.project.dto.skill.RequiredSkillReq.RequiredSkillWriteReqDto;
+import shop.mtcoding.project.dto.skill.ResumeSkillResp.ResumeSkillRespDto;
 import shop.mtcoding.project.dto.suggest.SuggestResp.SuggestToUserRespDto;
 import shop.mtcoding.project.dto.user.UserReq.UserJoinReqDto;
 import shop.mtcoding.project.dto.user.UserReq.UserLoginReqDto;
@@ -31,6 +33,7 @@ import shop.mtcoding.project.dto.user.UserReq.UserUpdateReqDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
 import shop.mtcoding.project.model.ApplyRepository;
+import shop.mtcoding.project.model.ResumeRepository;
 import shop.mtcoding.project.model.ScrapRepository;
 import shop.mtcoding.project.model.SkillRepository;
 import shop.mtcoding.project.model.SuggestRepository;
@@ -62,6 +65,9 @@ public class UserController {
 
     @Autowired
     private ScrapRepository scrapRepository;
+
+    @Autowired
+    private ResumeRepository resumeRepository;
 
     @Autowired
     private SkillRepository skillRepository;
@@ -229,6 +235,15 @@ public class UserController {
         if (principal == null) {
             return "redirect:/user/login";
         }
+        List<ResumeManageRespDto> rLists = resumeRepository.findAllByUserId(principal.getUserId());
+        for (ResumeManageRespDto rList : rLists) {
+            List<String> insertList = new ArrayList<>();
+            for (ResumeSkillRespDto skill : skillRepository.findByResumeSkill(rList.getResumeId())) {
+                insertList.add(skill.getSkill());
+                rList.setSkillList(insertList);
+            }
+        }
+        model.addAttribute("rDtos", rLists);
         User userPS = userRepository.findById(principal.getUserId());
         model.addAttribute("user", userPS);
         // System.out.println("테스트 : " + userPS.getPhoto());
