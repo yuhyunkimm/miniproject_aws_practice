@@ -5,7 +5,7 @@
             <div class="container">
                 <form>
                     <div class="row">
-                        <div class="col-10">
+                        <div class="col-9">
                             <br>
                             이력서 수정<br>
                             <hr />
@@ -310,8 +310,8 @@
                             </div>
                         </div>
 
-                        <div class="col-2">
-                            <div id="rButton">
+                        <div class="col-3">
+                            <div class="rButton" style="width: 10em;">
                                 <br>
                                 <div class="row p-1">
                                     <button type="button"

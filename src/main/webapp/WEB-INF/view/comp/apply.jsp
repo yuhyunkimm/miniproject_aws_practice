@@ -141,8 +141,8 @@
                                                 </c:choose>
 
                                                 <ul class="dropdown-menu">
-                                                  <li><a class="dropdown-item" onclick="accept(`${compSession.compId}`,`${aDto.applyId}`)">수락</a></li>
-                                                  <li><a class="dropdown-item" onclick="deny(`${compSession.compId}`,`${aDto.applyId}`)">거절</a></li>
+                                                  <li><a class="dropdown-item" onclick="accept(`${compSession.compId}`,`${aDto.applyId}`)">합격</a></li>
+                                                  <li><a class="dropdown-item" onclick="deny(`${compSession.compId}`,`${aDto.applyId}`)">불합격</a></li>
                                                 </ul>
                                             </div>
                                         </div>

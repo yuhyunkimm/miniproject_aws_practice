@@ -220,6 +220,8 @@ public class UserController {
         }
         userUpdateReqDto.setPassword(Sha256.encode(userUpdateReqDto.getPassword()));
         userService.개인정보수정(userUpdateReqDto, principal.getUserId());
+        principal = userRepository.findById(principal.getUserId());
+        session.setAttribute("principal", principal);
         return new ResponseEntity<>(new ResponseDto<>(1, "수정완료", null), HttpStatus.OK);
 
     }
@@ -261,7 +263,6 @@ public class UserController {
                     jDto.setUserScrapId(scrapRepository.findScrapIdByUserIdAndJobsId(principal.getUserId(), jDto.getJobsId()).getUserScrapId()); 
                 } catch (Exception e) {
                 }
-                System.out.println("테스트 : "+ jDto.getUserScrapId());
                 long dDay = DateUtil.dDay(jDto.getEndDate());
                 jDto.setLeftTime(dDay);
                 List<String> insertList = new ArrayList<>();
@@ -358,7 +359,6 @@ public class UserController {
 
         User userPS = userService.프로필사진수정(photo, principal.getUserId());
         session.setAttribute("principal", userPS);
-        // System.out.println("테스트 : "+userPS.getProfile());
         return new ResponseEntity<>(new ResponseDto<>(1, "프로필 수정 성공", null), HttpStatus.OK);
     }
 }
