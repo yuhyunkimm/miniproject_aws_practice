@@ -198,7 +198,6 @@ public class UserController {
 
     @PutMapping("/user/update")
     public ResponseEntity<?> updateUser(@RequestBody UserUpdateReqDto userUpdateReqDto) {
-        userUpdateReqDto.setPassword(Sha256.encode(userUpdateReqDto.getPassword()));
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
@@ -206,6 +205,7 @@ public class UserController {
         if (userUpdateReqDto.getPassword() == null || userUpdateReqDto.getPassword().isEmpty()) {
             throw new CustomApiException("비밀번호를 입력하세요");
         }
+        
         if (userUpdateReqDto.getName() == null || userUpdateReqDto.getName().isEmpty()) {
             throw new CustomApiException("이름을 입력하세요");
         }
@@ -218,6 +218,7 @@ public class UserController {
         if (userUpdateReqDto.getAddress() == null || userUpdateReqDto.getAddress().isEmpty()) {
             throw new CustomApiException("주소를 입력하세요");
         }
+        userUpdateReqDto.setPassword(Sha256.encode(userUpdateReqDto.getPassword()));
         userService.개인정보수정(userUpdateReqDto, principal.getUserId());
         return new ResponseEntity<>(new ResponseDto<>(1, "수정완료", null), HttpStatus.OK);
 

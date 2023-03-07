@@ -31,10 +31,10 @@ public class MainController {
     @Autowired
     private SkillRepository skillRepository;
 
-    // @GetMapping("/sample")
-    // public String sample() {
-    // return "main/sample";
-    // }
+    @GetMapping("/sample")
+    public String sample() {
+    return "main/sample";
+    }
 
     @GetMapping("/jusoPopup")
     public String jusoPopup1() {
