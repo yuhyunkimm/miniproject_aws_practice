@@ -106,11 +106,6 @@ public class MainController {
         }
         return "main/main";
     }
-
-    @GetMapping("/help")
-    public String help() {
-        return "main/help";
-    }
 }
 
 // ⬜ 메인 "/"
