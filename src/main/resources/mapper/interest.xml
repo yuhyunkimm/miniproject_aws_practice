@@ -13,7 +13,11 @@
     </select>
 
     <insert id="insert">
-
+      insert into interest_tb ( user_id , interest_ct )
+        values
+        <foreach collection="iDto.interestList" item="interest" separator=",">
+          (#{iDto.userId}, #{interest})
+        </foreach>
     </insert>
 
     <update id="updateById">
