@@ -72,7 +72,7 @@ public class JobsController {
     @Autowired
     private HttpSession session;
 
-    @GetMapping("/request/jobs")
+    @GetMapping("/comp/request/jobs")
     public ResponseEntity<?> requestJobs() {
         Comp compSession = (Comp) session.getAttribute("compSession");
         List<JobsSuggestRespDto> jDtos = jobsRepository.findAllToSuggestReq(compSession.getCompId());
@@ -170,6 +170,9 @@ public class JobsController {
 
     @GetMapping("/jobs/{id}")
     public String viewJobs(@PathVariable Integer id, Model model) {
+        if( ObjectUtils.isEmpty(jobsRepository.findById(id))){
+            throw new CustomException("조회한 공고가 존재하지 않습니다.");
+        }
         User principal = (User) session.getAttribute("principal");
         if (principal != null) {
             JobsDetailRespDto jDto = jobsRepository.findByJobsDetail(id, principal.getUserId());
@@ -205,7 +208,7 @@ public class JobsController {
         return "jobs/jobsDetail";
     }
 
-    @GetMapping("/jobs/write")
+    @GetMapping("/comp/jobs/write")
     public String writeJobs(Model model) {
         Comp compSesseion = (Comp) session.getAttribute("compSession");
         CompWriteJobsRespDto cDto = compRepository.findByIdToJobs(compSesseion.getCompId());
@@ -218,6 +221,9 @@ public class JobsController {
 
     @GetMapping("/jobs/{id}/update")
     public String updateJobs(@PathVariable Integer id, Model model) {
+        if( ObjectUtils.isEmpty(jobsRepository.findById(id))){
+            throw new CustomException("조회한 공고가 존재하지 않습니다.");
+        }
         JobsDetailRespDto jDto = jobsRepository.findByJobsDetail(id, null);
             long dDay = DateUtil.dDay(jDto.getEndDate());
             jDto.setLeftTime(dDay);
@@ -240,7 +246,7 @@ public class JobsController {
         return new ResponseEntity<>(new ResponseDto<>(1, "검색 성공", jDtos.size()), HttpStatus.OK);
     }
 
-    @GetMapping("/jobs/interest")
+    @GetMapping("/user/jobs/interest")
     public String interest(Model model) {
         User principal = (User) session.getAttribute("principal");
         if( principal == null){
@@ -305,7 +311,7 @@ public class JobsController {
     }
     
 
-    @PostMapping("/jobs/write")
+    @PostMapping("/comp/jobs/write")
     public ResponseEntity<?> writeJobs(@RequestBody JobsWriteReqDto jDto) {
         // System.out.println("테스트 : "+jDto.toString());
         Comp compSession = (Comp) session.getAttribute("compSession");
@@ -343,7 +349,7 @@ public class JobsController {
         return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료", jobsId), HttpStatus.CREATED);
     }
 
-    @PutMapping("/jobs/update")
+    @PutMapping("/comp/jobs/update")
     public ResponseEntity<?> updateJobs(@RequestBody JobsUpdateReqDto jDto) {
         Comp compSession = (Comp) session.getAttribute("compSession");
         if (jDto.getCompId() == null) {
@@ -383,6 +389,9 @@ public class JobsController {
 
     @DeleteMapping("/jobs/{id}/delete")
     public ResponseEntity<?> deleteJobs(@PathVariable Integer id){
+        if( ObjectUtils.isEmpty(jobsRepository.findById(id))){
+            throw new CustomException("조회한 공고가 존재하지 않습니다.");
+        }
         Comp compSession = (Comp)session.getAttribute("compSession");
         jobsService.공고삭제(id, compSession.getCompId());
         return new ResponseEntity<>(new ResponseDto<>(1, "공고 삭제 성공", null), HttpStatus.OK);
@@ -391,5 +400,5 @@ public class JobsController {
 // ⬜ 채용정보 "/jobs/info"
 // ⬜ 공고 "/jobs/1"
 
-// 🟦 공고등록 "/jobs/write
+// 🟦 공고등록 "/comp/jobs/write
 // 🟦 공고수정 "/jobs/공고번호/update"

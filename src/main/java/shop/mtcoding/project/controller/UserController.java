@@ -237,10 +237,6 @@ public class UserController {
 
     @GetMapping("/user/myhome")
     public String myhome(Model model) {
-        // 임시 세션
-        MockSession.mockUser(session);
-        // session.setAttribute("compSession", null);
-
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             return "redirect:/user/login";

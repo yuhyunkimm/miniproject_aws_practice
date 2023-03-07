@@ -28,7 +28,7 @@ public class ApplyController {
     @Autowired
     private HttpSession session;
 
-    @PostMapping("/apply/resume")
+    @PostMapping("/user/apply/resume")
     public ResponseEntity<?> applyResume(@RequestBody ApplyReqDto aDto) {
         if (ObjectUtils.isEmpty(aDto.getJobsId())) {
             throw new CustomApiException("공고 아이디가 없습니다.");
@@ -45,7 +45,7 @@ public class ApplyController {
         return new ResponseEntity<>(new ResponseDto<>(1, "지원 성공", null), HttpStatus.CREATED);
     }
 
-    @PutMapping("/apply/update")
+    @PutMapping("/comp/apply/update")
     public ResponseEntity<?> updateApply(@RequestBody ApplyUpdateReqDto aDto) {
         if (ObjectUtils.isEmpty(aDto.getCompId())) {
             throw new CustomApiException("기업아이디가 필요합니다.");
