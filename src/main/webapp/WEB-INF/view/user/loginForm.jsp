@@ -23,17 +23,17 @@
         <body>
             <div class="mx-auto width-53">
                 <div class="container all-form border border-3 p-3 mt-5" style="width: 400px;">
-                    <div class="card-header d-flex justify-content-around my-4">
-                        <div class="fs-4">
-                            <a href="/user/login">로그인</a>
-                        </div>
-                        <div class="fs-4">
-                            <a href="/user/join">회원가입</a>
-                        </div>
-                    </div>
+                    <ul class="nav nav-tabs nav-justified">
+                        <li class="nav-item fs-4">
+                            <a class="nav-link " href="/user/login">로그인</a>
+                        </li>
+                        <li class="nav-item fs-4">
+                            <a class="nav-link text-muted" href="/user/join">회원가입</a>
+                        </li>
+                    </ul> 
 
                     <form action="/user/login" method="post">
-                        <div class="d-flex form-group mb-2">
+                        <div class="d-flex form-group mt-2 mb-2">
                             <input type="email" name="email" class="form-control" placeholder="Enter email" id="email"
                                 value="${cookie.rememberEmail.value}">
                         </div>
