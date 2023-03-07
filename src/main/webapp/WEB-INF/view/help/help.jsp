@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="../layout/header.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +30,7 @@
         .textmargin {
             font-size: 1.0em;
             margin-top: 30px;
-            margin-left: 50px;
+            margin-left: 60px;
             font-weight: bold;
         }
 
@@ -52,10 +54,6 @@
             background-color: rgb(59, 103, 235);
             cursor: pointer;
         }
-
-        /* body {
-            cursor: none;
-        } */
         .top_category>div:hover {
             color: rgb(87, 87, 230);
         }
@@ -64,12 +62,6 @@
             background-color: antiquewhite;
             cursor: pointer;
         }
-
-        /* 
-        .menu_bar>div:hover {
-            font; color: black;
-            cursor: pointer;
-        } */
 
         .width-53 {
             width: 53%;
@@ -93,12 +85,7 @@
 
         .form_input:focus {
             outline: none;
-            /* transition: all 0.1s; */
-            /* transition: all ease-in 0.1s; */
-            /* border-style: groove; */
             border: 5px solid #98a8fe;
-            /* border-width: 0.2em; */
-            /* border-color: rgb(148, 171, 242); */
         }
     </style>
     <script>
@@ -171,8 +158,7 @@
                         </div>
 
 
-                        <h2 style="font-size: 1.7em; text-align: center; margin-right: 60px;">개인회원 자주묻는 질문</h2>
-                        <!-- <h2 style="font-size: 1.7em; text-align: center;">개인회원 자주묻는 질문</h2> -->
+                        <h2 style="font-size: 1.7em; text-align: center; margin-right: 20px;">개인회원 자주묻는 질문</h2>
                         <div class="top_category">
                             <div class="textmargin"><a href="/help/user01Form"
                                     style="color: black; text-decoration: none;">
@@ -187,7 +173,6 @@
                                     style="color: black; text-decoration: none;">보상금 지급 정보를 늦게 제출 했습니다. 어떻게 되나요?</a>
                             </div>
                         </div>
-
                     </div>
 
                     <div style="text-align: left;">
@@ -201,18 +186,7 @@
                             <div style="font-size: 1.2em;">기업회원을 위한 이용 안내입니다.</div>
                         </button>
                         <div style="margin-top: 100px;">
-                            <!-- <button type="button"
-                            style="margin-left: 20px; text-align: left; background-color: rgb(240, 240, 241); border: none; padding: 2.5em 5em; border-radius: 10px;"
-                            onclick="kiup();">
-                            <div class="div_category">
-                                <div style="font-weight : bold; font-size: 1.7em; color: rgb(87, 87, 87);">기업회원</div>
-                            </div>
-                            <div style="font-size: 1.2em;">기업회원을 위한 이용 안내입니다.</div>
-                        </button>
-                        <div style="margin-top: 100px;">
-                        </div> -->
-
-                            <h2 style="font-size: 1.7em; text-align: center; margin-right: 83px;">기업회원 자주묻는 질문</h2>
+                            <h2 style="font-size: 1.7em; text-align: center; margin-right: 30px;">기업회원 자주묻는 질문</h2>
                             <div class="top_category">
                                 <div class="textmargin"><a href="/help/job01Form"
                                         style="color: black; text-decoration: none; margin-right: 30px;">
@@ -233,19 +207,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div style="margin-top: 160px;"></div>
-            <div class=" d-flex justify-content-between p-5">
-                <div class="p-5">
-                    <i class="fa-solid fa-house" style="font-size: 4em; "></i>
-                </div>
-                <div class="ms-5 mt-4" style="font-size: 14px; line-height: 0.6 ;">
-                    <p> 사람인 고객센터 02-2025-4733 (평일 09:00~19:00, 주말·공휴일 휴무)</p>
-                    <p>이메일 : help@saramin.co.kr, Fax : 02-6937-0039(대표), 02-6937-0035(세금계산서) </p></br>
-                    <p>(주)사람인HR, 우 : 08378, 서울특별시 구로구 디지털로34길 43 2층, 대표 : 김용환</p>
-                    <p>사업자등록 : 113-86-00917, 직업정보제공사업 : 서울 관악 제 2005-6호, 통신판매업 : 제 2005-02339호</p></br>
-                    <p>Copyright (c) (주)사람인HR. All rights reserved.</p></br>
                 </div>
             </div>
         </div>
