@@ -48,7 +48,6 @@ import shop.mtcoding.project.util.DateUtil;
 import shop.mtcoding.project.util.MockSession;
 import shop.mtcoding.project.util.Sha256;
 
-
 @Controller
 public class UserController {
 
@@ -280,34 +279,6 @@ public class UserController {
 
         return "user/myhome";
     }
-
-    // @GetMapping("/comp/resume/scrap")
-    // public String scrapResume(Model model) {
-    // Comp compSession = (Comp) session.getAttribute("compSession");
-    // List<CompScrapResumeRespDto> sList =
-    // scrapRepository.findAllScrapByCompId(compSession.getCompId());
-    // model.addAttribute("sDtos", sList);
-    // return "comp/scrap";
-    // }
-
-    // public String main(Model model) {
-    // User principal = (User) session.getAttribute("principal");
-    // if (principal != null) {
-    // // 유저의 관심카테고리 - 백엔드 -> 공고들의 position에서 검색
-    // // 매칭이 되는 공고를 추천공고에 띄워준다
-    // List<JobsMainRecommendRespDto> rDtos =
-    // jobsRepository.findAlltoMainRecommend(principal.getUserId());
-    // for (JobsMainRecommendRespDto jDto : rDtos) {
-    // long dDay = DateUtil.dDay(jDto.getEndDate());
-    // jDto.setLeftTime(dDay);
-    // List<String> insertList = new ArrayList<>();
-    // for (RequiredSkillWriteReqDto skill :
-    // skillRepository.findByJobsSkill(jDto.getJobsId())) {
-    // insertList.add(skill.getSkill());
-    // }
-    // jDto.setSkillList(insertList);
-    // }
-    // model.addAttribute("rDtos", rDtos);
 
     @GetMapping("/user/scrap")
     public String scarp(Model model) {

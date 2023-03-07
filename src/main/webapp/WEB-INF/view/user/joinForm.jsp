@@ -1,39 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-        <!DOCTYPE html>
-        <html lang="en">
-
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-            <script src="https://kit.fontawesome.com/32aa2b8683.js" crossorigin="anonymous"></script>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-            <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-            <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-            <link rel="stylesheet" href="/css/style.css">
-            <title>회원가입 페이지</title>
-        </head>
-
-        <body>
-            <div class="mx-auto width-53">
-                <div class="container all-form border border-3 p-3 mt-5" style="width: 400px;" >
-                    <div class="card-header d-flex justify-content-around my-4">
-                        <div class="fs-4">
-                            <a href="/user/login">로그인</a>
-                        </div>
-                        <div class="fs-4">
-                            <a href="/user/join">회원가입</a>
-                        </div>
-                    </div>
+    <%@ include file="../layout/header-simple.jsp" %>
+            
+        <div style="display:flex;" class="my-5">
+            <div class="mx-auto width-53 top-40">
+                <div class=" rounded-3 container all-form border border-3 p-3 mt-5" style="width: 400px;" >
+                    <ul class="nav nav-tabs nav-justified">
+                        <li class="nav-item fs-4">
+                            <a class="nav-link text-muted" href="/user/login">로그인</a>
+                        </li>
+                        <li class="nav-item fs-4">
+                            <a class="nav-link" href="/user/join">회원가입</a>
+                        </li>
+                    </ul> 
 
                     <form action="/user/join" method="post">
-                        <div class="d-flex form-group mb-2">
+                        <div class="d-flex form-group mt-2 mb-2">
                             <input type="email" name="email" class="form-control" placeholder="Enter email" id="email">
                             <button type="button" class="badge bg-secondary ms-2"
                                 onclick="emailCheckBtn()">중복확인</button>
@@ -100,6 +81,8 @@
                 </div>
             </div>
             </div>
+            </div>
+
             <script>
                 $(document).ready(function () {
                     // 전체동의 체크박스 클릭 이벤트
@@ -134,7 +117,4 @@
                 }
 
             </script>
-
-        </body>
-
-        </html>
+ <%@ include file="../layout/footer.jsp" %>
