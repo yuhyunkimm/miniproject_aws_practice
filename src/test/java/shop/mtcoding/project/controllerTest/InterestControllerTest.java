@@ -64,7 +64,7 @@ public class InterestControllerTest {
         String insert = om.writeValueAsString(iDto);
     
         // when
-        ResultActions rs = mvc.perform(put("/interest/change").content(insert).contentType(MediaType.APPLICATION_JSON_VALUE).session(mockSession));
+        ResultActions rs = mvc.perform(put("/user/interest/change").content(insert).contentType(MediaType.APPLICATION_JSON_VALUE).session(mockSession));
     
         // then
         System.out.println("테스트 : "+ rs.andReturn().getResponse().getContentAsString());

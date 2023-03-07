@@ -28,7 +28,7 @@ public class SuggestController {
     @Autowired
     private HttpSession session;
 
-    @PostMapping("/suggest/jobs")
+    @PostMapping("/comp/suggest/jobs")
     public ResponseEntity<?> suggestJobs(@RequestBody SuggestReqDto sDto){
         if ( ObjectUtils.isEmpty(sDto.getJobsId())){
             throw new CustomApiException("공고 아이디가 없습니다.") ;
@@ -45,7 +45,7 @@ public class SuggestController {
         return new ResponseEntity<>(new ResponseDto<>(1, "제안 성공", null), HttpStatus.CREATED);
     }
 
-    @PutMapping("/suggest/update")
+    @PutMapping("/user/suggest/update")
     public ResponseEntity<?> updateSuggest(@RequestBody SuggestUpdateReqDto sDto){
         if( ObjectUtils.isEmpty(sDto.getUserId())){
             throw new CustomApiException("유저아이디가 필요합니다.");

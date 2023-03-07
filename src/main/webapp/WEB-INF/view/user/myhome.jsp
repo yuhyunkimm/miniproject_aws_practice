@@ -394,7 +394,37 @@
                     }).done((res) => {
                     }).fail((err) => {
                     });
-                });
+
+                }
+                function getCheckedValues(name) {
+        var checkedValues = [];
+        var checkboxes = document.getElementsByName(name);
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                checkedValues.push(checkboxes[i].value);
+            }
+        }
+        return checkedValues;
+    }
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('click', function () {
+            interestValues = getCheckedValues("interest");
+            // console.log(interestValues);
+            let data = {
+                userId: $('#pricipalId').val(),
+                interestList: interestValues
+            };
+            $.ajax({
+                type: "put",
+                url: "/user/interest/change",
+                data: JSON.stringify(data),
+                headers: {
+                    "content-type": "application/json; charset=utf-8"
+                },
+                dataType: "json"
+            }).done((res) => {
+            }).fail((err) => {
             });
         </script>
         <%@ include file="../layout/footer.jsp" %>

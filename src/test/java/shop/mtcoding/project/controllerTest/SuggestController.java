@@ -77,7 +77,7 @@ public class SuggestController {
         String json = om.writeValueAsString(sDto);
     
         // when
-        ResultActions rs = mvc.perform(post("/suggest/jobs")
+        ResultActions rs = mvc.perform(post("/comp/suggest/jobs")
                               .content(json).contentType(MediaType.APPLICATION_JSON_VALUE).session(mockSession));
     
         // then
@@ -96,7 +96,7 @@ public class SuggestController {
         String requestBody = om.writeValueAsString(sDto);
     
         // when
-        ResultActions rs = mvc.perform(put("/suggest/update")
+        ResultActions rs = mvc.perform(put("/user/suggest/update")
                                 .content(requestBody)
                                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                                 .session(mockSession));

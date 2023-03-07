@@ -59,21 +59,13 @@
 
                                         <div class="col-10 mt-2">
                                             <h5 class="card-title" style="text-align: left;">
-                                                ${usDto.title}
+                                               [${usDto.compName}] ${usDto.title}
                                             </h5>
                                             <div class="m-2" style="float: left;">
-                                                <h6 class="card-subtitle text-muted">
-                                                    ${usDto.compName}
-                                                </h6>
+                                                <h6 class="card-subtitle text-body-emphasis">${usDto.position} </h6>
                                             </div>
                                             <div class="m-2" style="float: left;">
-                                                <h6 class="card-subtitle text-muted">${usDto.position}
-                                                </h6>
-                                            </div>
-                                            <div class="m-2" style="float: left;">
-                                                <h6 class="card-subtitle text-muted">
-                                                    ${usDto.career}
-                                                </h6>
+                                                <h6 class="card-subtitle text-body-emphasis">${usDto.career}&nbsp;</h6>
                                             </div>
                                             <div style="float: left; d-flex">
                                                 <c:forEach items="${usDto.skillList}" var="skill" begin="0" end="3">
@@ -86,12 +78,12 @@
                                         <div class="col-2">
                                             <div class="row">
                                                 <div style="float: right;">
-                                                    <h5 class="card-title" style="text-align: left;">
+                                                    <h5 class="card-title text-danger" style="text-align: left;">
                                                         D-${usDto.leftTime}
                                                     </h5>
                                                 </div>
                                                 <div style="float: right;">
-                                                    <button type="button" class="btn btn-success btn-sm"
+                                                    <button type="button" class="btn btn-success btn-sm mt-1"
                                                         onclick="window.open(`/jobs/${usDto.userScrapId}`, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">상세보기</button>
                                                 </div>
                                             </div>

@@ -533,7 +533,7 @@
                     }
                     $.ajax({
                         type: "post",
-                        url: "/apply/resume",
+                        url: "/user/apply/resume",
                         data: JSON.stringify(date),
                         headers: {
                             "content-type": "application/json; charset=utf-8"

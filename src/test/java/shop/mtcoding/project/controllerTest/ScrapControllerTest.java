@@ -77,7 +77,7 @@ public class ScrapControllerTest {
         String jsonString = om.writeValueAsString(sDto);
 
         //when
-        ResultActions rs = mvc.perform(delete("/user/scrap/delete")
+        ResultActions rs = mvc.perform(delete("/user/scrap/1/delete")
                               .content(jsonString).contentType(MediaType.APPLICATION_JSON_VALUE)
                               .session(mockSession));
         //then

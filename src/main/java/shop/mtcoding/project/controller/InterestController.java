@@ -25,7 +25,7 @@ public class InterestController {
     @Autowired
     private HttpSession session;
     
-    @PutMapping("/interest/change")
+    @PutMapping("/user/interest/change")
     public ResponseEntity<?> changeInterest(@RequestBody InterestChangeReqDto iDto){
         // System.out.println("테스트 : "+ iDto);
         if(ObjectUtils.isEmpty(iDto.getUserId())){

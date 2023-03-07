@@ -74,7 +74,7 @@
   
     <select id="findBySearch" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsSearchRespDto">
       select j.jobs_id, c.comp_name, c.photo,        
-      title, career, education, position, address, end_date
+      title, career, education, position, address, end_date,
         <if test="userId != null">
           ifnull(( select user_scrap_id from user_scrap_tb where user_id = #{userId} and jobs_id = j.jobs_id ),null) user_scrap_id
         </if>
