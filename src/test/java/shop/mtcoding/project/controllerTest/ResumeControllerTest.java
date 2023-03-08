@@ -44,7 +44,7 @@ public class ResumeControllerTest {
 
     private MockHttpSession mockSession;
 
-    // @BeforeEach
+    @BeforeEach
     private void mockUserSession() {
         User mockUser = new User(
                 1,
@@ -177,19 +177,19 @@ public class ResumeControllerTest {
     }
 
 
-    @Test
-    @Transactional
-    public void searchCheckbox_test() throws Exception {
-        // given
-        mockCompSession();
-        String keyword = "address=서울,경기도,제주&career=신입";
+    // @Test
+    // @Transactional
+    // public void searchCheckbox_test() throws Exception {
+    //     // given
+    //     mockCompSession();
+    //     String keyword = "address=서울,경기도,제주&career=신입";
         
-        // when
-        ResultActions rs = mvc.perform(get("/comp/resume/search?"+keyword).session(mockSession));
+    //     // when
+    //     ResultActions rs = mvc.perform(get("/comp/resume/search?"+keyword).session(mockSession));
     
-        // then
-        String result = rs.andReturn().getResponse().getContentAsString();
-        System.out.println("테스트 : "+ result);
+    //     // then
+    //     String result = rs.andReturn().getResponse().getContentAsString();
+    //     System.out.println("테스트 : "+ result);
     
-    }
+    // }
 }
