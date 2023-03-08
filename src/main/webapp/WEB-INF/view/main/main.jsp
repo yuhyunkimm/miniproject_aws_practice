@@ -33,7 +33,7 @@
                                         ${jDto.title}
                                     </div>
                                     <div>
-                                        <c:forEach items="${jDto.skillList}" var="skill" begin="0" end="3">
+                                        <c:forEach items="${jDto.skillList}" var="skill" begin="0" end="2">
                                             <span class="badge  skill-color">${skill}</span>
                                         </c:forEach>
                                     </div>

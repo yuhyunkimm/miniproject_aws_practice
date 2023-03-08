@@ -15,7 +15,7 @@
                                         <a href="/comp/profileUpdateForm"
                                             onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                             <div class="user-img">
-                                                <img src="${comp.photo}" class="rounded" alt="Cinque Terre"
+                                                <img src="${comp.photo == null ? '/images/default_profile.png' : comp.photo}" class="rounded" alt="Cinque Terre"
                                                     style="max-width: 80px;">
                                             </div>
                                         </a>
@@ -86,11 +86,11 @@
                                 <thead>
                                     <tr class="table-secondary" align=center>
                                         <th scope="col" style="width:8%">No.</th>
-                                        <th scope="col" style="width:8%">이름</th>
+                                        <th scope="col" style="width:10%">이름</th>
                                         <th scope="col" style="width:10%">경력</th>
-                                        <th scope="col" style="width:10%">지역</th>
+                                        <th scope="col" style="width:15%">지역</th>
                                         <th scope="col" style="width:15%">학력</th>
-                                        <th scope="col" style="width:35%">기술</th>
+                                        <th scope="col" style="width:30%">기술</th>
                                         <th scope="col" colspan=2 style="width:18%">상세보기</th>
                                     </tr>
                                 </thead>

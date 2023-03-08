@@ -1,21 +1,21 @@
 insert into user_tb (email, password, name, birth, tel, photo, address, created_at) 
-values ('ssar@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', 'ssar', '1994-12-14', '010-1234-1234', '/images/ham.png', '서울특별시', now());
+values ('ssar@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '박인우', '1994-12-14', '010-1234-1234', '/images/ham.png', '서울특별시', now());
 insert into user_tb (email, password, name, birth, tel, photo, address, created_at) 
-values ('ssar1@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', 'ssar1', '1994-02-22', '010-1234-1234', '/images/boyoung.jpg', '부산광역시', now());
+values ('ssar1@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '이인화', '1994-02-22', '010-1234-1234', '/images/boyoung.jpg', '부산광역시', now());
 insert into user_tb (email, password, name, birth, tel, photo, address, created_at) 
-values ('ssar2@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', 'ssar2', '1994-04-21', '010-1234-1234', '/images/park.jpg', '서울특별시', now());
+values ('ssar2@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '김유현', '1994-04-21', '010-1234-1234', '/images/park.jpg', '서울특별시', now());
 insert into user_tb (email, password, name, birth, tel, photo, address, created_at) 
-values ('ssar3@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', 'ssar3', '1994-03-17', '010-1234-1234', '/images/default_profile.png', '인천광역시', now());
+values ('ssar3@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '강은희', '1994-03-17', '010-1234-1234', '/images/default_profile.png', '인천광역시', now());
 insert into user_tb (email, password, name, birth, tel, photo, address, created_at) 
-values ('ssar4@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', 'ssar4', '1994-10-23', '010-1234-1234', '/images/default_profile.png', '경기도', now());
+values ('ssar4@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '최주호', '1994-10-23', '010-1234-1234', '/images/default_profile.png', '경기도', now());
 
 insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
-values ('kakao@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '카카오(주)', '홍은택', '120-81-47521', '/images/Kakao_.png', 'www.kakao.com',now());
+values ('kakao@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '카카오', '홍은택', '120-81-47521', '/images/Kakao_.png', 'www.kakao.com',now());
 insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
 values ('coupang@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '쿠팡', '강한승', '451-23-15631', '/images/coupang.png', 'www.coupang.com',now());
 insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
 
-values ('samsung@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '삼성', '이재용', '111-22-33333', '/images/Samsung.png', 'www.Samsung.com',now());
+values ('samsung@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '우아한형제들', '이재용', '111-22-33333', '/images/brother.png', 'www.Samsung.com',now());
 insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
 values ('Nexon@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '넥슨', '이정헌', '123-45-67890', '/images/Nexon.png', 'www.Nexon.com',now());
 insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
@@ -74,21 +74,21 @@ insert into required_skill_tb ( jobs_id, skill) values (8, 'Oracle');
 insert into required_skill_tb ( jobs_id, skill) values (8, 'React');
 
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
-values ('백엔드 개발자 채용' , '백엔드 개발자 채용하는 상세 내용1', '백엔드 개발자', '신입', '학력무관', '제주',  '2023-03-24', 1, '홈페이지 접수', now());
+values ('백엔드 개발자 ' , '', '백엔드 개발자', '신입', '학력무관', '제주',  '2023-03-24', 1, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
-values ('프로트엔드 개발자 채용' , '프로트엔드 개발자 채용하는 상세 내용2', '프로트엔드 개발자', '1년차 미만', '대졸', '서울', '2023-05-11', 2, '홈페이지 접수', now());
+values ('프로트엔드 개발자 ' , '', '프로트엔드 개발자', '1년차 미만', '대졸', '서울', '2023-05-11', 2, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
-values ('백엔드 개발자 채용' , '백엔드 개발자 채용하는 상세 내용3', '백엔드 개발자', '1년차', '대학원 이상', '서울', '2023-03-14', 3, '홈페이지 접수', now());
+values ('백엔드 개발자 ' , '', '백엔드 개발자', '1년차', '대학원 이상', '서울', '2023-03-14', 3, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
-values ('서버 개발자 채용' , '서버 개발자 채용하는 상세 내용4', '서버 개발자', '3년차', '학력무관', '제주', '2023-03-24', 4, '홈페이지 접수', now());
+values ('서버 개발자 ' , '', '서버 개발자', '3년차', '학력무관', '제주', '2023-03-24', 4, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
-values ('안드로이드 개발자 채용' , '안드로이드 개발자 채용하는 상세 내용5', '안드로이드 개발자', '신입', '학력무관', '제주', '2023-03-25', 5, '홈페이지 접수', now());
+values ('안드로이드 개발자 ' , '', '안드로이드 개발자', '신입', '학력무관', '제주', '2023-03-25', 5, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address,  end_date, comp_id, receipt, created_at)
-values ('안드로이드 개발자 채용' , '안드로이드 개발자 채용하는 상세 내용6', '안드로이드 개발자', '1년차', '학력무관', '제주', '2023-05-22', 6, '홈페이지 접수', now());
+values ('안드로이드 개발자 ' , '', '안드로이드 개발자', '1년차', '학력무관', '제주', '2023-05-22', 6, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address,  end_date, comp_id, receipt, created_at)
-values ('프로트엔드 개발자 채용' , '프로트엔드 개발자 채용하는 상세 내용7', '프로트엔드 개발자', '1년차', '학력무관', '제주', '2023-03-10', 7, '홈페이지 접수', now());
+values ('프로트엔드 개발자 ' , '', '프로트엔드 개발자', '1년차', '학력무관', '제주', '2023-03-10', 7, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address,  end_date, comp_id, receipt, created_at)
-values ('프로트엔드 개발자' , '프로트엔드 개발자 채용하는 상세 내용8', '프로트엔드 개발자', '3년차', '학력무관', '부산', '2023-03-15', 8, '홈페이지 접수', now());
+values ('프로트엔드 개발자' , '', '프로트엔드 개발자', '3년차', '학력무관', '부산', '2023-03-15', 8, '홈페이지 접수', now());
 
 
 insert into interest_tb (user_id, interest_ct) values(1, '백엔드 개발자');
@@ -128,6 +128,7 @@ insert into comp_scrap_tb (comp_id, resume_id, created_at) values (1, 1, now());
 insert into comp_scrap_tb (comp_id, resume_id, created_at) values (1, 3, now());
 
 insert into apply_tb (resume_id, jobs_id, state, created_at) values (1, 1, 0, now());
+insert into apply_tb (resume_id, jobs_id, state, created_at) values (3, 1, 0, now());
 insert into apply_tb (resume_id, jobs_id, state, created_at) values (2, 2, 0, now());
 insert into apply_tb (resume_id, jobs_id, state, created_at) values (3, 3, 0, now());
 insert into apply_tb (resume_id, jobs_id, state, created_at) values (4, 4, 0, now());

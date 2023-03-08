@@ -661,7 +661,7 @@
             function render(values) {
                 if (values !== undefined) {
                     let el = `
-            <h5 class="selectBox-remove me-2"><span class="badge bg-light text-dark" onclick="deleteBox()" value=`+ values + `>` + values + `  X 
+            <h5 class="selectBox-remove me-2"><span class="badge bg-light text-dark" onclick="deleteBox()" value=`+ values + `>` + values + `  
             </span>
             </h5>
         `;
@@ -726,7 +726,8 @@
                 jDtos.forEach(jDto => {
                     let el = `
             <div class="col-3 px-2 py-2 remove-card">
-                <a href="/jobs/`+ jDto.jobsId + `">
+                <a href="/jobs/`+ jDto.jobsId + `"
+                onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
                     <div class="card main-card">
                         <div class="pt-4 px-auto" style="text-align: center;">
                             <img src='`+ jDto.photo + `' alt="" srcset="" style="height: 4em; width: 150px; padding: 3px;">

@@ -13,7 +13,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="my-border col-3 mt-3" style="text-align: center;">
-                      <img class="" src="${rDto.photo}" alt="" srcset=""
+                      <img class="" src="${user.photo == null ? '/images/default_profile.png' : user.photo}" alt="" srcset=""
                         style="width: 80%; height: auto; display: inline-block;" id="photo">
                     </div>
 

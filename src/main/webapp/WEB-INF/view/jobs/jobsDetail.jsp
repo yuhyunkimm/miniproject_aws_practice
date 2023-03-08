@@ -513,15 +513,7 @@
                                             <div class="m-2" style="float: left;">
                                                 <h6 class="card-subtitle mb-2 text-muted">`+ rDto.career + `</h6>
                                             </div>
-                                            <div class="m-2" style="float: left;">
-                                                <h6 class="card-subtitle mb-2 text-muted">`+ + `</h6>
-                                            </div>
-                                            <div class="m-2" style="float: left;">
-                                                <h6 class="card-subtitle mb-2 text-muted">`+ + `</h6>
-                                            </div>
-                                            <div class="m-2" style="float: left;">
-                                                <h6 class="card-subtitle mb-2 text-muted">`+ + `</h6>
-                                            </div>
+                                                      
                                         </div>
                                     </div>
                 `;

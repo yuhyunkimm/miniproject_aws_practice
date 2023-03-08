@@ -169,6 +169,8 @@ public class ResumeController {
         }
         UserDataRespDto userPS = userRepository.findByUserId(principal.getUserId());
         model.addAttribute("rDto", userPS);
+        User userPS1 = userRepository.findById(principal.getUserId());
+        model.addAttribute("user", userPS1);
         return "resume/writeResumeForm";
     }
 
@@ -192,7 +194,7 @@ public class ResumeController {
 
     @GetMapping("/resume/{id}")
     public String resumeDetail(@PathVariable Integer id, Model model) {
-        if( ObjectUtils.isEmpty(resumeRepository.findByResumeId(id))){
+        if (ObjectUtils.isEmpty(resumeRepository.findByResumeId(id))) {
             throw new CustomException("존재하지 않는 이력서 입니다.");
         }
         ResumeDetailRespDto rDto = resumeRepository.findDetailPublicResumebyById(id);
@@ -214,7 +216,7 @@ public class ResumeController {
 
     @GetMapping("/comp/resume/search")
     public ResponseEntity<?> searchCheckbox(ResumeCheckboxReqDto rDto, Model model) {
-        System.out.println("테스트 : "+ rDto.toString());
+        System.out.println("테스트 : " + rDto.toString());
         if (rDto.getCareer() == null || rDto.getCareer().isEmpty()) {
             rDto.setCareer("");
         }
@@ -253,7 +255,7 @@ public class ResumeController {
             }
             try {
                 ApplytoCompRespDto aDto = applyRepository.findByCompIdAndApplyId(compSession.getCompId(), id);
-                rDto.setApplyState(aDto.getState());   
+                rDto.setApplyState(aDto.getState());
                 rDto.setApplyId(aDto.getApplyId());
             } catch (Exception e) {
             }

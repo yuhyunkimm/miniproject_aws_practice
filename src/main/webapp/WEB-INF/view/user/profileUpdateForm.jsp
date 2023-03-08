@@ -71,7 +71,7 @@
                     <h2 class="text-center">프로필 사진 변경</h2>
                     <form id="profileForm">
                         <div class="form-group">
-                        <img src="${user.photo == null ? 'default_profile.png' : user.photo}"
+                        <img src="${user.photo == null ? '/images/default_profile.png' : user.photo}"
                                 alt="Current Photo" class="img-fluid" id="imagePreview">
                         </div>
                         <div class="form-group">

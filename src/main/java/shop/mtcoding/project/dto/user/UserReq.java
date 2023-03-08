@@ -33,6 +33,7 @@ public class UserReq {
 
     @Getter
     @Setter
+    @ToString
     public static class UserUpdateReqDto {
         private Integer userId;
         private String email;
