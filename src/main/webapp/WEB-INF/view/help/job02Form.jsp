@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="../layout/header.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,10 +70,10 @@
     <div class="container-fluid width-53 top-80">
         <div>
             <div style="font-size: 1.2em; font-weight : bold; display:inline; margin-left : 0em;">
-                고객 서비스
+                <a href="/help" style="color: black; text-decoration: none;"> 고객 서비스</a>
             </div>
             <button type="submit" class="qButton" style="border-radius: 30px; padding: 1.5px 20px; margin-right: 0em;">
-                문의하기
+                <a href="/help/inquiryForm" style="text-decoration: none; color: rgb(253, 255, 255);"> 문의하기</a>
             </button>
             <hr>
         </div>
@@ -97,7 +99,7 @@
         <div style="font-size: 0.9em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display:inline;">또 다른 질문이 있으십니까?</div>
         <div style="font-size: 0.9em; color: blue; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display:inline;"><a href="/help/inquiryForm"> 다른 문의등록하기＞</a></div>
+            display:inline;"><a href="/help/inquiryForm" style="color: blue;"> 다른 문의등록하기＞</a></div>
         <div style="margin-top: 100px;"></div>
     </div>
 
@@ -105,3 +107,4 @@
 </body>
 
 </html>
+<%@ include file="../layout/footer.jsp" %>

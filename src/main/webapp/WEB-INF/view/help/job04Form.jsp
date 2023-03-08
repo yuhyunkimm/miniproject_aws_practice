@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="../layout/header.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,58 +70,69 @@
     <div class="container-fluid width-53 top-80">
         <div>
             <div style="font-size: 1.2em; font-weight : bold; display:inline; margin-left : 0em;">
-                고객 서비스
+                <a href="/help" style="color: black; text-decoration: none;"> 고객 서비스</a>
             </div>
             <button type="submit" class="qButton" style="border-radius: 30px; padding: 1.5px 20px; margin-right: 0em;">
-                문의하기
+                <a href="/help/inquiryForm" style="text-decoration: none; color: rgb(253, 255, 255);"> 문의하기</a>
             </button>
             <hr>
         </div>
 
         <div style="font-weight: bold; font-size: 0.8em; color: rgb(145, 143, 143); display:inline; margin-left : 0em;">
-            고객센터 ＞ 개인회원 ＞
+            고객센터 ＞ 기업회원 ＞
         </div>
-        <div style="font-weight: bold; font-size: 0.8em; display:inline; margin-left : 0.1em;">기타</div>
+        <div style="font-weight: bold; font-size: 0.8em; display:inline; margin-left : 0.1em;">지원 ∙ 합격자 관리</div>
 
         <div style="margin-top: 70px;"></div>
-        <div style="font-weight: bold; font-size: 1.4em;">가입된 아이디를 찾고 싶어요</div>
-        <div style="margin-top: 35px;"></div>
+        <div style="font-weight: bold; font-size: 1.4em;">최종 합격 처리 후, 채용 수수료 정산은 어떻게 하나요?</div>
+        <div style="margin-top: 30px;"></div>
 
 
-        <div style="margin-top: 40px;"></div>
-
-        <div style="font-size: 0.9em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
-            고객센터</div>
-        <div
-            style="font-size: 0.9em; color: rgb(100, 119, 173); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
-            문의하기</div>
-        <div style="font-size: 0.9em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
-            를 통해 아래 항목을 작성하여 제출해주시면 도움 드리겠습니다.</div>
-
-        <div style="margin-top: 40px;"></div>
-
-        <div
+        <h3 style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
+            저희 사이트를 통해 합격자 발생 시, 입사일 이전</h3>
+        <h3
             style="font-size: 1.0em; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
-            ㆍ</div>
-        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
-            이름:</div>
-        <br>
-        <div
-            style="font-size: 1.0em; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
-            ㆍ</div>
-        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
-            휴대폰 번호:</div>
-        <br>
-        <div style="margin-top: 40px;"></div>
-        <div style="font-weight: bold; font-size: 0.9em; display:inline; color: blue;">※ 아이디 찾기 기능은 추후 추가될 예정입니다.</div>
+            각 포지션 별 지원자 현황 페이지</h3>
+        <h3 style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display:inline;">
+            에서 지원자 진행 상태를</h3>
+        <h3
+            style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline; font-weight: bold; text-decoration: underline;">
+            최종 확정</h3>
+        <h3 style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
+            으로 변경해 주시기 바랍니다.</h3>
 
+        <div style="margin-top: 40px;"></div>
+
+        <h3 style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
+            이후 합격자 옆 생성된</h3>
+        <h3
+            style="font-size: 1.0em; font-weight: bold; text-decoration: underline; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
+            정산하기</h3>
+        <h3 style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display:inline;">
+            버튼을 클릭하여 내용 작성 및 제출해주시면 입사일 당일에 맞춰 인보이스 및 전자 세금계</h3>
+        <h3 style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
+            산서를 발행해 드립니다.</h3>
+
+        <div style="margin-top: 40px;"></div>
+        <h3
+            style="font-size: 1.0em; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
+            ※ 채용취소 또는 입사일 연기 등</h3>
+        <h3 style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
+            변동이 있을 시, </h3>
+        <h3
+            style="font-size: 1.0em; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
+            고객센터</h3>
+        <h3 style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
+            로 알려주시면 절차에 맞춰 안내해 드리도록 하겠습니다.</h3>
 
         <div style="margin-top: 300px;"></div>
 
         <div style="font-size: 0.9em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display:inline;">또 다른 질문이 있으십니까?</div>
         <div style="font-size: 0.9em; color: blue; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display:inline;"><a href="/help/inquiryForm"> 다른 문의등록하기＞</a></div>
+            display:inline;"><a href="/help/inquiryForm"style="color: blue;"> 다른 문의등록하기＞</a></div>
         <div style="margin-top: 100px;"></div>
     </div>
 
@@ -127,3 +140,4 @@
 </body>
 
 </html>
+<%@ include file="../layout/footer.jsp" %>

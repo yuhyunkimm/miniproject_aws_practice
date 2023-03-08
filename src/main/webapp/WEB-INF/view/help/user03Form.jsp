@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="../layout/header.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,54 +70,76 @@
     <div class="container-fluid width-53 top-80">
         <div>
             <div style="font-size: 1.2em; font-weight : bold; display:inline; margin-left : 0em;">
-                고객 서비스
+                <a href="/help" style="color: black; text-decoration: none;"> 고객 서비스</a>
             </div>
             <button type="submit" class="qButton" style="border-radius: 30px; padding: 1.5px 20px; margin-right: 0em;">
-                문의하기
+                <a href="/help/inquiryForm" style="text-decoration: none; color: rgb(253, 255, 255);"> 문의하기</a>
             </button>
             <hr>
         </div>
 
         <div style="font-weight: bold; font-size: 0.8em; color: rgb(145, 143, 143); display:inline; margin-left : 0em;">
-            고객센터 ＞ 기업회원 ＞
+            고객센터 ＞ 개인회원 ＞
         </div>
-        <div style="font-weight: bold; font-size: 0.8em; display:inline; margin-left : 0.1em;">매치업</div>
+        <div style="font-weight: bold; font-size: 0.8em; display:inline; margin-left : 0.1em;">보상금 ∙ 뉴스타트 패키지</div>
 
         <div style="margin-top: 70px;"></div>
-        <div style="font-weight: bold; font-size: 1.4em;">매치업 후보자의 각 상태별 의미가 궁금합니다</div>
+        <div style="font-weight: bold; font-size: 1.4em;">보상금 지급 대상자가 아니라고 뜹니다.</div>
         <div style="margin-top: 35px;"></div>
 
+        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            보상금은 입사일로부터 3개월(93일) 초과근무시, 해당 시점에 보상금 신청이 가능합니다. 3개월 이전 퇴사 혹은 이미 지급된 건에 대해서는 보상금 지급이 불가하니, 이점 확인 해주세요.
+        </div>
+        <div style="margin-top: 40px;"></div>
+        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            보상금 지급 대상자가 맞음에도 불구하고, 보상금 지급 대상자가 아니라는 메시지 확인시, 하기 절차에 따라 보상금 신청 부탁드립니다.</div>
+        <div style="margin-top: 40px;"></div>
 
-        <div style="font-weight: bold; font-size: 1.0em; display:inline; color: blue;">① 이력서 미리보기 (추천 인재)</div>
+        <div style="font-weight: bold; font-size: 0.9em; display:inline; color: blue;">[홈페이지 비로그인 상태]</div>
         <br>
-        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            저희 사이트에서 추천하는 후보자입니다.</div>
-        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            다른 회사에서도 눈여겨 보는 인재인 만큼 얼른 확인해보세요.</div>
+        <div style="font-size: 0.9em; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            -1) 메일 하단에 [정보 입력하러 가기] 클릭</div>
+        <div style="font-size: 0.9em; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            -2) 사이트 로그인</div>
+        <div style="font-size: 0.9em; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            -3) 로그인 후 정보 입력 진행</div>
+
+        <div style="margin-top: 40px;"></div>
+
+        <div style="font-weight: bold; font-size: 0.9em; display:inline; color: blue;">[홈페이지 로그인 상태]</div>
         <br>
-        <div style="font-weight: bold; font-size: 1.0em; display:inline;">② 이력서 미리보기 (일반)</div>
-        <br>
-        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            후보자의 이력서를 간략히 확인할 수 있습니다.</div>
-        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            더 많은 내용이 궁금하시다면 상세 이력서를 열람해보세요.</div>
-        <br>
-        <div style="font-weight: bold; font-size: 1.0em; display:inline;">③ 열람한 이력서</div>
-        <br>
-        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            상세 이력서 확인 후 열람한 이력서로 반영된 상태입니다.</div>
-        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            관심있는 후보자라면 면접을 제안해보세요.</div>
+        <div style="font-size: 0.9em; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            -1) 메일 하단에 [정보 입력하러 가기] 클릭</div>
+        <div style="font-size: 0.9em; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            -2) 정보 입력 화면에서 정보 입력 진행</div>
 
 
+        <div style="margin-top: 40px;"></div>
+        <div
+            style="font-size: 1.0em; font-weight: bold; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            ＜위 절차로 진행했음에도 불구하고, 보상금 지급 대상자가 아니라는 메시지 확인 시＞
+        </div>
         <br>
+        <div
+            style="font-size: 1.0em; font-weight: bold; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            - 수신한 메일 주소로 사이트에 로그인 되어 있는지 여부</div>
+        <br>
+        <div
+            style="font-size: 1.0em; font-weight: bold; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            - 채용 시 사용한 메일주소를 탈퇴한 후 동일한 메일로 재가입 여부</div>
+
+        <div style="margin-top: 40px;"></div>
+        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            이외 다른 문제로 진행이 어려울 시, </div>
+        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            저희 사이트를 통해 최종합격하신 (회사명/ 합격자분 성함/입사일) 정보 포함하여 문의 남겨주시기 바랍니다.</div>
 
         <div style="margin-top: 200px;"></div>
 
         <div style="font-size: 0.9em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display:inline;">또 다른 질문이 있으십니까?</div>
         <div style="font-size: 0.9em; color: blue; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display:inline;"><a href="/help/inquiryForm"> 다른 문의등록하기＞</a></div>
+            display:inline;"><a href="/help/inquiryForm"style="color: blue;"> 다른 문의등록하기＞</a></div>
         <div style="margin-top: 100px;"></div>
     </div>
 
@@ -123,3 +147,4 @@
 </body>
 
 </html>
+<%@ include file="../layout/footer.jsp" %>

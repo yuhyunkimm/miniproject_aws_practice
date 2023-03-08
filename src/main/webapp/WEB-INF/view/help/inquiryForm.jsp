@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="../layout/header.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -88,11 +90,8 @@
     <div class="container-fluid width-53 top-80">
         <div>
             <div style="font-size: 1.2em; font-weight : bold; display:inline; margin-left : 0em;">
-                고객 서비스
+                <a href="/help" style="color: black; text-decoration: none;"> 고객 서비스</a>
             </div>
-            <button type="submit" class="qButton" style="border-radius: 30px; padding: 1.5px 20px; margin-right: 0em;">
-                문의하기
-            </button>
             <hr>
         </div>
 
@@ -138,12 +137,12 @@
         <div style="margin-top: 20px;"></div>
         <div style="font-weight: bold;"><input type="checkbox"> 동의합니다. <div style="color: red; display: inline;">*</div>
         </div>
-        <div style="margin-top: 60px;"></div>
+        <div style="margin-top: 100px;"></div>
         <button type="submit" class="eButton"
             style="border-radius: 40px; padding: 1.5px 20px; color: rgb(255, 255, 255);">
             <a href="/help" style="color: azure; text-decoration: none;">제출하기</a>
         </button>
-        <div style="margin-top: 100px;">
+        <div style="margin-top: 200px;">
         </div>
     </div>
 
@@ -151,3 +150,4 @@
 </body>
 
 </html>
+<%@ include file="../layout/footer.jsp" %>
