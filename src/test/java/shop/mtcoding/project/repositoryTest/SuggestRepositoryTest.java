@@ -44,4 +44,16 @@ public class SuggestRepositoryTest {
         // then
         
     }
+
+    @Test
+    public void findByCompIdAndResumeId_test() throws Exception {
+        // given
+        
+    
+        // when
+        System.out.println("테스트 : "+ suggestRepository.findByCompIdAndResumeId(1,1).getState()); ;
+    
+        // then
+    
+    }
 }

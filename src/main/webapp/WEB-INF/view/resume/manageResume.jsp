@@ -199,10 +199,16 @@
 
         <script>
 
+            let deleteId ;
+            function deleteBtn(event, resumeId) {
+                event.stopPropagation();
+                deleteId = resumeId;
+            }
+
             function deleteResume() {
                 $.ajax({
                     type: "delete",
-                    url: "/resume/" + $('#resumeId').val() +"/delete",
+                    url: "/resume/" + deleteId +"/delete",
                     dataType: "json"
                 }).done((res) => { // 20X 일때
                     alert(res.msg);
@@ -210,10 +216,6 @@
                 }).fail((err) => { // 40X, 50X 일때
                     alert(err.responseJSON.msg);
                 });
-            }
-
-            function deleteBtn(event, resumeId) {
-                event.stopPropagation();
             }
 
             function checkPS(uId) {

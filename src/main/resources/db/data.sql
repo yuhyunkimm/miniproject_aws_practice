@@ -14,7 +14,6 @@ values ('kakao@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d
 insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
 values ('coupang@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '쿠팡', '강한승', '451-23-15631', '/images/coupang.png', 'www.coupang.com',now());
 insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
-
 values ('samsung@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '우아한형제들', '이재용', '111-22-33333', '/images/brother.png', 'www.Samsung.com',now());
 insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
 values ('Nexon@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '넥슨', '이정헌', '123-45-67890', '/images/Nexon.png', 'www.Nexon.com',now());
@@ -26,10 +25,8 @@ insert into comp_tb (email, password, comp_name, representative_name, business_n
 values ('sk@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', 'SK', '최태원', '246-80-12345', '/images/sk.jpg', 'www.sk.com',now());
 insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
 values ('ncsoft@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '(주)엔씨소프트', '김택진', '222-60-14745', '/images/ncsoft.jpg', 'www.ncsoft.com',now());
-
-values ('samsung@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '삼성', '이재용', '111-22-33333', '/images/daiso1.png', 'www.kakao.com',now());
-insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
-values ('samsung2@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '삼성123', '이재용123', '111-22-33333', '/images/kakao.png', 'www.kakao.com',now());
+-- insert into comp_tb (email, password, comp_name, representative_name, business_number, photo,  homepage, created_at)
+-- values ('samsung@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500d4221d615695', '삼성', '이재용', '111-22-33333', '/images/daiso1.png', 'www.kakao.com',now());
 
 
 insert into resume_skill_tb (resume_id, skill) values (1, 'Vue.js');
@@ -72,23 +69,27 @@ insert into required_skill_tb ( jobs_id, skill) values (7, 'Spring');
 insert into required_skill_tb ( jobs_id, skill) values (7, 'JavaScript');
 insert into required_skill_tb ( jobs_id, skill) values (8, 'Oracle');
 insert into required_skill_tb ( jobs_id, skill) values (8, 'React');
+insert into required_skill_tb ( jobs_id, skill) values (9, 'Oracle');
+insert into required_skill_tb ( jobs_id, skill) values (9, 'React');
 
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
 values ('백엔드 개발자 ' , '', '백엔드 개발자', '신입', '학력무관', '제주',  '2023-03-24', 1, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
 values ('프로트엔드 개발자 ' , '', '프로트엔드 개발자', '1년차 미만', '대졸', '서울', '2023-05-11', 2, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
-values ('백엔드 개발자 ' , '', '백엔드 개발자', '1년차', '대학원 이상', '서울', '2023-03-14', 3, '홈페이지 접수', now());
+values ('백엔드 개발자 ' , '', '백엔드 개발자', '1년차', '대졸', '서울', '2023-03-14', 3, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
 values ('서버 개발자 ' , '', '서버 개발자', '3년차', '학력무관', '제주', '2023-03-24', 4, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
-values ('안드로이드 개발자 ' , '', '안드로이드 개발자', '신입', '학력무관', '제주', '2023-03-25', 5, '홈페이지 접수', now());
+values ('안드로이드 개발자 ' , '', '안드로이드 개발자', '신입', '학력무관', '경기도', '2023-03-25', 5, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address,  end_date, comp_id, receipt, created_at)
-values ('안드로이드 개발자 ' , '', '안드로이드 개발자', '1년차', '학력무관', '제주', '2023-05-22', 6, '홈페이지 접수', now());
+values ('안드로이드 개발자 ' , '', '안드로이드 개발자', '1년차', '학력무관', '경기도', '2023-05-22', 6, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address,  end_date, comp_id, receipt, created_at)
-values ('프로트엔드 개발자 ' , '', '프로트엔드 개발자', '1년차', '학력무관', '제주', '2023-03-10', 7, '홈페이지 접수', now());
+values ('빅데이터 개발자 ' , '', '빅데이터 개발자', '1년차', '학력무관', '서울', '2023-03-10', 7, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address,  end_date, comp_id, receipt, created_at)
 values ('프로트엔드 개발자' , '', '프로트엔드 개발자', '3년차', '학력무관', '부산', '2023-03-15', 8, '홈페이지 접수', now());
+insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
+values ('서버 개발자' , '', '백엔드 개발자', '신입', '학력무관', '인천',  '2023-03-24', 1, '홈페이지 접수', now());
 
 
 insert into interest_tb (user_id, interest_ct) values(1, '백엔드 개발자');
@@ -105,19 +106,19 @@ insert into resume_tb (user_id, title, content, education, career, link, state, 
 values (1, '데이터로 일하는 개발자', '백엔드 이력서의 내용입니다.', '고졸', '신입', '블로그 주소', 1, now());
 
 insert into resume_tb (user_id, title, content, education, career, link, state, created_at) 
-values (1, '데이터로 일하는 개발자', '백엔드 이력서의 내용입니다.', '고졸', '신입', '블로그 주소', 1, now());
+values (1, '기록하는 개발자', '백엔드 이력서의 내용입니다.', '고졸', '신입', '블로그 주소', 1, now());
 
 insert into resume_tb (user_id, title, content, education, career, link, state, created_at) 
-values (1, '데이터로 일하는 개발자', '백엔드 이력서의 내용입니다.', '고졸', '신입', '블로그 주소', 1, now());
+values (1, '긍정적인 개발자', '백엔드 이력서의 내용입니다.', '고졸', '신입', '블로그 주소', 1, now());
 
 insert into resume_tb (user_id, title, content, education, career, link, state, created_at) 
-values (1, '데이터로 일하는 개발자', '백엔드 이력서의 내용입니다.', '고졸', '신입', '블로그 주소', 1, now());
+values (3, '성장하는 개발자', '백엔드 이력서의 내용입니다.', '대졸', '2년차', '블로그 주소', 1, now());
 
 insert into resume_tb (user_id, title, content, education, career, link, state, created_at) 
-values (2, '백엔드 이력서33', '백엔드 이력서의 내용입니다.', '고졸', '신입', '블로그 주소', 1, now());
+values (2, '백엔드 이력서', '백엔드 이력서의 내용입니다.', '고졸', '신입', '블로그 주소', 1, now());
 
 insert into resume_tb (user_id, title, content, education, career,  link, state, created_at) 
-values (3, '백엔드 이력서44', '백엔드 이력서의 내용입니다.', '대졸', '2년차', '블로그 주소', 1, now());
+values (3, '백엔드 이력서', '백엔드 이력서의 내용입니다.', '대졸', '2년차', '블로그 주소', 1, now());
 
 
 insert into user_scrap_tb (user_id, jobs_id, created_at) values (1, 1, now());

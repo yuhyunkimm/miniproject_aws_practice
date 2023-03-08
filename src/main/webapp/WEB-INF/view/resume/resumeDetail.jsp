@@ -333,6 +333,7 @@
 
 
         function scrap(resume, comp, compScrap) {
+            
             resumeId = resume;
             compId = comp;
             // 스크랩 id 있을때
@@ -345,6 +346,7 @@
                     dataType: "json"
                 }).done((res) => {
                     compScrapId = res.data;
+                    opener.location.reload();
                     changeScrap();
                 }).fail((err) => {
                     alert(err.responseJSON.msg);

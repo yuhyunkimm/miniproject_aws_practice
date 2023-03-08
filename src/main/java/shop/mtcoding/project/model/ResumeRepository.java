@@ -35,8 +35,10 @@ public interface ResumeRepository {
 
         public List<ResumeReadRespDto> findAllResumebyState();
 
-        public ResumeDetailRespDto findDetailPublicResumebyById(Integer resumeId);
-
+        public ResumeDetailRespDto findDetailPublicResumebyById(
+                @Param("resumeId") Integer resumeId,
+                @Param("compId") Integer compId
+        );
         public List<ResumeSearchRespDto> findResumeByCheckBox(
                 @Param("resumeDto") ResumeCheckboxReqDto resumeDto
         );

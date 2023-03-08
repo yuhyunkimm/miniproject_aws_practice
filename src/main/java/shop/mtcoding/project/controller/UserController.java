@@ -198,7 +198,7 @@ public class UserController {
 
     @PutMapping("/user/update")
     public ResponseEntity<?> updateUser(@RequestBody UserUpdateReqDto userUpdateReqDto) {
-        System.out.println("테스트 : " + userUpdateReqDto.toString());
+        // System.out.println("테스트 : " + userUpdateReqDto.toString());
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);

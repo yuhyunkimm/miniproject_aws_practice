@@ -351,9 +351,13 @@ public class JobsController {
         if (jDto.getReceipt() == null || jDto.getReceipt().isEmpty()) {
             throw new CustomApiException("접수방법이 필요합니다.");
         }
+        if (ObjectUtils.isEmpty(jDto.getEndDate())) {
+            throw new CustomApiException("마감일을 선택해주세요");
+        }
         if (ObjectUtils.isEmpty(jDto.getSkillList())) {
             throw new CustomApiException("기술을 선택해주세요");
-        }
+        } 
+
         Integer jobsId = jobsService.공고작성(jDto, compSession.getCompId());
         return new ResponseEntity<>(new ResponseDto<>(1, "저장 완료", jobsId), HttpStatus.CREATED);
     }

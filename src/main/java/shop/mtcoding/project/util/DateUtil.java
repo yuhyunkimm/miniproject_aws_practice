@@ -16,7 +16,7 @@ public class DateUtil {
         LocalDate toDate = LocalDate.parse(stamp.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 
         // ChronoUnit.DAYS.between
-        System.out.println(ChronoUnit.DAYS.between(fromDate, toDate));
+        // System.out.println(ChronoUnit.DAYS.between(fromDate, toDate));
         return ChronoUnit.DAYS.between(fromDate, toDate);
     }
 }

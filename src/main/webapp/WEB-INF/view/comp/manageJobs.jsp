@@ -154,6 +154,11 @@
     function checkPS(cId) {
         passwordCheckBtn(cId);
     }
+    let deleteId;
+    function deleteBtn(event, resumeId) {
+        event.stopPropagation();
+        deleteId = resumeId;
+    }
 
     const passwordInputEl = document.querySelector('#inputPassword')
     const modalEl = document.querySelector('#modal')
@@ -184,7 +189,7 @@
     function deleteJobs() {
         $.ajax({
             type: "delete",
-            url: "/jobs/" + $('#jobsId').val() + "/delete",
+            url: "/jobs/" + deleteId + "/delete",
             dataType: "json"
         }).done((res) => { // 20X 일때
             alert(res.msg);

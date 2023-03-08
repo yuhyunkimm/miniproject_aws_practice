@@ -28,6 +28,7 @@ import shop.mtcoding.project.dto.resume.ResumeResp.ResumeManageRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeSaveRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeSearchRespDto;
 import shop.mtcoding.project.dto.skill.ResumeSkillResp.ResumeSkillRespDto;
+import shop.mtcoding.project.dto.suggest.SuggestResp.SuggestToCompRespIdDto;
 import shop.mtcoding.project.dto.user.UserResp.UserDataRespDto;
 import shop.mtcoding.project.exception.CustomApiException;
 import shop.mtcoding.project.exception.CustomException;
@@ -57,7 +58,7 @@ public class ResumeController {
     private SkillRepository skillRepository;
 
     @Autowired
-    private SuggestRepository SuggestRepository;
+    private SuggestRepository suggestRepository;
 
     @Autowired
     private ApplyRepository applyRepository;
@@ -197,16 +198,25 @@ public class ResumeController {
         if (ObjectUtils.isEmpty(resumeRepository.findByResumeId(id))) {
             throw new CustomException("존재하지 않는 이력서 입니다.");
         }
-        ResumeDetailRespDto rDto = resumeRepository.findDetailPublicResumebyById(id);
+
+        Comp compSession = (Comp) session.getAttribute("compSession");
+        ResumeDetailRespDto rDto ; 
+        if (compSession != null) {
+             rDto = resumeRepository.findDetailPublicResumebyById(id, compSession.getCompId());
+        }else{
+             rDto = resumeRepository.findDetailPublicResumebyById(id, null);
+        }
         List<String> insertList = new ArrayList<>();
         for (ResumeSkillRespDto skill : skillRepository.findByResumeSkill(rDto.getResumeId())) {
             insertList.add(skill.getSkill());
             rDto.setSkillList(insertList);
         }
-        Comp compSession = (Comp) session.getAttribute("compSession");
+        
+        compSession = (Comp) session.getAttribute("compSession");
         if (compSession != null) {
             try {
-                rDto.setSuggestState(SuggestRepository.findByCompIdAndResumeId(compSession.getCompId(), id).getState());
+                SuggestToCompRespIdDto sDto = suggestRepository.findByCompIdAndResumeId(compSession.getCompId(), id);
+                rDto.setSuggestState(sDto.getState());
             } catch (Exception e) {
             }
         }
@@ -240,17 +250,17 @@ public class ResumeController {
         if (applyPS == null) {
             throw new CustomException("지원 결과 데이터가 없습니다.");
         }
-        ResumeDetailRespDto rDto = resumeRepository.findDetailPublicResumebyById(applyPS.getResumeId());
+        Comp compSession = (Comp) session.getAttribute("compSession");
+        ResumeDetailRespDto rDto = resumeRepository.findDetailPublicResumebyById(applyPS.getResumeId(), compSession.getCompId());
         List<String> insertList = new ArrayList<>();
         for (ResumeSkillRespDto skill : skillRepository.findByResumeSkill(rDto.getResumeId())) {
             insertList.add(skill.getSkill());
             rDto.setSkillList(insertList);
         }
-        Comp compSession = (Comp) session.getAttribute("compSession");
+         compSession = (Comp) session.getAttribute("compSession");
         if (compSession != null) {
             try {
-                rDto.setSuggestState(SuggestRepository
-                        .findByCompIdAndResumeId(compSession.getCompId(), applyPS.getResumeId()).getState());
+                rDto.setSuggestState(suggestRepository.findByCompIdAndResumeId(compSession.getCompId(), applyPS.getResumeId()).getState());
             } catch (Exception e) {
             }
             try {
