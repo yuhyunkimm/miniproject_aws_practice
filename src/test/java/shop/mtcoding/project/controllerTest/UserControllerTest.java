@@ -103,6 +103,7 @@ public class UserControllerTest {
     }
 
     @Test
+    @Transactional
     public void login_test() throws Exception {
         // given
         String requestBody = "email=ssar@nate.com&password=1234";
@@ -116,7 +117,6 @@ public class UserControllerTest {
 
         // then
         assertThat(principal.getEmail()).isEqualTo("ssar@nate.com");
-        // assertThat(principal.getPassword()).isEqualTo("1234");
         resultActions.andExpect(status().is3xxRedirection());
     }
 

@@ -53,7 +53,7 @@ public class ResumeRepositoryTest {
         // given
         Integer test = 1;
         // when
-        ResumeDetailRespDto rDto = resumeRepository.findDetailPublicResumebyById(test);
+        ResumeDetailRespDto rDto = resumeRepository.findDetailPublicResumebyById(test,null);
 
         // then
         System.out.println("테스트 : "+ rDto.toString());

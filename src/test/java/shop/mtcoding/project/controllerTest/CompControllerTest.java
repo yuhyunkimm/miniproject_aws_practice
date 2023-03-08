@@ -140,9 +140,9 @@ public class CompControllerTest {
         // then
         resultActions.andExpect(status().isOk());
         // assertThat(rDtos.size()).isEqualTo(10);
-        assertThat(rDtos.get(0).getName()).isEqualTo("ssar");
+        assertThat(rDtos.get(0).getName()).isEqualTo("박인우");
         assertThat(rDtos.get(0).getCareer()).isEqualTo("신입");
-        assertThat(rDtos.get(0).getAddress()).isEqualTo("서울");
+        assertThat(rDtos.get(0).getAddress()).isEqualTo("서울특별시");
         // assertThat(rDtos.get(0).getSkillList()).isEqualTo("자바");
         assertThat(rDtos.get(0).getState()).isEqualTo(1);
 
