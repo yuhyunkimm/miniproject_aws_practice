@@ -60,18 +60,18 @@
                         <h6><b>이력서 <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">
                                     ${rDtos.size()}</div></b></h6>
                         <div class="card mb-2">
-                            <div class="card-body mt-3">
+                            <div class="card-body mt-3 ">
                                 <table class="table" style="width:100%">
                                     <div class="row">
                                         <c:forEach items="${rDtos}" var="rDto" begin="0" end="1">
-                                            <div class="col-4">
+                                            <div class="col-6 ">
                                                 <a href="/resume/${rDto.resumeId}" style="width: 240px; height: 120px;"
                                                     onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
-                                                    <div class="card">
+                                                    <div class="card card-color">
                                                         <div class="card-body">
-                                                            <h5 class="card-title">${rDto.name}</h5>
-                                                            <h6 class="card-title">${rDto.title}</h6>
-                                                            <div class="d-flex justify-content-around">
+                                                            <h5 class="card-title" style="text-align: center;">
+                                                                ${rDto.title}</h5>
+                                                            <!-- <div class="d-flex justify-content-around ">
                                                                 <div style="float: left;">
                                                                     <h6 class="card-subtitle mb-2">${rDto.career}</h6>
                                                                 </div>
@@ -79,8 +79,8 @@
                                                                     <h6 class="card-subtitle mb-2">${rDto.address}</h6>
                                                                 </div>
 
-                                                            </div>
-                                                        </div>>
+                                                            </div> -->
+                                                        </div>
                                                     </div>
                                                 </a>
                                             </div>

@@ -97,7 +97,7 @@
                                 </div>
                             </div>
 
-                           <div class="card border-light mb-3" style="max-width: 40rem;">
+                           <div class="card border-light mb-3">
                                 <div class="card-header">보유 기술</div>
                                 <div class="card-body">
                                     <div class="row my-3 my-border">
