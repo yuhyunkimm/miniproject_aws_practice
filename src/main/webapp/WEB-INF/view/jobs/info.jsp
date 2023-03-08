@@ -376,7 +376,7 @@
             <div class="hr"></div>
             <div class="under-line">
             </div>
-            <div id="result">
+            <div id="result" class="m-3">
                 ${keyword} 검색결과
             </div>
             <!-- 공고들 -->
