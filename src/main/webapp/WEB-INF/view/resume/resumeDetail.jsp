@@ -294,15 +294,6 @@
                                     <h6 class="card-subtitle mb-2 text-muted">`+ jDto.position + `</h6>
                                 </div>
                                 <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">`+ + `</h6>
-                                </div>
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">`+ + `</h6>
-                                </div>
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">`+ + `</h6>
-                                </div>
-                                <div class="m-2" style="float: left;">
                                     <h6 class="card-subtitle mb-2 text-muted">`+ jDto.endDate + `</h6>
                                 </div>
                             </div>      
