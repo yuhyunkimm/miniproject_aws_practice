@@ -71,11 +71,11 @@
             <div class="container-fluid width-53 top-80">
                 <div>
                     <div style="font-size: 1.2em; font-weight : bold; display:inline; margin-left : 0em;">
-                        고객 서비스
+                        <a href="/help" style="color: black; text-decoration: none;"> 고객 서비스</a>
                     </div>
                     <button type="submit" class="qButton"
                         style="border-radius: 30px; padding: 1.5px 20px; margin-right: 0em;">
-                        <a href="/help/inquiryForm" style="text-decoration: none; color: rgb(253, 255, 255);"> <a href="/help/inquiryForm" style="text-decoration: none; color: rgb(253, 255, 255);"> 문의하기</a></a>
+                        <a href="/help/inquiryForm" style="text-decoration: none; color: rgb(253, 255, 255);"> 문의하기</a>
                     </button>
                     <hr>
                 </div>
