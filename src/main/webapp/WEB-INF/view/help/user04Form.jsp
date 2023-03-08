@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="../layout/header.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,7 +73,7 @@
                 고객 서비스
             </div>
             <button type="submit" class="qButton" style="border-radius: 30px; padding: 1.5px 20px; margin-right: 0em;">
-                문의하기
+                <a href="/help/inquiryForm" style="text-decoration: none; color: rgb(253, 255, 255);"> 문의하기</a>
             </button>
             <hr>
         </div>
@@ -82,62 +84,27 @@
         <div style="font-weight: bold; font-size: 0.8em; display:inline; margin-left : 0.1em;">보상금 ∙ 뉴스타트 패키지</div>
 
         <div style="margin-top: 70px;"></div>
-        <div style="font-weight: bold; font-size: 1.4em;">보상금 지급 대상자가 아니라고 뜹니다.</div>
+        <div style="font-weight: bold; font-size: 1.4em;">보상금 지급 정보를 늦게 제출 했습니다. 어떻게 되나요?</div>
         <div style="margin-top: 35px;"></div>
 
-        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            보상금은 입사일로부터 3개월(93일) 초과근무시, 해당 시점에 보상금 신청이 가능합니다. 3개월 이전 퇴사 혹은 이미 지급된 건에 대해서는 보상금 지급이 불가하니, 이점 확인 해주세요.
-        </div>
-        <div style="margin-top: 40px;"></div>
-        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            보상금 지급 대상자가 맞음에도 불구하고, 보상금 지급 대상자가 아니라는 메시지 확인시, 하기 절차에 따라 보상금 신청 부탁드립니다.</div>
-        <div style="margin-top: 40px;"></div>
-
-        <div style="font-weight: bold; font-size: 0.9em; display:inline; color: blue;">[홈페이지 비로그인 상태]</div>
-        <br>
-        <div style="font-size: 0.9em; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            -1) 메일 하단에 [정보 입력하러 가기] 클릭</div>
-        <div style="font-size: 0.9em; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            -2) 사이트 로그인</div>
-        <div style="font-size: 0.9em; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            -3) 로그인 후 정보 입력 진행</div>
 
         <div style="margin-top: 40px;"></div>
 
-        <div style="font-weight: bold; font-size: 0.9em; display:inline; color: blue;">[홈페이지 로그인 상태]</div>
-        <br>
-        <div style="font-size: 0.9em; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            -1) 메일 하단에 [정보 입력하러 가기] 클릭</div>
-        <div style="font-size: 0.9em; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            -2) 정보 입력 화면에서 정보 입력 진행</div>
-
-
-        <div style="margin-top: 40px;"></div>
         <div
-            style="font-size: 1.0em; font-weight: bold; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            ＜위 절차로 진행했음에도 불구하고, 보상금 지급 대상자가 아니라는 메시지 확인 시＞
-        </div>
-        <br>
-        <div
-            style="font-size: 1.0em; font-weight: bold; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            - 수신한 메일 주소로 사이트에 로그인 되어 있는지 여부</div>
-        <br>
-        <div
-            style="font-size: 1.0em; font-weight: bold; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            - 채용 시 사용한 메일주소를 탈퇴한 후 동일한 메일로 재가입 여부</div>
-
-        <div style="margin-top: 40px;"></div>
+            style="font-size: 1.1em; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
+            지급 정보 제출하신 경우 빠른 시일내로 확인하고 있으며, 확인된 날짜 기준으로 가장 빠른 지급일에 맞춰 보상금 지급 대상자로 변경됩니다.</div>
+        <div style="margin-top: 10px;"></div>
         <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            이외 다른 문제로 진행이 어려울 시, </div>
+            보상금 지급 안내 메일을 받은 후 익월 3일까지 지급 정보 제출이 확인되지 않을 경우 익월 10일에 미지급 되고, </div>
         <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            저희 사이트를 통해 최종합격하신 (회사명/ 합격자분 성함/입사일) 정보 포함하여 문의 남겨주시기 바랍니다.</div>
+            지급 정보 제출시에 채용일을 함께 기재해주셔야 가장 빠른 지급일에 해당하는 보상금 지급 대상자로 변경됩니다.</div>
 
-        <div style="margin-top: 200px;"></div>
+        <div style="margin-top: 400px;"></div>
 
         <div style="font-size: 0.9em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display:inline;">또 다른 질문이 있으십니까?</div>
         <div style="font-size: 0.9em; color: blue; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display:inline;"><a href="/help/inquiryForm"> 다른 문의등록하기＞</a></div>
+            display:inline;"><a href="/help/inquiryForm"style="color: blue;""> 다른 문의등록하기＞</a></div>
         <div style="margin-top: 100px;"></div>
     </div>
 
@@ -145,3 +112,4 @@
 </body>
 
 </html>
+<%@ include file="../layout/footer.jsp" %>

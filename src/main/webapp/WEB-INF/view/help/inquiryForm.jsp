@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="../layout/header.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,14 +92,11 @@
             <div style="font-size: 1.2em; font-weight : bold; display:inline; margin-left : 0em;">
                 고객 서비스
             </div>
-            <button type="submit" class="qButton" style="border-radius: 30px; padding: 1.5px 20px; margin-right: 0em;">
-                문의하기
-            </button>
             <hr>
         </div>
 
         <div style="font-weight: bold; font-size: 0.8em; color: rgb(145, 143, 143); display:inline; margin-left : 0em;">
-            고객센터 ＞ 문의하기
+            고객센터 ＞ <a href="/help/inquiryForm" style="text-decoration: none; color: rgb(253, 255, 255);"> 문의하기</a>
         </div>
 
         <div style="margin-top: 70px;"></div>
@@ -138,12 +137,12 @@
         <div style="margin-top: 20px;"></div>
         <div style="font-weight: bold;"><input type="checkbox"> 동의합니다. <div style="color: red; display: inline;">*</div>
         </div>
-        <div style="margin-top: 60px;"></div>
+        <div style="margin-top: 100px;"></div>
         <button type="submit" class="eButton"
             style="border-radius: 40px; padding: 1.5px 20px; color: rgb(255, 255, 255);">
             <a href="/help" style="color: azure; text-decoration: none;">제출하기</a>
         </button>
-        <div style="margin-top: 100px;">
+        <div style="margin-top: 200px;">
         </div>
     </div>
 
@@ -151,3 +150,4 @@
 </body>
 
 </html>
+<%@ include file="../layout/footer.jsp" %>

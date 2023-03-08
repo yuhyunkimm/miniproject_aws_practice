@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="../layout/header.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -125,7 +127,7 @@
             </div>
             <button type="submit" class="qButton"
                 style="border-radius: 30px; padding: 1.5px 20px; margin-right: 0em; ;">
-                <a href="/help/inquiryForm" style="text-decoration: none; color: rgb(253, 255, 255);"> 문의하기</a>
+                <a href="/help/inquiryForm" style="text-decoration: none; color: rgb(253, 255, 255);"> <a href="/help/inquiryForm" style="text-decoration: none; color: rgb(253, 255, 255);"> 문의하기</a></a>
             </button>
             <hr>
         </div>
@@ -209,4 +211,7 @@
                 </div>
             </div>
         </div>
-</body>
+                                  <div style="margin-top: 130px;"></div>
+        </div>
+        
+<%@ include file="../layout/footer.jsp" %>

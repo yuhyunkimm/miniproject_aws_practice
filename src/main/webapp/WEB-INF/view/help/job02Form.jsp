@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="../layout/header.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,44 +73,33 @@
                 고객 서비스
             </div>
             <button type="submit" class="qButton" style="border-radius: 30px; padding: 1.5px 20px; margin-right: 0em;">
-                문의하기
+                <a href="/help/inquiryForm" style="text-decoration: none; color: rgb(253, 255, 255);"> <a href="/help/inquiryForm" style="text-decoration: none; color: rgb(253, 255, 255);"> 문의하기</a></a>
             </button>
             <hr>
         </div>
 
         <div style="font-weight: bold; font-size: 0.8em; color: rgb(145, 143, 143); display:inline; margin-left : 0em;">
-            고객센터 ＞ 개인회원 ＞
+            고객센터 ＞ 기업회원 ＞
         </div>
-        <div style="font-weight: bold; font-size: 0.8em; display:inline; margin-left : 0.1em;">지원하기 ∙ 관리</div>
+        <div style="font-weight: bold; font-size: 0.8em; display:inline; margin-left : 0.1em;">포지션 등록 ∙ 관리</div>
 
         <div style="margin-top: 70px;"></div>
-        <div style="font-weight: bold; font-size: 1.4em;">삭제한 이력서 복원이 가능한가요?</div>
-        <div style="margin-top: 35px;"></div>
+        <div style="font-weight: bold; font-size: 1.4em;">원하는 직군/직무를 추가하고 싶어요</div>
+        <div style="margin-top: 30px;"></div>
 
 
-        <div style="margin-top: 40px;"></div>
-
-        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
-            안타깝게도 삭제된 이력서는 개인 정보 보호 상 내부 시스템에 보관되지 않습니다.</div>
+        <h3 style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
+            직군 / 직무는 현재 등록된 카테고리에 한해서만 추가 가능한 점 양해 바라며,</h3>
         <br>
-        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
-            다만, </div>
-        <div
-            style="font-size: 1.0em; color: rgb(100, 119, 173); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
-            지원 현황</div>
-        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
-            내 이전 지원 건을 클릭하시면 첨부되었던 이력서 파일을 다운로드하여 활용할 수 있습니다.</div>
-        <br>
-        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
-            (다운로드 한 이력서는 매치업 이력서로 등록할 수 없기 때문에, 새로이 이력서를 생성하여 작성 완료 후 매치업 등록이 가능합니다.)</div>
-
+        <h3 style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
+            추가가 필요한 직군 / 직무가 있을 시 '고객센터 → <a href="/help/inquiryForm" style="text-decoration: none; color: rgb(253, 255, 255);"> 문의하기</a>'로 피드백 전달 주시면 내부적으로 반영 여부를 검토하도록 하겠습니다.</h3>
 
         <div style="margin-top: 400px;"></div>
 
         <div style="font-size: 0.9em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display:inline;">또 다른 질문이 있으십니까?</div>
         <div style="font-size: 0.9em; color: blue; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display:inline;"><a href="/help/inquiryForm"> 다른 문의등록하기＞</a></div>
+            display:inline;"><a href="/help/inquiryForm" style="color: blue;"> 다른 문의등록하기＞</a></div>
         <div style="margin-top: 100px;"></div>
     </div>
 
@@ -116,3 +107,4 @@
 </body>
 
 </html>
+<%@ include file="../layout/footer.jsp" %>
