@@ -82,7 +82,7 @@
 
                 <div
                     style="font-weight: bold; font-size: 0.8em; color: rgb(145, 143, 143); display:inline; margin-left : 0em;">
-                    고객센터 > 기업회원 >
+                    고객센터 ＞ 기업회원 ＞
                 </div>
                 <div style="font-weight: bold; font-size: 0.8em; display:inline; margin-left : 0.1em;">매치업</div>
 

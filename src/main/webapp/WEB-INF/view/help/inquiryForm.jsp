@@ -96,7 +96,7 @@
         </div>
 
         <div style="font-weight: bold; font-size: 0.8em; color: rgb(145, 143, 143); display:inline; margin-left : 0em;">
-            고객센터 ＞ <a href="/help/inquiryForm" style="text-decoration: none; color: rgb(253, 255, 255);"> 문의하기</a>
+            고객센터 ＞ 문의하기
         </div>
 
         <div style="margin-top: 70px;"></div>
