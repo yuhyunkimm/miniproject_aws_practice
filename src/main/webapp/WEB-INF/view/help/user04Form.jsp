@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="../layout/header.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,10 +70,10 @@
     <div class="container-fluid width-53 top-80">
         <div>
             <div style="font-size: 1.2em; font-weight : bold; display:inline; margin-left : 0em;">
-                고객 서비스
+                <a href="/help" style="color: black; text-decoration: none;"> 고객 서비스</a>
             </div>
             <button type="submit" class="qButton" style="border-radius: 30px; padding: 1.5px 20px; margin-right: 0em;">
-                문의하기
+                <a href="/help/inquiryForm" style="text-decoration: none; color: rgb(253, 255, 255);"> 문의하기</a>
             </button>
             <hr>
         </div>
@@ -79,36 +81,30 @@
         <div style="font-weight: bold; font-size: 0.8em; color: rgb(145, 143, 143); display:inline; margin-left : 0em;">
             고객센터 ＞ 개인회원 ＞
         </div>
-        <div style="font-weight: bold; font-size: 0.8em; display:inline; margin-left : 0.1em;">지원하기 ∙ 관리</div>
+        <div style="font-weight: bold; font-size: 0.8em; display:inline; margin-left : 0.1em;">보상금 ∙ 뉴스타트 패키지</div>
 
         <div style="margin-top: 70px;"></div>
-        <div style="font-weight: bold; font-size: 1.4em;">삭제한 이력서 복원이 가능한가요?</div>
+        <div style="font-weight: bold; font-size: 1.4em;">보상금 지급 정보를 늦게 제출 했습니다. 어떻게 되나요?</div>
         <div style="margin-top: 35px;"></div>
 
 
         <div style="margin-top: 40px;"></div>
 
-        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
-            안타깝게도 삭제된 이력서는 개인 정보 보호 상 내부 시스템에 보관되지 않습니다.</div>
-        <br>
-        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
-            다만, </div>
         <div
-            style="font-size: 1.0em; color: rgb(100, 119, 173); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
-            지원 현황</div>
-        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
-            내 이전 지원 건을 클릭하시면 첨부되었던 이력서 파일을 다운로드하여 활용할 수 있습니다.</div>
-        <br>
-        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
-            (다운로드 한 이력서는 매치업 이력서로 등록할 수 없기 때문에, 새로이 이력서를 생성하여 작성 완료 후 매치업 등록이 가능합니다.)</div>
-
+            style="font-size: 1.1em; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
+            지급 정보 제출하신 경우 빠른 시일내로 확인하고 있으며, 확인된 날짜 기준으로 가장 빠른 지급일에 맞춰 보상금 지급 대상자로 변경됩니다.</div>
+        <div style="margin-top: 10px;"></div>
+        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            보상금 지급 안내 메일을 받은 후 익월 3일까지 지급 정보 제출이 확인되지 않을 경우 익월 10일에 미지급 되고, </div>
+        <div style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            지급 정보 제출시에 채용일을 함께 기재해주셔야 가장 빠른 지급일에 해당하는 보상금 지급 대상자로 변경됩니다.</div>
 
         <div style="margin-top: 400px;"></div>
 
         <div style="font-size: 0.9em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display:inline;">또 다른 질문이 있으십니까?</div>
         <div style="font-size: 0.9em; color: blue; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display:inline;"><a href="/help/inquiryForm"> 다른 문의등록하기＞</a></div>
+            display:inline;"><a href="/help/inquiryForm"style="color: blue;""> 다른 문의등록하기＞</a></div>
         <div style="margin-top: 100px;"></div>
     </div>
 
@@ -116,3 +112,4 @@
 </body>
 
 </html>
+<%@ include file="../layout/footer.jsp" %>

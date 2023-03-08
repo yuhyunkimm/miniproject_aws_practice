@@ -267,6 +267,8 @@ public class CompController {
             throw new CustomApiException("사업자 번호을 입력하세요");
         }
         compService.회사정보수정(compUpdateReqDto, compSession.getCompId());
+        compSession = compRepository.findByCompId(compSession.getCompId());
+        session.setAttribute("compSession", compSession);
         return new ResponseEntity<>(new ResponseDto<>(1, "수정완료", null), HttpStatus.OK);
     }
 

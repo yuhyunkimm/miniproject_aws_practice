@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import shop.mtcoding.project.dto.resume.ResumeReq.ResumeCheckboxReqDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeUpdateReqDto;
 import shop.mtcoding.project.dto.resume.ResumeReq.ResumeWriteReqDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeDetailRespDto;
@@ -13,6 +14,7 @@ import shop.mtcoding.project.dto.resume.ResumeResp.ResumeManageRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeMatchRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeReadRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeSaveRespDto;
+import shop.mtcoding.project.dto.resume.ResumeResp.ResumeSearchRespDto;
 import shop.mtcoding.project.dto.resume.ResumeResp.ResumeUpdateRespDto;
 
 @Mapper
@@ -35,11 +37,15 @@ public interface ResumeRepository {
 
         public ResumeDetailRespDto findDetailPublicResumebyById(Integer resumeId);
 
+        public List<ResumeSearchRespDto> findResumeByCheckBox(
+                @Param("resumeDto") ResumeCheckboxReqDto resumeDto
+        );
+
         public int insert(
-                        @Param("rDto") ResumeWriteReqDto rDto);
+                @Param("rDto") ResumeWriteReqDto rDto);
 
         public int updateById(
-                        @Param("rDto") ResumeUpdateReqDto rDto);
+                @Param("rDto") ResumeUpdateReqDto rDto);
 
         public int deleteById(Integer resumeId);
 }

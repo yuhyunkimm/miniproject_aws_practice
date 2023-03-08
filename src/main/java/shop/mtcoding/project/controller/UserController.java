@@ -198,7 +198,6 @@ public class UserController {
 
     @PutMapping("/user/update")
     public ResponseEntity<?> updateUser(@RequestBody UserUpdateReqDto userUpdateReqDto) {
-        userUpdateReqDto.setPassword(Sha256.encode(userUpdateReqDto.getPassword()));
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
@@ -206,6 +205,7 @@ public class UserController {
         if (userUpdateReqDto.getPassword() == null || userUpdateReqDto.getPassword().isEmpty()) {
             throw new CustomApiException("비밀번호를 입력하세요");
         }
+        
         if (userUpdateReqDto.getName() == null || userUpdateReqDto.getName().isEmpty()) {
             throw new CustomApiException("이름을 입력하세요");
         }
@@ -218,7 +218,10 @@ public class UserController {
         if (userUpdateReqDto.getAddress() == null || userUpdateReqDto.getAddress().isEmpty()) {
             throw new CustomApiException("주소를 입력하세요");
         }
+        userUpdateReqDto.setPassword(Sha256.encode(userUpdateReqDto.getPassword()));
         userService.개인정보수정(userUpdateReqDto, principal.getUserId());
+        principal = userRepository.findById(principal.getUserId());
+        session.setAttribute("principal", principal);
         return new ResponseEntity<>(new ResponseDto<>(1, "수정완료", null), HttpStatus.OK);
 
     }
@@ -256,16 +259,25 @@ public class UserController {
         
             List<JobsMainRecommendRespDto> rDtos = jobsRepository.findAlltoMainRecommend(principal.getUserId());
             for (JobsMainRecommendRespDto jDto : rDtos) {
+                try {
+                    jDto.setUserScrapId(scrapRepository.findScrapIdByUserIdAndJobsId(principal.getUserId(), jDto.getJobsId()).getUserScrapId()); 
+                } catch (Exception e) {
+                }
                 long dDay = DateUtil.dDay(jDto.getEndDate());
                 jDto.setLeftTime(dDay);
                 List<String> insertList = new ArrayList<>();
                 for (RequiredSkillWriteReqDto skill : skillRepository.findByJobsSkill(jDto.getJobsId())) {
                     insertList.add(skill.getSkill());
                 }
+                
                 jDto.setSkillList(insertList);
             }
             List<JobsMainRecommendRespDto> rDtos2 = jobsRepository.findAlltoMainRecommendRandom(principal.getUserId());
             for (JobsMainRecommendRespDto jDto : rDtos2) {
+                try {
+                    jDto.setUserScrapId(scrapRepository.findScrapIdByUserIdAndJobsId(principal.getUserId(), jDto.getJobsId()).getUserScrapId()); 
+                } catch (Exception e) {
+                }
                 long dDay = DateUtil.dDay(jDto.getEndDate());
                 jDto.setLeftTime(dDay);
                 List<String> insertList = new ArrayList<>();
@@ -347,7 +359,6 @@ public class UserController {
 
         User userPS = userService.프로필사진수정(photo, principal.getUserId());
         session.setAttribute("principal", userPS);
-        // System.out.println("테스트 : "+userPS.getProfile());
         return new ResponseEntity<>(new ResponseDto<>(1, "프로필 수정 성공", null), HttpStatus.OK);
     }
 }

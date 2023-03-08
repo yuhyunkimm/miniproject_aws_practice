@@ -276,10 +276,6 @@
 
             <div class="col-3" id="jobs-render">
                 <div class="rButton ms-5 view-right2" id="jobs-remove">
-                    <!-- 뷰포트 -->
-                    <%-- <div class="row mb-2">
-                        <button type="button" class="btn btn-success " onclick="">미리보기</button>
-                    </div> --%>
                     <div class="row mb-2">
                         <button type="button" class="btn btn-success "
                             onclick="saveTemp(`${compSession.compId}`,`${jDto.jobsId}`)">임시저장</button>
@@ -426,9 +422,6 @@
         function renderBtn() {
             let el = `
                     <div class="rButton ms-5 view-right2" id="jobs-remove">
-                        <div class="row mb-2">
-                            <button type="button" class="btn btn-success" onclick="test()" >미리보기</button>
-                        </div>
                         <div class="row mb-2">
                             <button type="button" class="btn btn-success" onclick="saveTemp(`+ compId + `,` + jobsId + `)">임시저장</button>
                         </div>

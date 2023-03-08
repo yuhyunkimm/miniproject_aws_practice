@@ -332,7 +332,75 @@
         </div>
 
         <input type="hidden" id="pricipalId" value="${principal.userId}">
-        <script>
+           <script>
+           let jobsId;
+            let userId;
+            let userScrapId;
+
+            function scrap(jobs, user, userScrap) {
+                jobsId = jobs;
+                userId = user;
+
+                // 스크랩 id 있을때
+                if (userScrap > 0) {
+                    userScrapId = userScrap;
+
+                    $.ajax({
+                        type: "delete",
+                        url: "/user/scrap/" + userScrapId + "/delete",
+                        dataType: "json"
+                    }).done((res) => {
+                        userScrapId = res.data;
+                        changeScrap();
+                    }).fail((err) => {
+                        alert(err.responseJSON.msg);
+                    });
+
+                } else {
+                    let data = {
+                        userId: user,
+                        jobsId: jobs
+                    }
+                    $.ajax({
+                        type: "post",
+                        url: "/user/scrap/insert",
+                        data: JSON.stringify(data),
+                        headers: {
+                            "content-type": "application/json; charset=utf-8"
+                        },
+                        dataType: "json"
+                    }).done((res) => {
+                        userScrapId = res.data;
+                        changeScrap();
+                    }).fail((err) => {
+                        alert(err.responseJSON.msg);
+                    });
+                }
+            }
+
+            function changeScrap() {
+                $('.scrap-' + jobsId + '-remove').remove();
+                renderScrap();
+            }
+            function renderScrap() {
+                let el;
+                if (userScrapId > 0) {
+                    el = `
+            <div class="scrap-`+ jobsId + `-remove">
+                <i id="scrap-`+ jobsId + `" class="fa-solid on-Clicked fa-star my-cursor"
+                                        onclick="scrap(`+ jobsId + `,` + userId + `,` + userScrapId + `)"></i>
+                                    </div>
+            `;
+                } if (userScrapId === 0) {
+                    el = `
+            <div class="scrap-`+ jobsId + `-remove">
+                <i id="scrap-`+ jobsId + `" class="fa-regular fa-star my-cursor"
+                                        onclick="scrap(`+ jobsId + `,` + userId + `,` + userScrapId + `)"></i>
+                                    </div>
+            `;
+                }
+                $('.scrap-' + jobsId + '-render').append(el);
+            }
             function checkPS(uId) {
                 passwordCheckBtn(uId);
             }

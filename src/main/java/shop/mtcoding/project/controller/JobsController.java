@@ -43,6 +43,7 @@ import shop.mtcoding.project.model.Comp;
 import shop.mtcoding.project.model.CompRepository;
 import shop.mtcoding.project.model.JobsRepository;
 import shop.mtcoding.project.model.ResumeRepository;
+import shop.mtcoding.project.model.ScrapRepository;
 import shop.mtcoding.project.model.SkillRepository;
 import shop.mtcoding.project.model.User;
 import shop.mtcoding.project.service.JobsService;
@@ -62,6 +63,9 @@ public class JobsController {
     
     @Autowired
     private ResumeRepository resumeRepository;
+
+    @Autowired
+    private ScrapRepository scrapRepository;
 
     @Autowired
     private ApplyRepository applyRepository;
@@ -108,11 +112,16 @@ public class JobsController {
 
     @GetMapping("/jobs/info/search")
     public ResponseEntity<?> searchCheckbox(JobsCheckBoxReqDto jobsDto, Model model) {
+        User principal = (User) session.getAttribute("principal");
         if (jobsDto.getCareer() == null || jobsDto.getCareer().isEmpty()) {
             jobsDto.setCareer("");
         }
         List<JobsSearchRespDto> jDtos = jobsRepository.findByCheckBox(jobsDto);
         for (JobsSearchRespDto jDto : jDtos) {
+            try {
+                jDto.setUserScrapId(scrapRepository.findScrapIdByUserIdAndJobsId(principal.getUserId(), jDto.getJobsId()).getUserScrapId()); 
+            } catch (Exception e) {
+            }
             long dDay = DateUtil.dDay(jDto.getEndDate());
             jDto.setLeftTime(dDay);
             List<String> insertList = new ArrayList<>();

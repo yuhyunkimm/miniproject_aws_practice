@@ -15,6 +15,10 @@
         where s.comp_id = #{compId}
     </select>
 
+    <select id="findScrapIdByUserIdAndJobsId" resultType="shop.mtcoding.project.dto.scrap.UserScrapResp$UserScrapIdRespDto">
+      select user_scrap_id from user_scrap_tb where user_id = #{userId} and jobs_id = #{jobsId}
+    </select>
+
     <select id="findAllScrapByUserId" resultType="shop.mtcoding.project.dto.scrap.UserScrapResp$UserScrapRespDto">
           SELECT us.user_scrap_id,
               j.jobs_id,

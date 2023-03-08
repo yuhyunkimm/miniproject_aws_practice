@@ -48,6 +48,7 @@ public interface JobsRepository {
         @Param("keyword") String keyword,
         @Param("userId") Integer userId
         );
+        
     public List<JobsSearchRespDto> findByCheckBox(
         @Param("jDto") JobsCheckBoxReqDto jDto
         );
