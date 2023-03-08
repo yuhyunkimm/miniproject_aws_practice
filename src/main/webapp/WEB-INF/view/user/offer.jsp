@@ -14,7 +14,7 @@
                                         <a href="/user/profileUpdateForm"
                                             onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                             <div class="user-img">
-                                                <img src="${user.photo}" class="rounded" alt="Cinque Terre"
+                                                <img src="${user.photo == null ? '/images/default_profile.png' : user.photo}" class="rounded" alt="Cinque Terre"
                                                     style="max-width: 80px;">
                                             </div>
                                         </a>
