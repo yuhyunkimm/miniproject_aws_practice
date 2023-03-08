@@ -14,6 +14,10 @@
     width: 50em;
 }
 
+.card-color {
+    background-color: #f1f8f6;
+}
+
 
 .main-card {
     max-height: 15em;
