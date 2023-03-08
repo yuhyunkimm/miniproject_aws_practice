@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Blog</title>
+    <title>Connect</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +41,7 @@
                 </c:choose>
                 </div>
                 <div class="my-auto pb-1">
-                    <a href="/comp/comphome"><span class="badge bg-success">기업홈</span>
+                    <a href="/comp/comphome"><span class="badge bg-success">기업서비스</span>
                     </a>
                 </div>
             </div>

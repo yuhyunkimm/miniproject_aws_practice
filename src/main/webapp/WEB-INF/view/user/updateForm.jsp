@@ -43,6 +43,7 @@
                                 <div class="form-group mb-4">
                                     <input class="form-control" type="text" id="address" readonly name="roadFullAddr"
                                         placeholder="${uDto.address}" />
+                                        <input type="hidden"  id="siNm"  name="siNm" />
                                 </div>
                             </div>
                         </form>
@@ -62,7 +63,7 @@
 
             function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail, roadAddrPart2, engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn, detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn, buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno, emdNo) {
                 document.form.roadFullAddr.value = roadFullAddr;
-                // document.form.siNm.value = siNm;
+                document.form.siNm.value = siNm;
                 // document.form.sggNm.value = sggNm;
                 // document.form.emdNm.value = emdNm;
             }
@@ -77,7 +78,7 @@
                     name: $("#name").val(),
                     birth: $("#birth").val(),
                     tel: $("#tel").val(),
-                    address: $("#address").val()
+                    address: $("#siNm").val()
                 };
                 $.ajax({
                     type: "put",

@@ -18,13 +18,13 @@
                         </div>
                         <div class="card-body">
                             <div>
-                                444${jDto.compName}
+                                ${jDto.compName}
                             </div>
                             <div class="fs-5">
                                 ${jDto.title}
                             </div>
                             <div>
-                                <c:forEach items="${jDto.skillList}" var="skill">
+                                <c:forEach items="${jDto.skillList}" var="skill" begin="0" end="1">
                                     <span class="badge skill-color me-2">${skill}</span>
                                 </c:forEach>
                             </div>

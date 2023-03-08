@@ -174,10 +174,10 @@
                                        <button type="button" class="btn btn-secondary w-100">제안완료</button>
                                        </c:when>
                                        <c:when test="${rDto.suggestState == 1}">
-                                       <button type="button" class="btn btn-secondary w-100">제안성공</button>
+                                       <button type="button" class="btn btn-success w-100">제안성공</button>
                                        </c:when>
                                        <c:when test="${rDto.suggestState == -1}">
-                                       <button type="button" class="btn btn-secondary w-100">제안거절</button>
+                                       <button type="button" class="btn btn-danger w-100">제안거절</button>
                                        </c:when>
                                        <c:when test="${rDto.suggestState == null }">
                                        <button type="button" class="btn btn-success w-100" data-bs-toggle="modal"
@@ -292,9 +292,6 @@
                                 <h5 class="card-title" style="text-align: left;">`+ jDto.title + `</h5>
                                 <div class="m-2" style="float: left;">
                                     <h6 class="card-subtitle mb-2 text-muted">`+ jDto.position + `</h6>
-                                </div>
-                                <div class="m-2" style="float: left;">
-                                    <h6 class="card-subtitle mb-2 text-muted">`+ jDto.endDate + `</h6>
                                 </div>
                             </div>      
                         </div>
