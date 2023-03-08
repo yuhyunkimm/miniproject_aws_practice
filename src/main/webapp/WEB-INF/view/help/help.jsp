@@ -30,7 +30,7 @@
         .textmargin {
             font-size: 1.0em;
             margin-top: 30px;
-            margin-left: 79px;
+            margin-left: 50px;
             font-weight: bold;
         }
 
@@ -159,7 +159,7 @@
                         </div>
 
 
-                        <h2 style="font-size: 1.7em; text-align: center; margin-right: 20px;">개인회원 자주묻는 질문</h2>
+                        <h2 style="font-size: 1.7em; text-align: center; margin-right: 60px;">개인회원 자주묻는 질문</h2>
                         <div class="top_category">
                             <div class="textmargin"><a href="/help/user01Form"
                                     style="color: black; text-decoration: none;">
@@ -187,7 +187,7 @@
                             <div style="font-size: 1.2em;">기업회원을 위한 이용 안내입니다.</div>
                         </button>
                         <div style="margin-top: 100px;">
-                            <h2 style="font-size: 1.7em; text-align: center; margin-right: 30px;">기업회원 자주묻는 질문</h2>
+                            <h2 style="font-size: 1.7em; text-align: center; margin-right: 83px;">기업회원 자주묻는 질문</h2>
                             <div class="top_category">
                                 <div class="textmargin"><a href="/help/job01Form"
                                         style="color: black; text-decoration: none; margin-right: 30px;">

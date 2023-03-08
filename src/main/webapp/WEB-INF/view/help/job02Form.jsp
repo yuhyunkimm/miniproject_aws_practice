@@ -92,7 +92,7 @@
             직군 / 직무는 현재 등록된 카테고리에 한해서만 추가 가능한 점 양해 바라며,</h3>
         <br>
         <h3 style="font-size: 1.0em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display:inline;">
-            추가가 필요한 직군 / 직무가 있을 시 '고객센터 → <a href="/help/inquiryForm" style="text-decoration: none; color: rgb(253, 255, 255);"> 문의하기</a>'로 피드백 전달 주시면 내부적으로 반영 여부를 검토하도록 하겠습니다.</h3>
+            추가가 필요한 직군 / 직무가 있을 시 '고객센터 → 문의하기'로 피드백 전달 주시면 내부적으로 반영 여부를 검토하도록 하겠습니다.</h3>
 
         <div style="margin-top: 400px;"></div>
 
