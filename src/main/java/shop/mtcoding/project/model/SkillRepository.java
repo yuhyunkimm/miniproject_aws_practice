@@ -26,8 +26,8 @@ public interface SkillRepository {
         @Param("skillList") List<String> skillList,
         @Param("resumeId") Integer resumeId);
 
-    public int updateRequiredSkillById(
-        @Param("skillList") List<String> skillList);
+    // public int updateRequiredSkillById(
+    //     @Param("skillList") List<String> skillList);
 
     public int updateResumeSkillById(
         @Param("skillList") List<String> skillList);

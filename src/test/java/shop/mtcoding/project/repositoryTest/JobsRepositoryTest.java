@@ -1,5 +1,7 @@
 package shop.mtcoding.project.repositoryTest;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -108,7 +110,6 @@ public class JobsRepositoryTest {
         System.out.println("테스트 : "+jobsRepository.insert(jDto)); 
     
         // then
-    
     }
 
     @Test
@@ -133,7 +134,8 @@ public class JobsRepositoryTest {
         System.out.println("테스트 : "+jobsRepository.updateById(jDto)); 
     
         // then
-    
+        assertThat(jobsRepository.findById(jDto.getJobsId()).getEducation()).isEqualTo("123");
+        
     }
 
     @Test
