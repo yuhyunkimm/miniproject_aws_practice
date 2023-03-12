@@ -74,6 +74,11 @@ header {
     width: 100%;
     background-color: #F1F1F1;
 }
+.header {
+    position: fixed;
+    top: 0px;
+    padding: 5px;
+}
 
 .progress-container {
     width: 100%;
@@ -182,11 +187,7 @@ a {
     background-color: white;
 }
 
-.header {
-    position: fixed;
-    top: 0px;
-    padding: 5px;
-}
+
 
 .selected {
     background-color: #c5f1c5;

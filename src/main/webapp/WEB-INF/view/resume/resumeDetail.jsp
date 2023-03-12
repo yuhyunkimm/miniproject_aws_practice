@@ -251,8 +251,8 @@
             });
         }
         function renderRes(rDtoss) {
-            $('#suggest-btn').remove();
-            renderBtn();
+            // $('#suggest-btn').remove();
+            // renderBtn();
             rDtoss.forEach((rj) => {
                 renderJobsOne(rj);
             });
@@ -268,15 +268,15 @@
                 })
             });
         }
-        function renderBtn() {
-            let el = `
-        <div id="suggest-btn">
-                            <button type="button" class="btn btn-success w-100" data-bs-toggle="modal"
-                        data-bs-target="#myModal">제안하기</button>
-                        </div>
-        `;
-            $('#suggest-render').append(el);
-        }
+        // function renderBtn() {
+        //     let el = `
+        // <div id="suggest-btn">
+        //                     <button type="button" class="btn btn-success w-100" data-bs-toggle="modal"
+        //                 data-bs-target="#myModal">제안하기</button>
+        //                 </div>
+        // `;
+        //     $('#suggest-render').append(el);
+        // }
         function renderBtnSuccess() {
             let el = `
         <div id="suggest-btn">
@@ -325,9 +325,6 @@
                 alert(err.responseJSON.msg);
             });
         }
-
-
-
 
         function scrap(resume, comp, compScrap) {
             
@@ -420,7 +417,6 @@
                 });
             }
 
-       
             function deny(id,aId){
                 let data = {
                     compId: id,

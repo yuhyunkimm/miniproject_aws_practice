@@ -56,13 +56,13 @@
             on r.resume_id = s.resume_id
             where r.state = 1
             and
-            <if test="resumeDto.address != null and resumeDto.address.size() > 0">
+        <if test="resumeDto.address != null and resumeDto.address.size() > 0">
                 address in 
-                <foreach collection="resumeDto.address" item="address" open="(" close=")" separator=",">
-                  #{address} 
-                </foreach>
+            <foreach collection="resumeDto.address" item="address" open="(" close=")" separator=",">
+                #{address} 
+            </foreach>
                 and
-              </if>
+        </if>
         <if test="resumeDto.skillList != null and resumeDto.skillList.size() > 0">
           s.skill in
           <foreach collection="resumeDto.skillList" item="skill" open="(" close=")" separator=",">

@@ -231,5 +231,6 @@
                 }
                 $('.scrap-' + jobsId + '-render').append(el);
             }
+            
         </script>
         <%@ include file="../layout/footer.jsp" %>

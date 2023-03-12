@@ -181,6 +181,36 @@
         </div>
     </div>
     </div>
+    <div class="card border-light mb-3" style="max-width: 40rem;">
+        <div class="card-header">경력 사항</div>
+        <div class="card-body">
+            <div class="form-group">
+                <select class="form-select" name="career" id="career">
+                    <option selected disabled>경력 사항을 선택해주세요</option>
+                    <option value="신입" ${rDto.career=='신입' ? 'selected="selected"' : '' }>신입
+                    </option>
+                    <option value="1년차 미만" ${rDto.career=='1년차 미만' ? 'selected="selected"' : ''
+                        }>1년차 미만</option>
+                    <option value="1년" ${rDto.career=='1년' ? 'selected="selected"' : '' }>1년
+                    </option>
+                    <option value="2년" ${rDto.career=='2년' ? 'selected="selected"' : '' }>2년
+                    </option>
+                    <option value="3년" ${rDto.career=='3년' ? 'selected="selected"' : '' }>3년
+                    </option>
+                    <option value="4년" ${rDto.career=='4년' ? 'selected="selected"' : '' }>4년
+                    </option>
+                    <option value="5년" ${rDto.career=='5년' ? 'selected="selected"' : '' }>5년
+                    </option>
+                    <option value="6년" ${rDto.career=='6년' ? 'selected="selected"' : '' }>6년
+                    </option>
+                    <option value="7년" ${rDto.career=='7년' ? 'selected="selected"' : '' }>7년
+                    </option>
+                    <option value="8년차 이상" ${rDto.career=='8년차 이상' ? 'selected="selected"' : ''
+                        }>8년차 이상</option>
+                </select>
+            </div>
+        </div>
+    </div>
 
     <!-- 여기부터 푸터 -->
 

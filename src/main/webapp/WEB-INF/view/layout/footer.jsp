@@ -33,7 +33,7 @@
     </div>
     <script>
         function searchBox() {
-            $('#search-header').css('display')
+            // $('#search-header').css('display')
             const searchHeader = document.getElementById("search-header");
             if (searchHeader.style.display === "none") {
                 searchHeader.style.display = "block";
@@ -44,6 +44,10 @@
             const keyword = $('#search-header').val();
             location.href = "/jobs/search?keyword=" + keyword;
         }
+        const source = new EventSource('/stream/records');
+        source.addEventListener('message', function(event) {
+        console.log(event.data); // SSE 메시지 출력
+        });
     </script>
     </body>
 
