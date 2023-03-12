@@ -140,4 +140,15 @@ insert into suggest_tb (jobs_id, resume_id, state, created_at) values (1, 1, 0, 
 insert into suggest_tb (jobs_id, resume_id, state, created_at) values (2, 3, 0, now());
 insert into suggest_tb (jobs_id, resume_id, state, created_at) values (5, 3, 0, now());
 
+insert into notify_tb (apply_id, suggest_id, state, created_at) values (1, null, 0, now());
+insert into notify_tb (apply_id, suggest_id, state, created_at) values (2, null, 0, now());
+insert into notify_tb (apply_id, suggest_id, state, created_at) values (3, null, 0, now());
+insert into notify_tb (apply_id, suggest_id, state, created_at) values (4, null, 0, now());
+insert into notify_tb (apply_id, suggest_id, state, created_at) values (5, null, 0, now());
+insert into notify_tb (apply_id, suggest_id, state, created_at) values (6, null, 0, now());
+insert into notify_tb (apply_id, suggest_id, state, created_at) values (7, null, 0, now());
+insert into notify_tb (apply_id, suggest_id, state, created_at) values (null, 1, 0, now());
+insert into notify_tb (apply_id, suggest_id, state, created_at) values (null, 2, 0, now());
+insert into notify_tb (apply_id, suggest_id, state, created_at) values (null, 3, 0, now());
+
 commit;

@@ -11,6 +11,16 @@
       select * from apply_tb where apply_id = #{applyId}
   </select>
 
+  <select id="findByUserIdToNotice" resultType="shop.mtcoding.project.model.Apply">
+    SELECT a.apply_id, a.resume_id, a.jobs_id, a.state, r.user_id FROM APPLY_TB a join resume_tb r
+      on a.resume_id = r.resume_id join user_tb u
+      on u.user_id = r.user_id
+      where u.user_id = #{userId}
+      and a.state in (-1,1)
+  </select>
+
+
+
   <select id="findByCompIdAndApplyId" resultType="shop.mtcoding.project.dto.apply.ApplyResp$ApplytoCompRespDto">
     select apply_id, state from apply_tb a join jobs_tb j
       on a.jobs_id = j.jobs_id 
@@ -40,7 +50,7 @@
         where r.user_id = #{userId}
     </select>
 
-    <insert id="insert">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="aDto.applyId">
       insert into apply_tb ( resume_id, jobs_id, state, created_at ) 
         values ( #{aDto.resumeId}, #{aDto.jobsId}, 0, now() )
     </insert>

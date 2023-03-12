@@ -11,6 +11,7 @@ public class ApplyReq {
         private Integer resumeId;
         private Integer jobsId;
         private Integer userId;
+        private Integer applyId;
     }
 
     @Getter

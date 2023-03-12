@@ -88,7 +88,7 @@ create table apply_tb (
     apply_id int auto_increment primary key,
     resume_id int not null,
     jobs_id int not null,
-    state varchar,
+    state int not null,
     created_at timestamp
 );
 
@@ -96,6 +96,14 @@ create table suggest_tb (
     suggest_id int auto_increment primary key,
     jobs_id int not null,
     resume_id int not null,
-    state varchar,
+    state int not null,
     created_at timestamp
 );
+
+create table notify_tb(
+    notify_id int auto_increment primary key,
+    apply_id int,
+    suggest_id int,
+    state int not null,
+    created_at timestamp
+)
