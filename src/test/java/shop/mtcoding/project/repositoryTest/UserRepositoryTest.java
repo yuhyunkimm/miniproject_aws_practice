@@ -56,4 +56,18 @@ public class UserRepositoryTest {
     
     }
 
+    @Test
+    @Transactional
+    public void updatePhotoById_test() throws Exception {
+        // given
+        
+    
+        // when
+        userRepository.updatePhotoById("/images/033fad18-eeb0-4d44-a99c-dfa00955ec24_logo192.png",6);
+    
+    
+        // then
+    
+    }
+
 }

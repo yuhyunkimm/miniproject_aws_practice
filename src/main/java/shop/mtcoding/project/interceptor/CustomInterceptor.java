@@ -17,14 +17,15 @@ public class CustomInterceptor implements HandlerInterceptor {
             throws Exception {
         String requestURI = request.getRequestURI();
         if (requestURI.startsWith("/user")) { // "/blocked"로 시작하는 요청을 차단
-            User principal = (User) request.getSession(false).getAttribute("principal");
+            User principal = (User) request.getSession().getAttribute("principal");
             if (principal == null) {
+                System.out.println("테스트 : 세션이 없어 !!!");
                 response.sendRedirect("/user/login");
                 return false;
             }
         }
         if (requestURI.startsWith("/comp")) { // "/blocked"로 시작하는 요청을 차단
-            Comp compSession = (Comp) request.getSession(false).getAttribute("compSession");
+            Comp compSession = (Comp) request.getSession().getAttribute("compSession");
             if (compSession == null) {
                 response.sendRedirect("/comp/login");
                 return false;

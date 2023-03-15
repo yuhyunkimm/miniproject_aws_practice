@@ -47,7 +47,7 @@
 
     <update id="updatePhotoById">
         update user_tb set             
-            photo =  #{photo}
+            photo = #{photo}
             where user_id = #{userId}
     </update>
 

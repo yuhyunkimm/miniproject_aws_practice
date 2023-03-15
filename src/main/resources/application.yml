@@ -1,25 +1,32 @@
 server:
-  port: 8080
+  port: 80
   servlet:
     encoding:
       charset: utf-8
       force: true
     session:
       timeout: 3600
+  # tomcat:
+  #   additional-tld-skip-patterns: .jar
 spring:
   datasource:
     # url: jdbc:h2:mem:test;MODE=MySQL
     # driver-class-name: org.h2.Driver
     # username: sa
     # password: 
-    url: jdbc:mariadb://connect-maria-db.c3jrqy5bbxit.ap-northeast-2.rds.amazonaws.com:3306/temp?characterEncoding=utf-8&serverTimezone=Asia/Seoul
+    url: jdbc:mariadb://connect-maria-db.c3jrqy5bbxit.ap-northeast-2.rds.amazonaws.com:3306/conn?characterEncoding=utf-8&serverTimezone=Asia/Seoul
     driverClassName: org.mariadb.jdbc.Driver
     username: root
     password: green123
   mvc:
     view:
       prefix: /WEB-INF/view/
-      suffix: .jsp    
+      suffix: .jsp
+    # throw-exception-if-no-handler-found: true
+  # web:
+  #   resources:
+  #     static-locations:
+  #     - classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/, classpath:/WEB-INF/
   sql:
     init:
       schema-locations:

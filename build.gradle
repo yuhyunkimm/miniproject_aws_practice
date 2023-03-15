@@ -1,4 +1,5 @@
 plugins {
+    id 'war'
 	id 'java'
 	id 'org.springframework.boot' version '2.7.8'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
@@ -21,7 +22,6 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation 'org.mariadb.jdbc:mariadb-java-client'
-	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'org.jsoup:jsoup:1.15.3'
 	implementation 'javax.servlet:jstl'
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
