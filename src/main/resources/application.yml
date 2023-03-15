@@ -15,6 +15,7 @@ spring:
     # username: sa
     # password: 
     # url: jdbc:mariadb://connect-maria-db.c3jrqy5bbxit.ap-northeast-2.rds.amazonaws.com:3306/conn?characterEncoding=utf-8&serverTimezone=Asia/Seoul
+    # url: jdbc:mariadb://connect-maria-db.c3jrqy5bbxit.ap-northeast-2.rds.amazonaws.com:3306/conn?characterEncoding=utf-8&serverTimezone=Asia/Seoul
     url: jdbc:mariadb://todo-maria-db.cwxvuzi0ngbx.ap-northeast-2.rds.amazonaws.com:3306/mini_project?characterEncoding=utf-8&serverTimezone=Asia/Seoul
     driverClassName: org.mariadb.jdbc.Driver
     username: root
