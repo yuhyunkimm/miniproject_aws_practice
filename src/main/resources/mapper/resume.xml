@@ -16,14 +16,14 @@
     </select>
 
     <select id="findUpdateById" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeUpdateRespDto">
-        select r.RESUME_ID, r.USER_ID, r.TITLE, r.CONTENT, r.EDUCATION, r.CAREER, r.LINK, r.STATE, r.CREATED_AT, u.photo, u.name, u.tel, u.email, u.address, u.birth from resume_tb r 
+        select r.resume_id, r.user_id, r.title, r.content, r.education, r.career, r.link, r.state, r.created_at, u.photo, u.name, u.tel, u.email, u.address, u.birth from resume_tb r 
             join user_tb u
             on r.user_id= u.user_id
             where r.resume_id = #{resumeId}
     </select>
 
     <select id="findById" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeSaveRespDto">
-        select r.RESUME_ID, r.USER_ID, r.TITLE, r.CONTENT, r.EDUCATION, r.CAREER, r.LINK, r.STATE, r.CREATED_AT, u.photo, u.name, u.tel, u.email, u.address, u.birth from resume_tb r 
+        select r.resume_id, r.user_id, r.title, r.content, r.education, r.career, r.link, r.state, r.created_at, u.photo, u.name, u.tel, u.email, u.address, u.birth from resume_tb r 
             join user_tb u
             on r.user_id= u.user_id
             where r.resume_id = #{resumeId}
@@ -38,18 +38,18 @@
     </select>
 
     <select id="findAllResumebyState" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeReadRespDto">
-        SELECT  r.resume_id, ROW_NUMBER()OVER(partition by u.user_id order by u.user_id ) num , 
+        select  r.resume_id, row_number()over(partition by u.user_id order by u.user_id ) num , 
             u.user_id, u.photo, u.name, u.birth, r.education, u.address,r.title, r.career, r.state
-            FROM RESUME_TB r
+            from resume_tb r
             join user_tb u
             on r.user_id = u.user_id
             where r.state = 1
     </select>
 
     <select id="findResumeByCheckBox" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeSearchRespDto">
-        SELECT  r.resume_id, ROW_NUMBER()OVER(partition by u.user_id order by u.user_id ) num , 
+        select r.resume_id, ROW_NUMBER()OVER(partition by u.user_id order by u.user_id ) num , 
             u.user_id, u.photo, u.name, u.birth, r.education, u.address,r.title, r.career, r.state
-            FROM RESUME_TB r
+            from resume_tb r
             join user_tb u
             on r.user_id = u.user_id
             join resume_skill_tb s
@@ -89,12 +89,12 @@
     </select>
 
     <select id="findDetailPublicResumebyById" resultType="shop.mtcoding.project.dto.resume.ResumeResp$ResumeDetailRespDto">
-        SELECT distinct r.resume_id, u.photo, u.name, r.title, u.birth, r.education, r.career, u.address, r.content, r.link,
+        select distinct r.resume_id, u.photo, u.name, r.title, u.birth, r.education, r.career, u.address, r.content, r.link
         <if test="#{compId != null}">
-            ifnull(( select comp_scrap_id from comp_scrap_tb s  join resume_tb r on s.resume_id = r.resume_id 
+            ,ifnull(( select comp_scrap_id from comp_scrap_tb s  join resume_tb r on s.resume_id = r.resume_id 
           where s.comp_id = #{compId} and r.resume_id = #{resumeId} ),null) comp_scrap_id 
         </if>
-          FROM USER_TB u 
+          from user_tb u 
           join resume_tb r
           on u.user_id = r.user_id
           where r.state = 1

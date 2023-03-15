@@ -30,11 +30,11 @@ values ('ncsoft@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500
 
 
 insert into resume_skill_tb (resume_id, skill) values (1, 'Vue.js');
-insert into resume_skill_tb (resume_id, skill) values (1, 'JavaScript');
+insert into resume_skill_tb (resume_id, skill) values (1, 'Oracle');
 insert into resume_skill_tb (resume_id, skill) values (1, 'HTML/CSS');
 insert into resume_skill_tb (resume_id, skill) values (1, 'JavaScript');
 insert into resume_skill_tb (resume_id, skill) values (1, 'Spring');
-insert into resume_skill_tb (resume_id, skill) values (2, 'JavaScript');
+insert into resume_skill_tb (resume_id, skill) values (2, 'React');
 insert into resume_skill_tb (resume_id, skill) values (2, 'HTML/CSS');
 insert into resume_skill_tb (resume_id, skill) values (2, 'JavaScript');
 insert into resume_skill_tb (resume_id, skill) values (2, 'Spring');
@@ -46,7 +46,7 @@ insert into required_skill_tb ( jobs_id, skill) values (1, 'Spring');
 insert into required_skill_tb ( jobs_id, skill) values (1, 'JavaScript');
 insert into required_skill_tb ( jobs_id, skill) values (1, 'HTML/CSS');
 insert into required_skill_tb ( jobs_id, skill) values (1, 'jQuery');
-insert into required_skill_tb ( jobs_id, skill) values (2, 'JavaScript');
+insert into required_skill_tb ( jobs_id, skill) values (2, 'jQuery');
 insert into required_skill_tb ( jobs_id, skill) values (2, 'Oracle');
 insert into required_skill_tb ( jobs_id, skill) values (2, 'React');
 insert into required_skill_tb ( jobs_id, skill) values (2, 'JavaScript');
@@ -60,7 +60,7 @@ insert into required_skill_tb ( jobs_id, skill) values (4, 'React');
 insert into required_skill_tb ( jobs_id, skill) values (5, 'JavaScript');
 insert into required_skill_tb ( jobs_id, skill) values (5, 'Spring');
 insert into required_skill_tb ( jobs_id, skill) values (5, 'Oracle');
-insert into required_skill_tb ( jobs_id, skill) values (5, 'JavaScript');
+insert into required_skill_tb ( jobs_id, skill) values (5, 'jQuery');
 insert into required_skill_tb ( jobs_id, skill) values (6, 'React');
 insert into required_skill_tb ( jobs_id, skill) values (6, 'Oracle');
 insert into required_skill_tb ( jobs_id, skill) values (6, 'JavaScript');
@@ -69,7 +69,7 @@ insert into required_skill_tb ( jobs_id, skill) values (7, 'Spring');
 insert into required_skill_tb ( jobs_id, skill) values (7, 'JavaScript');
 insert into required_skill_tb ( jobs_id, skill) values (8, 'Oracle');
 insert into required_skill_tb ( jobs_id, skill) values (8, 'React');
-insert into required_skill_tb ( jobs_id, skill) values (9, 'Oracle');
+insert into required_skill_tb ( jobs_id, skill) values (9, 'jQuery');
 insert into required_skill_tb ( jobs_id, skill) values (9, 'React');
 
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)

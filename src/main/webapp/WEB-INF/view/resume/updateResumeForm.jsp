@@ -8,6 +8,9 @@
                         <div class="col-9">
                             <br>
                             이력서 수정<br>
+                            <c:forEach items="${rDto.skillList}" var="skill">
+                            ${skill}
+                            </c:forEach>
                             <hr />
                             <div class="card border-light mb-3" style="max-width: 40rem;">
                                 <div class="card-header">기본 정보</div>
@@ -162,11 +165,11 @@
                                                             <div class="form-check text-center">
                                                                 <label class="form-check-label">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        name="skillList" value="HTML" <c:forEach
+                                                                        name="skillList" value="HTML/CSS" <c:forEach
                                                                         items="${rDto.skillList}" var="skill">
-                                                                    ${skill=='HTML' ? 'checked="checked"' : '' }
+                                                                    ${skill=='HTML/CSS' ? 'checked="checked"' : '' }
                                                                     </c:forEach>
-                                                                    > HTML
+                                                                    > HTML/CSS
                                                                 </label>
                                                             </div>
                                                         </td>

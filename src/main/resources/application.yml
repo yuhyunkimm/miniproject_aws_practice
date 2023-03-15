@@ -8,10 +8,14 @@ server:
       timeout: 3600
 spring:
   datasource:
-    url: jdbc:h2:mem:test;MODE=MySQL
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: 
+    # url: jdbc:h2:mem:test;MODE=MySQL
+    # driver-class-name: org.h2.Driver
+    # username: sa
+    # password: 
+    url: jdbc:mariadb://connect-maria-db.c3jrqy5bbxit.ap-northeast-2.rds.amazonaws.com:3306/temp?characterEncoding=utf-8&serverTimezone=Asia/Seoul
+    driverClassName: org.mariadb.jdbc.Driver
+    username: root
+    password: green123
   mvc:
     view:
       prefix: /WEB-INF/view/
