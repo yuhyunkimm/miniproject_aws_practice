@@ -359,7 +359,6 @@
         let jobsId;
         let compId;
         function saveTemp(id, jobs) {
-            resumeId = jobs;
             compId = id;
 
             let data = {
@@ -380,7 +379,7 @@
                 jobsId: jobs
             };
 
-            if (resumeId > 0) {
+            if (jobs > 0) {
                 $.ajax({
                     type: "put",
                     url: "/comp/jobs/update",

@@ -1,5 +1,7 @@
 package shop.mtcoding.project.repositoryTest;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.sql.Timestamp;
 
 import org.junit.jupiter.api.Test;
@@ -31,10 +33,11 @@ public class CompRepositoryTest {
     new Timestamp(System.currentTimeMillis()));
 
     // when
-    System.out.println("테스트 : " + compRepository.insert(uDto));
+    compRepository.insert(uDto);
 
     // then
-
+    assertThat(compRepository.findByCompEmail(uDto.getEmail()).getRepresentativeName()).isEqualTo("대표자명");
+    assertThat(compRepository.findByCompEmail(uDto.getEmail()).getCompName()).isEqualTo("ssar");
     }
 
     @Test
@@ -51,6 +54,7 @@ public class CompRepositoryTest {
         System.out.println("테스트 : " + compRepository.updateById(jDto));
 
         // then
-
+        assertThat(compRepository.findByCompId(jDto.getCompId()).getRepresentativeName()).isEqualTo("1234");
+        assertThat(compRepository.findByCompId(jDto.getCompId()).getCompName()).isEqualTo("1234");
     }
 }

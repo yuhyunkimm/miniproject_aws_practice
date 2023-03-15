@@ -1,5 +1,7 @@
 package shop.mtcoding.project.repositoryTest;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +51,7 @@ public class ScrapRepositoryTest {
         System.out.println("테스트 : "+scrapRepository.insertbyUser(id, sDto)); 
 
         //then
+        assertThat(scrapRepository.findAllScrapByUserId(54).size()).isEqualTo(0);
     }
 
     @Test

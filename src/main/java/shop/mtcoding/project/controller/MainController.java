@@ -46,6 +46,12 @@ public class MainController {
         return "main/jusoPopup";
     }
 
+    @GetMapping("/testtest")
+    public String  testtest(){
+        
+    return "testtest";
+    }
+
     @GetMapping("/")
     public String main(Model model) {
         User principal = (User) session.getAttribute("principal");

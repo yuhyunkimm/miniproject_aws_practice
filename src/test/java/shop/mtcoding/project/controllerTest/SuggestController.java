@@ -1,5 +1,6 @@
 package shop.mtcoding.project.controllerTest;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
@@ -21,6 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import shop.mtcoding.project.dto.suggest.SuggestReq.SuggestReqDto;
 import shop.mtcoding.project.dto.suggest.SuggestReq.SuggestUpdateReqDto;
 import shop.mtcoding.project.model.Comp;
+import shop.mtcoding.project.model.SuggestRepository;
 import shop.mtcoding.project.model.User;
 
 @AutoConfigureMockMvc
@@ -33,6 +35,8 @@ public class SuggestController {
     @Autowired
     private ObjectMapper om;
 
+    @Autowired
+    private SuggestRepository suggestRepository;
     private MockHttpSession mockSession;
 
     private void mockCompSession() {
@@ -81,6 +85,8 @@ public class SuggestController {
                               .content(json).contentType(MediaType.APPLICATION_JSON_VALUE).session(mockSession));
     
         // then
+        // assertThat(suggestRepository.findAllByCompIdtoSuggest(sDto.getCompId()).get(0).getState()).isEqualTo(0);
+        // assertThat(suggestRepository.findAllByCompIdtoSuggest(sDto.getCompId()).get(0).getName()).isEqualTo("박인우");
         System.out.println("테스트 : "+ rs.andReturn().getResponse().getContentAsString()); 
     }
 
@@ -103,10 +109,10 @@ public class SuggestController {
         
         System.out.println("테스트 : "+ rs.andReturn().getResponse().getStatus()); 
         System.out.println("테스트 : "+ rs.andReturn().getResponse().getContentAsString()); 
-       
-    
     
         // then
+        // assertThat(suggestRepository.findAllGetOfferByUserId(sDto.getUserId()).get(0).getCompName()).isEqualTo("쿠팡");
+        // assertThat(suggestRepository.findAllGetOfferByUserId(sDto.getUserId()).get(0).getPosition()).isEqualTo("백엔드 개발자");
     
     }
 }

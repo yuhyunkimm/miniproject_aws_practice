@@ -12,6 +12,7 @@ import shop.mtcoding.project.model.Apply;
 import shop.mtcoding.project.model.ApplyRepository;
 import shop.mtcoding.project.model.Jobs;
 import shop.mtcoding.project.model.JobsRepository;
+import shop.mtcoding.project.model.NotifyRepository;
 import shop.mtcoding.project.model.Resume;
 import shop.mtcoding.project.model.ResumeRepository;
 
@@ -28,6 +29,9 @@ public class ApplyService {
     @Autowired
     private JobsRepository jobsRepository;
 
+    @Autowired
+    private NotifyRepository notifyRepository;
+
     @Transactional
     public void 지원하기(ApplyReqDto aDto, Integer userId){
         if ( userId != aDto.getUserId()){
@@ -41,8 +45,15 @@ public class ApplyService {
         if ( jobsPS == null ){
             throw new CustomApiException("존재하지 않는 공고 입니다.");
         }
+        Integer result = 0;
         try {
             applyRepository.insert(aDto);
+            result = aDto.getApplyId();
+        } catch (Exception e) {
+            throw new CustomApiException("서버에 일시적인 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        try {
+            notifyRepository.insert(result, null);
         } catch (Exception e) {
             throw new CustomApiException("서버에 일시적인 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }

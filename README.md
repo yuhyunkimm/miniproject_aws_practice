@@ -49,13 +49,14 @@
 ### 4단계
 - 개인 - 공고 스크랩
 - 기업 - 이력서 스크랩
-- 지원, 제안 알림서비스
-- 비밀번호 찾기
-- 이메일 찾기
 - SHA-256 암호화
+- 지원, 제안 알림서비스 (x)
+- 비밀번호 찾기 (x)
+- 이메일 찾기 (x)
+
 ### 5단계
-- 페이징
-- Redis
+- 페이징 (x)
+- Redis (x)
 
 <br>
 
@@ -86,9 +87,7 @@ testImplementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-
 
 > ## 기술 블로그
 
-
 - 추가 예정
-
 
 <br>
 
@@ -96,48 +95,90 @@ testImplementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-
 - 박인우 (팀장) 
     - 테이블 설계 및 모델링, 정규화
     - 간단한 유틸 클래스 제공
+    - 마이 홈 / 개인 홈 테이블(html) 넣고 데이터 넣기
     - 공고 목록 및 데이터 가져오기
     - 공고 작성, 수정 페이지, 공고 삭제(추가)
-    - 공고 상세보기, 지원상태에 따른 버튼 변화
-    - 공고에 지원하기 기능
+    - 공고 상세보기, 지원상태에 따른 버튼 변화(지원하기/지원완료)
+    - 지원 및 제안시 이력서, 공고 선택하는 기능
     - 공고, 이력서 임시저장 기능
     - 받은 제안, 지원 현황 페이지 및 버튼으로 합격, 불합격, 수락, 거절 처리
     - 보유기술과 필요기술을 매칭시킨 공고 매칭서비스, 인재추천기능
     - 관심 카테고리와 공고의 포지션이 맞는 추천 공고
     - 공고 검색 + 채용페이지에서 여러 조건( 기술, 지역, 학력, 경력 )으로 중첩 검색기능
     - 기업정보, 공고정보, 기술가져오는 쿼리 작성
-    - 스크랩 기능
+    - 이력서, 공고 스크랩 기능
     - 통합 테스트
-    - 추가 예정
 
 - 이인화 
     - 이력서 작성, 수정, 삭제
     - 이력서 작성시 체크된 데이터 전달 및 insert / update 
     - 이력서 상세보기
     - 이력서 작성, 수정, 삭제 테스트
-    - 추가 예정
+
 - 김유현 
     - 개인, 기업 회원가입 로그인 정보 수정폼 및 유효성 검사
     - 지도 api 사용
     - 회원가입, 로그인, 정보 수정 테스트
-    - 추가 예정
+
 - 강은희 
     - 고객센터 페이지
 
 
 <br>
 
-> ## 시연영상
-- 추가 예정
+> ## 구현 화면
 
+ <img src="src\main\resources\static\images\화면 캡처 2023-03-11 212715.jpg">
+ <img src="src\main\resources\static\images\화면 캡처 2023-03-11 212739.jpg">
+ <img src="src\main\resources\static\images\화면 캡처 2023-03-11 212758.jpg">
+ <img src="src\main\resources\static\images\화면 캡처 2023-03-11 212812.jpg">
+ <img src="src\main\resources\static\images\화면 캡처 2023-03-11 212825.jpg">
+
+ <img src="src\main\resources\static\images\화면 캡처 2023-03-11 212844.jpg">
+ <img src="src\main\resources\static\images\화면 캡처 2023-03-11 212906.jpg">
+   <img src="src\main\resources\static\images\화면 캡처 2023-03-11 213422.jpg">
+ <img src="src\main\resources\static\images\화면 캡처 2023-03-11 212925.jpg">
+ <img src="src\main\resources\static\images\화면 캡처 2023-03-11 212947.jpg">
+ <img src="src\main\resources\static\images\화면 캡처 2023-03-11 212957.jpg">
+ <img src="src\main\resources\static\images\화면 캡처 2023-03-11 213007.jpg">
+
+
+
+<br>
+
+
+> ## 시연영상
+- 구직자 시나리오 영상
+https://www.youtube.com/watch?v=4_x91KnOMYU
+- 구인기업 시나리오 영상
+https://www.youtube.com/watch?v=osN8bGS7tzQ
 
 <br>
 
 > ## 보완점
-- 추가 예정
-
+- 편의 기능이 필요해 보인다.( 알림, 이메일, 비밀번호 찾기 기능 )
+- 한번 완료한 기능을 다시 테스트 하지 않도록 완벽함이 필요하다.
 
 <br>
 
 > ## 후기
-- 추가 예정
+- 박인우
+
+
+    부족한 점과 잘하는 점을 잘 알게 됐으니 개선해보자
+
+- 김유현
+
+
+  아직 배울 기술이 너무 많고, 조원들과 함께 사이트를 만들었다는게 기쁘고 즐거웠다
+
+- 이인화
+
+
+  어려웠지만 많은 것을 배우게 된 좋은 기회였다
+
+- 강은희
+
+
+  어려웠지만 그만큼 재미있었고 뿌듯한 시간이었습니다
+

@@ -467,13 +467,12 @@
             });
         }
         function renderRes(rDtoss) {
-            $('#apply-btn').remove();
-            renderBtn();
+            // $('#apply-btn').remove();
+            // renderBtn();
             rDtoss.forEach((rd) => {
                 renderResumeOne(rd);
             });
             let resumes = document.querySelectorAll('.resumeList');
-            console.log(resumes);
             resumes.forEach(function (resume) {
                 resume.addEventListener('click', function (evt) {
                     // 모든 탭 버튼에서 active 클래스를 제거
@@ -485,15 +484,15 @@
                 })
             });
         }
-        function renderBtn() {
-            let el = `
-                    <div id="apply-btn">
-                                    <button type="button" class="btn btn-success w-100" data-bs-toggle="modal"
-                                    data-bs-target="#myModal">지원하기</button>
-                                </div>
-                    `;
-            $('#apply-render').append(el);
-        }
+        // function renderBtn() {
+        //     let el = `
+        //             <div id="apply-btn">
+        //                             <button type="button" class="btn btn-success w-100" data-bs-toggle="modal"
+        //                             data-bs-target="#myModal">지원하기</button>
+        //                         </div>
+        //             `;
+        //     $('#apply-render').append(el);
+        // }
         function renderBtnSuccess() {
             let el = `
                     <div id="apply-btn">

@@ -1,5 +1,7 @@
 package shop.mtcoding.project.repositoryTest;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +40,7 @@ public class InterestRepositoryTest {
         for (InterestChangeRespDto interestChangeRespDto : interest) {
             System.out.println("테스트 : "+ interestChangeRespDto);
         }
-        // assertThat(interest.getInterestList().get(1)).isEqualTo("서버");
+        // assertThat(interest.get(5).getInterestCt()).isEqualTo("서버");
     }
 
     @Test
@@ -50,6 +52,6 @@ public class InterestRepositoryTest {
         interestRepository.deleteById(1);
     
         // then
-        
+        assertThat(interestRepository.findById(1).size()).isEqualTo(0); 
     }
 }

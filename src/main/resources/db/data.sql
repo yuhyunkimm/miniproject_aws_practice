@@ -30,11 +30,11 @@ values ('ncsoft@nate.com', 'ea32961dbd579ef5697c367f9267921ee07f14d77fb2d4fb9500
 
 
 insert into resume_skill_tb (resume_id, skill) values (1, 'Vue.js');
-insert into resume_skill_tb (resume_id, skill) values (1, 'JavaScript');
+insert into resume_skill_tb (resume_id, skill) values (1, 'Oracle');
 insert into resume_skill_tb (resume_id, skill) values (1, 'HTML/CSS');
 insert into resume_skill_tb (resume_id, skill) values (1, 'JavaScript');
 insert into resume_skill_tb (resume_id, skill) values (1, 'Spring');
-insert into resume_skill_tb (resume_id, skill) values (2, 'JavaScript');
+insert into resume_skill_tb (resume_id, skill) values (2, 'React');
 insert into resume_skill_tb (resume_id, skill) values (2, 'HTML/CSS');
 insert into resume_skill_tb (resume_id, skill) values (2, 'JavaScript');
 insert into resume_skill_tb (resume_id, skill) values (2, 'Spring');
@@ -46,7 +46,7 @@ insert into required_skill_tb ( jobs_id, skill) values (1, 'Spring');
 insert into required_skill_tb ( jobs_id, skill) values (1, 'JavaScript');
 insert into required_skill_tb ( jobs_id, skill) values (1, 'HTML/CSS');
 insert into required_skill_tb ( jobs_id, skill) values (1, 'jQuery');
-insert into required_skill_tb ( jobs_id, skill) values (2, 'JavaScript');
+insert into required_skill_tb ( jobs_id, skill) values (2, 'jQuery');
 insert into required_skill_tb ( jobs_id, skill) values (2, 'Oracle');
 insert into required_skill_tb ( jobs_id, skill) values (2, 'React');
 insert into required_skill_tb ( jobs_id, skill) values (2, 'JavaScript');
@@ -60,7 +60,7 @@ insert into required_skill_tb ( jobs_id, skill) values (4, 'React');
 insert into required_skill_tb ( jobs_id, skill) values (5, 'JavaScript');
 insert into required_skill_tb ( jobs_id, skill) values (5, 'Spring');
 insert into required_skill_tb ( jobs_id, skill) values (5, 'Oracle');
-insert into required_skill_tb ( jobs_id, skill) values (5, 'JavaScript');
+insert into required_skill_tb ( jobs_id, skill) values (5, 'jQuery');
 insert into required_skill_tb ( jobs_id, skill) values (6, 'React');
 insert into required_skill_tb ( jobs_id, skill) values (6, 'Oracle');
 insert into required_skill_tb ( jobs_id, skill) values (6, 'JavaScript');
@@ -69,15 +69,15 @@ insert into required_skill_tb ( jobs_id, skill) values (7, 'Spring');
 insert into required_skill_tb ( jobs_id, skill) values (7, 'JavaScript');
 insert into required_skill_tb ( jobs_id, skill) values (8, 'Oracle');
 insert into required_skill_tb ( jobs_id, skill) values (8, 'React');
-insert into required_skill_tb ( jobs_id, skill) values (9, 'Oracle');
+insert into required_skill_tb ( jobs_id, skill) values (9, 'jQuery');
 insert into required_skill_tb ( jobs_id, skill) values (9, 'React');
 
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
-values ('백엔드 개발자 ' , '', '백엔드 개발자', '신입', '학력무관', '제주',  '2023-03-24', 1, '홈페이지 접수', now());
+values ('백엔드 개발자' , '', '백엔드 개발자', '신입', '학력무관', '제주',  '2023-03-24', 1, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
 values ('프로트엔드 개발자 ' , '', '프로트엔드 개발자', '1년차 미만', '대졸', '서울', '2023-05-11', 2, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
-values ('백엔드 개발자 ' , '', '백엔드 개발자', '1년차', '대졸', '서울', '2023-03-14', 3, '홈페이지 접수', now());
+values ('백엔드 개발자' , '', '백엔드 개발자', '1년차', '대졸', '서울', '2023-03-14', 3, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
 values ('서버 개발자 ' , '', '서버 개발자', '3년차', '학력무관', '제주', '2023-03-24', 4, '홈페이지 접수', now());
 insert into jobs_tb (title, content, position, career, education, address, end_date, comp_id, receipt, created_at)
@@ -139,5 +139,16 @@ insert into apply_tb (resume_id, jobs_id, state, created_at) values (3, 2, 0, no
 insert into suggest_tb (jobs_id, resume_id, state, created_at) values (1, 1, 0, now());
 insert into suggest_tb (jobs_id, resume_id, state, created_at) values (2, 3, 0, now());
 insert into suggest_tb (jobs_id, resume_id, state, created_at) values (5, 3, 0, now());
+
+insert into notify_tb (apply_id, suggest_id, state, created_at) values (1, null, 0, now());
+insert into notify_tb (apply_id, suggest_id, state, created_at) values (2, null, 0, now());
+insert into notify_tb (apply_id, suggest_id, state, created_at) values (3, null, 0, now());
+insert into notify_tb (apply_id, suggest_id, state, created_at) values (4, null, 0, now());
+insert into notify_tb (apply_id, suggest_id, state, created_at) values (5, null, 0, now());
+insert into notify_tb (apply_id, suggest_id, state, created_at) values (6, null, 0, now());
+insert into notify_tb (apply_id, suggest_id, state, created_at) values (7, null, 0, now());
+insert into notify_tb (apply_id, suggest_id, state, created_at) values (null, 1, 0, now());
+insert into notify_tb (apply_id, suggest_id, state, created_at) values (null, 2, 0, now());
+insert into notify_tb (apply_id, suggest_id, state, created_at) values (null, 3, 0, now());
 
 commit;

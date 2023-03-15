@@ -18,6 +18,8 @@ public interface ApplyRepository {
 
     public Apply findByApplyId(Integer applyId);
 
+    public List<Apply> findByUserIdToNotice(Integer userId);
+
     public ApplyUserStatusDetailRespDto findApplyStateByUserIdAndJobsId(
         @Param("userId") Integer userId,
         @Param("jobsId") Integer jobsId

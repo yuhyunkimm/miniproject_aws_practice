@@ -37,7 +37,7 @@
                                         data-bs-target="#modal">정보수정</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1" href="/logout">로그아웃</a>
+                                    <a class="nav-link a p-1" href="/logout" >로그아웃</a>
                                 </li>
                             </ul>
                         </div>

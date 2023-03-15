@@ -9,7 +9,7 @@
     </select>
 
     <select id="findByIdToJobs" resultType="shop.mtcoding.project.dto.comp.CompResp$CompWriteJobsRespDto">
-      SELECT comp_name, REPRESENTATIVE_NAME, photo, homepage FROM COMP_TB where comp_id = #{compId}
+      SELECT comp_name, representative_name, photo, homepage FROM comp_tb where comp_id = #{compId}
     </select>
 
     <select id="findByCompId" resultType="shop.mtcoding.project.model.Comp">

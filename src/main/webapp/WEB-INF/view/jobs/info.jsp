@@ -752,8 +752,6 @@
                             <div class="d-flex justify-content-between">
                                 <div id="scrap-`+jDto.jobsId+`-render">
                                         <div id="scrap-`+jDto.jobsId+`-remove">
-                                            
-                          
                                 
                                         </div>
                                 </div>
@@ -765,8 +763,6 @@
                 </div>
             </div>
             `;
-
-                    // console.log(jDto.skillList);
                     $('.info-card').append(el);
                     insertSkill(jDto.skillList, jDto.jobsId);
                     insertScrap(jDto.jobsId, jDto.userScrapId, userId)
@@ -778,12 +774,10 @@
                     <span class="badge skill-color">`+ skillList[index] + `</span>
                 `;
                     $('#insert-skill-' + jobsId).append(el);
-                    
                 }
             }
 
             function insertScrap(jobsId, ScrapId){
-                // console(ScrapId)
                 let el ;
                 if ( userId > 0){
                     if ( ScrapId > 0){

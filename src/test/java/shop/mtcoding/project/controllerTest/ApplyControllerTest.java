@@ -88,6 +88,7 @@ public class ApplyControllerTest {
     
         // then
         System.out.println("테스트 : "+ rs.andReturn().getResponse().getContentAsString()); 
+        // assertThat(applyRepository.findAllByUserIdtoApply(aDto.getUserId()).get(0).getJobsTitle()).isEqualTo("백엔드 개발자");
     
     }
 
