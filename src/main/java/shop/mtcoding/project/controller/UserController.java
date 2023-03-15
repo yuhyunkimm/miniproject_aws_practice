@@ -147,7 +147,6 @@ public class UserController {
             }
             session.setAttribute("compSession", null);
             session.setAttribute("principal", principal);
-            System.out.println("테스트 : "+ session.getAttribute("principal").toString());
             return "redirect:/";
         }
     }

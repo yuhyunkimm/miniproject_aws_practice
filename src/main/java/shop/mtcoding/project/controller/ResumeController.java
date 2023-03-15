@@ -226,7 +226,6 @@ public class ResumeController {
 
     @GetMapping("/comp/resume/search")
     public ResponseEntity<?> searchCheckbox(ResumeCheckboxReqDto rDto, Model model) {
-        System.out.println("테스트 : " + rDto.toString());
         if (rDto.getCareer() == null || rDto.getCareer().isEmpty()) {
             rDto.setCareer("");
         }

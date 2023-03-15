@@ -44,16 +44,12 @@
         const keyword = $('#search-header').val();
         location.href = "/jobs/search?keyword=" + keyword;
     }
-    const source = new EventSource('/stream/records');
-    source.addEventListener('message', function (event) {
-        console.log(event.data); // SSE 메시지 출력
-    });
 
-            const eventSource = new EventSource('/notify');
-            eventSource.onmessage = function (event) {
-                const data = event.data;
-                alert(data);
-            };
+    const eventSource = new EventSource('/notify');
+    eventSource.onmessage = function (event) {
+        const data = event.data;
+        alert(data);
+    };
 
 </script>
 </body>

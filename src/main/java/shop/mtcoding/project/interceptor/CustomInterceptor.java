@@ -19,7 +19,7 @@ public class CustomInterceptor implements HandlerInterceptor {
         if (requestURI.startsWith("/user")) { // "/blocked"로 시작하는 요청을 차단
             User principal = (User) request.getSession().getAttribute("principal");
             if (principal == null) {
-                System.out.println("테스트 : 세션이 없어 !!!");
+                // System.out.println("테스트 : 세션이 없어 !!!");
                 response.sendRedirect("/user/login");
                 return false;
             }

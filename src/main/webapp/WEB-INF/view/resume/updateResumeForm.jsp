@@ -7,10 +7,7 @@
                     <div class="row">
                         <div class="col-9">
                             <br>
-                            이력서 수정<br>
-                            <c:forEach items="${rDto.skillList}" var="skill">
-                            ${skill}
-                            </c:forEach>
+                            이력서 수정<br>         
                             <hr />
                             <div class="card border-light mb-3" style="max-width: 40rem;">
                                 <div class="card-header">기본 정보</div>
