@@ -53,7 +53,7 @@
     </select>
     <select id="findAlltoMainRecommendRandom" resultType="shop.mtcoding.project.dto.jobs.JobsResp$JobsMainRecommendRespDto">
       select jobs_id, c.photo, c.comp_name, j.title, j.education, j.career, j.address, j.end_date,
-      ifnull(( select user_scrap_id from user_scrap_tb where user_id = 4 and jobs_id = j.jobs_id ),null) user_scrap_id
+      ifnull(( select user_scrap_id from user_scrap_tb where user_id = #{userId} and jobs_id = j.jobs_id ),null) user_scrap_id
       from jobs_tb j join comp_tb c
       on j.comp_id = c.comp_id   
       order by j.jobs_id desc

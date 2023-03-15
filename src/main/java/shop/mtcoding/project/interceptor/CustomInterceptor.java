@@ -19,7 +19,7 @@ public class CustomInterceptor implements HandlerInterceptor {
         if (requestURI.startsWith("/user")) { // "/blocked"로 시작하는 요청을 차단
             User principal = (User) request.getSession(false).getAttribute("principal");
             if (principal == null) {
-                response.sendRedirect("/user/login");
+                response.sendRedirect("/login");
                 return false;
             }
         }
@@ -33,10 +33,14 @@ public class CustomInterceptor implements HandlerInterceptor {
         return true;
 
         // System.out.println("테스트 : "+ request.getRequestURL().toString());
-        // if (request.getRequestURL().toString().equals("http://localhost:8080/user/**")) {
+        // if
+        // (request.getRequestURL().toString().equals("http://localhost:8080/user/**"))
+        // {
 
         // }
-        // if (request.getRequestURL().toString().equals("http://localhost:8080/comp/**")) {
+        // if
+        // (request.getRequestURL().toString().equals("http://localhost:8080/comp/**"))
+        // {
 
         // }
     }
